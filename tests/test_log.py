@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-logs module tests
+log module tests
 """
 import logging
 

@@ -12,7 +12,8 @@ dependencies:
     - pyarrow>=18.0.0,<19
     - proj-data>=1.22,<2
     - tqdm>=4.67.1,<5
-    - exactextract
+    - exactextract>=0.2.2,<1
+    - pydantic>=2.11.7,<3
     - pip>=25.2
     - pip:
         - -r requirements.txt

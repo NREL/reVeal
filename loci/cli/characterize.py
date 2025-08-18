@@ -55,7 +55,7 @@ def _preprocessor(config, job_name, log_directory, verbose):
     return config
 
 
-def run(data_dir, grid, characterizations, max_workers=None, _local=True):
+def run(data_dir, grid, characterizations, expressions, max_workers=None, _local=True):
     """
     Characterize a vector grid based on specified raster and vector datasets.
     Outputs a new GeoPackage containing the input grid with added attributes for the
@@ -78,16 +78,24 @@ def run(data_dir, grid, characterizations, max_workers=None, _local=True):
             - "dset": String indicating relative path within data_dir to dataset to be
                 characterized.
             - "method": String indicating characterization method to be performed.
+            - "attribute": Attribute to summarize. Only required for certain methods.
+                Default is None/null.
             - "apply_exclusions": Boolean indicating whether exclusions should be
                 applied before characterization. Optional, default is False.
             - "neighbor_order": Integer indicating the order of neighbors to include
                 in the characterization of each grid cell. For example,
                 neighbor_order=1 would result in included first-order queen's case
-                neighbors. Optiona, default is 0 which does not include neighbors.
+                neighbors. Optional, default is 0 which does not include neighbors.
             - "buffer_distance": Float indicating buffer distance to apply in the
                 characterization of each grid cell. Units are based on the CRS of the
                 input grid dataset. For instance, a value of 500 in CRS EPGS:5070
                 would apply a buffer of 500m to each grid cell before characterization.
+                Optional, default is 0 which does not apply a buffer.
+    expressions: dict
+        Additional expressions to be calculated. Must be a dictionary keyes by the name
+        of the output attribute for each expression. Each value must be a string
+        indicating the expression to be calculated. Expression strings can reference
+        one or more attributes/keys referenced in the characterizations dictionary.
     max_workers : [int, NoneType], optional
         Maximum number of workers to use for multiprocessing, by default None, which
         uses all available CPUs.
