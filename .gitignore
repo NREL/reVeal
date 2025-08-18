@@ -133,3 +133,5 @@ dmypy.json
 
 # visual studio
 .vscode/
+
+.gaps/

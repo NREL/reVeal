@@ -52,7 +52,7 @@ setup(
     package_dir={"loci": "loci"},
     entry_points={
         "console_scripts": [
-            "loci=loci.cli:main",
+            "loci=loci.cli.cli:main",
         ],
     },
     zip_safe=False,
