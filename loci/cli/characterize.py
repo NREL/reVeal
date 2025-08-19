@@ -115,6 +115,8 @@ def run(data_dir, grid, characterizations, expressions, max_workers=None, _local
         dynamically by based on whether config["execution_control"]["option"] == "local"
         (defaults to True if not specified).
     """
+    # pylint: disable=unused-argument
+
     # streamhandler is added in by gaps before kicking off the subprocess and
     # will produce duplicate log messages if running locally, so remove it
     if _local:
