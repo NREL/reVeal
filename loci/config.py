@@ -61,19 +61,19 @@ VALID_CHARACTERIZATION_METHODS = {
         "attribute_required": True,
     },
     "mean": {
-        "valid_inputs": ["Raste"],
+        "valid_inputs": ["Raster"],
         "attribute_required": False,
     },
     "median": {
-        "valid_inputs": ["Raste"],
+        "valid_inputs": ["Raster"],
         "attribute_required": False,
     },
     "sum": {
-        "valid_inputs": ["Raste"],
+        "valid_inputs": ["Raster"],
         "attribute_required": False,
     },
     "area": {
-        "valid_inputs": ["Raste"],
+        "valid_inputs": ["Raster"],
         "attribute_required": False,
     },
 }
