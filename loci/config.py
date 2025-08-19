@@ -162,7 +162,7 @@ class CharacterizeConfig(BaseModelStrict):
     data_dir: DirectoryPath
     grid: FilePath
     characterizations: dict
-    expressions: dict
+    expressions: Optional[dict] = None
 
     @field_validator("characterizations")
     def validate_characterizations(cls, value):

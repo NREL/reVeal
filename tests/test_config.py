@@ -9,6 +9,7 @@ from pydantic import ValidationError
 from loci.config import (
     Characterization,
     VALID_CHARACTERIZATION_METHODS,
+    CharacterizeConfig,
 )
 
 VALID_METHODS_AND_ATTRIBUTES = [
@@ -127,6 +128,85 @@ def test_characterization_extra():
     inputs = {"dset": "test/dset.gpkg", "method": "feature count", "extra_field": 1}
     with pytest.raises(ValidationError):
         Characterization(**inputs)
+
+
+@pytest.mark.parametrize("drop_expressions", [True, False])
+def test_characterizationconfig_valid_inputs(tmp_path, drop_expressions):
+    """
+    Test CharacterizationConfig with valid inputs.
+    """
+
+    grid_path = tmp_path / "grid.gpkg"
+    grid_path.touch()
+    config = {
+        "data_dir": tmp_path.as_posix(),
+        "grid": grid_path.as_posix(),
+        "characterizations": {
+            "developable_area": {"dset": "rasters/developable.tif", "method": "area"}
+        },
+        "expressions": {"developable_sqkm": "developable_area / 1e6"},
+    }
+    if drop_expressions:
+        config.pop("expressions")
+    CharacterizeConfig(**config)
+
+
+def test_characterizationconfig_nonexistent_datadir(tmp_path):
+    """
+    Test CharacterizationConfig with non-existent data_dir.
+    """
+
+    grid_path = tmp_path / "grid.gpkg"
+    grid_path.touch()
+    config = {
+        "data_dir": "/data/directory",
+        "grid": grid_path.as_posix(),
+        "characterizations": {
+            "developable_area": {"dset": "rasters/developable.tif", "method": "area"}
+        },
+        "expressions": {"developable_sqkm": "developable_area / 1e6"},
+    }
+    with pytest.raises(ValidationError):
+        CharacterizeConfig(**config)
+
+
+def test_characterizationconfig_nonexistent_grid(tmp_path):
+    """
+    Test CharacterizationConfig with non-existent grid.
+    """
+
+    grid_path = tmp_path / "grid.gpkg"
+    config = {
+        "data_dir": tmp_path.as_posix(),
+        "grid": grid_path.as_posix(),
+        "characterizations": {
+            "developable_area": {"dset": "rasters/developable.tif", "method": "area"}
+        },
+        "expressions": {"developable_sqkm": "developable_area / 1e6"},
+    }
+    with pytest.raises(ValidationError):
+        CharacterizeConfig(**config)
+
+
+def test_characterizationconfig_invalid_characterizations(tmp_path):
+    """
+    Test CharacterizationConfig with invalid characterizations.
+    """
+
+    grid_path = tmp_path / "grid.gpkg"
+    config = {
+        "data_dir": tmp_path.as_posix(),
+        "grid": grid_path.as_posix(),
+        "characterizations": {
+            "developable_area": {
+                "dset": "rasters/developable.tif",
+                "method": "not-a-method",
+            }
+        },
+        "expressions": {"developable_sqkm": "developable_area / 1e6"},
+    }
+    with pytest.raises(ValidationError):
+        CharacterizeConfig(**config)
 
 
 if __name__ == "__main__":
