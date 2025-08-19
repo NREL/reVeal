@@ -5,7 +5,6 @@ log module
 import logging
 import sys
 
-from rex.utilities.loggers import LOG_LEVEL
 
 LOG_FORMAT = logging.Formatter(
     "%(levelname)s - %(asctime)s [%(filename)s:%(lineno)d] : %(message)s"
@@ -44,9 +43,9 @@ def get_logger(name, log_level=logging.INFO, out_path=None):
     logger.handlers.clear()
 
     if isinstance(log_level, str):
-        if log_level not in LOG_LEVEL:
+        if log_level not in logging.getLevelNamesMapping():
             raise ValueError(f"Unrecognized value for log_level: {log_level}")
-        log_level = LOG_LEVEL.get(log_level.upper())
+        log_level = logging.getLevelNamesMapping().get(log_level.upper())
     elif isinstance(log_level, int):
         if log_level not in logging.getLevelNamesMapping().values():
             raise ValueError(f"Unrecognized value for log_level: {log_level}")
