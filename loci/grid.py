@@ -57,21 +57,32 @@ def create_grid(res, xmin, ymin, xmax, ymax, crs):
 
 
 class Grid:
-    """Methods for building a demand-curve table."""
+    """
+    Grid class
+    """
 
     def __init__(self, res=None, bounds=None, crs=None, template=None):
-        """Initialize a DemandCurve grid object.
+        """
+        Initialize a Grid instance from a template or input parameters.
 
         Parameters
         ----------
-        grid_size : int
-            The size of the grid cells.
+        res : float
+            Resolution of the grid (i.e., size of each grid cell along one dimension)
+            measured in units of the specified CRS. Required if template=None.
+            Ignored if template is provided. Default is None.
         crs : str
-            The coordinate reference system for the grid.
+            Coordinate reference system (CRS) for the grid. Required if template=None.
+            If template is provided, the grid will be reprojected to this CRS. Default
+            is None.
         bounds : tuple, optional
-            The spatial bounds for the grid, by default None
+            The spatial bounds for the grid in the format [xmin, ymin, xmax, ymax],
+            in units of crs (or the template CRS). Required if template=None.
+            If template is provided, the grid will be subset to the cells intersecting
+            the specified bounds. Default is None.
         template : str, optional
-            Path to a template file for the grid, by default None
+            Path to a template file for the grid. Input template should be a vector
+            polygon dataset. Default is None.
         """
         if not template:
             if res is None or crs is None or bounds is None:
