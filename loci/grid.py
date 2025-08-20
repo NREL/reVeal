@@ -56,7 +56,7 @@ def create_grid(res, xmin, ymin, xmax, ymax, crs):
     return grid_df
 
 
-class DemandCurveGrid:
+class Grid:
     """Methods for building a demand-curve table."""
 
     def __init__(self, res=None, bounds=None, crs=None, template=None):
@@ -88,10 +88,10 @@ class DemandCurveGrid:
 
             grid = gpd.read_file(template)
             if crs:
-                grid.to_crs(inplace=True)
+                grid.to_crs(crs, inplace=True)
             if bounds:
-                bounds_box = box(**bounds)
-                self.grid = grid[grid.intersect(bounds_box)].copy()
+                bounds_box = box(*bounds)
+                self.grid = grid[grid.intersects(bounds_box)].copy()
             else:
                 self.grid = grid
 
