@@ -30,51 +30,51 @@ class BaseModelStrict(BaseModel):
 
 VALID_CHARACTERIZATION_METHODS = {
     "feature count": {
-        "valid_inputs": ["Point"],
+        "valid_inputs": ["point"],
         "attribute_required": False,
     },
     "sum attribute": {
-        "valid_inputs": ["Point"],
+        "valid_inputs": ["point"],
         "attribute_required": True,
     },
     "sum length": {
-        "valid_inputs": ["Line"],
+        "valid_inputs": ["line"],
         "attribute_required": False,
     },
     "sum attribute-length": {
-        "valid_inputs": ["Line"],
+        "valid_inputs": ["line"],
         "attribute_required": True,
     },
     "sum area": {
-        "valid_inputs": ["Polygon"],
+        "valid_inputs": ["polygon"],
         "attribute_required": False,
     },
     "area-weighted attribute average": {
-        "valid_inputs": ["Polygon"],
+        "valid_inputs": ["polygon"],
         "attribute_required": True,
     },
     "percent covered": {
-        "valid_inputs": ["Polygon"],
+        "valid_inputs": ["polygon"],
         "attribute_required": False,
     },
     "area-apportioned attribute sum": {
-        "valid_inputs": ["Polygon"],
+        "valid_inputs": ["polygon"],
         "attribute_required": True,
     },
     "mean": {
-        "valid_inputs": ["Raster"],
+        "valid_inputs": ["raster"],
         "attribute_required": False,
     },
     "median": {
-        "valid_inputs": ["Raster"],
+        "valid_inputs": ["raster"],
         "attribute_required": False,
     },
     "sum": {
-        "valid_inputs": ["Raster"],
+        "valid_inputs": ["raster"],
         "attribute_required": False,
     },
     "area": {
-        "valid_inputs": ["Raster"],
+        "valid_inputs": ["raster"],
         "attribute_required": False,
     },
 }
