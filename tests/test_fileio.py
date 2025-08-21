@@ -2,13 +2,9 @@
 """
 io module tests
 """
-import json
-
 import pytest
 
-from loci.config import CharacterizeConfig
 from loci.fileio import (
-    load_characterize_config,
     get_geom_info_parquet,
     get_geom_type_parquet,
     get_geom_type_pyogrio,
@@ -16,40 +12,6 @@ from loci.fileio import (
     get_crs_pyogrio,
     get_crs_parquet,
 )
-
-
-@pytest.mark.parametrize("from_dict", [True, False])
-def test_load_characterize_config(data_dir, from_dict):
-    """
-    test that load_charactrize_config() works when passed either a dict or
-    CharacterizeConfig input.
-    """
-
-    in_config_path = data_dir / "characterize" / "config.json"
-    with open(in_config_path, "r") as f:
-        config_data = json.load(f)
-
-    config_data["data_dir"] = (data_dir / "characterize").as_posix()
-    config_data["grid"] = (
-        data_dir / "characterize" / "grids" / "grid_1.gpkg"
-    ).as_posix()
-
-    if from_dict:
-        config = load_characterize_config(config_data)
-    else:
-        config = load_characterize_config(CharacterizeConfig(**config_data))
-
-    assert isinstance(config, CharacterizeConfig)
-
-
-def test_load_characterize_config_typerror():
-    """
-    Test that laod_characterize_config() raises a TypeError when passed an unsupported
-    input.
-    """
-
-    with pytest.raises(TypeError, match="Invalid input for characterize config.*"):
-        load_characterize_config("string input")
 
 
 def test_get_geom_info_parquet(data_dir):

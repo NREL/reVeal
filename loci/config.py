@@ -5,7 +5,10 @@ config module
 from typing import Optional
 import warnings
 from enum import Enum
+from pathlib import Path
 
+from rasterio.drivers import raster_driver_extensions
+from pyogrio._ogr import _get_drivers_for_path
 from pydantic import (
     BaseModel,
     field_validator,
@@ -15,6 +18,14 @@ from pydantic import (
     constr,
     NonNegativeInt,
     StrictBool,
+)
+
+from loci.fileio import (
+    get_geom_type_pyogrio,
+    get_geom_type_parquet,
+    get_crs_raster,
+    get_crs_pyogrio,
+    get_crs_parquet,
 )
 
 
@@ -113,6 +124,7 @@ class Characterization(BaseModelStrict):
 
     # pylint: disable=too-few-public-methods
 
+    # Input at instantiation
     dset: str
     data_dir: DirectoryPath
     method: constr(to_lower=True)
@@ -120,8 +132,11 @@ class Characterization(BaseModelStrict):
     apply_exclusions: Optional[StrictBool] = False
     neighbor_order: Optional[NonNegativeInt] = 0.0
     buffer_distance: Optional[float] = 0.0
-    _dset_format: Optional[DatasetFormatEnum] = None
-    _dset_src: Optional[FilePath] = None
+    # Derived dynamically
+    dset_src: FilePath
+    dset_format: Optional[DatasetFormatEnum] = None
+    dset_ext: Optional[str] = None
+    crs: Optional[str] = None
 
     @field_validator("method")
     def is_valid_method(cls, value):
@@ -152,6 +167,18 @@ class Characterization(BaseModelStrict):
             )
         return value
 
+    @model_validator(mode="before")
+    def set_dset_src(self):
+        """
+        Dynamically set the the dset_source property by joining input data_dir
+        and dset.
+        """
+
+        if self.get("data_dir") and self.get("dset"):
+            self["dset_src"] = Path(self["data_dir"]) / self["dset"]
+
+        return self
+
     @model_validator(mode="after")
     def attribute_check(self):
         """
@@ -178,6 +205,48 @@ class Characterization(BaseModelStrict):
             warnings.warn(
                 f"attribute specified but will not be applied for {self.method}"
             )
+
+        return self
+
+    @model_validator(mode="after")
+    def set_dset_ext(self):
+        """
+        Dynamically set the dset_ext property.
+        """
+        self.dset_ext = self.dset_src.suffix
+
+        return self
+
+    @model_validator(mode="after")
+    def set_dset_format(self):
+        """
+        Dynamically set the the dset_source property.
+        """
+
+        if self.dset_ext == ".parquet":
+            self.dset_format = get_geom_type_parquet(self.dset_src)
+        elif _get_drivers_for_path(self.dset):
+            self.dset_format = get_geom_type_pyogrio(self.dset_src)
+        elif self.dset_ext[1:] in raster_driver_extensions():
+            # note: order matters in these checks - do raster to avoid confusion on
+            # gpkg
+            self.dset_format = "raster"
+        else:
+            raise TypeError(f"Unsupported file format for for {self.dset_src}.")
+
+        return self
+
+    @model_validator(mode="after")
+    def set_crs(self):
+        """
+        Dynamically set the crs property.
+        """
+        if self.dset_format == "raster":
+            self.crs = get_crs_raster(self.dset_src)
+        elif self.dset_ext == ".parquet":
+            self.crs = get_crs_parquet(self.dset_src)
+        else:
+            self.crs = get_crs_pyogrio(self.dset_src)
 
         return self
 
@@ -257,3 +326,38 @@ class CharacterizeConfig(BaseModelStrict):
                 )
 
         return value
+
+
+def load_characterize_config(characterize_config):
+    """
+    Load config for grid characterization.
+
+    Parameters
+    ----------
+    characterize_config : [dict, CharacterizeConfig]
+        Input configuration. If a dictionary, it will be converted to an instance of
+        CharacterizeConfig, with validation. If a CharacterizeConfig, the input
+        will be returned unchanged.
+
+    Returns
+    -------
+    CharacterizeConfig
+        Output CharacterizeConfig instance.
+
+    Raises
+    ------
+    TypeError
+        A TypeError will be raised if the input is neither a dict or CharacterizeConfig
+        instance.
+    """
+
+    if isinstance(characterize_config, dict):
+        return CharacterizeConfig(**characterize_config)
+
+    if isinstance(characterize_config, CharacterizeConfig):
+        return characterize_config
+
+    raise TypeError(
+        "Invalid input for characterize config. Must be an instance of "
+        "either dict or CharacterizeConfig."
+    )

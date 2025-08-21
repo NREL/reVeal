@@ -10,7 +10,6 @@ from geopandas.io.arrow import (
     _validate_and_decode_metadata,
 )
 
-from loci.config import CharacterizeConfig
 
 GEOMETRY_TYPES = {
     "Point": "point",
@@ -19,41 +18,6 @@ GEOMETRY_TYPES = {
     "MultiPolygon": "polygon",
     "MultiLineString": "line",
 }
-
-
-def load_characterize_config(characterize_config):
-    """
-    Load config for grid characterization.
-
-    Parameters
-    ----------
-    characterize_config : [dict, CharacterizeConfig]
-        Input configuration. If a dictionary, it will be converted to an instance of
-        CharacterizeConfig, with validation. If a CharacterizeConfig, the input
-        will be returned unchanged.
-
-    Returns
-    -------
-    CharacterizeConfig
-        Output CharacterizeConfig instance.
-
-    Raises
-    ------
-    TypeError
-        A TypeError will be raised if the input is neither a dict or CharacterizeConfig
-        instance.
-    """
-
-    if isinstance(characterize_config, dict):
-        return CharacterizeConfig(**characterize_config)
-
-    if isinstance(characterize_config, CharacterizeConfig):
-        return characterize_config
-
-    raise TypeError(
-        "Invalid input for characterize config. Must be an instance of "
-        "either dict or CharacterizeConfig."
-    )
 
 
 def get_geom_info_parquet(dset_src):

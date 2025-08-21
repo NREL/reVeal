@@ -2,6 +2,9 @@
 """
 config module tests
 """
+import json
+from pathlib import Path
+
 import pytest
 
 from pydantic import ValidationError
@@ -11,6 +14,7 @@ from loci.config import (
     VALID_CHARACTERIZATION_METHODS,
     CharacterizeConfig,
     DatasetFormatEnum,
+    load_characterize_config,
 )
 
 VALID_METHODS_AND_ATTRIBUTES = [
@@ -82,6 +86,45 @@ def test_characterization_valid_optional_params(
     Characterization(**value)
 
 
+@pytest.mark.parametrize(
+    "dset_name,geom_type",
+    [
+        ("characterize/vectors/generators.gpkg", "point"),
+        ("characterize/vectors/tlines.gpkg", "line"),
+        ("characterize/vectors/fiber_to_the_premises.parquet", "polygon"),
+        ("characterize/rasters/developable.tif", "raster"),
+    ],
+)
+def test_characterization_dynamic_attributes(data_dir, dset_name, geom_type):
+    """
+    Test Characterization() class correctly populates dynamic properties.
+    """
+    value = {
+        "dset": dset_name,
+        "data_dir": data_dir,
+        "method": "sum area",
+        "attribute": None,
+        "apply_exclusions": False,
+        "neighbor_order": 0,
+        "buffer_distance": 0,
+    }
+    characterization = Characterization(**value)
+
+    assert characterization.dset_src is not None, "dset_src property not set"
+    assert characterization.dset_format is not None, "dset_format property not set"
+    assert characterization.dset_ext is not None, "dset_ext property not set"
+    assert characterization.crs is not None, "crs property not set"
+
+    assert (
+        characterization.dset_src == data_dir / dset_name
+    ), "Unexpected value for dset_src"
+    assert characterization.dset_format == geom_type, "Unexpected value for dset_format"
+    assert (
+        characterization.dset_ext == Path(dset_name).suffix
+    ), "Unexpected value for dset_suffix"
+    assert characterization.crs == "EPSG:5070", "Unexpected value for CRS"
+
+
 @pytest.mark.parametrize("method,attribute", VALID_METHODS_AND_ATTRIBUTES)
 def test_characterization_valid_methods_and_attributes(data_dir, method, attribute):
     """
@@ -128,32 +171,35 @@ def test_characterization_superfluous_methods_and_attributes(
         "method": method,
         "attribute": attribute,
     }
-    with pytest.warns(UserWarning):
+    with pytest.warns(
+        UserWarning, match="attribute specified but will not be applied.*"
+    ):
         Characterization(**value)
 
 
 @pytest.mark.parametrize(
-    "field,value",
+    "field,value,err",
     [
-        ("method", "not a valid method"),  # invalid entry
-        ("apply_exclusions", "yes"),  # invalid entry
-        ("neighbor_order", -1),  # invalid entry
-        ("buffer_distance", "thirty"),  # invalid entry
-        ("method", None),  # required field
-        ("dset", None),  # required field
+        ("method", "not a valid method", "Invalid method specified*."),
+        ("apply_exclusions", "yes", "Input should be a valid boolean*."),
+        ("neighbor_order", -1, "Input should be greater than or equal to 0*."),
+        ("buffer_distance", "thirty", "Input should be a valid number*."),
+        ("method", None, "Input should be a valid string*."),
+        ("dset", None, "Field required.*"),
     ],
 )
-def test_characterization_invalid(field, value):
+def test_characterization_invalid(data_dir, field, value, err):
     """
     Test Characterization class with invalid inputs.
     """
 
     inputs = {
-        "dset": "test/dset.gpkg",
+        "dset": "characterize/vectors/generators.gpkg",
+        "data_dir": data_dir,
         "method": "feature count",
     }
     inputs[field] = value
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValidationError, match=err):
         Characterization(**inputs)
 
 
@@ -163,7 +209,7 @@ def test_characterization_extra():
     """
 
     inputs = {"dset": "test/dset.gpkg", "method": "feature count", "extra_field": 1}
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValidationError, match="Extra inputs.*"):
         Characterization(**inputs)
 
 
@@ -247,6 +293,40 @@ def test_characterizationconfig_invalid_characterizations(tmp_path):
     }
     with pytest.raises(ValidationError):
         CharacterizeConfig(**config)
+
+
+@pytest.mark.parametrize("from_dict", [True, False])
+def test_load_characterize_config(data_dir, from_dict):
+    """
+    test that load_charactrize_config() works when passed either a dict or
+    CharacterizeConfig input.
+    """
+
+    in_config_path = data_dir / "characterize" / "config.json"
+    with open(in_config_path, "r") as f:
+        config_data = json.load(f)
+
+    config_data["data_dir"] = (data_dir / "characterize").as_posix()
+    config_data["grid"] = (
+        data_dir / "characterize" / "grids" / "grid_1.gpkg"
+    ).as_posix()
+
+    if from_dict:
+        config = load_characterize_config(config_data)
+    else:
+        config = load_characterize_config(CharacterizeConfig(**config_data))
+
+    assert isinstance(config, CharacterizeConfig)
+
+
+def test_load_characterize_config_typerror():
+    """
+    Test that laod_characterize_config() raises a TypeError when passed an unsupported
+    input.
+    """
+
+    with pytest.raises(TypeError, match="Invalid input for characterize config.*"):
+        load_characterize_config("string input")
 
 
 if __name__ == "__main__":
