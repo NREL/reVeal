@@ -119,7 +119,7 @@ class Characterization(BaseModelStrict):
     apply_exclusions: Optional[StrictBool] = False
     neighbor_order: Optional[NonNegativeInt] = 0.0
     buffer_distance: Optional[float] = 0.0
-    dset_format: Optional[DatasetFormatEnum] = None
+    _dset_format: Optional[DatasetFormatEnum] = None
 
     @field_validator("method")
     def is_valid_method(cls, value):
