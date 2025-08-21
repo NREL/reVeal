@@ -274,10 +274,13 @@ class CharacterizeConfig(BaseModelStrict):
 
     # pylint: disable=too-few-public-methods
 
+    # Input at instantiation
     data_dir: DirectoryPath
     grid: FilePath
     characterizations: dict
     expressions: Optional[dict] = None
+    # Dynamically derived
+    grid_crs: Optional[str] = None
 
     @model_validator(mode="before")
     def propagate_datadir(self):
@@ -342,6 +345,32 @@ class CharacterizeConfig(BaseModelStrict):
                 )
 
         return value
+
+    @model_validator(mode="after")
+    def set_crs(self):
+        """
+        Dynamically set the crs property.
+        """
+        if Path(self.grid).suffix == ".parquet":
+            self.grid_crs = get_crs_parquet(self.grid)
+        else:
+            self.grid_crs = get_crs_pyogrio(self.grid)
+
+        return self
+
+    @model_validator(mode="after")
+    def validate_crs(self):
+        """
+        Check that CRSs of individual characterizations match CRS of the grid.
+        """
+        for characterization in self.characterizations.values():
+            if characterization.crs != self.grid_crs:
+                raise ValueError(
+                    f"CRS of input dataset {characterization.dset_src} "
+                    f"({characterization.crs}) does not match grid CRS "
+                    f"({self.grid_crs})."
+                )
+        return self
 
 
 def load_characterize_config(characterize_config):

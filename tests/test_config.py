@@ -354,5 +354,29 @@ def test_load_characterize_config_typerror():
         load_characterize_config("string input")
 
 
+def test_characterizationconfig_crs_mismatch(
+    data_dir,
+):
+    """
+    Test that CharacterizationConfig raises an error when passed a grid and
+    characterizations with mismatched CRSs.
+    """
+
+    grid_path = data_dir / "characterize" / "grids" / "grid_3.gpkg"
+    grid_path.touch()
+    config = {
+        "data_dir": data_dir.as_posix(),
+        "grid": grid_path.as_posix(),
+        "characterizations": {
+            "developable_area": {
+                "dset": "characterize/rasters/developable.tif",
+                "method": "area",
+            }
+        },
+    }
+    with pytest.raises(ValidationError, match="CRS of input dataset*."):
+        CharacterizeConfig(**config)
+
+
 if __name__ == "__main__":
     pytest.main([__file__, "-s"])
