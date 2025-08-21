@@ -59,35 +59,38 @@ def test_datasetformatenum(value, error_expected):
 @pytest.mark.parametrize("apply_exclusions", [None, True, False])
 @pytest.mark.parametrize("neighbor_order", [None, 0, 1, 50.0])
 @pytest.mark.parametrize("buffer_distance", [None, -100, 100])
-@pytest.mark.parametrize("dset_format", [None, "Raster", "point"])
 def test_characterization_valid_optional_params(
-    apply_exclusions, neighbor_order, buffer_distance, dset_format
+    data_dir,
+    apply_exclusions,
+    neighbor_order,
+    buffer_distance,
 ):
     """
     Test Characterization class with valid inputs for optional parameters.
     """
 
     value = {
-        "dset": "test/dset.gpkg",
+        "dset": "characterize/vectors/generators.gpkg",
+        "data_dir": data_dir,
         "method": "sum area",
         "attribute": None,
         "apply_exclusions": apply_exclusions,
         "neighbor_order": neighbor_order,
         "buffer_distance": buffer_distance,
-        "dset_format": dset_format,
     }
 
     Characterization(**value)
 
 
 @pytest.mark.parametrize("method,attribute", VALID_METHODS_AND_ATTRIBUTES)
-def test_characterization_valid_methods_and_attributes(method, attribute):
+def test_characterization_valid_methods_and_attributes(data_dir, method, attribute):
     """
     Test Characterization class with valid combos of methods and attributes.
     """
 
     value = {
-        "dset": "test/dset.gpkg",
+        "dset": "characterize/vectors/generators.gpkg",
+        "data_dir": data_dir,
         "method": method,
         "attribute": attribute,
     }
@@ -96,28 +99,32 @@ def test_characterization_valid_methods_and_attributes(method, attribute):
 
 
 @pytest.mark.parametrize("method,attribute", METHODS_MISSING_ATTRIBUTES)
-def test_characterization_invalid_methods_and_attributes(method, attribute):
+def test_characterization_invalid_methods_and_attributes(data_dir, method, attribute):
     """
     Test Characterization class with invalid combos of methods and attributes.
     """
 
     value = {
-        "dset": "test/dset.gpkg",
+        "dset": "characterize/vectors/generators.gpkg",
+        "data_dir": data_dir,
         "method": method,
         "attribute": attribute,
     }
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValidationError, match="attribute was not provided*."):
         Characterization(**value)
 
 
 @pytest.mark.parametrize("method,attribute", METHODS_SUPERFLUOUS_ATTRIBUTES)
-def test_characterization_superfluous_methods_and_attributes(method, attribute):
+def test_characterization_superfluous_methods_and_attributes(
+    data_dir, method, attribute
+):
     """
     Test Characterization class with invalid combos of methods and attributes.
     """
 
     value = {
-        "dset": "test/dset.gpkg",
+        "dset": "characterize/vectors/generators.gpkg",
+        "data_dir": data_dir,
         "method": method,
         "attribute": attribute,
     }
@@ -161,18 +168,21 @@ def test_characterization_extra():
 
 
 @pytest.mark.parametrize("drop_expressions", [True, False])
-def test_characterizationconfig_valid_inputs(tmp_path, drop_expressions):
+def test_characterizationconfig_valid_inputs(data_dir, drop_expressions):
     """
     Test CharacterizationConfig with valid inputs.
     """
 
-    grid_path = tmp_path / "grid.gpkg"
+    grid_path = data_dir / "characterize" / "grids" / "grid_1.gpkg"
     grid_path.touch()
     config = {
-        "data_dir": tmp_path.as_posix(),
+        "data_dir": data_dir.as_posix(),
         "grid": grid_path.as_posix(),
         "characterizations": {
-            "developable_area": {"dset": "rasters/developable.tif", "method": "area"}
+            "developable_area": {
+                "dset": "characterize/rasters/developable.tif",
+                "method": "area",
+            }
         },
         "expressions": {"developable_sqkm": "developable_area / 1e6"},
     }

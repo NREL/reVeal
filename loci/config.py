@@ -114,12 +114,14 @@ class Characterization(BaseModelStrict):
     # pylint: disable=too-few-public-methods
 
     dset: str
+    data_dir: DirectoryPath
     method: constr(to_lower=True)
     attribute: Optional[str] = None
     apply_exclusions: Optional[StrictBool] = False
     neighbor_order: Optional[NonNegativeInt] = 0.0
     buffer_distance: Optional[float] = 0.0
     _dset_format: Optional[DatasetFormatEnum] = None
+    _dset_src: Optional[FilePath] = None
 
     @field_validator("method")
     def is_valid_method(cls, value):
@@ -191,6 +193,23 @@ class CharacterizeConfig(BaseModelStrict):
     grid: FilePath
     characterizations: dict
     expressions: Optional[dict] = None
+
+    @model_validator(mode="before")
+    def propagate_datadir(self):
+        """
+        Propagate the top level data_dir parameter down to elements of
+        characterizations before validation.
+
+        Returns
+        -------
+        self
+            Returns self.
+        """
+        for v in self["characterizations"].values():
+            if not "data_dir" in v:
+                v["data_dir"] = self["data_dir"]
+
+        return self
 
     @field_validator("characterizations")
     def validate_characterizations(cls, value):
