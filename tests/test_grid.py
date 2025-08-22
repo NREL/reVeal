@@ -8,7 +8,14 @@ import pytest
 import geopandas as gpd
 from geopandas.testing import assert_geodataframe_equal
 
-from loci.grid import create_grid, Grid, CharacterizeGrid
+from loci.grid import (
+    Grid,
+    CharacterizeGrid,
+    create_grid,
+    get_neighbors,
+    get_overlay_method,
+    run_characterization,
+)
 from loci.config import CharacterizeConfig
 
 
@@ -132,12 +139,12 @@ def test_init_grid_from_scratch(data_dir, crs, bounds, res, i):
 
 
 @pytest.mark.parametrize("order", [0, 1, 2])
-def test_grid_neighbors(base_grid, order, data_dir):
+def test_get_neighbors(base_grid, order, data_dir):
     """
     Test Grid.neighbors() function.
     """
 
-    neighbors_df = base_grid.neighbors(order)
+    neighbors_df = get_neighbors(base_grid.df, order)
     expected_neighbors_src = data_dir / "grid" / f"grid_2_neighbors_{order}.gpkg"
     expected_neighbors_df = gpd.read_file(expected_neighbors_src)
     expected_neighbors_df.set_index("gid", inplace=True)
@@ -177,6 +184,58 @@ def test_run_characterizegrid(char_grid):
     Test the run() function of CharacterizeGrid.
     """
     char_grid.run()
+
+
+@pytest.mark.parametrize(
+    "method_name,error_expected",
+    [
+        ("feature_count", False),
+        ("feature count", False),
+        ("featurecount", True),
+        ("Feature-Count", False),
+        # TODO: eventually these should all be changed to False
+        ("sum attribute", True),
+        ("sum length", True),
+        ("sum attribute-length", True),
+        ("sum area", True),
+        ("area-weighted attribute average", True),
+        ("percent covered", True),
+        ("area-apportioned attribute sum", True),
+        ("mean", True),
+        ("median", True),
+        ("sum", True),
+        ("area", True),
+    ],
+)
+def test_get_overlay_method(method_name, error_expected):
+    """
+    Test get_overlay_method() returns a valid callable function, when expected,
+    and if not raises a NotImplementedError.
+    """
+    if error_expected:
+        with pytest.raises(
+            NotImplementedError, match="Unrecognized or unsupported method.*"
+        ):
+            get_overlay_method(method_name)
+    else:
+        f = get_overlay_method(method_name)
+        assert callable(f), "Returned method is not callable"
+
+
+def test_run_characterization(char_grid):
+    """
+    Test the run_characterization() function either returns the expected dataframe
+    or raises a NotImplementedError, for methods that have not been implemented.
+    """
+    df = char_grid.df
+    for characterization in char_grid.config.characterizations.values():
+        try:
+            result_df = run_characterization(df, characterization)
+            assert len(result_df) == len(df), "Unexpected row count in result_df"
+            assert "value" in result_df.columns, "Value column not in result_df"
+        except NotImplementedError as e:
+            if not str(e).startswith("Unrecognized or unsupported method"):
+                raise e
 
 
 if __name__ == "__main__":
