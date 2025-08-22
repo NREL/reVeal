@@ -2,7 +2,6 @@
 """
 grid module
 """
-from functools import cached_property
 from pathlib import Path
 import warnings
 
@@ -14,7 +13,6 @@ from exactextract.exact_extract import exact_extract
 import pandas as pd
 from libpysal import graph
 from shapely.geometry import box
-from shapely.ops import unary_union
 import numpy as np
 
 from loci.config import load_characterize_config
@@ -116,33 +114,73 @@ class Grid:
                 self.df = grid
 
         self.crs = self.df.crs
+        self._add_gid()
 
-    def _neighbor(self):
-        """Create new geometry for grid that consists of its neighbors."""
-        grid = self.df.copy()
-        grid = grid.set_index("grid_id")
-        cont = graph.Graph.build_contiguity(grid, rook=False)
-        adj = cont.adjacency
-        mappings = {i: list(adj[i].keys()) for i in grid.index}
-
-        grid["geometry"] = grid.index.to_series().map(
-            lambda idx: unary_union(
-                [grid.geometry.loc[idx]]
-                + [grid.geometry.loc[n] for n in mappings.get(idx, [])]
+    def _add_gid(self):
+        """
+        Adds gid column to self.df and sets as index.
+        """
+        if "gid" in self.df.columns:
+            warnings.warn(
+                "gid column already exists in self.dataframe. Values will be "
+                "overwritten."
             )
-        )
-        grid = grid.reset_index()
-        return grid
+        self.df["gid"] = range(0, len(self.df))
+        self.df.set_index("gid", inplace=True)
 
-    @cached_property
-    def grid_neighbors(self):
-        """Cached property: unioned neighbor geometries for each grid cell."""
-        return None if self.df is None else self._neighbor()
+    def neighbors(self, order):
+        """
+        Create new geometry for each cell in the grid that consists of a union with
+        neighboring cells of the specified order.
+
+        Parameters
+        ----------
+        order : int
+            Neighbor order to apply. For example, order=1 will group all first-order
+            queen's contiguity neighbors into a new grid cell, labeled based on the
+            center grid cell.
+
+        Returns
+        -------
+        gpd.GeoDataFrame
+            A GeoDataFrame with the grid transformed into larger cells based on
+            neighbors.
+        """
+        if order == 0:
+            return self.df.copy()
+
+        grid = self.df.copy()
+
+        # build contiguity matrix
+        cont = graph.Graph.build_contiguity(grid, rook=False)
+        if order > 1:
+            cont = cont.higher_order(k=order, lower_order=True)
+
+        # create a "complete" adjacency lookup, that includes center cells
+        adjacent_df = cont.adjacency.reset_index()
+        centers_df = pd.DataFrame({"focal": grid.index, "neighbor": grid.index})
+        combined_df = pd.concat(
+            [centers_df, adjacent_df[["focal", "neighbor"]]], ignore_index=True
+        )
+
+        # join in geometries and dissolve into groups
+        combined_df.rename(columns={"neighbor": "join_id"}, inplace=True)
+        grid["join_id"] = grid.index
+        combined_gdf = grid.merge(combined_df, how="left", on="join_id")
+        dissolved_df = combined_gdf[["focal", "geometry"]].dissolve(
+            by="focal", as_index=True
+        )
+
+        # overwrite geometries in original grid with dissolved geometries
+        grid.loc[dissolved_df.index, ["geometry"]] = dissolved_df["geometry"]
+        grid.drop(columns=["join_id"], inplace=True)
+
+        return grid
 
     def _get_grid(self, neighbor=False):
         """Get the grid, optionally with neighbor geometries."""
         if neighbor:
-            grid = self.grid_neighbors.copy()
+            grid = self.neighbors(order=1)
         else:
             grid = self.df.copy()
         return grid
@@ -369,22 +407,29 @@ class CharacterizeGrid(Grid):
         gpd.GeoDataFrame
             A GeoDataFrame with the characterized grid.
         """
-        raise NotImplementedError("characterize() function not yet implemented.")
-        # for attr_name, char_info in characterizations.items():
-        #     TODO: start again here
-        #     layer = self.aggregate_within_grid(
-        #         char_info.dset_src,
-        #         value_col=val_col,
-        #         agg_func=dset.method,
-        #         buffer=dset.buffer_distance,
-        #         neighbor=dset.neighbor_order,
-        #     )
+        for attr_name, char_info in self.config.characterizations.items():
+            pass
 
-        #     merge_cols = [
-        #         c for c in layer.columns if c not in ("geometry", "grid_id")
-        #     ]
-        #     out_grid = out_grid.merge(
-        #         layer[["grid_id"] + merge_cols], on="grid_id", how="left"
-        #     )
+    # def run_method(self, neighbor_order=0, buffer_distance=0):
+    #     grid_df = self.neighbors(neighbor_order)
+    #     if buffer_distance > 0:
+    #         grid_df["geometry"] = grid_df["geometry"].buffer(buffer_distance)
 
-        # return out_grid
+    #     pass
+    #     TODO: start again here
+    #     layer = self.aggregate_within_grid(
+    #         char_info.dset_src,
+    #         value_col=val_col,
+    #         agg_func=dset.method,
+    #         buffer=dset.buffer_distance,
+    #         neighbor=dset.neighbor_order,
+    #     )
+
+    #     merge_cols = [
+    #         c for c in layer.columns if c not in ("geometry", "grid_id")
+    #     ]
+    #     out_grid = out_grid.merge(
+    #         layer[["grid_id"] + merge_cols], on="grid_id", how="left"
+    #     )
+
+    # return out_grid

@@ -8,7 +8,7 @@ import pytest
 from click.testing import CliRunner
 
 from loci import PACKAGE_DIR
-from loci.grid import CharacterizeGrid
+from loci.grid import Grid, CharacterizeGrid
 
 TEST_DATA_DIR = PACKAGE_DIR.parent.joinpath("tests", "data")
 
@@ -23,6 +23,15 @@ def data_dir():
 def cli_runner():
     """Return a click CliRunner for testing commands"""
     return CliRunner()
+
+
+@pytest.fixture
+def base_grid():
+    """Return a Grid instance"""
+    template_src = TEST_DATA_DIR / "characterize" / "grids" / "grid_2.gpkg"
+    grid = Grid(template=template_src)
+
+    return grid
 
 
 @pytest.fixture

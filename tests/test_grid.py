@@ -6,6 +6,7 @@ import json
 
 import pytest
 import geopandas as gpd
+from geopandas.testing import assert_geodataframe_equal
 
 from loci.grid import create_grid, Grid, CharacterizeGrid
 from loci.config import CharacterizeConfig
@@ -87,6 +88,8 @@ def test_init_grid_from_template(data_dir, crs, bounds, res):
         expected_count = len(template_df)
     assert len(grid.df) == expected_count, "Unexpected number of features in grid"
 
+    assert grid.df.index.name == "gid", "Index of grid not set properly"
+
 
 @pytest.mark.parametrize(
     "crs,bounds,res,i",
@@ -125,6 +128,21 @@ def test_init_grid_from_scratch(data_dir, crs, bounds, res, i):
 
         assert len(grid.df) == len(expected_df), "Unexpected number of features in grid"
         assert grid.crs == crs, "Unexpected grid crs"
+        assert grid.df.index.name == "gid", "Index of grid not set properly"
+
+
+@pytest.mark.parametrize("order", [0, 1, 2])
+def test_grid_neighbors(base_grid, order, data_dir):
+    """
+    Test Grid.neighbors() function.
+    """
+
+    neighbors_df = base_grid.neighbors(order)
+    expected_neighbors_src = data_dir / "grid" / f"grid_2_neighbors_{order}.gpkg"
+    expected_neighbors_df = gpd.read_file(expected_neighbors_src)
+    expected_neighbors_df.set_index("gid", inplace=True)
+
+    assert_geodataframe_equal(neighbors_df, expected_neighbors_df)
 
 
 @pytest.mark.parametrize("as_dict", [False, True])
@@ -158,8 +176,7 @@ def test_run_characterizegrid(char_grid):
     """
     Test the run() function of CharacterizeGrid.
     """
-    with pytest.raises(NotImplementedError):
-        char_grid.run()
+    char_grid.run()
 
 
 if __name__ == "__main__":
