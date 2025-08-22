@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 """
 overlay module
+
+Note that to expose methods here for by loci.grid.get_overlay_method() function
+and functions dependent on it, the function must be prefixed with "calc_".
 """
 import geopandas as gpd
 

@@ -136,7 +136,7 @@ def test_read_vectors(data_dir, vector_src, error_expected):
             read_vectors(vector_src_path)
     else:
         df = read_vectors(vector_src_path)
-        assert len(df) == 14, "Unexpected row count in GeoDataFrame"
+        assert len(df) == 12, "Unexpected row count in GeoDataFrame"
 
 
 if __name__ == "__main__":

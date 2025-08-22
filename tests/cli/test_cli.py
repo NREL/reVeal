@@ -46,9 +46,10 @@ def test_characterize(
     out_gpkg = tmp_path / "grid_char.gpkg"
     assert out_gpkg.exists(), "Output grid not created."
 
+    out_df = gpd.read_file(out_gpkg)
+
     expected_gpkg = data_dir / "characterize" / "outputs" / "grid_char.gpkg"
     expected_df = gpd.read_file(expected_gpkg)
-    out_df = gpd.read_file(out_gpkg)
 
     assert_geodataframe_equal(expected_df, out_df)
 
