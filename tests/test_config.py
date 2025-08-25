@@ -31,6 +31,11 @@ METHODS_SUPERFLUOUS_ATTRIBUTES = [
     for k, v in VALID_CHARACTERIZATION_METHODS.items()
     if not v["attribute_required"]
 ]
+NONRASTER_METHODS = [
+    k
+    for k, v in VALID_CHARACTERIZATION_METHODS.items()
+    if "raster" not in v["valid_inputs"]
+]
 
 
 @pytest.mark.parametrize(
@@ -60,12 +65,12 @@ def test_datasetformatenum(value, error_expected):
         DatasetFormatEnum(value)
 
 
-@pytest.mark.parametrize("apply_exclusions", [None, True, False])
+@pytest.mark.parametrize("weights_dset", [None, "characterize/rasters/developable.tif"])
 @pytest.mark.parametrize("neighbor_order", [None, 0, 1, 50.0])
 @pytest.mark.parametrize("buffer_distance", [None, -100, 100])
 def test_characterization_valid_optional_params(
     data_dir,
-    apply_exclusions,
+    weights_dset,
     neighbor_order,
     buffer_distance,
 ):
@@ -74,11 +79,11 @@ def test_characterization_valid_optional_params(
     """
 
     value = {
-        "dset": "characterize/vectors/generators.gpkg",
+        "dset": "characterize/rasters/fiber_lines_onshore_proximity.tif",
         "data_dir": data_dir,
-        "method": "feature count",
+        "method": "mean",
         "attribute": None,
-        "apply_exclusions": apply_exclusions,
+        "weights_dset": weights_dset,
         "neighbor_order": neighbor_order,
         "buffer_distance": buffer_distance,
     }
@@ -87,15 +92,27 @@ def test_characterization_valid_optional_params(
 
 
 @pytest.mark.parametrize(
-    "dset_name,geom_type,method",
+    "dset_name,geom_type,method,weights_dset",
     [
-        ("characterize/vectors/generators.gpkg", "point", "feature count"),
-        ("characterize/vectors/tlines.gpkg", "line", "sum length"),
-        ("characterize/vectors/fiber_to_the_premises.parquet", "polygon", "sum area"),
-        ("characterize/rasters/developable.tif", "raster", "mean"),
+        ("characterize/vectors/generators.gpkg", "point", "feature count", None),
+        ("characterize/vectors/tlines.gpkg", "line", "sum length", None),
+        (
+            "characterize/vectors/fiber_to_the_premises.parquet",
+            "polygon",
+            "sum area",
+            None,
+        ),
+        (
+            "characterize/rasters/fiber_lines_onshore_proximity.tif",
+            "raster",
+            "mean",
+            "characterize/rasters/developable.tif",
+        ),
     ],
 )
-def test_characterization_dynamic_attributes(data_dir, dset_name, geom_type, method):
+def test_characterization_dynamic_attributes(
+    data_dir, dset_name, geom_type, method, weights_dset
+):
     """
     Test Characterization() class correctly populates dynamic properties.
     """
@@ -104,7 +121,7 @@ def test_characterization_dynamic_attributes(data_dir, dset_name, geom_type, met
         "data_dir": data_dir,
         "method": method,
         "attribute": None,
-        "apply_exclusions": False,
+        "weights_dset": weights_dset,
         "neighbor_order": 0,
         "buffer_distance": 0,
     }
@@ -114,6 +131,10 @@ def test_characterization_dynamic_attributes(data_dir, dset_name, geom_type, met
     assert characterization.dset_format is not None, "dset_format property not set"
     assert characterization.dset_ext is not None, "dset_ext property not set"
     assert characterization.crs is not None, "crs property not set"
+    if weights_dset is not None:
+        assert (
+            characterization.weights_dset_src is not None
+        ), "weights_dset_src property not set"
 
     assert (
         characterization.dset_src == data_dir / dset_name
@@ -123,6 +144,10 @@ def test_characterization_dynamic_attributes(data_dir, dset_name, geom_type, met
         characterization.dset_ext == Path(dset_name).suffix
     ), "Unexpected value for dset_suffix"
     assert characterization.crs == "EPSG:5070", "Unexpected value for CRS"
+    if weights_dset is not None:
+        assert (
+            characterization.weights_dset_src == data_dir / weights_dset
+        ), "Unexpected value for weights_dset_src"
 
 
 @pytest.mark.parametrize("method,attribute", VALID_METHODS_AND_ATTRIBUTES)
@@ -202,11 +227,48 @@ def test_characterization_superfluous_methods_and_attributes(
         Characterization(**value)
 
 
+@pytest.mark.parametrize("method", NONRASTER_METHODS)
+def test_characterization_superfluous_weights_dset(data_dir, method):
+    """
+    Test Characterization class raises warning when weights_dset is specified but
+    not applicable to the method.
+    """
+    geom_type = VALID_CHARACTERIZATION_METHODS.get(method).get("valid_inputs")[0]
+    if VALID_CHARACTERIZATION_METHODS.get(method).get("attribute_required"):
+        attribute = "a_field"
+    else:
+        attribute = None
+
+    dset = None
+    if geom_type == "point":
+        dset = "characterize/vectors/generators.gpkg"
+    elif geom_type == "line":
+        dset = "characterize/vectors/tlines.gpkg"
+    elif geom_type == "polygon":
+        dset = "characterize/vectors/fiber_to_the_premises.gpkg"
+    elif geom_type == "raster":
+        dset = "characterize/rasters/fiber_lines_onshore_proximity.tif"
+    else:
+        raise ValueError("Unrecognized geom_type")
+
+    value = {
+        "dset": dset,
+        "data_dir": data_dir,
+        "method": method,
+        "attribute": attribute,
+        "weights_dset": "characterize/rasters/developable.tif",
+    }
+    with pytest.warns(
+        UserWarning, match="weights_dset specified but will not be applied.*"
+    ):
+        Characterization(**value)
+
+
 @pytest.mark.parametrize(
     "field,value,err",
     [
         ("method", "not a valid method", "Invalid method specified*."),
-        ("apply_exclusions", "yes", "Input should be a valid boolean*."),
+        ("weights_dset", "weights.tif", "Path does not point to a file*."),
         ("neighbor_order", -1, "Input should be greater than or equal to 0*."),
         ("buffer_distance", "thirty", "Input should be a valid number*."),
         ("method", None, "Input should be a valid string*."),

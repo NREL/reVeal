@@ -17,7 +17,6 @@ from pydantic import (
     DirectoryPath,
     constr,
     NonNegativeInt,
-    StrictBool,
 )
 
 from loci.fileio import (
@@ -129,7 +128,7 @@ class Characterization(BaseModelStrict):
     data_dir: DirectoryPath
     method: constr(to_lower=True)
     attribute: Optional[str] = None
-    apply_exclusions: Optional[StrictBool] = False
+    weights_dset: Optional[str] = None
     neighbor_order: Optional[NonNegativeInt] = 0.0
     buffer_distance: Optional[float] = 0.0
     # Derived dynamically
@@ -137,6 +136,7 @@ class Characterization(BaseModelStrict):
     dset_format: Optional[DatasetFormatEnum] = None
     dset_ext: Optional[str] = None
     crs: Optional[str] = None
+    weights_dset_src: Optional[FilePath] = None
 
     @field_validator("method")
     def is_valid_method(cls, value):
@@ -176,6 +176,18 @@ class Characterization(BaseModelStrict):
 
         if self.get("data_dir") and self.get("dset"):
             self["dset_src"] = Path(self["data_dir"]) / self["dset"]
+
+        return self
+
+    @model_validator(mode="before")
+    def set_weights_dset_src(self):
+        """
+        Dynamically set the the weights_dset_src property by joining input data_dir
+        and weights_dset.
+        """
+
+        if self.get("data_dir") and self.get("weights_dset"):
+            self["weights_dset_src"] = Path(self["data_dir"]) / self["weights_dset"]
 
         return self
 
@@ -263,6 +275,21 @@ class Characterization(BaseModelStrict):
                 f"Incompatible method ({self.method}) and dataset format "
                 f"({self.dset_format}) for dataset {self.dset_src}"
             )
+
+        return self
+
+    @model_validator(mode="after")
+    def weights_dset_check(self):
+        """
+        Check that, if weights_dset is provided, the selected method is applicable
+        to rasters. If not, warn the user.
+        """
+        if self.weights_dset:
+            method_info = VALID_CHARACTERIZATION_METHODS.get(self.method)
+            if "raster" not in method_info.get("valid_inputs"):
+                warnings.warn(
+                    f"weights_dset specified but will not be applied for {self.method}"
+                )
 
         return self
 

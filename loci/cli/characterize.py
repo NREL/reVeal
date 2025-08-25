@@ -96,8 +96,9 @@ def run(
                 Refer to loci.config.VALID_CHARACTERIZATION_METHODS.
             - "attribute": Attribute to summarize. Only required for certain methods.
                 Default is None/null.
-            - "apply_exclusions": Boolean indicating whether exclusions should be
-                applied before characterization. Optional, default is False.
+            - "weights_dset": String indicating relative path within data_dir to
+                dataset to be used as weights. Only applies to characterization
+                methods for rasters; ignored otherwise.
             - "neighbor_order": Integer indicating the order of neighbors to include
                 in the characterization of each grid cell. For example,
                 neighbor_order=1 would result in included first-order queen's case
