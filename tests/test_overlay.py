@@ -16,6 +16,7 @@ from loci.overlay import (
     calc_percent_covered,
     calc_area_weighted_average,
     calc_area_apportioned_sum,
+    zonal_statistic,
 )
 
 
@@ -254,6 +255,43 @@ def test_calc_area_apportioned_sum(
             expected_df = gpd.read_file(expected_results_src)
 
             assert_geodataframe_equal(results_df, expected_df, check_like=True)
+
+
+@pytest.mark.parametrize(
+    "stat,weighted",
+    [
+        ("median", False),
+        ("count", False),
+        ("mean", False),
+        ("sum", False),
+        ("mean", True),
+        ("sum", True),
+    ],
+)
+def test_zonal_statistic(data_dir, base_grid, stat, weighted):
+    """
+    Unit tests for zonal_statistic().
+    """
+
+    zones_df = base_grid.df
+    dset_src = (
+        data_dir / "characterize" / "rasters" / "fiber_lines_onshore_proximity.tif"
+    )
+    if weighted:
+        weights_src = data_dir / "characterize" / "rasters" / "developable.tif"
+    else:
+        weights_src = None
+
+    results = zonal_statistic(zones_df, dset_src, weights_src, stat)
+    results_df = pd.concat([zones_df, results], axis=1)
+    results_df.reset_index(inplace=True)
+
+    expected_results_src = (
+        data_dir / "overlays" / f"zonal_{stat}_weighted_{weighted}.gpkg"
+    )
+    expected_df = gpd.read_file(expected_results_src)
+
+    assert_geodataframe_equal(results_df, expected_df, check_like=True)
 
 
 if __name__ == "__main__":

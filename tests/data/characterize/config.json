@@ -40,7 +40,8 @@
     },
     "avg_dist_to_lh_fiber": {
       "dset": "rasters/fiber_lines_onshore_proximity.tif",
-      "method": "mean"
+      "method": "mean",
+      "weights_dset": "rasters/developable.tif"
     },
     "med_dist_to_lh_fiber": {
       "dset": "rasters/fiber_lines_onshore_proximity.tif",

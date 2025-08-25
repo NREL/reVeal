@@ -7,8 +7,12 @@ and functions dependent on it, the function must be prefixed with "calc_".
 """
 import geopandas as gpd
 import pandas as pd
+from exactextract.exact_extract import exact_extract
+from osgeo.gdal import UseExceptions
 
 from loci.fileio import read_vectors
+
+UseExceptions()
 
 
 def calc_feature_count(zones_df, dset_src, **kwargs):
@@ -444,56 +448,54 @@ def calc_area_apportioned_sum(zones_df, dset_src, attribute, **kwargs):
     return complete_sums_df
 
 
+def zonal_statistic(zones_df, dset_src, weights_dset, stat, **kwargs):
+    """
+    Calculate zonal statistic for the specified statistic.
+
+    Parameters
+    ----------
+    zones_df : geopandas.GeoDataFrame
+        Input zones dataframe, to which results will be aggregated. This
+        function assumes that the index of zones_df is unique for each feature. If
+        this is not the case, unexpected results may occur.
+    dset_src : str
+        Path to input raster dataset to be summarized.
+    weights_dset : str, optional
+        Optional path to datset to use for weights. Note that only some options for
+        stat support use of weights. See stat for more information.
+    stat : str
+        Zonal statistic to calculate. For valid options and compatability with
+        use of weights, see:
+        https://isciences.github.io/exactextract/operations.html#built-in-operations.
+
+    Returns
+    -------
+    pandas.DataFrame
+        Returns a pandas DataFrame with a "value" column, representing the
+        aggregate statistic of raster values within each zone. The index from the
+        input zones_df is also included.
+    """
+    # pylint: disable=unused-argument
+
+    zone_idx = zones_df.index.name
+    if weights_dset is not None:
+        stat = f"weighted_{stat}"
+
+    stats_df = exact_extract(
+        rast=dset_src,
+        vec=zones_df.reset_index(),
+        ops=[stat],
+        weights=weights_dset,
+        include_cols=[zone_idx],
+        output="pandas",
+    )
+    stats_df.set_index(zone_idx, inplace=True)
+    stats_df.rename(columns={stat: "value"}, inplace=True)
+
+    return stats_df
+
+
 # "mean",
 # "median",
 # "sum",
 # "area",
-
-# Older code, kept temporarily for reference
-# import rasterio
-# from exactextract.exact_extract import exact_extract
-# def _aggregate_raster_within_grid(
-#     self, raster_path, agg_func="sum", buffer=None, neighbor=False
-# ):
-#     """Aggregate raster values within grid cells using exactextract.
-
-#     Parameters
-#     ----------
-#     raster_path : str
-#         Path to the raster file.
-#     agg_func : str, optional
-#         Aggregation function to use, by default "sum"
-#         Supported functions are: "sum", "mean", "avg", "min", "max".
-#     buffer : float, optional
-#         Buffer distance to apply to grid geometries, by default None
-#     neighbor : bool, optional
-#         Whether to include neighboring grid cells, by default False
-
-#     Returns
-#     -------
-#     gpd.GeoDataFrame
-#         The updated grid with aggregated values.
-#     """
-#     grid = self._get_grid(neighbor)
-
-#     if buffer is not None:
-#         grid["geometry"] = grid.geometry.buffer(buffer)
-
-#     with rasterio.open(raster_path) as src:
-#         grid = grid.to_crs(src.crs)
-
-#     stem = Path(raster_path).stem
-#     func = agg_func.lower()
-
-#     result = exact_extract(
-#         rast=raster_path,
-#         vec=grid,
-#         include_cols=["grid_id"],
-#         ops=[func],
-#         output="pandas",
-#     )
-
-#     col_name = f"{func}_{stem}"
-#     result.rename(columns={f"{func}": col_name}, inplace=True)
-
-#     return result
