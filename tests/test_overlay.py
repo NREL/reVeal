@@ -286,7 +286,9 @@ def test_zonal_statistic(data_dir, base_grid, stat, weighted):
     else:
         weights_src = None
 
-    results = zonal_statistic(zones_df, dset_src, stat=stat, weights_dset=weights_src)
+    results = zonal_statistic(
+        zones_df, dset_src, stat=stat, weights_dset_src=weights_src
+    )
     results_df = pd.concat([zones_df, results], axis=1)
     results_df.reset_index(inplace=True)
 
@@ -332,7 +334,7 @@ def test_calc_mean(data_dir, base_grid, weighted):
     else:
         weights_src = None
 
-    results = calc_mean(zones_df, dset_src, weights_dset=weights_src)
+    results = calc_mean(zones_df, dset_src, weights_dset_src=weights_src)
     results_df = pd.concat([zones_df, results], axis=1)
     results_df.reset_index(inplace=True)
 
@@ -359,7 +361,7 @@ def test_calc_sum(data_dir, base_grid, weighted):
     else:
         weights_src = None
 
-    results = calc_sum(zones_df, dset_src, weights_dset=weights_src)
+    results = calc_sum(zones_df, dset_src, weights_dset_src=weights_src)
     results_df = pd.concat([zones_df, results], axis=1)
     results_df.reset_index(inplace=True)
 

@@ -449,7 +449,7 @@ def calc_area_apportioned_sum(zones_df, dset_src, attribute, **kwargs):
     return complete_sums_df
 
 
-def zonal_statistic(zones_df, dset_src, stat, weights_dset=None, **kwargs):
+def zonal_statistic(zones_df, dset_src, stat, weights_dset_src=None, **kwargs):
     """
     Calculate zonal statistic for the specified statistic.
 
@@ -465,7 +465,7 @@ def zonal_statistic(zones_df, dset_src, stat, weights_dset=None, **kwargs):
         Zonal statistic to calculate. For valid options and compatability with
         use of weights, see:
         https://isciences.github.io/exactextract/operations.html#built-in-operations.
-    weights_dset : str, optional
+    weights_dset_src : str, optional
         Optional path to datset to use for weights. Note that only some options for
         stat support use of weights. See stat for more information.
 
@@ -479,14 +479,14 @@ def zonal_statistic(zones_df, dset_src, stat, weights_dset=None, **kwargs):
     # pylint: disable=unused-argument
 
     zone_idx = zones_df.index.name
-    if weights_dset is not None:
+    if weights_dset_src is not None:
         stat = f"weighted_{stat}"
 
     stats_df = exact_extract(
         rast=dset_src,
         vec=zones_df.reset_index(),
         ops=[stat],
-        weights=weights_dset,
+        weights=weights_dset_src,
         include_cols=[zone_idx],
         output="pandas",
     )
@@ -521,7 +521,7 @@ def calc_median(zones_df, dset_src, **kwargs):
     return zonal_statistic(zones_df, dset_src, stat="median")
 
 
-def calc_mean(zones_df, dset_src, weights_dset, **kwargs):
+def calc_mean(zones_df, dset_src, weights_dset_src, **kwargs):
     """
     Calculate zonal mean or weighted mean of raster values over the input zones.
 
@@ -533,7 +533,7 @@ def calc_mean(zones_df, dset_src, weights_dset, **kwargs):
         this is not the case, unexpected results may occur.
     dset_src : str
         Path to input raster dataset to be summarized.
-    weights_dset : str, optional
+    weights_dset_src : str, optional
         Optional path to datset to use for weights. If specified, the mean for each
         zone will be weighted based on the values in this dataset.
 
@@ -546,10 +546,12 @@ def calc_mean(zones_df, dset_src, weights_dset, **kwargs):
     """
     # pylint: disable=unused-argument
 
-    return zonal_statistic(zones_df, dset_src, stat="mean", weights_dset=weights_dset)
+    return zonal_statistic(
+        zones_df, dset_src, stat="mean", weights_dset_src=weights_dset_src
+    )
 
 
-def calc_sum(zones_df, dset_src, weights_dset, **kwargs):
+def calc_sum(zones_df, dset_src, weights_dset_src, **kwargs):
     """
     Calculate zonal sum or weighted sum of raster values over the input zones.
 
@@ -561,7 +563,7 @@ def calc_sum(zones_df, dset_src, weights_dset, **kwargs):
         this is not the case, unexpected results may occur.
     dset_src : str
         Path to input raster dataset to be summarized.
-    weights_dset : str, optional
+    weights_dset_src : str, optional
         Optional path to datset to use for weights. If specified, the sum for each
         zone will be weighted based on the values in this dataset.
 
@@ -574,7 +576,9 @@ def calc_sum(zones_df, dset_src, weights_dset, **kwargs):
     """
     # pylint: disable=unused-argument
 
-    return zonal_statistic(zones_df, dset_src, stat="sum", weights_dset=weights_dset)
+    return zonal_statistic(
+        zones_df, dset_src, stat="sum", weights_dset_src=weights_dset_src
+    )
 
 
 def calc_area(zones_df, dset_src, **kwargs):
