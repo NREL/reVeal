@@ -102,6 +102,55 @@ def calc_sum_attribute(zones_df, dset_src, attribute, **kwargs):
     return sums_df
 
 
+def calc_sum_length(zones_df, dset_src, **kwargs):
+    """
+    Calculate the sum of lengths of input features intersecting each zone in input
+    zones dataframe.
+
+    Parameters
+    ----------
+    zones_df : geopandas.GeoDataFrame
+        Input zones dataframe, to which feature counts will be aggregated. This
+        function assumes that the index of zones_df is unique for each feature. If
+        this is not the case, unexpected results may occur.
+    dset_src : str
+        Path to input vector dataset with geometries whose lengths will be summed.
+        Expected to a be a LineString or MultiLineString input, though this is not
+        checked. Results for Points/MultiPoints will be returned as all zeros, and
+        results for Polygons/MultiPolygons will represent perimeters. Must be in the
+        same CRS as the zones_df.
+    **kwargs :
+        Arbitrary keyword arguments. Not used, but allows passing extra parameters.
+
+    Returns
+    -------
+    pandas.DataFrame
+        Returns a pandas DataFrame with a "value" column, representing the sum of
+        lengths of features in each zone. The index from the input zones_df is also
+        included.
+    """
+    # pylint: disable=unused-argument
+
+    features_df = read_vectors(dset_src)
+
+    zone_idx = zones_df.index.name
+
+    intersection_df = gpd.overlay(
+        features_df[["geometry"]],
+        zones_df.reset_index()[[zone_idx, "geometry"]],
+        how="intersection",
+        keep_geom_type=True,
+        make_valid=True,
+    )
+
+    intersection_df["value"] = intersection_df.length
+    sums_df = intersection_df.groupby(by=zone_idx)[["value"]].sum()
+
+    complete_sums_df = sums_df.reindex(zones_df.index, fill_value=0)
+
+    return complete_sums_df
+
+
 # "sum length",
 # "sum attribute-length",
 # "sum area",
