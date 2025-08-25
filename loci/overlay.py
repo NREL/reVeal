@@ -210,10 +210,61 @@ def calc_sum_attribute_length(zones_df, dset_src, attribute, **kwargs):
     return complete_sums_df
 
 
-# "sum attribute-length",
+def calc_sum_area(zones_df, dset_src, **kwargs):
+    """
+    Calculate the sum of combined areas of input features intersecting each zone in
+    input zones dataframe. Intersecting features are unioned before calculating areas,
+    such that the total area cannot exceed the size of the zone.
+
+    Parameters
+    ----------
+    zones_df : geopandas.GeoDataFrame
+        Input zones dataframe, to which feature counts will be aggregated. This
+        function assumes that the index of zones_df is unique for each feature. If
+        this is not the case, unexpected results may occur.
+    dset_src : str
+        Path to input vector dataset with geometries whose areas will be summed.
+        Expected to a be a Polygon or MultiPolygon input, though this is not
+        checked. Results for Points/MultiPoints and LineStrings/MultiLineStrings will
+        be returned as all zeros. Must be in the same CRS as the zones_df.
+    **kwargs :
+        Arbitrary keyword arguments. Not used, but allows passing extra parameters.
+
+    Returns
+    -------
+    pandas.DataFrame
+        Returns a pandas DataFrame with a "value" column, representing the sum of
+        combined area of features in each zone. The index from the input zones_df is
+        also included.
+    """
+    # pylint: disable=unused-argument
+
+    features_df = read_vectors(dset_src)
+
+    zone_idx = zones_df.index.name
+
+    intersection_df = gpd.overlay(
+        features_df[["geometry"]],
+        zones_df.reset_index()[[zone_idx, "geometry"]],
+        how="intersection",
+        keep_geom_type=True,
+        make_valid=True,
+    )
+
+    dissolved_df = intersection_df.dissolve(by=zone_idx, method="unary", as_index=True)
+
+    dissolved_df["value"] = dissolved_df.area
+    dissolved_df.drop(columns="geometry", inplace=True)
+
+    areas_df = dissolved_df.reindex(zones_df.index, fill_value=0)
+
+    return areas_df
+
+
 # "sum area",
-# "area-weighted attribute average",
 # "percent covered",
+
+# "area-weighted attribute average",
 # "area-apportioned attribute sum",
 # "mean",
 # "median",
