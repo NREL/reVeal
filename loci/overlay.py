@@ -18,7 +18,7 @@ def calc_feature_count(zones_df, dset_src, **kwargs):
     Parameters
     ----------
     zones_df : geopandas.GeoDataFrame
-        Input zones dataframe, to which feature counts will be aggregated. This
+        Input zones dataframe, to which results will be aggregated. This
         function assumes that the index of zones_df is unique for each feature. If
         this is not the case, unexpected results may occur.
     dset_src : str
@@ -60,7 +60,7 @@ def calc_sum_attribute(zones_df, dset_src, attribute, **kwargs):
     Parameters
     ----------
     zones_df : geopandas.GeoDataFrame
-        Input zones dataframe, to which feature counts will be aggregated. This
+        Input zones dataframe, to which results will be aggregated. This
         function assumes that the index of zones_df is unique for each feature. If
         this is not the case, unexpected results may occur.
     dset_src : str
@@ -110,7 +110,7 @@ def calc_sum_length(zones_df, dset_src, **kwargs):
     Parameters
     ----------
     zones_df : geopandas.GeoDataFrame
-        Input zones dataframe, to which feature counts will be aggregated. This
+        Input zones dataframe, to which results will be aggregated. This
         function assumes that the index of zones_df is unique for each feature. If
         this is not the case, unexpected results may occur.
     dset_src : str
@@ -161,7 +161,7 @@ def calc_sum_attribute_length(zones_df, dset_src, attribute, **kwargs):
     Parameters
     ----------
     zones_df : geopandas.GeoDataFrame
-        Input zones dataframe, to which feature counts will be aggregated. This
+        Input zones dataframe, to which results will be aggregated. This
         function assumes that the index of zones_df is unique for each feature. If
         this is not the case, unexpected results may occur.
     dset_src : str
@@ -219,9 +219,9 @@ def calc_sum_area(zones_df, dset_src, **kwargs):
     Parameters
     ----------
     zones_df : geopandas.GeoDataFrame
-        Input zones dataframe, to which feature counts will be aggregated. This
-        function assumes that the index of zones_df is unique for each feature. If
-        this is not the case, unexpected results may occur.
+        Input zones dataframe, to which results will be aggregated. This function
+        assumes that the index of zones_df is unique for each feature. If this is not
+        the case, unexpected results may occur.
     dset_src : str
         Path to input vector dataset with geometries whose areas will be summed.
         Expected to a be a Polygon or MultiPolygon input, though this is not
@@ -261,8 +261,47 @@ def calc_sum_area(zones_df, dset_src, **kwargs):
     return areas_df
 
 
-# "sum area",
-# "percent covered",
+def calc_percent_covered(zones_df, dset_src, **kwargs):
+    """
+    Calculate the percent of each zone covered by the union of the intersecting.
+
+    Parameters
+    ----------
+    zones_df : geopandas.GeoDataFrame
+        Input zones dataframe, to which results will be aggregated. This
+        function assumes that the index of zones_df is unique for each feature. If
+        this is not the case, unexpected results may occur.
+    dset_src : str
+        Path to input vector dataset with geometries to be included in calculating
+        coverage percents. Expected to a be a Polygon or MultiPolygon input, though
+        this is not checked. Results for Points/MultiPoints and
+        LineStrings/MultiLineStrings will be returned as all zeros. Must be in the same
+        CRS as the zones_df.
+    **kwargs :
+        Arbitrary keyword arguments. Not used, but allows passing extra parameters.
+
+    Returns
+    -------
+    pandas.DataFrame
+        Returns a pandas DataFrame with a "value" column, representing the percent
+        of each zone coverd by input features. The index from the input zones_df is
+        also included.
+    """
+    # pylint: disable=unused-argument
+
+    feature_areas_df = calc_sum_area(zones_df, dset_src)
+    feature_areas_df.rename(columns={"value": "feature_area"}, inplace=True)
+
+    zone_areas_df = pd.DataFrame(zones_df.area, columns=["zone_area"])
+    all_areas_df = zone_areas_df.merge(
+        feature_areas_df, how="left", left_index=True, right_index=True
+    )
+    all_areas_df["value"] = (
+        all_areas_df["feature_area"] / all_areas_df["zone_area"] * 100
+    )
+
+    return all_areas_df[["value"]]
+
 
 # "area-weighted attribute average",
 # "area-apportioned attribute sum",

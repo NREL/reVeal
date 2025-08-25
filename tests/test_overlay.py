@@ -13,6 +13,7 @@ from loci.overlay import (
     calc_sum_length,
     calc_sum_attribute_length,
     calc_sum_area,
+    calc_percent_covered,
 )
 
 
@@ -141,6 +142,35 @@ def test_calc_sum_area(data_dir, base_grid, dset_name, all_zeros):
         results_df.reset_index(inplace=True)
 
         expected_results_src = data_dir / "overlays" / "sum_area_results.gpkg"
+        expected_df = gpd.read_file(expected_results_src)
+
+        assert_geodataframe_equal(results_df, expected_df, check_like=True)
+
+
+@pytest.mark.parametrize(
+    "dset_name,all_zeros",
+    [
+        ("fiber_to_the_premises.gpkg", False),
+        ("tlines.gpkg", True),
+        ("generators.gpkg", True),
+    ],
+)
+def test_calc_percent_covered(data_dir, base_grid, dset_name, all_zeros):
+    """
+    Unit tests for calc_percent_covered().
+    """
+
+    zones_df = base_grid.df
+    dset_src = data_dir / "characterize" / "vectors" / dset_name
+
+    results = calc_percent_covered(zones_df, dset_src)
+    if all_zeros:
+        assert (results["value"] == 0).all(), "Results are not all zero as expected"
+    else:
+        results_df = pd.concat([zones_df, results], axis=1)
+        results_df.reset_index(inplace=True)
+
+        expected_results_src = data_dir / "overlays" / "percent_covered_results.gpkg"
         expected_df = gpd.read_file(expected_results_src)
 
         assert_geodataframe_equal(results_df, expected_df, check_like=True)
