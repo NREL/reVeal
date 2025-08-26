@@ -10,14 +10,10 @@ import pandas as pd
 import geopandas as gpd
 from libpysal import graph
 import numpy as np
-import pyproj
 from shapely.geometry import box
 
 from loci.config import load_characterize_config
 from loci import overlay
-
-# stop to_crs() bugs
-pyproj.network.set_network_enabled(active=False)
 
 OVERLAY_METHODS = {
     k[5:]: v for k, v in getmembers(overlay, isfunction) if k.startswith("calc_")
