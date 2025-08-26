@@ -54,6 +54,17 @@ def _preprocessor(config, job_name, log_directory, verbose):
         __name__, log_level=log_level, out_path=log_directory / f"{job_name}.log"
     )
 
+    LOGGER.info("Validating input configuration file")
+    try:
+        CharacterizeConfig(**config)
+    except ValidationError as e:
+        LOGGER.error(
+            "Configuration did not pass validation. "
+            f"The following issues were identified:\n{e}"
+        )
+        raise e
+    LOGGER.info("Input configuration file is valid.")
+
     config["_local"] = (
         config.get("execution_control", {}).get("option", "local") == "local"
     )
@@ -93,7 +104,7 @@ def run(
             - "dset": String indicating relative path within data_dir to dataset to be
                 characterized.
             - "method": String indicating characterization method to be performed.
-                Refer to loci.config.VALID_CHARACTERIZATION_METHODS.
+                Refer to :obj:`loci.config.VALID_CHARACTERIZATION_METHODS`.
             - "attribute": Attribute to summarize. Only required for certain methods.
                 Default is None/null.
             - "apply_exclusions": Boolean indicating whether exclusions should be
@@ -113,7 +124,7 @@ def run(
         indicating the expression to be calculated. Expression strings can reference
         one or more attributes/keys referenced in the characterizations dictionary.
     out_dir : str
-        Output parent directory. Results will be saved to a filenamed "
+        Output parent directory. Results will be saved to a file named "grid_char.gpkg".
     max_workers : [int, NoneType], optional
         Maximum number of workers to use for multiprocessing, by default None, which
         uses all available CPUs.
@@ -130,21 +141,12 @@ def run(
     if _local:
         remove_streamhandlers(LOGGER.parent)
 
-    LOGGER.info("Validating input configuration file")
-    try:
-        config = CharacterizeConfig(
-            data_dir=data_dir,
-            grid=grid,
-            characterizations=characterizations,
-            expressions=expressions,
-        )
-    except ValidationError as e:
-        LOGGER.error(
-            "Configuration did not pass validation. "
-            f"The following issues were identified:\n{e}"
-        )
-        raise e
-    LOGGER.info("Input configuration file is valid.")
+    config = CharacterizeConfig(
+        data_dir=data_dir,
+        grid=grid,
+        characterizations=characterizations,
+        expressions=expressions,
+    )
 
     LOGGER.info("Initializing CharacterizeGrid from input config.")
     characterize_grid = CharacterizeGrid(config)
