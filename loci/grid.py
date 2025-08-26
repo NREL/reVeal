@@ -302,7 +302,7 @@ class CharacterizeGrid(Grid):
         na_check = results_df.isna().any()
         if na_check.any():
             cols_with_nas = na_check.keys()[na_check.values].tolist()
-            raise ValueError(
+            warnings.warn(
                 "NAs encountered in results dataframe in the following columns: "
                 f"{cols_with_nas}"
             )
