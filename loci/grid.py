@@ -160,7 +160,7 @@ def run_characterization(df, characterization):
         geometries share only points or segments of the exterior boundaries. This
         function also assumes that the index of df is unique for each feature. If
         either of these are not the case, unexpected results may occur.
-    characterization : loci.config.Characterization
+    characterization : :class:`loci.config.Characterization`
         Input information describing characterization to be run, in the form of
         a Characterization instance.
 
@@ -178,7 +178,7 @@ def run_characterization(df, characterization):
         )
 
     method = get_overlay_method(characterization.method)
-    result_df = method(grid_df, **characterization.__dict__)
+    result_df = method(grid_df, **characterization.dict())
 
     return result_df
 
