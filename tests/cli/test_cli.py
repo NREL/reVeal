@@ -63,6 +63,9 @@ def test_characterize(
     assert (
         "UserWarning: NAs encountered in results dataframe" in log_content
     ), "Expected warning messages were not found in log file."
+    assert (
+        "Running characterization for output column" in log_content
+    ), "Expected progress messages were not found in log file."
 
 
 def test_characterize_invalid_config(

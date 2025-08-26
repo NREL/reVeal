@@ -5,6 +5,7 @@ grid module
 import warnings
 from inspect import getmembers, isfunction
 import re
+import logging
 
 import pandas as pd
 import geopandas as gpd
@@ -18,6 +19,8 @@ from loci import overlay
 OVERLAY_METHODS = {
     k[5:]: v for k, v in getmembers(overlay, isfunction) if k.startswith("calc_")
 }
+
+LOGGER = logging.getLogger(__name__)
 
 
 def create_grid(res, xmin, ymin, xmax, ymax, crs):
@@ -280,6 +283,7 @@ class CharacterizeGrid(Grid):
         """
         results = []
         for attr_name, char_info in self.config.characterizations.items():
+            LOGGER.info(f"Running characterization for output column '{attr_name}'")
             try:
                 char_df = run_characterization(self.df, char_info)
                 char_df.rename(columns={"value": attr_name}, inplace=True)
@@ -290,11 +294,13 @@ class CharacterizeGrid(Grid):
         results_df = pd.concat([self.df] + results, axis=1)
 
         for attr_name, expression in self.config.expressions.items():
+            LOGGER.info(f"Running expression for output column '{attr_name}'")
             try:
                 results_df[attr_name] = results_df.eval(expression)
             except pd.errors.UndefinedVariableError as e:
                 warnings.warn(f"Unable to derive output values for {attr_name}: {e}")
 
+        LOGGER.info("Checking for NA values in results dataframe.")
         na_check = results_df.isna().any()
         if na_check.any():
             cols_with_nas = na_check.keys()[na_check.values].tolist()
