@@ -141,7 +141,7 @@ class Characterization(BaseModelStrict):
     method: constr(to_lower=True)
     attribute: Optional[str] = None
     weights_dset: Optional[str] = None
-    neighbor_order: Optional[NonNegativeInt] = 0.0
+    neighbor_order: Optional[NonNegativeInt] = 0
     buffer_distance: Optional[float] = 0.0
     # Derived dynamically
     dset_src: FilePath
@@ -248,15 +248,17 @@ class Characterization(BaseModelStrict):
         """
 
         if self.dset_ext == ".parquet":
-            self.dset_format = get_geom_type_parquet(self.dset_src)
+            dset_format = get_geom_type_parquet(self.dset_src)
         elif _get_drivers_for_path(self.dset):
-            self.dset_format = get_geom_type_pyogrio(self.dset_src)
+            dset_format = get_geom_type_pyogrio(self.dset_src)
         elif self.dset_ext[1:] in raster_driver_extensions():
             # note: order matters in these checks - do raster to avoid confusion on
             # gpkg
-            self.dset_format = "raster"
+            dset_format = "raster"
         else:
             raise TypeError(f"Unsupported file format for for {self.dset_src}.")
+
+        self.dset_format = DatasetFormatEnum(dset_format)
 
         return self
 
