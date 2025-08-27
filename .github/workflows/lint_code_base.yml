@@ -28,6 +28,7 @@ jobs:
           VALIDATE_MARKDOWN: false
           VALIDATE_BASH: false
           VALIDATE_YAML: false
+          VALIDATE_YAML_PRETTIER: false
           VALIDATE_GITHUB_ACTIONS_ZIZMOR: false
           DEFAULT_BRANCH: main
           FILTER_REGEX_EXCLUDE: "tests/data.*"
