@@ -1,4 +1,4 @@
 # -*- coding: utf-8 -*-
-"""loci version number"""
+"""reVeal version number"""
 
 __version__ = "0.0.1"

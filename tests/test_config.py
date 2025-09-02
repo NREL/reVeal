@@ -9,7 +9,7 @@ import pytest
 
 from pydantic import ValidationError
 
-from loci.config import (
+from reVeal.config import (
     Characterization,
     VALID_CHARACTERIZATION_METHODS,
     CharacterizeConfig,

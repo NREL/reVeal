@@ -7,7 +7,7 @@ from geopandas.testing import assert_geodataframe_equal
 import pandas as pd
 import geopandas as gpd
 
-from loci.overlay import (
+from reVeal.overlay import (
     calc_feature_count,
     calc_sum_attribute,
     calc_sum_length,

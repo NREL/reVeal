@@ -19,7 +19,7 @@ from pydantic import (
     NonNegativeInt,
 )
 
-from loci.fileio import (
+from reVeal.fileio import (
     get_geom_type_pyogrio,
     get_geom_type_parquet,
     get_crs_raster,

@@ -13,8 +13,8 @@ from libpysal import graph
 import numpy as np
 from shapely.geometry import box
 
-from loci.config import load_characterize_config
-from loci import overlay
+from reVeal.config import load_characterize_config
+from reVeal import overlay
 
 OVERLAY_METHODS = {
     k[5:]: v for k, v in getmembers(overlay, isfunction) if k.startswith("calc_")
@@ -163,7 +163,7 @@ def run_characterization(df, characterization):
         geometries share only points or segments of the exterior boundaries. This
         function also assumes that the index of df is unique for each feature. If
         either of these are not the case, unexpected results may occur.
-    characterization : :class:`loci.config.Characterization`
+    characterization : :class:`reVeal.config.Characterization`
         Input information describing characterization to be run, in the form of
         a Characterization instance.
 

@@ -4,7 +4,7 @@ io module tests
 """
 import pytest
 
-from loci.fileio import (
+from reVeal.fileio import (
     get_geom_info_parquet,
     get_geom_type_parquet,
     get_geom_type_pyogrio,

@@ -8,7 +8,7 @@ import pytest
 import geopandas as gpd
 from geopandas.testing import assert_geodataframe_equal
 
-from loci.grid import (
+from reVeal.grid import (
     Grid,
     CharacterizeGrid,
     create_grid,
@@ -16,7 +16,7 @@ from loci.grid import (
     get_overlay_method,
     run_characterization,
 )
-from loci.config import CharacterizeConfig
+from reVeal.config import CharacterizeConfig
 
 
 @pytest.mark.parametrize(

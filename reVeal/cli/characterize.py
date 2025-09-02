@@ -7,9 +7,9 @@ from pathlib import Path
 from pydantic import ValidationError
 from gaps.cli import as_click_command, CLICommandFromFunction
 
-from loci.config import CharacterizeConfig
-from loci.log import get_logger, remove_streamhandlers
-from loci.grid import CharacterizeGrid
+from reVeal.config import CharacterizeConfig
+from reVeal.log import get_logger, remove_streamhandlers
+from reVeal.grid import CharacterizeGrid
 
 LOGGER = logging.getLogger(__name__)
 
@@ -109,7 +109,7 @@ def run(
             - "dset": String indicating relative path within data_dir to dataset to be
                 characterized.
             - "method": String indicating characterization method to be performed.
-                Refer to :obj:`loci.config.VALID_CHARACTERIZATION_METHODS`.
+                Refer to :obj:`reVeal.config.VALID_CHARACTERIZATION_METHODS`.
             - "attribute": Attribute to summarize. Only required for certain methods.
                 Default is None/null.
             - "weights_dset": String indicating relative path within data_dir to
@@ -181,5 +181,5 @@ if __name__ == "__main__":
     try:
         main(obj={})
     except Exception:
-        LOGGER.exception("Error running loci characterize command.")
+        LOGGER.exception("Error running reVeal characterize command.")
         raise

@@ -6,7 +6,7 @@ import logging
 
 import pytest
 
-from loci.log import get_logger, remove_streamhandlers, init_logger
+from reVeal.log import get_logger, remove_streamhandlers, init_logger
 
 
 @pytest.mark.parametrize(

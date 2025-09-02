@@ -7,8 +7,8 @@ import json
 import pytest
 from click.testing import CliRunner
 
-from loci import PACKAGE_DIR
-from loci.grid import Grid, CharacterizeGrid
+from reVeal import PACKAGE_DIR
+from reVeal.grid import Grid, CharacterizeGrid
 
 TEST_DATA_DIR = PACKAGE_DIR.parent.joinpath("tests", "data")
 

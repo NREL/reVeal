@@ -1,9 +1,9 @@
-"""loci"""
+"""reVeal"""
 from pathlib import Path
 
 import pyproj
 
-from loci.version import __version__
+from reVeal.version import __version__
 
 # stop to_crs() bugs
 pyproj.network.set_network_enabled(active=False)

@@ -1,4 +1,4 @@
-name: loci
+name: reVeal
 channels:
     - conda-forge
     - nrel

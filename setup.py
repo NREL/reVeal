@@ -9,8 +9,8 @@ from setuptools import setup, find_packages
 
 
 REPO_DIR = os.path.abspath(os.path.dirname(__file__))
-VERSION_FILE = os.path.join(REPO_DIR, "loci", "version.py")
-DESCRIPTION = "Land Opportunity & Characterization Insights model."
+VERSION_FILE = os.path.join(REPO_DIR, "reVeal", "version.py")
+DESCRIPTION = "The reV Extension for Analyzing Large Loads."
 
 with open(VERSION_FILE, encoding="utf-8") as f:
     VERSION = f.read().split("=")[-1].strip().strip('"').strip("'")
@@ -42,27 +42,27 @@ with open("requirements_dev.txt") as f:
     DEV_REQUIREMENTS = f.readlines()
 
 setup(
-    name="loci",
+    name="reVeal",
     version=VERSION,
     description=DESCRIPTION,
     long_description=README,
     author="Michael Gleason",
     author_email="mike.gleason@nrel.gov",
     packages=find_packages(),
-    package_dir={"loci": "loci"},
+    package_dir={"reVeal": "reVeal"},
     entry_points={
         "console_scripts": [
-            "loci=loci.cli.cli:main",
+            "reVeal=reVeal.cli.cli:main",
         ],
     },
     zip_safe=False,
-    keywords="loci",
+    keywords="reVeal",
     python_requires=">=3.12",
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Science/Research",
         "Natural Language :: English",
-        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.12",
     ],
     test_suite="tests",
     include_package_data=True,

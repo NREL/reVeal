@@ -7,7 +7,7 @@ from geopandas.testing import assert_geodataframe_equal
 
 import pytest
 
-from loci.cli.cli import main
+from reVeal.cli.cli import main
 
 
 def test_main(cli_runner):
