@@ -272,7 +272,8 @@ def test_calc_area_apportioned_sum(
         ("sum", True),
     ],
 )
-def test_zonal_statistic(data_dir, base_grid, stat, weighted):
+@pytest.mark.parametrize("parallel", [False, True])
+def test_zonal_statistic(data_dir, base_grid, stat, weighted, parallel):
     """
     Unit tests for zonal_statistic().
     """
@@ -287,7 +288,7 @@ def test_zonal_statistic(data_dir, base_grid, stat, weighted):
         weights_src = None
 
     results = zonal_statistic(
-        zones_df, dset_src, stat=stat, weights_dset_src=weights_src
+        zones_df, dset_src, stat=stat, weights_dset_src=weights_src, parallel=parallel
     )
     results_df = pd.concat([zones_df, results], axis=1)
     results_df.reset_index(inplace=True)
