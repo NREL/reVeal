@@ -612,7 +612,7 @@ def zonal_statistic(zones_df, dset_src, stat, weights_dset_src=None, parallel=Fa
     )
 
 
-def calc_median(zones_df, dset_src, **kwargs):
+def calc_median(zones_df, dset_src, parallel=False, **kwargs):
     """
     Calculate zonal median of raster values over the input zones.
 
@@ -624,6 +624,9 @@ def calc_median(zones_df, dset_src, **kwargs):
         this is not the case, unexpected results may occur.
     dset_src : str
         Path to input raster dataset to be summarized.
+    parallel : bool, optional
+        If True, run the zonal statistic operation with parallel processing. If False
+        (default), run with serial processing.
 
     Returns
     -------
@@ -633,10 +636,10 @@ def calc_median(zones_df, dset_src, **kwargs):
         included.
     """
 
-    return zonal_statistic(zones_df, dset_src, stat="median")
+    return zonal_statistic(zones_df, dset_src, stat="median", parallel=parallel)
 
 
-def calc_mean(zones_df, dset_src, weights_dset_src, **kwargs):
+def calc_mean(zones_df, dset_src, weights_dset_src, parallel=False, **kwargs):
     """
     Calculate zonal mean or weighted mean of raster values over the input zones.
 
@@ -651,6 +654,9 @@ def calc_mean(zones_df, dset_src, weights_dset_src, **kwargs):
     weights_dset_src : str, optional
         Optional path to datset to use for weights. If specified, the mean for each
         zone will be weighted based on the values in this dataset.
+    parallel : bool, optional
+        If True, run the zonal statistic operation with parallel processing. If False
+        (default), run with serial processing.
 
     Returns
     -------
@@ -661,11 +667,15 @@ def calc_mean(zones_df, dset_src, weights_dset_src, **kwargs):
     """
 
     return zonal_statistic(
-        zones_df, dset_src, stat="mean", weights_dset_src=weights_dset_src
+        zones_df,
+        dset_src,
+        stat="mean",
+        weights_dset_src=weights_dset_src,
+        parallel=parallel,
     )
 
 
-def calc_sum(zones_df, dset_src, weights_dset_src, **kwargs):
+def calc_sum(zones_df, dset_src, weights_dset_src, parallel=False, **kwargs):
     """
     Calculate zonal sum or weighted sum of raster values over the input zones.
 
@@ -680,6 +690,9 @@ def calc_sum(zones_df, dset_src, weights_dset_src, **kwargs):
     weights_dset_src : str, optional
         Optional path to datset to use for weights. If specified, the sum for each
         zone will be weighted based on the values in this dataset.
+    parallel : bool, optional
+        If True, run the zonal statistic operation with parallel processing. If False
+        (default), run with serial processing.
 
     Returns
     -------
@@ -690,11 +703,15 @@ def calc_sum(zones_df, dset_src, weights_dset_src, **kwargs):
     """
 
     return zonal_statistic(
-        zones_df, dset_src, stat="sum", weights_dset_src=weights_dset_src
+        zones_df,
+        dset_src,
+        stat="sum",
+        weights_dset_src=weights_dset_src,
+        parallel=parallel,
     )
 
 
-def calc_area(zones_df, dset_src, **kwargs):
+def calc_area(zones_df, dset_src, parallel=False, **kwargs):
     """
     Calculate the area of a raster within each zone. This function works by summing
     the raster values in each zone and then multiplying by the pixel size. See
@@ -712,6 +729,9 @@ def calc_area(zones_df, dset_src, **kwargs):
         pixel to count when summing the total area inthe zone. If the input raster's
         values do no range from 0 (no inclusion) to 1 (full inclusion), the output
         results may be nonsensical.
+    parallel : bool, optional
+        If True, run the zonal statistic operation with parallel processing. If False
+        (default), run with serial processing.
 
     Returns
     -------
@@ -720,7 +740,7 @@ def calc_area(zones_df, dset_src, **kwargs):
         of raster within each zone. The index from the input zones_df is also included.
     """
 
-    sums_df = zonal_statistic(zones_df, dset_src, stat="sum")
+    sums_df = zonal_statistic(zones_df, dset_src, stat="sum", parallel=parallel)
     with rasterio.open(dset_src, "r") as src:
         height, width = src.res
 
