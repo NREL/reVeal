@@ -238,5 +238,30 @@ def test_run_characterization(char_grid):
                 raise e
 
 
+@pytest.mark.parametrize(
+    "bad_expression",
+    ["@pd.compat.os.system('echo foo')", "@warnings.warn('AH AH AH!')"],
+)
+def test_run_characterization_with_expression_injection(
+    char_grid, capfd, recwarn, bad_expression
+):
+    """
+    Unit test that ensures that attempts to inject system level commmands using
+    expressions does not work.
+    """
+
+    char_grid.config.expressions = {"bad_actor": bad_expression}
+    char_grid.config.characterizations = {}
+    char_grid.run()
+    captured_stdout = capfd.readouterr().out
+    assert (
+        captured_stdout == ""
+    ), "stdout is not empty. Injection occurred via dataframe.eval()."
+    if len(recwarn) > 0:
+        assert (
+            str(recwarn[0].message) != "AH AH AH!"
+        ), "Warning message injected via dataframe.eval()"
+
+
 if __name__ == "__main__":
     pytest.main([__file__, "-s"])
