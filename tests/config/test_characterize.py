@@ -9,12 +9,12 @@ import pytest
 
 from pydantic import ValidationError
 
-from reVeal.config import (
+from reVeal.config.config import load_config
+from reVeal.config.characterize import (
     Characterization,
     VALID_CHARACTERIZATION_METHODS,
     CharacterizeConfig,
     DatasetFormatEnum,
-    load_characterize_config,
 )
 
 VALID_METHODS_AND_ATTRIBUTES = [
@@ -574,9 +574,9 @@ def test_load_characterize_config(data_dir, from_dict):
     ).as_posix()
 
     if from_dict:
-        config = load_characterize_config(config_data)
+        config = load_config(config_data, CharacterizeConfig)
     else:
-        config = load_characterize_config(CharacterizeConfig(**config_data))
+        config = load_config(CharacterizeConfig(**config_data), CharacterizeConfig)
 
     assert isinstance(config, CharacterizeConfig)
 
@@ -587,8 +587,8 @@ def test_load_characterize_config_typerror():
     input.
     """
 
-    with pytest.raises(TypeError, match="Invalid input for characterize config.*"):
-        load_characterize_config("string input")
+    with pytest.raises(TypeError, match="Invalid input for config.*"):
+        load_config("string input", CharacterizeConfig)
 
 
 def test_characterizationconfig_crs_mismatch(

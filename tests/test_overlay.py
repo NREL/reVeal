@@ -25,7 +25,7 @@ from reVeal.overlay import (
     calc_area,
 )
 from reVeal.grid import get_overlay_method
-from reVeal.config import VALID_CHARACTERIZATION_METHODS
+from reVeal.config.characterize import VALID_CHARACTERIZATION_METHODS
 
 
 @pytest.mark.parametrize("where", [None, "capacity_factor < 0.5"])

@@ -16,7 +16,7 @@ from reVeal.grid import (
     get_overlay_method,
     run_characterization,
 )
-from reVeal.config import CharacterizeConfig
+from reVeal.config.characterize import CharacterizeConfig
 
 
 @pytest.mark.parametrize(

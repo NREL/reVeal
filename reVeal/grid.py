@@ -13,7 +13,8 @@ from libpysal import graph
 import numpy as np
 from shapely.geometry import box
 
-from reVeal.config import load_characterize_config
+from reVeal.config.config import load_config
+from reVeal.config.characterize import CharacterizeConfig
 from reVeal import overlay
 
 OVERLAY_METHODS = {
@@ -268,7 +269,7 @@ class CharacterizeGrid(Grid):
             instance. If a dictionary, validation will be performed to ensure
             inputs are valid.
         """
-        config = load_characterize_config(config)
+        config = load_config(config, CharacterizeConfig)
         super().__init__(template=config.grid)
         self.config = config
 

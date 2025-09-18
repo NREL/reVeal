@@ -7,7 +7,7 @@ from pathlib import Path
 from pydantic import ValidationError
 from gaps.cli import as_click_command, CLICommandFromFunction
 
-from reVeal.config import CharacterizeConfig
+from reVeal.config.characterize import CharacterizeConfig
 from reVeal.log import get_logger, remove_streamhandlers
 from reVeal.grid import CharacterizeGrid
 
