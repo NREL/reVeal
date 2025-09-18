@@ -536,24 +536,34 @@ def test_characterizationconfig_nonexistent_grid(tmp_path):
         CharacterizeConfig(**config)
 
 
-def test_characterizationconfig_invalid_characterizations(tmp_path):
+@pytest.mark.parametrize(
+    "characterizations,err_msg",
+    [
+        (
+            {"dev_area": {"dset": "rasters/developable.tif", "method": "not-a-method"}},
+            "Invalid method specified",
+        ),
+        (
+            [{"dset": "rasters/developable.tif", "method": "not-a-method"}],
+            "Input should be a valid dictionary",
+        ),
+    ],
+)
+def test_characterizationconfig_invalid_characterizations(
+    data_dir, characterizations, err_msg
+):
     """
     Test CharacterizationConfig with invalid characterizations.
     """
 
-    grid_path = tmp_path / "grid.gpkg"
+    grid_path = data_dir / "characterize" / "grids" / "grid_2.gpkg"
     config = {
-        "data_dir": tmp_path.as_posix(),
+        "data_dir": data_dir / "characterize",
         "grid": grid_path.as_posix(),
-        "characterizations": {
-            "developable_area": {
-                "dset": "rasters/developable.tif",
-                "method": "not-a-method",
-            }
-        },
+        "characterizations": characterizations,
         "expressions": {"developable_sqkm": "developable_area / 1e6"},
     }
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValidationError, match=err_msg):
         CharacterizeConfig(**config)
 
 

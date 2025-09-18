@@ -99,9 +99,9 @@ class Attribute(BaseModelStrict):
         return self
 
 
-class ScoreAttributesConfig(BaseModelStrict):
+class BaseScoreAttributesConfig(BaseModelStrict):
     """
-    Configuration for characterize command.
+    Base model for ScoreAttributesConfig with only required inputs and datatypes.
     """
 
     # pylint: disable=too-few-public-methods
@@ -109,6 +109,14 @@ class ScoreAttributesConfig(BaseModelStrict):
     # Input at instantiation
     grid: FilePath
     attributes: dict
+
+
+class ScoreAttributesConfig(BaseScoreAttributesConfig):
+    """
+    Configuration for characterize command.
+    """
+
+    # pylint: disable=too-few-public-methods
 
     @model_validator(mode="before")
     def propagate_grid(self):
@@ -123,7 +131,22 @@ class ScoreAttributesConfig(BaseModelStrict):
         """
         for v in self["attributes"].values():
             if "dset_src" not in v:
-                v["dset_src"] = self["dset_src"]
+                v["dset_src"] = self["grid"]
+
+        return self
+
+    @model_validator(mode="before")
+    def base_validator(self):
+        """
+        Ensures that the base validation is run on input data types before
+        other "before"-mode model validators.
+
+        Returns
+        -------
+        self
+            Returns self.
+        """
+        BaseScoreAttributesConfig(**self)
 
         return self
 

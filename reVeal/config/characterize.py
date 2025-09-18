@@ -366,9 +366,9 @@ class Characterization(BaseModelStrict):
         return self
 
 
-class CharacterizeConfig(BaseModelStrict):
+class BaseCharacterizeConfig(BaseModelStrict):
     """
-    Configuration for characterize command.
+    Base model for CharacterizeConfig with only required inputs and datatypes.
     """
 
     # pylint: disable=too-few-public-methods
@@ -378,7 +378,15 @@ class CharacterizeConfig(BaseModelStrict):
     grid: FilePath
     characterizations: dict
     expressions: Optional[dict] = None
-    # Dynamically derived
+
+
+class CharacterizeConfig(BaseCharacterizeConfig):
+    """
+    Configuration for characterize command.
+    """
+
+    # pylint: disable=too-few-public-methods
+    # Dynamically derived attributes
     grid_crs: Optional[str] = None
 
     @model_validator(mode="before")
@@ -395,6 +403,21 @@ class CharacterizeConfig(BaseModelStrict):
         for v in self["characterizations"].values():
             if "data_dir" not in v:
                 v["data_dir"] = self["data_dir"]
+
+        return self
+
+    @model_validator(mode="before")
+    def base_validator(self):
+        """
+        Ensures that the base validation is run on input data types before
+        other "before"-mode model validators.
+
+        Returns
+        -------
+        self
+            Returns self.
+        """
+        BaseCharacterizeConfig(**self)
 
         return self
 

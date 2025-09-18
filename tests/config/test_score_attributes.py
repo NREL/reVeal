@@ -10,7 +10,7 @@ from pydantic import ValidationError
 from reVeal.config.score_attributes import (
     AttributeScoringMethodEnum,
     Attribute,
-    # ScoreAttributesConfig,
+    ScoreAttributesConfig,
 )
 
 
@@ -125,6 +125,82 @@ def test_attribute_bad_method(data_dir):
         ValidationError, match="Input should be 'percentile' or 'minmax'"
     ):
         Attribute(**value)
+
+
+def test_scoreattributesconfig_valid_inputs(data_dir):
+    """
+    Test that ScoreAttributesConfig builds successfully with valid inputs.
+    """
+
+    grid = data_dir / "characterize/outputs/grid_char.gpkg"
+    attributes = {
+        "generator_mwh_score": {"attribute": "generator_mwh", "score_method": "minmax"},
+        "fttp_average_speed_score": {
+            "attribute": "fttp_average_speed",
+            "score_method": "percentile",
+        },
+    }
+    config = {
+        "grid": grid,
+        "attributes": attributes,
+    }
+    ScoreAttributesConfig(**config)
+
+
+def test_scoreattributesconfig_nonexistent_grid():
+    """
+    Test that ScoreAttributesConfig raises a ValidationError when passed a non-existent
+    grid.
+    """
+
+    attributes = {
+        "generator_mwh_score": {"attribute": "generator_mwh", "score_method": "minmax"},
+        "fttp_average_speed_score": {
+            "attribute": "fttp_average_speed",
+            "score_method": "percentile",
+        },
+    }
+    config = {
+        "grid": "not-a-file.gpkg",
+        "attributes": attributes,
+    }
+    with pytest.raises(ValidationError, match="Path does not point to a file"):
+        ScoreAttributesConfig(**config)
+
+
+@pytest.mark.parametrize(
+    "attributes,err_msg",
+    [
+        # use "method" instead of "score_method"
+        (
+            {"scored": {"attribute": "fttp_average_speed", "method": "minmax"}},
+            "Field required",
+        ),
+        # pass list instead of dictionary
+        (
+            [{"attribute": "fttp_average_speed", "score_method": "minmax"}],
+            "should be a valid dictionary",
+        ),
+        # pass missing attribute
+        (
+            {"scored": {"attribute": "not-a-col", "score_method": "minmax"}},
+            "Attribute not-a-col not found in",
+        ),
+    ],
+)
+def test_scoreattributesconfig_invalid_attributes(data_dir, attributes, err_msg):
+    """
+    Test that ScoreAttributesConfig raises a ValidationError when passed various
+    types of invalid inputs for attributes
+    """
+
+    grid = data_dir / "characterize/outputs/grid_char.gpkg"
+    config = {
+        "grid": grid,
+        "attributes": attributes,
+    }
+    with pytest.raises(ValidationError, match=err_msg):
+        ScoreAttributesConfig(**config)
 
 
 if __name__ == "__main__":
