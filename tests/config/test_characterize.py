@@ -88,8 +88,8 @@ def test_datasetformatenum(value, error_expected):
         ("vectors/generators.gpkg", "feature count", None, None, False),
     ],
 )
-@pytest.mark.parametrize("neighbor_order", [None, 0, 1, 50.0])
-@pytest.mark.parametrize("buffer_distance", [None, -100, 100])
+@pytest.mark.parametrize("neighbor_order", [0, 1, 50.0])
+@pytest.mark.parametrize("buffer_distance", [0, -100, 100])
 def test_characterization_valid_optional_params(
     data_dir,
     dset,

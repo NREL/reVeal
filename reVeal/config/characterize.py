@@ -143,9 +143,9 @@ class Characterization(BaseModelStrict):
     method: constr(to_lower=True)
     attribute: Optional[str] = None
     weights_dset: Optional[str] = None
-    parallel: Optional[bool] = True
-    neighbor_order: Optional[NonNegativeInt] = 0
-    buffer_distance: Optional[float] = 0.0
+    parallel: bool = True
+    neighbor_order: NonNegativeInt = 0
+    buffer_distance: float = 0.0
     where: Optional[str] = None
     # Derived dynamically
     dset_src: FilePath
