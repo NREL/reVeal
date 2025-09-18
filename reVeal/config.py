@@ -18,6 +18,7 @@ from pydantic import (
     constr,
     NonNegativeInt,
 )
+from rex.utilities import check_eval_str
 
 from reVeal.fileio import (
     get_geom_type_pyogrio,
@@ -395,7 +396,8 @@ class CharacterizeConfig(BaseModelStrict):
     @field_validator("expressions")
     def validate_expressions(cls, value):
         """
-        Check that each entry in the expressions dictionary is a string.
+        Check that each entry in the expressions dictionary is a string and does not
+        have any questionable code.
 
         Parameters
         ----------
@@ -413,6 +415,7 @@ class CharacterizeConfig(BaseModelStrict):
                 raise TypeError(
                     f"Invalid input for expressions entry {k}: {v}. Must be a string."
                 )
+            check_eval_str(v)
 
         return value
 

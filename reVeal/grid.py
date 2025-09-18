@@ -296,7 +296,9 @@ class CharacterizeGrid(Grid):
         for attr_name, expression in self.config.expressions.items():
             LOGGER.info(f"Running expression for output column '{attr_name}'")
             try:
-                results_df[attr_name] = results_df.eval(expression)
+                results_df[attr_name] = results_df.eval(
+                    expression, local_dict={}, global_dict={}
+                )
             except pd.errors.UndefinedVariableError as e:
                 warnings.warn(f"Unable to derive output values for {attr_name}: {e}")
 

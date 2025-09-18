@@ -490,5 +490,31 @@ def test_characterizationconfig_crs_mismatch(
         CharacterizeConfig(**config)
 
 
+@pytest.mark.parametrize(
+    "bad_expression",
+    [
+        "@pd.compat.os.system('echo foo)",
+        "os.system('echo foo')",
+        "print(sys.executable)",
+        "import time",
+    ],
+)
+def test_characterizationconfig_expression_injection(data_dir, bad_expression):
+    """
+    Test that validation catches questionable inputs for expressions.
+    """
+
+    grid_path = data_dir / "characterize" / "grids" / "grid_1.gpkg"
+    grid_path.touch()
+    config = {
+        "data_dir": data_dir.as_posix(),
+        "grid": grid_path.as_posix(),
+        "characterizations": {},
+        "expressions": {"bad_actor": bad_expression},
+    }
+    with pytest.raises(ValueError, match="Will not eval().*"):
+        CharacterizeConfig(**config)
+
+
 if __name__ == "__main__":
     pytest.main([__file__, "-s"])
