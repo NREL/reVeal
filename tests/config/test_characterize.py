@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-config module tests
+config.characterize module tests
 """
 import json
 from pathlib import Path

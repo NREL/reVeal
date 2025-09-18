@@ -237,7 +237,7 @@ class Characterization(BaseModelStrict):
             # gpkg
             dset_format = "raster"
         else:
-            raise TypeError(f"Unsupported file format for for {self.dset_src}.")
+            raise TypeError(f"Unsupported file format for {self.dset_src}.")
 
         self.dset_format = DatasetFormatEnum(dset_format)
 
@@ -265,12 +265,17 @@ class Characterization(BaseModelStrict):
     def attribute_check(self):
         """
         Check that attribute is provided for required methods and warn if attribute
-        is provided for methods where it doesn't apply.
+        is provided for methods where it doesn't apply. Also ensure that the attribute
+        is present in the input dataset and is a numeric datatype.
 
         Raises
         ------
         ValueError
-            A ValueError will be raised if attribute is missing for a required method.
+            A ValueError will be raised if attribute is missing for a required method
+            or does not exist in the input dataset.
+        TypeError
+            A TypeError will be raised if the input attribute exists in the dataset
+            but is not a numeric datatype.
         """
         method_info = VALID_CHARACTERIZATION_METHODS.get(self.method)
         if method_info is None or method_info.get("attribute_required") is None:
