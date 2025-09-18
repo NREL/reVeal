@@ -240,7 +240,11 @@ def test_run_characterization(char_grid):
 
 @pytest.mark.parametrize(
     "bad_expression",
-    ["@pd.compat.os.system('echo foo')", "@warnings.warn('AH AH AH!')"],
+    [
+        "@pd.compat.os.system('echo foo')",
+        "@warnings.warn('AH AH AH!')",
+        "os.system('echo foo')",
+    ],
 )
 def test_run_characterization_with_expression_injection(
     char_grid, capfd, recwarn, bad_expression
