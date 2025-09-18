@@ -19,6 +19,12 @@ class BaseModelStrict(BaseModel):
 class BaseEnum(str, Enum):
     """
     Base Enumeration. Extends standard Enum to be case-insensitive.
+
+    Raises
+    ------
+    ValueError
+        A ValueError is raised if the input value is not one of the known
+        types when cast to lower case.
     """
 
     @classmethod

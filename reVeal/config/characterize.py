@@ -122,12 +122,6 @@ VALID_CHARACTERIZATION_METHODS = {
 class DatasetFormatEnum(BaseEnum):
     """
     Enumeration for allowable dataset formats. Case insensitive.
-
-    Raises
-    ------
-    ValueError
-        A ValueError is raised if the input value is not one of the known
-        types when cast to lower case.
     """
 
     RASTER = "raster"
@@ -138,7 +132,7 @@ class DatasetFormatEnum(BaseEnum):
 
 class Characterization(BaseModelStrict):
     """
-    Inputs for a single entry in the characterizations config.
+    Inputs for a single characterization entry in the CharacterizeConfig.
     """
 
     # pylint: disable=too-few-public-methods
