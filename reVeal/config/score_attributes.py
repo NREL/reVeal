@@ -3,6 +3,7 @@
 config.score_attributes module
 """
 from typing import Optional
+import warnings
 
 from pyogrio._ogr import _get_drivers_for_path
 from pydantic import (
@@ -108,7 +109,8 @@ class BaseScoreAttributesConfig(BaseModelStrict):
 
     # Input at instantiation
     grid: FilePath
-    attributes: dict
+    attributes: Optional[dict] = {}
+    score_method: Optional[AttributeScoringMethodEnum] = None
 
 
 class ScoreAttributesConfig(BaseScoreAttributesConfig):
@@ -117,6 +119,9 @@ class ScoreAttributesConfig(BaseScoreAttributesConfig):
     """
 
     # pylint: disable=too-few-public-methods
+    # Dynamically derived attributes
+    grid_ext: Optional[str] = None
+    grid_flavor: Optional[str] = None
 
     @model_validator(mode="before")
     def propagate_grid(self):
@@ -129,9 +134,10 @@ class ScoreAttributesConfig(BaseScoreAttributesConfig):
         self
             Returns self.
         """
-        for v in self["attributes"].values():
-            if "dset_src" not in v:
-                v["dset_src"] = self["grid"]
+        if self.get("attributes"):
+            for v in self["attributes"].values():
+                if "dset_src" not in v:
+                    v["dset_src"] = self["grid"]
 
         return self
 
@@ -147,6 +153,16 @@ class ScoreAttributesConfig(BaseScoreAttributesConfig):
             Returns self.
         """
         BaseScoreAttributesConfig(**self)
+
+        return self
+
+    @model_validator(mode="before")
+    def check_attributes_and_score_method(self):
+        """
+        Check that either attributes or score_method was provided as an input.
+        """
+        if not self.get("score_method") and not self.get("attributes"):
+            raise ValueError("Either score_method or attributes must be specified.")
 
         return self
 
@@ -172,3 +188,68 @@ class ScoreAttributesConfig(BaseScoreAttributesConfig):
             value[k] = Attribute(**v)
 
         return value
+
+    @model_validator(mode="after")
+    def set_grid_ext(self):
+        """
+        Dynamically set the grid_ext property.
+        """
+        self.grid_ext = self.grid.suffix
+
+        return self
+
+    @model_validator(mode="after")
+    def set_grid_flavor(self):
+        """
+        Dynamically set the dset_flavor.
+
+        Raises
+        ------
+        TypeError
+            A TypeError will be raised if the input dset is not either a geoparquet
+            or compatible with reading with ogr.
+        """
+        if self.grid_ext == ".parquet":
+            self.grid_flavor = "geoparquet"
+        elif _get_drivers_for_path(self.grid):
+            self.grid_flavor = "ogr"
+        else:
+            raise TypeError(f"Unrecognized file format for {self.grid}.")
+
+        return self
+
+    @model_validator(mode="after")
+    def propagate_score_method(self):
+        """
+        If the top-level score method is specified, populate the attributes property
+        so that it includes all numeric attributes in the input grid. All attributes
+        will use the specified top-level score method except for any that were input
+        separately via the attributes parameter.
+        """
+
+        if self.score_method:
+            if self.grid_flavor == "geoparquet":
+                dset_attributes = get_attributes_parquet(self.grid)
+            else:
+                dset_attributes = get_attributes_pyogrio(self.grid)
+
+            attributes = {}
+            for attr, attr_dtype in dset_attributes.items():
+                if is_numeric_dtype(attr_dtype):
+                    out_col = f"{attr}_score"
+                    if out_col in dset_attributes:
+                        warnings.warn(
+                            f"Output column {out_col} exists in input grid and will be "
+                            "overwritten in output."
+                        )
+                    attributes[out_col] = Attribute(
+                        attribute=attr,
+                        score_method=self.score_method,
+                        dset_src=self.grid,
+                    )
+            # preserve any existing attributes that were explicitly defined
+            attributes.update(self.attributes)
+
+            self.attributes = attributes
+
+        return self
