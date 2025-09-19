@@ -278,12 +278,13 @@ class RunnableGrid(BaseGrid):
 
     def run(self):
         """
-        Run method.
+        Place holder for run method, to be implemented by subclasses.
 
         Raises
         ------
         NotImplementedError
-            A NotImplementedError is always raised.
+            A NotImplementedError is always raised since this is just a template
+            for subclasses.
         """
         raise NotImplementedError(
             "run method not implemented for RunnableGrid base class"
