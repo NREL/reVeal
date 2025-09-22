@@ -251,8 +251,8 @@ def test_score_weighted(
         log_content = f.read()
 
     assert (
-        "UserWarning: gid column already exists" in log_content
-    ), "Expected warning messages were not found in log file."
+        "UserWarning: gid column already exists in self.dataframe" in log_content
+    ), "Expected overwrite warning message was not found in log file."
     assert (
         "Calculating weighted scores" in log_content
     ), "Expected progress messages were not found in log file."
