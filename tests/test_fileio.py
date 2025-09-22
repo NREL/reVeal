@@ -219,4 +219,4 @@ def test_attribute_is_numeric(data_dir, attribute, expected_result, err, dset_ex
 
 
 if __name__ == "__main__":
-    pytest.main([__file__, "-s", "-k", "test_attribute_is_numeric"])
+    pytest.main([__file__, "-s"])

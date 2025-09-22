@@ -406,4 +406,4 @@ def test_run_scoreweightedgrid_overwrite_output(data_dir, score_wt_grid):
 
 
 if __name__ == "__main__":
-    pytest.main([__file__, "-s", "-k", "test_run_scoreattributesgrid_overwrite_output"])
+    pytest.main([__file__, "-s"])
