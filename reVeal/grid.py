@@ -16,6 +16,7 @@ from shapely.geometry import box
 from reVeal.config.config import load_config, BaseGridConfig
 from reVeal.config.characterize import CharacterizeConfig
 from reVeal.config.score_attributes import ScoreAttributesConfig, GRID_IDX
+from reVeal.config.score_weighted import ScoreWeightedConfig
 from reVeal import overlay, score
 
 OVERLAY_METHODS = {
@@ -226,6 +227,51 @@ def run_attribute_scoring(df, attribute, score_method, invert):
     return scored
 
 
+def run_weighted_scoring(df, attributes):
+    """
+    Calculated weighted score for the input dataframe based on the specified attributes
+    and corresponding weights.
+
+    Parameters
+    ----------
+    df : geopandas.GeoDataFrame
+        Input grid geodataframe
+    attributes : List[reVeal.config.score_weighted.Attribute]
+        List of Attribute models specifying the attribute columns and
+        corresponding weights to use.
+
+    Returns
+    -------
+    pandas.DataFrame
+        Returns a pandas DataFrame with a "value" column, representing the output
+        scored values for the specified attribute. The index from the input df
+        is also included.
+
+    Raises
+    ------
+    ValueError
+        A ValueError will be raised if the input attribute weights do not
+        sum to 1.
+    """
+
+    cols = [a.attribute for a in attributes]
+    weights = np.array([a.weight for a in attributes])
+
+    sum_weights = weights.sum()
+    if sum_weights != 1:
+        raise ValueError(
+            "Weights of input attributes must sum to 1. "
+            f"Sum of input weights is: {sum_weights}."
+        )
+
+    scores = (df[cols] * weights).sum(axis=1)
+    scores.name = "value"
+
+    scores_df = scores.to_frame()
+
+    return scores_df
+
+
 class BaseGrid:
     """
     Grid base class
@@ -409,7 +455,10 @@ class ScoreAttributesGrid(RunnableGrid):
             except NotImplementedError:
                 warnings.warn(f"Method {attr_info.score_method} not supported")
 
-        results_df = pd.concat([self.df] + results, axis=1)
+        keep_cols = [
+            c for c in self.df.columns if c not in self.config.attributes.keys()
+        ]
+        results_df = pd.concat([self.df[keep_cols]] + results, axis=1)
 
         LOGGER.info("Checking for NA values in results dataframe.")
         na_check = results_df[self.config.attributes.keys()].isna().any()
@@ -418,6 +467,37 @@ class ScoreAttributesGrid(RunnableGrid):
             warnings.warn(
                 "NAs encountered in results dataframe in the following columns: "
                 f"{cols_with_nas}"
+            )
+
+        return results_df
+
+
+class ScoreWeightedGrid(RunnableGrid):
+    """
+    Subclass of RunnableGrid for calculating weighted composite score.
+    """
+
+    CONFIG_CLASS = ScoreWeightedConfig
+
+    def run(self):
+        """
+        Run weighted composite scoring based on the input configuration.
+
+        Returns
+        -------
+        gpd.GeoDataFrame
+            A GeoDataFrame with scored attributes.
+        """
+        score_col = self.config.score_name
+        scores_df = run_weighted_scoring(self.df, self.config.attributes)
+
+        results_df = self.df.copy()
+        results_df[score_col] = scores_df["value"]
+
+        na_check = results_df[score_col].isna().any()
+        if na_check:
+            warnings.warn(
+                f"NAs encountered in output weighted score column {score_col}"
             )
 
         return results_df

@@ -10,7 +10,12 @@ from click.testing import CliRunner
 import geopandas as gpd
 
 from reVeal import PACKAGE_DIR
-from reVeal.grid import BaseGrid, CharacterizeGrid, ScoreAttributesGrid
+from reVeal.grid import (
+    BaseGrid,
+    CharacterizeGrid,
+    ScoreAttributesGrid,
+    ScoreWeightedGrid,
+)
 
 TEST_DATA_DIR = PACKAGE_DIR.parent.joinpath("tests", "data")
 
@@ -80,3 +85,21 @@ def characterized_df():
     df = gpd.read_file(in_path)
 
     return df
+
+
+@pytest.fixture
+def score_wt_grid():
+    """Return a ScoreWeightedGrid instance"""
+
+    in_config_path = TEST_DATA_DIR / "score_weighted" / "config.json"
+    with open(in_config_path, "r") as f:
+        config_data = json.load(f)
+    config_data["grid"] = (
+        TEST_DATA_DIR / "score_attributes" / "outputs" / "grid_char_attr_scores.gpkg"
+    ).as_posix()
+
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        grid = ScoreWeightedGrid(config_data)
+
+    return grid
