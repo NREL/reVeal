@@ -6,11 +6,11 @@ from gaps.cli.cli import make_cli
 
 from reVeal import __version__
 from reVeal.cli.characterize import characterize_cmd
-
+from reVeal.cli.score_attributes import score_attributes_cmd
 
 logger = logging.getLogger(__name__)
 
-commands = [characterize_cmd]
+commands = [characterize_cmd, score_attributes_cmd]
 main = make_cli(commands, info={"name": "reVeal", "version": __version__})
 
 if __name__ == "__main__":

@@ -1,16 +1,14 @@
 # -*- coding: utf-8 -*-
 """
-config module
+config.characterize module
 """
 from typing import Optional
 import warnings
-from enum import Enum
 from pathlib import Path
 
 from rasterio.drivers import raster_driver_extensions
 from pyogrio._ogr import _get_drivers_for_path
 from pydantic import (
-    BaseModel,
     field_validator,
     model_validator,
     FilePath,
@@ -30,16 +28,7 @@ from reVeal.fileio import (
     get_attributes_parquet,
     get_attributes_pyogrio,
 )
-
-
-class BaseModelStrict(BaseModel):
-    """
-    Customizing BaseModel to perform strict checking that will raise a ValidationError
-    for extra parameters.
-    """
-
-    # pylint: disable=too-few-public-methods
-    model_config = {"extra": "forbid"}
+from reVeal.config.config import BaseEnum, BaseModelStrict, BaseGridConfig
 
 
 VALID_CHARACTERIZATION_METHODS = {
@@ -130,15 +119,9 @@ VALID_CHARACTERIZATION_METHODS = {
 }
 
 
-class DatasetFormatEnum(str, Enum):
+class DatasetFormatEnum(BaseEnum):
     """
     Enumeration for allowable dataset formats. Case insensitive.
-
-    Raises
-    ------
-    ValueError
-        A ValueError is raised if the input value is not one of the known
-        types when cast to lower case.
     """
 
     RASTER = "raster"
@@ -146,19 +129,10 @@ class DatasetFormatEnum(str, Enum):
     LINE = "line"
     POLYGON = "polygon"
 
-    @classmethod
-    def _missing_(cls, value):
-        if isinstance(value, str):
-            value = value.lower()
-            for member in cls:
-                if member.value == value:
-                    return member
-        raise ValueError(f"{value} is not a valid DatasetFormatEnum")
-
 
 class Characterization(BaseModelStrict):
     """
-    Inputs for a single entry in the characterizations config.
+    Inputs for a single characterization entry in the CharacterizeConfig.
     """
 
     # pylint: disable=too-few-public-methods
@@ -169,9 +143,9 @@ class Characterization(BaseModelStrict):
     method: constr(to_lower=True)
     attribute: Optional[str] = None
     weights_dset: Optional[str] = None
-    parallel: Optional[bool] = True
-    neighbor_order: Optional[NonNegativeInt] = 0
-    buffer_distance: Optional[float] = 0.0
+    parallel: bool = True
+    neighbor_order: NonNegativeInt = 0
+    buffer_distance: float = 0.0
     where: Optional[str] = None
     # Derived dynamically
     dset_src: FilePath
@@ -257,7 +231,7 @@ class Characterization(BaseModelStrict):
             # gpkg
             dset_format = "raster"
         else:
-            raise TypeError(f"Unsupported file format for for {self.dset_src}.")
+            raise TypeError(f"Unsupported file format for {self.dset_src}.")
 
         self.dset_format = DatasetFormatEnum(dset_format)
 
@@ -285,12 +259,17 @@ class Characterization(BaseModelStrict):
     def attribute_check(self):
         """
         Check that attribute is provided for required methods and warn if attribute
-        is provided for methods where it doesn't apply.
+        is provided for methods where it doesn't apply. Also ensure that the attribute
+        is present in the input dataset and is a numeric datatype.
 
         Raises
         ------
         ValueError
-            A ValueError will be raised if attribute is missing for a required method.
+            A ValueError will be raised if attribute is missing for a required method
+            or does not exist in the input dataset.
+        TypeError
+            A TypeError will be raised if the input attribute exists in the dataset
+            but is not a numeric datatype.
         """
         method_info = VALID_CHARACTERIZATION_METHODS.get(self.method)
         if method_info is None or method_info.get("attribute_required") is None:
@@ -387,19 +366,26 @@ class Characterization(BaseModelStrict):
         return self
 
 
-class CharacterizeConfig(BaseModelStrict):
+class BaseCharacterizeConfig(BaseGridConfig):
     """
-    Configuration for characterize command.
+    Base model for CharacterizeConfig with only required inputs and datatypes.
     """
 
     # pylint: disable=too-few-public-methods
 
     # Input at instantiation
     data_dir: DirectoryPath
-    grid: FilePath
     characterizations: dict
     expressions: Optional[dict] = None
-    # Dynamically derived
+
+
+class CharacterizeConfig(BaseCharacterizeConfig):
+    """
+    Configuration for characterize command.
+    """
+
+    # pylint: disable=too-few-public-methods
+    # Dynamically derived attributes
     grid_crs: Optional[str] = None
 
     @model_validator(mode="before")
@@ -419,6 +405,21 @@ class CharacterizeConfig(BaseModelStrict):
 
         return self
 
+    @model_validator(mode="before")
+    def base_validator(self):
+        """
+        Ensures that the base validation is run on input data types before
+        other "before"-mode model validators.
+
+        Returns
+        -------
+        self
+            Returns self.
+        """
+        BaseCharacterizeConfig(**self)
+
+        return self
+
     @field_validator("characterizations")
     def validate_characterizations(cls, value):
         """
@@ -433,7 +434,7 @@ class CharacterizeConfig(BaseModelStrict):
         -------
         dict
             Validated characterizations, which each value converted
-            into an instance of CharacterizationSpec.
+            into an instance of Characterization.
         """
         # pylint: disable=no-self-argument
 
@@ -493,38 +494,3 @@ class CharacterizeConfig(BaseModelStrict):
                     f"({self.grid_crs})."
                 )
         return self
-
-
-def load_characterize_config(characterize_config):
-    """
-    Load config for grid characterization.
-
-    Parameters
-    ----------
-    characterize_config : [dict, CharacterizeConfig]
-        Input configuration. If a dictionary, it will be converted to an instance of
-        CharacterizeConfig, with validation. If a CharacterizeConfig, the input
-        will be returned unchanged.
-
-    Returns
-    -------
-    CharacterizeConfig
-        Output CharacterizeConfig instance.
-
-    Raises
-    ------
-    TypeError
-        A TypeError will be raised if the input is neither a dict or CharacterizeConfig
-        instance.
-    """
-
-    if isinstance(characterize_config, dict):
-        return CharacterizeConfig(**characterize_config)
-
-    if isinstance(characterize_config, CharacterizeConfig):
-        return characterize_config
-
-    raise TypeError(
-        "Invalid input for characterize config. Must be an instance of "
-        "either dict or CharacterizeConfig."
-    )

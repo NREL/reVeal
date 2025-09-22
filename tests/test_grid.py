@@ -3,20 +3,25 @@
 grid module tests
 """
 import json
+import warnings
 
 import pytest
 import geopandas as gpd
 from geopandas.testing import assert_geodataframe_equal
 
 from reVeal.grid import (
-    Grid,
+    BaseGrid,
+    RunnableGrid,
     CharacterizeGrid,
     create_grid,
     get_neighbors,
-    get_overlay_method,
+    get_method_from_members,
     run_characterization,
+    OVERLAY_METHODS,
+    ATTRIBUTE_SCORE_METHODS,
 )
-from reVeal.config import CharacterizeConfig
+from reVeal.config.config import BaseGridConfig
+from reVeal.config.characterize import CharacterizeConfig
 
 
 @pytest.mark.parametrize(
@@ -70,7 +75,7 @@ def test_create_grid(data_dir, bounds, res, crs, i):
         ),  # all three together
     ],
 )
-def test_init_grid_from_template(data_dir, crs, bounds, res):
+def test_init_basegrid_from_template(data_dir, crs, bounds, res):
     """
     Test for initializing Grid instance from a template file.
     """
@@ -79,9 +84,9 @@ def test_init_grid_from_template(data_dir, crs, bounds, res):
 
     if res is not None:
         with pytest.warns(UserWarning):
-            grid = Grid(template=template_src, crs=crs, bounds=bounds, res=res)
+            grid = BaseGrid(template=template_src, crs=crs, bounds=bounds, res=res)
     else:
-        grid = Grid(template=template_src, crs=crs, bounds=bounds, res=res)
+        grid = BaseGrid(template=template_src, crs=crs, bounds=bounds, res=res)
 
     template_df = gpd.read_file(template_src)
 
@@ -118,7 +123,7 @@ def test_init_grid_from_template(data_dir, crs, bounds, res):
         ("EPSG:5070", [0, 1, 2, 3], None, None),  # unspecified res (should error)
     ],
 )
-def test_init_grid_from_scratch(data_dir, crs, bounds, res, i):
+def test_init_basegrid_from_scratch(data_dir, crs, bounds, res, i):
     """
     Test for initializing Grid instance from crs, bounds, and res parameters.
     """
@@ -126,12 +131,12 @@ def test_init_grid_from_scratch(data_dir, crs, bounds, res, i):
     if crs is None or bounds is None or res is None:
         # if any are None, a ValueError should be raised
         with pytest.raises(ValueError, match="If template is not provided*."):
-            Grid(crs=crs, bounds=bounds, res=res)
+            BaseGrid(crs=crs, bounds=bounds, res=res)
     else:
         expected_src = data_dir / "characterize" / "grids" / f"grid_{i}.gpkg"
         expected_df = gpd.read_file(expected_src)
 
-        grid = Grid(crs=crs, bounds=bounds, res=res)
+        grid = BaseGrid(crs=crs, bounds=bounds, res=res)
 
         assert len(grid.df) == len(expected_df), "Unexpected number of features in grid"
         assert grid.crs == crs, "Unexpected grid crs"
@@ -150,6 +155,20 @@ def test_get_neighbors(base_grid, order, data_dir):
     expected_neighbors_df.set_index("gid", inplace=True)
 
     assert_geodataframe_equal(neighbors_df, expected_neighbors_df)
+
+
+def test_init_runnablegrid(data_dir):
+    """
+    Test intializable of a RunnableGrid from a config. Ensure that the run() method
+    raises a NotImplementedError.
+    """
+
+    grid_src = data_dir / "characterize" / "grids" / "grid_1.gpkg"
+    config = BaseGridConfig(grid=grid_src)
+    grid = RunnableGrid(config=config)
+    assert grid.config == config, "Unexpected value for grid.config"
+    with pytest.raises(NotImplementedError, match="run method not implemented"):
+        grid.run()
 
 
 @pytest.mark.parametrize("as_dict", [False, True])
@@ -187,27 +206,31 @@ def test_run_characterizegrid(char_grid):
 
 
 @pytest.mark.parametrize(
-    "method_name,error_expected",
+    "method_name,members,error_expected",
     [
-        ("feature_count", False),
-        ("feature count", False),
-        ("featurecount", True),
-        ("Feature-Count", False),
-        ("sum attribute", False),
-        ("sum length", False),
-        ("sum attribute-length", False),
-        ("sum area", False),
-        ("percent covered", False),
-        ("area-weighted average", False),
-        ("area-apportioned sum", False),
-        ("mean", False),
-        ("median", False),
-        ("sum", False),
-        ("area", False),
-        ("not a method", True),
+        ("feature_count", OVERLAY_METHODS, False),
+        ("feature count", OVERLAY_METHODS, False),
+        ("featurecount", OVERLAY_METHODS, True),
+        ("Feature-Count", OVERLAY_METHODS, False),
+        ("sum attribute", OVERLAY_METHODS, False),
+        ("sum length", OVERLAY_METHODS, False),
+        ("sum attribute-length", OVERLAY_METHODS, False),
+        ("sum area", OVERLAY_METHODS, False),
+        ("percent covered", OVERLAY_METHODS, False),
+        ("area-weighted average", OVERLAY_METHODS, False),
+        ("area-apportioned sum", OVERLAY_METHODS, False),
+        ("mean", OVERLAY_METHODS, False),
+        ("median", OVERLAY_METHODS, False),
+        ("sum", OVERLAY_METHODS, False),
+        ("area", OVERLAY_METHODS, False),
+        ("not a method", OVERLAY_METHODS, True),
+        ("minmax", ATTRIBUTE_SCORE_METHODS, False),
+        ("min-max", ATTRIBUTE_SCORE_METHODS, True),
+        ("percentile", ATTRIBUTE_SCORE_METHODS, False),
+        ("percentiles", ATTRIBUTE_SCORE_METHODS, True),
     ],
 )
-def test_get_overlay_method(method_name, error_expected):
+def test_get_method_from_members(method_name, members, error_expected):
     """
     Test get_overlay_method() returns a valid callable function, when expected,
     and if not raises a NotImplementedError.
@@ -216,9 +239,9 @@ def test_get_overlay_method(method_name, error_expected):
         with pytest.raises(
             NotImplementedError, match="Unrecognized or unsupported method.*"
         ):
-            get_overlay_method(method_name)
+            get_method_from_members(method_name, members)
     else:
-        f = get_overlay_method(method_name)
+        f = get_method_from_members(method_name, members)
         assert callable(f), "Returned method is not callable"
 
 
@@ -265,6 +288,15 @@ def test_run_characterization_with_expression_injection(
         assert (
             str(recwarn[0].message) != "AH AH AH!"
         ), "Warning message injected via dataframe.eval()"
+
+
+def test_run_scoreattributesgrid(score_attr_grid):
+    """
+    Test the run() function of ScoreAttributesGrid.
+    """
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        score_attr_grid.run()
 
 
 if __name__ == "__main__":

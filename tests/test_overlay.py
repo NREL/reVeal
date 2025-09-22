@@ -24,8 +24,8 @@ from reVeal.overlay import (
     calc_sum,
     calc_area,
 )
-from reVeal.grid import get_overlay_method
-from reVeal.config import VALID_CHARACTERIZATION_METHODS
+from reVeal.grid import get_method_from_members, OVERLAY_METHODS
+from reVeal.config.characterize import VALID_CHARACTERIZATION_METHODS
 
 
 @pytest.mark.parametrize("where", [None, "capacity_factor < 0.5"])
@@ -504,7 +504,7 @@ def test_check_where():
         m for m, i in VALID_CHARACTERIZATION_METHODS.items() if i.get("supports_where")
     ]
     for method in where_methods:
-        overlay_method = get_overlay_method(method)
+        overlay_method = get_method_from_members(method, OVERLAY_METHODS)
         args = inspect.getfullargspec(overlay_method).args
         assert "where" in args, (
             f"Function calc_{overlay_method} is identified as supporting where clause "

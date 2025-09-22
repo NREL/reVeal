@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-config module tests
+config.characterize module tests
 """
 import json
 from pathlib import Path
@@ -9,12 +9,12 @@ import pytest
 
 from pydantic import ValidationError
 
-from reVeal.config import (
+from reVeal.config.config import load_config
+from reVeal.config.characterize import (
     Characterization,
     VALID_CHARACTERIZATION_METHODS,
     CharacterizeConfig,
     DatasetFormatEnum,
-    load_characterize_config,
 )
 
 VALID_METHODS_AND_ATTRIBUTES = [
@@ -88,8 +88,8 @@ def test_datasetformatenum(value, error_expected):
         ("vectors/generators.gpkg", "feature count", None, None, False),
     ],
 )
-@pytest.mark.parametrize("neighbor_order", [None, 0, 1, 50.0])
-@pytest.mark.parametrize("buffer_distance", [None, -100, 100])
+@pytest.mark.parametrize("neighbor_order", [0, 1, 50.0])
+@pytest.mark.parametrize("buffer_distance", [0, -100, 100])
 def test_characterization_valid_optional_params(
     data_dir,
     dset,
@@ -536,24 +536,34 @@ def test_characterizationconfig_nonexistent_grid(tmp_path):
         CharacterizeConfig(**config)
 
 
-def test_characterizationconfig_invalid_characterizations(tmp_path):
+@pytest.mark.parametrize(
+    "characterizations,err_msg",
+    [
+        (
+            {"dev_area": {"dset": "rasters/developable.tif", "method": "not-a-method"}},
+            "Invalid method specified",
+        ),
+        (
+            [{"dset": "rasters/developable.tif", "method": "not-a-method"}],
+            "Input should be a valid dictionary",
+        ),
+    ],
+)
+def test_characterizationconfig_invalid_characterizations(
+    data_dir, characterizations, err_msg
+):
     """
     Test CharacterizationConfig with invalid characterizations.
     """
 
-    grid_path = tmp_path / "grid.gpkg"
+    grid_path = data_dir / "characterize" / "grids" / "grid_2.gpkg"
     config = {
-        "data_dir": tmp_path.as_posix(),
+        "data_dir": data_dir / "characterize",
         "grid": grid_path.as_posix(),
-        "characterizations": {
-            "developable_area": {
-                "dset": "rasters/developable.tif",
-                "method": "not-a-method",
-            }
-        },
+        "characterizations": characterizations,
         "expressions": {"developable_sqkm": "developable_area / 1e6"},
     }
-    with pytest.raises(ValidationError):
+    with pytest.raises(ValidationError, match=err_msg):
         CharacterizeConfig(**config)
 
 
@@ -574,9 +584,9 @@ def test_load_characterize_config(data_dir, from_dict):
     ).as_posix()
 
     if from_dict:
-        config = load_characterize_config(config_data)
+        config = load_config(config_data, CharacterizeConfig)
     else:
-        config = load_characterize_config(CharacterizeConfig(**config_data))
+        config = load_config(CharacterizeConfig(**config_data), CharacterizeConfig)
 
     assert isinstance(config, CharacterizeConfig)
 
@@ -587,8 +597,8 @@ def test_load_characterize_config_typerror():
     input.
     """
 
-    with pytest.raises(TypeError, match="Invalid input for characterize config.*"):
-        load_characterize_config("string input")
+    with pytest.raises(TypeError, match="Invalid input for config.*"):
+        load_config("string input", CharacterizeConfig)
 
 
 def test_characterizationconfig_crs_mismatch(
