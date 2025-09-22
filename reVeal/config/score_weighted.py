@@ -2,12 +2,17 @@
 config.score_composite module
 """
 from typing import List
+import warnings
 
 from typing_extensions import Annotated
 from pydantic import model_validator, FilePath, Field
 
 from reVeal.config.config import BaseModelStrict, BaseGridConfig
-from reVeal.fileio import attribute_is_numeric
+from reVeal.fileio import (
+    attribute_is_numeric,
+    get_attributes_parquet,
+    get_attributes_pyogrio,
+)
 
 
 class Attribute(BaseModelStrict):
@@ -106,6 +111,26 @@ class ScoreWeightedConfig(BaseScoreWeightedConfig):
             raise ValueError(
                 "Weights of input attributes must sum to 1. "
                 f"Sum of input weights is: {sum_weights}."
+            )
+
+        return self
+
+    @model_validator(mode="after")
+    def validate_score_name(self):
+        """
+        Check whether the output attribute specified by the score_name property
+        already exists in the input dataset. If so, raise a warning.
+        """
+
+        if self.grid_flavor == "geoparquet":
+            dset_attributes = get_attributes_parquet(self.grid)
+        else:
+            dset_attributes = get_attributes_pyogrio(self.grid)
+
+        if self.score_name in dset_attributes:
+            warnings.warn(
+                f"Output column {self.score_name} exists in input grid and will be "
+                "overwritten in output."
             )
 
         return self

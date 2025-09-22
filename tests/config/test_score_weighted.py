@@ -277,5 +277,27 @@ def test_scoreweightedconfig_no_score_name(data_dir):
         ScoreWeightedConfig(**config_data)
 
 
+def test_scoreweightedconfig_score_name_warning(data_dir):
+    """
+    Test that ScoreWeightedConfig raises a warning when the attribute specified by
+    score_name is a column that already exists in the input dataset.
+    """
+    grid = data_dir / "score_attributes" / "outputs" / "grid_char_attr_scores.gpkg"
+    attributes = [
+        {"attribute": "generator_mwh_score", "weight": 0.25},
+        {"attribute": "tline_length_score", "weight": 0.25},
+        {"attribute": "fttp_average_speed_score", "weight": 0.25},
+        {"attribute": "developable_area_score", "weight": 0.25},
+    ]
+    config_data = {
+        "grid": grid,
+        "attributes": attributes,
+        "score_name": "grid_id_score",
+    }
+    warn_msg = "Output column grid_id_score exists in input grid"
+    with pytest.warns(UserWarning, match=warn_msg):
+        ScoreWeightedConfig(**config_data)
+
+
 if __name__ == "__main__":
     pytest.main([__file__, "-s"])
