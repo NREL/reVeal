@@ -302,6 +302,31 @@ def test_run_scoreattributesgrid(score_attr_grid):
         score_attr_grid.run()
 
 
+def test_run_scoreattributesgrid_overwrite_output(data_dir, score_attr_grid):
+    """
+    Test the run() function of ScoreAttributesGrid correctly overwrites an existing
+    output column.
+    """
+    out_col = list(score_attr_grid.config.attributes.keys())[0]
+    score_attr_grid.df[out_col] = 1
+    assert (
+        score_attr_grid.df[out_col] == 1
+    ).all(), "New column not added with expected values"
+
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        result_df = score_attr_grid.run()
+
+    expected_scores_src = (
+        data_dir / "score_attributes" / "outputs" / "grid_char_attr_scores.gpkg"
+    )
+
+    expected_df = gpd.read_file(expected_scores_src)
+    assert (
+        result_df[out_col] == expected_df[out_col]
+    ).all(), "Unexpected output values"
+
+
 def test_run_weighted_scoring(data_dir, score_wt_grid):
     """
     Test that the run_weighted_scoring() method produces the expected outputs
@@ -355,5 +380,30 @@ def test_run_scoreweightedgrid(score_wt_grid):
         score_wt_grid.run()
 
 
+def test_run_scoreweightedgrid_overwrite_output(data_dir, score_wt_grid):
+    """
+    Test the run() function of ScoreWeightedGrid correctly overwrites an existing
+    output column.
+    """
+
+    out_col = score_wt_grid.config.score_name
+    score_wt_grid.df[out_col] = 1
+
+    assert (
+        score_wt_grid.df[out_col] == 1
+    ).all(), "New column not added with expected values"
+
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        result_df = score_wt_grid.run()
+
+    expected_scores_csv = data_dir / "score_weighted" / "outputs" / "test_scores.csv"
+
+    expected_df = pd.read_csv(expected_scores_csv)
+    assert (
+        result_df[out_col] == expected_df["value"]
+    ).all(), "Unexpected output values"
+
+
 if __name__ == "__main__":
-    pytest.main([__file__, "-s"])
+    pytest.main([__file__, "-s", "-k", "test_run_scoreattributesgrid_overwrite_output"])
