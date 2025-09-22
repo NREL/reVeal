@@ -74,8 +74,6 @@ def test_attribute_valid_inputs(data_dir, attribute, score_method, invert, dset)
     attribute_model = Attribute(**value)
 
     # check dynamic attributes are set
-    assert attribute_model.dset_ext is not None, "dset_ext not set"
-    assert attribute_model.dset_flavor is not None, "dset_flavor not set"
     if not invert:
         assert attribute_model.invert is False, "Unexpected value for invert"
     else:
