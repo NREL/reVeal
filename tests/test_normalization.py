@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 """
-overlay module tests
+normalization module tests
 """
 import pytest
 import numpy as np
 
-from reVeal.score import get_values, calc_minmax, calc_percentile
+from reVeal.normalization import get_values, calc_minmax, calc_percentile
 
 
 @pytest.mark.parametrize(
@@ -64,41 +64,41 @@ def test_calc_minmax(characterized_df, attribute, invert, first_val, last_val):
     Unit test for calc_minmax().
     """
 
-    scored = calc_minmax(characterized_df, attribute, invert)
+    normalized = calc_minmax(characterized_df, attribute, invert)
     if invert:
         # invert - max values should be 0, min values should be 1
         assert (
-            scored[characterized_df[attribute] == characterized_df[attribute].min()][
-                "value"
-            ]
+            normalized[
+                characterized_df[attribute] == characterized_df[attribute].min()
+            ]["value"]
             == 1
-        ).all(), "Unexpected values in scored result"
+        ).all(), "Unexpected values in normalized result"
         assert (
-            scored[characterized_df[attribute] == characterized_df[attribute].max()][
-                "value"
-            ]
+            normalized[
+                characterized_df[attribute] == characterized_df[attribute].max()
+            ]["value"]
             == 0
-        ).all(), "Unexpected values in scored result"
+        ).all(), "Unexpected values in normalized result"
     else:
         # regular - max values should be 1, min values should be 0
         assert (
-            scored[characterized_df[attribute] == characterized_df[attribute].min()][
-                "value"
-            ]
+            normalized[
+                characterized_df[attribute] == characterized_df[attribute].min()
+            ]["value"]
             == 0
-        ).all(), "Unexpected values in scored result"
+        ).all(), "Unexpected values in normalized result"
         assert (
-            scored[characterized_df[attribute] == characterized_df[attribute].max()][
-                "value"
-            ]
+            normalized[
+                characterized_df[attribute] == characterized_df[attribute].max()
+            ]["value"]
             == 1
-        ).all(), "Unexpected values in scored result"
+        ).all(), "Unexpected values in normalized result"
 
     assert np.isclose(
-        scored["value"].iloc[0], first_val, atol=1e-3, equal_nan=True
+        normalized["value"].iloc[0], first_val, atol=1e-3, equal_nan=True
     ), "Unexpected first value"
     assert np.isclose(
-        scored["value"].iloc[-1], last_val, atol=1e-3, equal_nan=True
+        normalized["value"].iloc[-1], last_val, atol=1e-3, equal_nan=True
     ), "Unexpected last value"
 
 
@@ -116,13 +116,13 @@ def test_calc_percentile(characterized_df, attribute, invert, first_val, last_va
     Unit test for calc_percentile().
     """
 
-    scored = calc_percentile(characterized_df, attribute, invert)
+    normalized = calc_percentile(characterized_df, attribute, invert)
 
     assert np.isclose(
-        scored["value"].iloc[0], first_val, atol=1e-3, equal_nan=True
+        normalized["value"].iloc[0], first_val, atol=1e-3, equal_nan=True
     ), "Unexpected first value"
     assert np.isclose(
-        scored["value"].iloc[-1], last_val, atol=1e-3, equal_nan=True
+        normalized["value"].iloc[-1], last_val, atol=1e-3, equal_nan=True
     ), "Unexpected last value"
 
 

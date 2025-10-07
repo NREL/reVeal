@@ -138,16 +138,16 @@ def run(
         score_name=score_name,
     )
 
-    LOGGER.info("Initializing ScoreWeightedGrid from input config.")
+    LOGGER.info("Initializing ScoreWeightedGrid from input config...")
     score_weighted_grid = ScoreWeightedGrid(config)
     LOGGER.info("Initialization complete.")
 
-    LOGGER.info("Calculating weighted scores")
+    LOGGER.info("Calculating weighted scores...")
     out_grid_df = score_weighted_grid.run()
     LOGGER.info("Weighted scoring complete.")
 
     out_gpkg = Path(out_dir).joinpath("grid_char_weighted_scores.gpkg").expanduser()
-    LOGGER.info(f"Saving results to {out_gpkg}.")
+    LOGGER.info(f"Saving results to {out_gpkg}...")
     out_grid_df.to_file(out_gpkg)
     LOGGER.info("Saving complete.")
 

@@ -13,7 +13,7 @@ from reVeal import PACKAGE_DIR
 from reVeal.grid import (
     BaseGrid,
     CharacterizeGrid,
-    ScoreAttributesGrid,
+    NormalizeGrid,
     ScoreWeightedGrid,
 )
 
@@ -59,10 +59,10 @@ def char_grid():
 
 
 @pytest.fixture
-def score_attr_grid():
-    """Return a ScoreAttributesGrid instance"""
+def norm_grid():
+    """Return a NormalizeGrid instance"""
 
-    in_config_path = TEST_DATA_DIR / "score_attributes" / "config.json"
+    in_config_path = TEST_DATA_DIR / "normalize" / "config.json"
     with open(in_config_path, "r") as f:
         config_data = json.load(f)
     config_data["grid"] = (
@@ -71,7 +71,7 @@ def score_attr_grid():
 
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
-        grid = ScoreAttributesGrid(config_data)
+        grid = NormalizeGrid(config_data)
 
     return grid
 
@@ -95,7 +95,7 @@ def score_wt_grid():
     with open(in_config_path, "r") as f:
         config_data = json.load(f)
     config_data["grid"] = (
-        TEST_DATA_DIR / "score_attributes" / "outputs" / "grid_char_attr_scores.gpkg"
+        TEST_DATA_DIR / "normalize" / "outputs" / "grid_char_norm.gpkg"
     ).as_posix()
 
     with warnings.catch_warnings():

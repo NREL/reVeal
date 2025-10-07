@@ -16,15 +16,15 @@ from shapely.geometry import box
 
 from reVeal.config.config import load_config, BaseGridConfig
 from reVeal.config.characterize import CharacterizeConfig
-from reVeal.config.score_attributes import ScoreAttributesConfig, GRID_IDX
+from reVeal.config.normalize import NormalizeConfig, GRID_IDX
 from reVeal.config.score_weighted import ScoreWeightedConfig
-from reVeal import overlay, score
+from reVeal import overlay, normalization
 
 OVERLAY_METHODS = {
     k[5:]: v for k, v in getmembers(overlay, isfunction) if k.startswith("calc_")
 }
-ATTRIBUTE_SCORE_METHODS = {
-    k[5:]: v for k, v in getmembers(score, isfunction) if k.startswith("calc_")
+NORMALIZE_METHODS = {
+    k[5:]: v for k, v in getmembers(normalization, isfunction) if k.startswith("calc_")
 }
 
 LOGGER = logging.getLogger(__name__)
@@ -198,7 +198,7 @@ def run_characterization(df, characterization):
     return result_df
 
 
-def run_attribute_scoring(df, attribute, score_method, invert):
+def run_normalization(df, attribute, normalize_method, invert):
     """
     Execute a single characterization on an input grid.
 
@@ -207,25 +207,25 @@ def run_attribute_scoring(df, attribute, score_method, invert):
     df : geopandas.GeoDataFrame
         Input grid geodataframe
     attribute : str
-        Name of column in input GeoDataFrame to score
-    score_method : str
-        Method to use for scoring attribute.
+        Name of column in input GeoDataFrame to normalize
+    normalize_method : str
+        Method to use for normalizing attribute.
     invert : bool,optional
-        If True, score with values inverted (i.e., low values will be closer to 1, and
-        higher values closer to 0). Default is False, under which values are scored
-        with low values closer to 0 and high values closer to 1.
+        If True, normalize with values inverted (i.e., low values will be closer to 1,
+        and higher values closer to 0). Default is False, under which values are
+        normalized with low values closer to 0 and high values closer to 1.
 
     Returns
     -------
     pandas.DataFrame
         Returns a pandas DataFrame with a "value" column, representing the output
-        scored values for the specified attribute. The index from the input df
+        normalized values for the specified attribute. The index from the input df
         is also included.
     """
-    method = get_method_from_members(score_method, ATTRIBUTE_SCORE_METHODS)
-    scored = method(df, attribute, invert)
+    method = get_method_from_members(normalize_method, NORMALIZE_METHODS)
+    normalized = method(df, attribute, invert)
 
-    return scored
+    return normalized
 
 
 def run_weighted_scoring(df, attributes):
@@ -245,7 +245,7 @@ def run_weighted_scoring(df, attributes):
     -------
     pandas.DataFrame
         Returns a pandas DataFrame with a "value" column, representing the output
-        scored values for the specified attribute. The index from the input df
+        weighted score derived from the specified inputs. The index from the input df
         is also included.
 
     Raises
@@ -426,36 +426,36 @@ class CharacterizeGrid(RunnableGrid):
         return results_df
 
 
-class ScoreAttributesGrid(RunnableGrid):
+class NormalizeGrid(RunnableGrid):
     """
-    Subclass of RunnableGrid for scoring attributes.
+    Subclass of RunnableGrid for normalizing attribute values.
     """
 
-    CONFIG_CLASS = ScoreAttributesConfig
+    CONFIG_CLASS = NormalizeConfig
 
     def run(self):
         """
-        Run attribute scoring based on the input configuration.
+        Run attribute normalization based on the input configuration.
 
         Returns
         -------
         gpd.GeoDataFrame
-            A GeoDataFrame with scored attributes.
+            A GeoDataFrame with normalized attributes.
         """
         results = []
         for attr_name, attr_info in self.config.attributes.items():
-            LOGGER.info(f"Running scoring for output column '{attr_name}'")
+            LOGGER.info(f"Running normalization for output column '{attr_name}'")
             try:
-                score_df = run_attribute_scoring(
+                norm_df = run_normalization(
                     self.df,
                     attr_info.attribute,
-                    attr_info.score_method,
+                    attr_info.normalize_method,
                     attr_info.invert,
                 )
-                score_df.rename(columns={"value": attr_name}, inplace=True)
-                results.append(score_df)
+                norm_df.rename(columns={"value": attr_name}, inplace=True)
+                results.append(norm_df)
             except NotImplementedError:
-                warnings.warn(f"Method {attr_info.score_method} not supported")
+                warnings.warn(f"Method {attr_info.normalize_method} not supported")
 
         keep_cols = [
             c for c in self.df.columns if c not in self.config.attributes.keys()

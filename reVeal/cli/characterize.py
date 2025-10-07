@@ -166,16 +166,16 @@ def run(
         expressions=expressions,
     )
 
-    LOGGER.info("Initializing CharacterizeGrid from input config.")
+    LOGGER.info("Initializing CharacterizeGrid from input config...")
     characterize_grid = CharacterizeGrid(config)
     LOGGER.info("Initialization complete.")
 
-    LOGGER.info("Running grid characterization")
+    LOGGER.info("Running grid characterization...")
     out_grid_df = characterize_grid.run()
     LOGGER.info("Grid characterization complete.")
 
     out_gpkg = Path(out_dir).joinpath("grid_char.gpkg").expanduser()
-    LOGGER.info(f"Saving results to {out_gpkg}.")
+    LOGGER.info(f"Saving results to {out_gpkg}...")
     out_grid_df.to_file(out_gpkg)
     LOGGER.info("Saving complete.")
 

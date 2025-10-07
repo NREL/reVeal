@@ -18,7 +18,7 @@ def test_attribute_valid_inputs(data_dir, attribute, weight):
     are correctly set.
     """
 
-    dset_src = data_dir / "score_attributes" / "outputs" / "grid_char_attr_scores.gpkg"
+    dset_src = data_dir / "normalize" / "outputs" / "grid_char_norm.gpkg"
 
     data = {"attribute": attribute, "weight": weight, "dset_src": dset_src}
     attribute_model = Attribute(**data)
@@ -42,7 +42,7 @@ def test_attributes_invalid_weight(data_dir, weight, err):
     """
     Test that Attributes class raises ValidationError for invalid weights.
     """
-    dset_src = data_dir / "score_attributes" / "outputs" / "grid_char_attr_scores.gpkg"
+    dset_src = data_dir / "normalize" / "outputs" / "grid_char_norm.gpkg"
 
     data = {"attribute": "tline_length_score", "weight": weight, "dset_src": dset_src}
     with pytest.raises(ValidationError, match=err):
@@ -55,7 +55,7 @@ def test_attributes_invalid_attribute_missing(data_dir):
     not exist in the dataset.
     """
 
-    dset_src = data_dir / "score_attributes" / "outputs" / "grid_char_attr_scores.gpkg"
+    dset_src = data_dir / "normalize" / "outputs" / "grid_char_norm.gpkg"
     data = {"attribute": "not-a-col", "weight": 0.5, "dset_src": dset_src}
     with pytest.raises(ValidationError, match="Attribute not-a-col not found in"):
         Attribute(**data)
@@ -65,9 +65,7 @@ def test_attributes_invalid_attribute_nonnumeric(data_dir, tmp_path):
     """
     Test that Attribute raises a TypeError when passed a non-numeric attribute.
     """
-    raw_dset_src = (
-        data_dir / "score_attributes" / "outputs" / "grid_char_attr_scores.gpkg"
-    )
+    raw_dset_src = data_dir / "normalize" / "outputs" / "grid_char_norm.gpkg"
     df = gpd.read_file(raw_dset_src)
     df["new-col"] = "foo"
     dset_src = tmp_path / "grid_char_attr_scores.gpkg"
@@ -97,7 +95,7 @@ def test_scoreattributesconfig_valid_inputs(data_dir):
     Test that ScoreWeightedConfig builds successfully with valid inputs.
     """
 
-    grid = data_dir / "score_attributes" / "outputs" / "grid_char_attr_scores.gpkg"
+    grid = data_dir / "normalize" / "outputs" / "grid_char_norm.gpkg"
     attributes = [
         {"attribute": "generator_mwh_score", "weight": 0.25},
         {"attribute": "tline_length_score", "weight": 0.25},
@@ -142,7 +140,7 @@ def test_scoreweightedconfig_bad_weight_sum(data_dir):
     Test that ScoreWeightedConfig raises a ValidationError when the weights don't
     sum to 1.
     """
-    grid = data_dir / "score_attributes" / "outputs" / "grid_char_attr_scores.gpkg"
+    grid = data_dir / "normalize" / "outputs" / "grid_char_norm.gpkg"
     attributes = [
         {"attribute": "generator_mwh_score", "weight": 0.20},
         {"attribute": "tline_length_score", "weight": 0.25},
@@ -166,7 +164,7 @@ def test_scoreweightedconfig_missing_attribute(data_dir):
     that doesn't exist in the grid dataset.
     """
 
-    grid = data_dir / "score_attributes" / "outputs" / "grid_char_attr_scores.gpkg"
+    grid = data_dir / "normalize" / "outputs" / "grid_char_norm.gpkg"
     attributes = [
         {"attribute": "generator_mwh_score", "weight": 0.25},
         {"attribute": "tline_length_score", "weight": 0.25},
@@ -196,7 +194,7 @@ def test_scoreweightedconfig_invalid_weight(data_dir, weight, err):
     various invalid weights.
     """
 
-    grid = data_dir / "score_attributes" / "outputs" / "grid_char_attr_scores.gpkg"
+    grid = data_dir / "normalize" / "outputs" / "grid_char_norm.gpkg"
     attributes = [
         {"attribute": "generator_mwh_score", "weight": weight},
         {"attribute": "tline_length_score", "weight": 0.25},
@@ -225,7 +223,7 @@ def test_scoreweightedconfig_missing_attribute_fields(data_dir, attributes):
     Test that ScoreWeightedConfig raises a ValidationError when passed attributes
      that are missing required fields.
     """
-    grid = data_dir / "score_attributes" / "outputs" / "grid_char_attr_scores.gpkg"
+    grid = data_dir / "normalize" / "outputs" / "grid_char_norm.gpkg"
     config_data = {
         "grid": grid,
         "attributes": attributes,
@@ -240,7 +238,7 @@ def test_scoreweightedconfig_attribute_dict(data_dir):
     Test that ScoreWeightedConfig raises a ValidationError when passed
     a dictionary for attributes instead of a list.
     """
-    grid = data_dir / "score_attributes" / "outputs" / "grid_char_attr_scores.gpkg"
+    grid = data_dir / "normalize" / "outputs" / "grid_char_norm.gpkg"
     attributes = {
         "generator_mwh_score": 0.25,
         "tline_length_score": 0.25,
@@ -262,7 +260,7 @@ def test_scoreweightedconfig_no_score_name(data_dir):
     Test that ScoreWeightedConfig raises a ValidationError when score_method
     is not provided.
     """
-    grid = data_dir / "score_attributes" / "outputs" / "grid_char_attr_scores.gpkg"
+    grid = data_dir / "normalize" / "outputs" / "grid_char_norm.gpkg"
     attributes = [
         {"attribute": "generator_mwh_score", "weight": 0.25},
         {"attribute": "tline_length_score", "weight": 0.25},
@@ -282,7 +280,7 @@ def test_scoreweightedconfig_score_name_warning(data_dir):
     Test that ScoreWeightedConfig raises a warning when the attribute specified by
     score_name is a column that already exists in the input dataset.
     """
-    grid = data_dir / "score_attributes" / "outputs" / "grid_char_attr_scores.gpkg"
+    grid = data_dir / "normalize" / "outputs" / "grid_char_norm.gpkg"
     attributes = [
         {"attribute": "generator_mwh_score", "weight": 0.25},
         {"attribute": "tline_length_score", "weight": 0.25},

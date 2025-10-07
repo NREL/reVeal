@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-config.score_attributes module
+config.normalize module
 """
 from typing import Optional
 import warnings
@@ -22,9 +22,9 @@ from reVeal.fileio import (
 GRID_IDX = "gid"
 
 
-class AttributeScoringMethodEnum(BaseEnum):
+class NormalizeMethodEnum(BaseEnum):
     """
-    Enumeration for allowable scoring methods. Case insensitive.
+    Enumeration for allowable normalization methods. Case insensitive.
     """
 
     PERCENTILE = "percentile"
@@ -33,12 +33,12 @@ class AttributeScoringMethodEnum(BaseEnum):
 
 class Attribute(BaseModelStrict):
     """
-    Inputs for a single attribute entry in the ScoreAttributesConfig.
+    Inputs for a single attribute entry in the NormalizeConfig.
     """
 
     # Input at instantiation
     attribute: str
-    score_method: AttributeScoringMethodEnum
+    normalize_method: NormalizeMethodEnum
     dset_src: FilePath
     invert: bool = False
 
@@ -62,22 +62,22 @@ class Attribute(BaseModelStrict):
         return self
 
 
-class BaseScoreAttributesConfig(BaseGridConfig):
+class BaseNormalizeConfig(BaseGridConfig):
     """
-    Base model for ScoreAttributesConfig with only required inputs and datatypes.
+    Base model for NormalizeConfig with only required inputs and datatypes.
     """
 
     # pylint: disable=too-few-public-methods
 
     # Input at instantiation
     attributes: dict = {}
-    score_method: Optional[AttributeScoringMethodEnum] = None
+    normalize_method: Optional[NormalizeMethodEnum] = None
     invert: bool = False
 
 
-class ScoreAttributesConfig(BaseScoreAttributesConfig):
+class NormalizeConfig(BaseNormalizeConfig):
     """
-    Configuration for score-attributes command.
+    Configuration for normalize command.
     """
 
     # pylint: disable=too-few-public-methods
@@ -111,17 +111,17 @@ class ScoreAttributesConfig(BaseScoreAttributesConfig):
         self
             Returns self.
         """
-        BaseScoreAttributesConfig(**self)
+        BaseNormalizeConfig(**self)
 
         return self
 
     @model_validator(mode="before")
-    def check_attributes_and_score_method(self):
+    def check_attributes_and_normalize_method(self):
         """
-        Check that either attributes or score_method was provided as an input.
+        Check that either attributes or normalize_method was provided as an input.
         """
-        if not self.get("score_method") and not self.get("attributes"):
-            raise ValueError("Either score_method or attributes must be specified.")
+        if not self.get("normalize_method") and not self.get("attributes"):
+            raise ValueError("Either normalize_method or attributes must be specified.")
 
         return self
 
@@ -149,15 +149,15 @@ class ScoreAttributesConfig(BaseScoreAttributesConfig):
         return value
 
     @model_validator(mode="after")
-    def propagate_score_method(self):
+    def propagate_normalize_method(self):
         """
-        If the top-level score method is specified, populate the attributes property
-        so that it includes all numeric attributes in the input grid. All attributes
-        will use the specified top-level score method except for any that were input
-        separately via the attributes parameter.
+        If the top-level normalize method is specified, populate the attributes
+        property so that it includes all numeric attributes in the input grid. All
+        attributes will use the specified top-level normalize method except for any
+        that were input separately via the attributes parameter.
         """
 
-        if self.score_method:
+        if self.normalize_method:
             if self.grid_flavor == "geoparquet":
                 dset_attributes = get_attributes_parquet(self.grid)
             else:
@@ -174,7 +174,7 @@ class ScoreAttributesConfig(BaseScoreAttributesConfig):
                         )
                     attributes[out_col] = Attribute(
                         attribute=attr,
-                        score_method=self.score_method,
+                        normalize_method=self.normalize_method,
                         dset_src=self.grid,
                         invert=self.invert,
                     )

@@ -2,7 +2,7 @@
 """
 overlay module
 
-Note that to expose methods here for by reVeal.grid.get_overlay_method() function
+Note that to expose methods here for by reVeal.grid.CharacterizeGrid.run() function
 and functions dependent on it, the function must be prefixed with "calc_".
 """
 # pylint: disable=unused-argument
