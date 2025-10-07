@@ -13,6 +13,7 @@ from geopandas.io.arrow import (
     _validate_and_decode_metadata,
 )
 from pyogrio._ogr import _get_drivers_for_path
+from pandas.api.types import is_numeric_dtype
 import numpy as np
 
 
@@ -285,3 +286,47 @@ def read_vectors(vector_src, where=None):
         return sub_df
 
     return df
+
+
+def attribute_is_numeric(vector_src, attribute):
+    """
+    Check that the specified attribute in the input vector dataset is a numeric
+    datatype.
+
+    Parameters
+    ----------
+    vector_src : str
+        Path to vector dataset.
+    attribute : str
+        Name of attribute.
+
+    Returns
+    -------
+    bool
+        Returns True if the attribute is numeric, False if not.
+
+    Raises
+    ------
+    IOError
+        An IOError will be raised if the input dataset is an unknown format (i.e., not
+        readable as either a GeoParquet or ogr-compatible format).
+    ValueError
+        A ValueError will be raised if the attribute is not present in the input
+        dataset.
+    """
+
+    if Path(vector_src).suffix == ".parquet":
+        dset_attributes = get_attributes_parquet(vector_src)
+    elif _get_drivers_for_path(vector_src):
+        dset_attributes = get_attributes_pyogrio(vector_src)
+    else:
+        raise IOError(
+            f"Unable to read input vector file {vector_src}. "
+            "Not a recognized vector format."
+        )
+
+    attr_dtype = dset_attributes.get(attribute)
+    if not attr_dtype:
+        raise ValueError(f"Attribute {attribute} not found in {vector_src}")
+
+    return is_numeric_dtype(attr_dtype)

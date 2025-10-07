@@ -144,8 +144,8 @@ def run(
     out_dir : str
         Output parent directory. Results will be saved to a file named "grid_char.gpkg".
     max_workers : [int, NoneType], optional
-        Maximum number of workers to use for multiprocessing, by default None, which
-        uses all available CPUs.
+        Maximum number of workers to use for multiprocessing, by default None. This
+        has no effect on this command.
     _local : bool
         Flag indicating whether the code is being run locally or via HPC job
         submissions. NOTE: This is not a user provided parameter - it is determined

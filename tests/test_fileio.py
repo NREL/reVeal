@@ -16,6 +16,7 @@ from reVeal.fileio import (
     read_vectors,
     get_attributes_parquet,
     get_attributes_pyogrio,
+    attribute_is_numeric,
 )
 
 
@@ -187,6 +188,34 @@ def test_read_vectors_with_expression_injection(data_dir, capfd, bad_expression,
     assert (
         captured_stdout == ""
     ), "stdout is not empty. Injection occurred via dataframe.eval()."
+
+
+@pytest.mark.parametrize(
+    "attribute,expected_result,err",
+    [
+        ("net_generation_megawatthours", True, False),
+        ("plant_code", True, False),
+        ("primary_fuel_type", False, False),
+        ("not-a-col", None, True),
+    ],
+)
+@pytest.mark.parametrize("dset_ext", ["gpkg", "parquet", "tif"])
+def test_attribute_is_numeric(data_dir, attribute, expected_result, err, dset_ext):
+    """
+    Unit tests for attribute_is_numeric(). Check that it returns the expected results
+    and/or raises the expected errors.
+    """
+
+    vector_src = data_dir / "characterize" / "vectors" / f"generators.{dset_ext}"
+    if dset_ext == "tif":
+        with pytest.raises(OSError, match="Unable to read input vector file"):
+            attribute_is_numeric(vector_src, attribute)
+    elif err:
+        with pytest.raises(ValueError, match=f"Attribute {attribute} not found"):
+            attribute_is_numeric(vector_src, attribute)
+    else:
+        result = attribute_is_numeric(vector_src, attribute)
+        assert result == expected_result, "Unexpected result for attribute_is_numeric"
 
 
 if __name__ == "__main__":

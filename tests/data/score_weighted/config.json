@@ -1,0 +1,22 @@
+{
+  "grid": "",
+  "score_name": "composite_score",
+  "attributes": [
+    {
+      "attribute": "developable_area_score",
+      "weight": 0.1
+    },
+    {
+      "attribute": "tline_length_score",
+      "weight": 0.2
+    },
+    {
+      "attribute": "fttp_average_speed_score",
+      "weight": 0.3
+    },
+    {
+      "attribute": "generator_mwh_score",
+      "weight": 0.4
+    }
+  ]
+}

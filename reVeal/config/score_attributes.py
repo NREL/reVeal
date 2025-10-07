@@ -5,7 +5,6 @@ config.score_attributes module
 from typing import Optional
 import warnings
 
-from pyogrio._ogr import _get_drivers_for_path
 from pydantic import (
     field_validator,
     model_validator,
@@ -14,8 +13,11 @@ from pydantic import (
 from pandas.api.types import is_numeric_dtype
 
 from reVeal.config.config import BaseEnum, BaseModelStrict, BaseGridConfig
-from reVeal.fileio import get_attributes_parquet, get_attributes_pyogrio
-
+from reVeal.fileio import (
+    attribute_is_numeric,
+    get_attributes_parquet,
+    get_attributes_pyogrio,
+)
 
 GRID_IDX = "gid"
 
@@ -39,38 +41,6 @@ class Attribute(BaseModelStrict):
     score_method: AttributeScoringMethodEnum
     dset_src: FilePath
     invert: bool = False
-    # Derived dynamically
-    dset_ext: Optional[str] = None
-    dset_flavor: Optional[str] = None
-
-    @model_validator(mode="after")
-    def set_dset_ext(self):
-        """
-        Dynamically set the dset_ext property.
-        """
-        self.dset_ext = self.dset_src.suffix
-
-        return self
-
-    @model_validator(mode="after")
-    def set_dset_flavor(self):
-        """
-        Dynamically set the dset_flavor.
-
-        Raises
-        ------
-        TypeError
-            A TypeError will be raised if the input dset is not either a geoparquet
-            or compatible with reading with ogr.
-        """
-        if self.dset_ext == ".parquet":
-            self.dset_flavor = "geoparquet"
-        elif _get_drivers_for_path(self.dset_src):
-            self.dset_flavor = "ogr"
-        else:
-            raise TypeError(f"Unrecognized file format for {self.dset_src}.")
-
-        return self
 
     @model_validator(mode="after")
     def attribute_check(self):
@@ -79,28 +49,16 @@ class Attribute(BaseModelStrict):
 
         Raises
         ------
-        ValueError
-            A ValueError will be raised if attribute does not exist in the input
-            dataset.
         TypeError
             A TypeError will be raised if the input attribute exists in the dataset
             but is not a numeric datatype.
         """
 
-        if self.dset_flavor == "geoparquet":
-            dset_attributes = get_attributes_parquet(self.dset_src)
-        else:
-            dset_attributes = get_attributes_pyogrio(self.dset_src)
-
-        attr_dtype = dset_attributes.get(self.attribute)
-        if not attr_dtype:
-            raise ValueError(f"Attribute {self.attribute} not found in {self.dset_src}")
-        if not is_numeric_dtype(attr_dtype):
+        if not attribute_is_numeric(self.dset_src, self.attribute):
             raise TypeError(
-                f"Attribute {self.attribute} in {self.dset_src} is invalid "
-                f"type {attr_dtype}. Must be a numeric dtype."
+                f"Attribute {self.attribute} in {self.dset_src} is invalid type. Must "
+                "be a numeric dtype."
             )
-
         return self
 
 
@@ -119,13 +77,10 @@ class BaseScoreAttributesConfig(BaseGridConfig):
 
 class ScoreAttributesConfig(BaseScoreAttributesConfig):
     """
-    Configuration for characterize command.
+    Configuration for score-attributes command.
     """
 
     # pylint: disable=too-few-public-methods
-    # Dynamically derived attributes
-    grid_ext: Optional[str] = None
-    grid_flavor: Optional[str] = None
 
     @model_validator(mode="before")
     def propagate_grid(self):
@@ -192,35 +147,6 @@ class ScoreAttributesConfig(BaseScoreAttributesConfig):
             value[k] = Attribute(**v)
 
         return value
-
-    @model_validator(mode="after")
-    def set_grid_ext(self):
-        """
-        Dynamically set the grid_ext property.
-        """
-        self.grid_ext = self.grid.suffix
-
-        return self
-
-    @model_validator(mode="after")
-    def set_grid_flavor(self):
-        """
-        Dynamically set the dset_flavor.
-
-        Raises
-        ------
-        TypeError
-            A TypeError will be raised if the input dset is not either a geoparquet
-            or compatible with reading with ogr.
-        """
-        if self.grid_ext == ".parquet":
-            self.grid_flavor = "geoparquet"
-        elif _get_drivers_for_path(self.grid):
-            self.grid_flavor = "ogr"
-        else:
-            raise TypeError(f"Unrecognized file format for {self.grid}.")
-
-        return self
 
     @model_validator(mode="after")
     def propagate_score_method(self):

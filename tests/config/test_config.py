@@ -12,6 +12,7 @@ from reVeal.config.config import BaseGridConfig, load_config
     "grid,err",
     [
         ("characterize/grids/grid_2.gpkg", None),
+        ("characterize/outputs/grid_char.parquet", None),
         ("not-a-grid.gpkg", ValidationError),
     ],
 )
@@ -25,6 +26,38 @@ def test_basegridconfig(data_dir, grid, err):
         with pytest.raises(err):
             BaseGridConfig(grid=grid_src)
     else:
+        config = BaseGridConfig(grid=grid_src)
+
+        # check dynamic attributes are set
+        assert config.grid_ext is not None, "grid_ext not set"
+        assert config.grid_ext == grid_src.suffix, "Unexpected value for grid_ext"
+
+        assert config.grid_flavor is not None, "grid_flavor not set"
+        if config.grid_ext == ".parquet":
+            expected_flavor = "geoparquet"
+        else:
+            expected_flavor = "ogr"
+        assert config.grid_flavor == expected_flavor, "Unexpected value for grid_flavor"
+
+
+def test_basegridconfig_nonexistent_grid():
+    """
+    Test that BaseGridConfig raises a ValidationError when passed a non-existent
+    grid.
+    """
+    with pytest.raises(ValidationError, match="Path does not point to a file"):
+        BaseGridConfig(grid="not-a-file.gpkg")
+
+
+def test_basegridconfig_bad_format(tmp_path):
+    """
+    Test that BaseGridConfig raises a TypeError when passed an unsupported
+    data format.
+    """
+    grid_src = tmp_path / "grid.tif"
+    grid_src.touch()
+
+    with pytest.raises(TypeError, match="Unrecognized file format"):
         BaseGridConfig(grid=grid_src)
 
 

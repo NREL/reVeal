@@ -198,7 +198,103 @@ def test_score_attributes_invalid_config(
         log = f.read()
     expected_contents = (
         "Configuration did not pass validation. The following issues were identified:\n"
-        "1 validation error for ScoreAttributesConfig"
+        "1 validation error for ScoreAttributesConfig\n"
+        "grid\n"
+        "  Path does not point to a file"
+    )
+    assert expected_contents in log, "Expected error message not found in log file"
+
+
+def test_score_weighted(
+    cli_runner,
+    tmp_path,
+    data_dir,
+):
+    """
+    Happy path test for the score-weighted command. Tests that it produces the
+    expected outputs for known inputs.
+    """
+    in_config_path = data_dir / "score_weighted" / "config.json"
+    with open(in_config_path, "r") as f:
+        config_data = json.load(f)
+    config_data["grid"] = (
+        data_dir / "score_attributes" / "outputs" / "grid_char_attr_scores.gpkg"
+    ).as_posix()
+
+    config_path = tmp_path / "config.json"
+    with open(config_path, "w") as f:
+        json.dump(config_data, f)
+
+    result = cli_runner.invoke(
+        main,
+        ["score-weighted", "-c", config_path.as_posix()],
+    )
+    assert result.exit_code == 0, f"Command failed with error {result.exception}"
+
+    out_gpkg = tmp_path / "grid_char_weighted_scores.gpkg"
+    assert out_gpkg.exists(), "Output grid not created."
+
+    out_df = gpd.read_file(out_gpkg)
+
+    expected_gpkg = (
+        data_dir / "score_weighted" / "outputs" / "grid_char_weighted_scores.gpkg"
+    )
+    expected_df = gpd.read_file(expected_gpkg)
+
+    assert_geodataframe_equal(expected_df, out_df)
+
+    logs = list((tmp_path / "logs").glob("*_score_weighted.log"))
+    assert len(logs) > 0, "No logs were created"
+
+    log = logs[0]
+    with open(log, "r") as f:
+        log_content = f.read()
+
+    assert (
+        "UserWarning: gid column already exists in self.dataframe" in log_content
+    ), "Expected overwrite warning message was not found in log file."
+    assert (
+        "Calculating weighted scores" in log_content
+    ), "Expected progress messages were not found in log file."
+
+
+def test_score_weighted_invalid_config(
+    cli_runner,
+    tmp_path,
+    data_dir,
+):
+    """
+    Check for sane error message in log when an invalid configuration is passed.
+    """
+    in_config_path = data_dir / "score_weighted" / "config.json"
+    with open(in_config_path, "r") as f:
+        config_data = json.load(f)
+    config_data["grid"] = (
+        data_dir / "score_attributes" / "outputs" / "grid_char_attr_scores.gpkg"
+    ).as_posix()
+    for attribute in config_data["attributes"]:
+        attribute["weight"] = 0.1
+
+    config_path = tmp_path / "config.json"
+    with open(config_path, "w") as f:
+        json.dump(config_data, f)
+
+    result = cli_runner.invoke(
+        main,
+        ["score-weighted", "-c", config_path.as_posix()],
+    )
+    assert result.exit_code == 1
+
+    log_paths = list((tmp_path / "logs").glob("*.log"))
+    if len(log_paths) == 0:
+        raise ValueError("Logs were not created by command.")
+    log_path = log_paths[0]
+    with open(log_path, "r") as f:
+        log = f.read()
+    expected_contents = (
+        "Configuration did not pass validation. The following issues were identified:\n"
+        "1 validation error for ScoreWeightedConfig\n"
+        "  Value error, Weights of input attributes must sum to 1"
     )
     assert expected_contents in log, "Expected error message not found in log file"
 

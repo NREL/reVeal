@@ -3,7 +3,10 @@
 config.config module
 """
 from enum import Enum
-from pydantic import BaseModel, FilePath
+from typing import Optional
+
+from pydantic import BaseModel, FilePath, model_validator
+from pyogrio._ogr import _get_drivers_for_path
 
 
 class BaseModelStrict(BaseModel):
@@ -43,6 +46,38 @@ class BaseGridConfig(BaseModelStrict):
     """
 
     grid: FilePath
+    # Dynamically derived attributes
+    grid_ext: Optional[str] = None
+    grid_flavor: Optional[str] = None
+
+    @model_validator(mode="after")
+    def set_grid_ext(self):
+        """
+        Dynamically set the grid_ext property.
+        """
+        self.grid_ext = self.grid.suffix
+
+        return self
+
+    @model_validator(mode="after")
+    def set_grid_flavor(self):
+        """
+        Dynamically set the dset_flavor.
+
+        Raises
+        ------
+        TypeError
+            A TypeError will be raised if the input dset is not either a geoparquet
+            or compatible with reading with ogr.
+        """
+        if self.grid_ext == ".parquet":
+            self.grid_flavor = "geoparquet"
+        elif _get_drivers_for_path(self.grid):
+            self.grid_flavor = "ogr"
+        else:
+            raise TypeError(f"Unrecognized file format for {self.grid}.")
+
+        return self
 
 
 def load_config(config, config_class):

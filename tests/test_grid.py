@@ -8,6 +8,8 @@ import warnings
 import pytest
 import geopandas as gpd
 from geopandas.testing import assert_geodataframe_equal
+import pandas as pd
+from pandas.testing import assert_frame_equal
 
 from reVeal.grid import (
     BaseGrid,
@@ -19,6 +21,7 @@ from reVeal.grid import (
     run_characterization,
     OVERLAY_METHODS,
     ATTRIBUTE_SCORE_METHODS,
+    run_weighted_scoring,
 )
 from reVeal.config.config import BaseGridConfig
 from reVeal.config.characterize import CharacterizeConfig
@@ -297,6 +300,109 @@ def test_run_scoreattributesgrid(score_attr_grid):
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
         score_attr_grid.run()
+
+
+def test_run_scoreattributesgrid_overwrite_output(data_dir, score_attr_grid):
+    """
+    Test the run() function of ScoreAttributesGrid correctly overwrites an existing
+    output column.
+    """
+    out_col = list(score_attr_grid.config.attributes.keys())[0]
+    score_attr_grid.df[out_col] = 1
+    assert (
+        score_attr_grid.df[out_col] == 1
+    ).all(), "New column not added with expected values"
+
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        result_df = score_attr_grid.run()
+
+    expected_scores_src = (
+        data_dir / "score_attributes" / "outputs" / "grid_char_attr_scores.gpkg"
+    )
+
+    expected_df = gpd.read_file(expected_scores_src)
+    assert (
+        result_df[out_col] == expected_df[out_col]
+    ).all(), "Unexpected output values"
+
+
+def test_run_weighted_scoring(data_dir, score_wt_grid):
+    """
+    Test that the run_weighted_scoring() method produces the expected outputs
+    for known inputs.
+    """
+
+    df = score_wt_grid.df
+    attributes = score_wt_grid.config.attributes
+
+    scores_df = run_weighted_scoring(df, attributes)
+    expected_scores_csv = data_dir / "score_weighted" / "outputs" / "test_scores.csv"
+
+    expected_df = pd.read_csv(expected_scores_csv)
+    assert_frame_equal(scores_df.reset_index(), expected_df)
+
+
+def test_run_weighted_scoring_bad_weights(score_wt_grid):
+    """
+    Test that run_weighted_scoring() raises a ValueError when weights don't sum to 1.
+    """
+
+    df = score_wt_grid.df
+    attributes = score_wt_grid.config.attributes
+    for attribute in attributes:
+        attribute.weight = 0.1
+
+    with pytest.raises(ValueError, match="Weights of input attributes must sum to 1"):
+        run_weighted_scoring(df, attributes)
+
+
+def test_run_weighted_scoring_bad_col(score_wt_grid):
+    """
+    Test that run_weighted_scoring() raises a KeyError when passed an attribute column
+    that doesn't exist.
+    """
+
+    df = score_wt_grid.df
+    attributes = score_wt_grid.config.attributes
+    attributes[0].attribute = "not-a-col"
+
+    with pytest.raises(KeyError, match="not in index"):
+        run_weighted_scoring(df, attributes)
+
+
+def test_run_scoreweightedgrid(score_wt_grid):
+    """
+    Test the run() function of ScoreWeightedGrid.
+    """
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        score_wt_grid.run()
+
+
+def test_run_scoreweightedgrid_overwrite_output(data_dir, score_wt_grid):
+    """
+    Test the run() function of ScoreWeightedGrid correctly overwrites an existing
+    output column.
+    """
+
+    out_col = score_wt_grid.config.score_name
+    score_wt_grid.df[out_col] = 1
+
+    assert (
+        score_wt_grid.df[out_col] == 1
+    ).all(), "New column not added with expected values"
+
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        result_df = score_wt_grid.run()
+
+    expected_scores_csv = data_dir / "score_weighted" / "outputs" / "test_scores.csv"
+
+    expected_df = pd.read_csv(expected_scores_csv)
+    assert (
+        result_df[out_col] == expected_df["value"]
+    ).all(), "Unexpected output values"
 
 
 if __name__ == "__main__":

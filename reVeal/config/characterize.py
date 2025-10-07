@@ -17,7 +17,6 @@ from pydantic import (
     NonNegativeInt,
 )
 from rex.utilities import check_eval_str
-from pandas.api.types import is_numeric_dtype
 
 from reVeal.fileio import (
     get_geom_type_pyogrio,
@@ -25,8 +24,7 @@ from reVeal.fileio import (
     get_crs_raster,
     get_crs_pyogrio,
     get_crs_parquet,
-    get_attributes_parquet,
-    get_attributes_pyogrio,
+    attribute_is_numeric,
 )
 from reVeal.config.config import BaseEnum, BaseModelStrict, BaseGridConfig
 
@@ -287,21 +285,11 @@ class Characterization(BaseModelStrict):
                 f"attribute specified but will not be applied for {self.method}"
             )
         if attribute_required and self.attribute:
-            if self.dset_ext == ".parquet":
-                dset_attributes = get_attributes_parquet(self.dset_src)
-            else:
-                dset_attributes = get_attributes_pyogrio(self.dset_src)
-            attr_dtype = dset_attributes.get(self.attribute)
-            if not attr_dtype:
-                raise ValueError(
-                    f"Attribute {self.attribute} not found in {self.dset_src}"
-                )
-            if not is_numeric_dtype(attr_dtype):
+            if not attribute_is_numeric(self.dset_src, self.attribute):
                 raise TypeError(
-                    f"Attribute {self.attribute} in {self.dset_src} is invalid "
-                    f"type {attr_dtype}. Must be a numeric dtype."
+                    f"Attribute {self.attribute} in {self.dset_src} is invalid type. "
+                    "Must be a numeric dtype."
                 )
-
         return self
 
     @model_validator(mode="after")
