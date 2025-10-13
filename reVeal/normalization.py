@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-score module
+normalize module
 
-Note that to expose methods here for by reVeal.grid.get_scoring_method() function
+Note that to expose methods here for by reVeal.grid.NormalizeGrid.run() function
 and functions dependent on it, the function must be prefixed with "calc_".
 """
 import pandas as pd
@@ -55,59 +55,59 @@ def get_values(df, attribute, invert):
 
 def calc_percentile(df, attribute, invert):
     """
-    Score values from 0 to 1 using percentile ranking.
+    Normalize values from 0 to 1 using percentile ranking.
 
     Parameters
     ----------
     df : pandas.DataFrame
         Input dataframe
     attribute : str
-        Name of attribute to score.
+        Name of attribute to normalize.
     invert : bool
-        If True, invert values by multiplying by -1 before scoring.
+        If True, invert values by multiplying by -1 before normalizing.
 
     Returns
     -------
     pandas.DataFrame
-        DataFrame with scores stored in a column named "value". Also includes the index
-        from the input dataframe.
+        DataFrame with normalized values stored in a column named "value". Also
+        includes the index from the input dataframe.
     """
 
     values = get_values(df, attribute, invert)
-    scores = pd.Series(
+    norm_values = pd.Series(
         percentileofscore(values, values, kind="mean", nan_policy="omit") / 100.0,
         index=values.index,
         name="value",
     )
 
-    scores_df = scores.to_frame()
+    norm_df = norm_values.to_frame()
 
-    return scores_df
+    return norm_df
 
 
 def calc_minmax(df, attribute, invert):
     """
-    Score values from 0 to 1 by normalizing the range of values.
+    Normalize values from 0 to 1 by normalizing the range of values.
 
     Parameters
     ----------
     df : pandas.DataFrame
         Input dataframe
     attribute : str
-        Name of attribute to score.
+        Name of attribute to normalize.
     invert : bool
-        If True, invert values by multiplying by -1 before scoring.
+        If True, invert values by multiplying by -1 before normalizing.
 
     Returns
     -------
     pandas.DataFrame
-        DataFrame with scores stored in a column named "value". Also includes the index
-        from the input dataframe.
+        DataFrame with normalized values stored in a column named "value". Also
+        includes the index from the input dataframe.
     """
 
     values = get_values(df, attribute, invert)
-    scores = (values - values.min()) / (values.max() - values.min())
+    norm_values = (values - values.min()) / (values.max() - values.min())
 
-    scores_df = scores.to_frame()
+    norm_df = norm_values.to_frame()
 
-    return scores_df
+    return norm_df

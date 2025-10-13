@@ -20,7 +20,7 @@ from reVeal.grid import (
     get_method_from_members,
     run_characterization,
     OVERLAY_METHODS,
-    ATTRIBUTE_SCORE_METHODS,
+    NORMALIZE_METHODS,
     run_weighted_scoring,
 )
 from reVeal.config.config import BaseGridConfig
@@ -227,10 +227,10 @@ def test_run_characterizegrid(char_grid):
         ("sum", OVERLAY_METHODS, False),
         ("area", OVERLAY_METHODS, False),
         ("not a method", OVERLAY_METHODS, True),
-        ("minmax", ATTRIBUTE_SCORE_METHODS, False),
-        ("min-max", ATTRIBUTE_SCORE_METHODS, True),
-        ("percentile", ATTRIBUTE_SCORE_METHODS, False),
-        ("percentiles", ATTRIBUTE_SCORE_METHODS, True),
+        ("minmax", NORMALIZE_METHODS, False),
+        ("min-max", NORMALIZE_METHODS, True),
+        ("percentile", NORMALIZE_METHODS, False),
+        ("percentiles", NORMALIZE_METHODS, True),
     ],
 )
 def test_get_method_from_members(method_name, members, error_expected):
@@ -293,35 +293,33 @@ def test_run_characterization_with_expression_injection(
         ), "Warning message injected via dataframe.eval()"
 
 
-def test_run_scoreattributesgrid(score_attr_grid):
+def test_run_normalizegrid(norm_grid):
     """
-    Test the run() function of ScoreAttributesGrid.
+    Test the run() function of NormalizeGrid.
     """
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
-        score_attr_grid.run()
+        norm_grid.run()
 
 
-def test_run_scoreattributesgrid_overwrite_output(data_dir, score_attr_grid):
+def test_run_normalizegrid_overwrite_output(data_dir, norm_grid):
     """
-    Test the run() function of ScoreAttributesGrid correctly overwrites an existing
+    Test the run() function of NormalizeGrid correctly overwrites an existing
     output column.
     """
-    out_col = list(score_attr_grid.config.attributes.keys())[0]
-    score_attr_grid.df[out_col] = 1
+    out_col = list(norm_grid.config.attributes.keys())[0]
+    norm_grid.df[out_col] = 1
     assert (
-        score_attr_grid.df[out_col] == 1
+        norm_grid.df[out_col] == 1
     ).all(), "New column not added with expected values"
 
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
-        result_df = score_attr_grid.run()
+        result_df = norm_grid.run()
 
-    expected_scores_src = (
-        data_dir / "score_attributes" / "outputs" / "grid_char_attr_scores.gpkg"
-    )
+    expected_norm_src = data_dir / "normalize" / "outputs" / "grid_char_norm.gpkg"
 
-    expected_df = gpd.read_file(expected_scores_src)
+    expected_df = gpd.read_file(expected_norm_src)
     assert (
         result_df[out_col] == expected_df[out_col]
     ).all(), "Unexpected output values"
