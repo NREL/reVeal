@@ -149,8 +149,9 @@ def run(
 
         -   ``max_workers``: Integer indicating the number of workers to use for
             parallel processing. Will only be applied to methods that support parallel
-            processing. If the top-level ``max_workers`` is also applied, this value
-            will take precedence. If neither are specified, all available workers will
+            processing. This value will take precedence over the top-level
+            ``max_workers`` from the ``execution_control``, if both are specified.
+            If neither are specified, all available workers will
             be used for parallel processing.
 
     expressions : dict
@@ -185,6 +186,10 @@ def run(
         characterizations=characterizations,
         expressions=expressions,
     )
+    if max_workers is not None:
+        for char in config.characterizations.values():
+            if char.max_workers is None and char.parallel:
+                char.max_workers = max_workers
 
     LOGGER.info("Initializing CharacterizeGrid from input config...")
     characterize_grid = CharacterizeGrid(config)

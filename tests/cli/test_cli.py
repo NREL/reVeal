@@ -28,6 +28,7 @@ def test_characterize(
     in_config_path = data_dir / "characterize" / "config.json"
     with open(in_config_path, "r") as f:
         config_data = json.load(f)
+    config_data["execution_control"] = {"max_workers": 2}
     config_data["data_dir"] = (data_dir / "characterize").as_posix()
     config_data["grid"] = (
         data_dir / "characterize" / "grids" / "grid_2.gpkg"

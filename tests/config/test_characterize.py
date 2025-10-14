@@ -691,55 +691,5 @@ def test_characterizationconfig_expression_injection(data_dir, bad_expression):
         CharacterizeConfig(**config)
 
 
-def test_characterizationconfig_propagate_max_workers(data_dir):
-    """
-    Test that top-level max_workers propagates down to characterization properties.
-    """
-    grid_path = data_dir / "characterize" / "grids" / "grid_1.gpkg"
-    grid_path.touch()
-    config = {
-        "data_dir": data_dir.as_posix(),
-        "grid": grid_path.as_posix(),
-        "characterizations": {
-            "developable_area": {
-                "dset": "characterize/rasters/developable.tif",
-                "method": "area",
-            }
-        },
-        "max_workers": 2,
-    }
-
-    config = CharacterizeConfig(**config)
-    assert (
-        config.characterizations.get("developable_area").max_workers == 2
-    ), "max_workers was not propagated from top-level to characterizations"
-
-
-def test_characterizationconfig_max_workers_precedence(data_dir):
-    """
-    Test that top-level max_workers does not overwrite pre-existing characterization-
-    level setting.
-    """
-    grid_path = data_dir / "characterize" / "grids" / "grid_1.gpkg"
-    grid_path.touch()
-    config = {
-        "data_dir": data_dir.as_posix(),
-        "grid": grid_path.as_posix(),
-        "characterizations": {
-            "developable_area": {
-                "dset": "characterize/rasters/developable.tif",
-                "method": "area",
-                "max_workers": 4,
-            }
-        },
-        "max_workers": 2,
-    }
-
-    config = CharacterizeConfig(**config)
-    assert (
-        config.characterizations.get("developable_area").max_workers == 4
-    ), "max_workers was overwritten by top-level parameter"
-
-
 if __name__ == "__main__":
     pytest.main([__file__, "-s"])

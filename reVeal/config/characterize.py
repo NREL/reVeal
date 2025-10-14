@@ -374,7 +374,6 @@ class BaseCharacterizeConfig(BaseGridConfig):
     data_dir: DirectoryPath
     characterizations: dict
     expressions: Optional[dict] = None
-    max_workers: Optional[PositiveInt] = None
 
 
 class CharacterizeConfig(BaseCharacterizeConfig):
@@ -401,25 +400,6 @@ class CharacterizeConfig(BaseCharacterizeConfig):
         for v in self["characterizations"].values():
             if "data_dir" not in v:
                 v["data_dir"] = self["data_dir"]
-
-        return self
-
-    @model_validator(mode="before")
-    def propagate_max_workers(self):
-        """
-        Propagate the top level max_workers parameter down to elements of
-        characterizations before validation.
-
-        Returns
-        -------
-        self
-            Returns self.
-        """
-
-        if "max_workers" in self:
-            for v in self["characterizations"].values():
-                if "max_workers" not in v:
-                    v["max_workers"] = self["max_workers"]
 
         return self
 
