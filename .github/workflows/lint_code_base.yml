@@ -31,6 +31,7 @@ jobs:
           VALIDATE_YAML_PRETTIER: false
           VALIDATE_MARKDOWN_PRETTIER: false
           VALIDATE_GITHUB_ACTIONS_ZIZMOR: false
+          VALIDATE_CSS_PRETTIER: false
           DEFAULT_BRANCH: main
           FILTER_REGEX_EXCLUDE: "tests/data.*"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
