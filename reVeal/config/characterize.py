@@ -15,6 +15,7 @@ from pydantic import (
     DirectoryPath,
     constr,
     NonNegativeInt,
+    PositiveInt,
 )
 from rex.utilities import check_eval_str
 
@@ -142,6 +143,7 @@ class Characterization(BaseModelStrict):
     attribute: Optional[str] = None
     weights_dset: Optional[str] = None
     parallel: bool = True
+    max_workers: Optional[PositiveInt] = None
     neighbor_order: NonNegativeInt = 0
     buffer_distance: float = 0.0
     where: Optional[str] = None
@@ -340,15 +342,15 @@ class Characterization(BaseModelStrict):
     @model_validator(mode="after")
     def parallel_check(self):
         """
-        Check that, if parallel is set to True, the selected method can be
-        parallelized. If not, warn the user.
+        Check that, if parallel is set to True or max_workers was provided, the
+        selected method can be parallelized. If not, warn the user.
         """
-        if self.parallel:
+        if self.parallel or self.max_workers:
             method_info = VALID_CHARACTERIZATION_METHODS.get(self.method)
             if not method_info.get("supports_parallel"):
                 warnings.warn(
-                    "parallel specified as True but will not be applied for "
-                    f"{self.method}"
+                    "parallel specified as True and/or max_workers provided but "
+                    f"parallel processing is not implemented for {self.method}."
                 )
 
         return self
@@ -365,6 +367,7 @@ class BaseCharacterizeConfig(BaseGridConfig):
     data_dir: DirectoryPath
     characterizations: dict
     expressions: Optional[dict] = None
+    max_workers: Optional[PositiveInt] = None
 
 
 class CharacterizeConfig(BaseCharacterizeConfig):
@@ -390,6 +393,24 @@ class CharacterizeConfig(BaseCharacterizeConfig):
         for v in self["characterizations"].values():
             if "data_dir" not in v:
                 v["data_dir"] = self["data_dir"]
+
+        return self
+
+    @model_validator(mode="before")
+    def propagate_max_workers(self):
+        """
+        Propagate the top level max_workers parameter down to elements of
+        characterizations before validation.
+
+        Returns
+        -------
+        self
+            Returns self.
+        """
+        if "max_workers" in self:
+            for v in self["characterizations"].values():
+                if "max_workers" not in v:
+                    v["max_workers"] = self["max_workers"]
 
         return self
 

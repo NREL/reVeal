@@ -310,7 +310,15 @@ def test_characterization_superfluous_weights_dset(data_dir, method):
 
 
 @pytest.mark.parametrize("method", NONPARALLEL_METHODS)
-def test_characterization_superfluous_parallel(data_dir, method):
+@pytest.mark.parametrize(
+    "parallel,max_workers",
+    [
+        (True, None),
+        (False, 2),
+        (True, 2),
+    ],
+)
+def test_characterization_superfluous_parallel(data_dir, method, parallel, max_workers):
     """
     Test Characterization class raises warning when parallel=True is specified but
     not applicable to the method.
@@ -341,10 +349,11 @@ def test_characterization_superfluous_parallel(data_dir, method):
         "data_dir": data_dir,
         "method": method,
         "attribute": attribute,
-        "parallel": True,
+        "parallel": parallel,
+        "max_workers": max_workers,
     }
     with pytest.warns(
-        UserWarning, match="parallel specified as True but will not be applied.*"
+        UserWarning, match="parallel specified as True and/or max_workers provided"
     ):
         Characterization(**value)
 
@@ -472,6 +481,37 @@ def test_characterization_where_injection(data_dir, bad_where):
         "where": bad_where,
     }
     with pytest.raises(ValueError, match="Will not eval().*"):
+        Characterization(**value)
+
+
+@pytest.mark.parametrize("max_workers", [2, None])
+def test_characterization_valid_max_workers(data_dir, max_workers):
+    """
+    Test Characterization class with valid inputs for max_workers.
+    """
+    value = {
+        "dset": "characterize/rasters/fiber_lines_onshore_proximity.tif",
+        "data_dir": data_dir,
+        "method": "mean",
+        "parallel": True,
+        "max_workers": max_workers,
+    }
+    Characterization(**value)
+
+
+@pytest.mark.parametrize("max_workers", [0, -1])
+def test_characterization_invalid_max_workers(data_dir, max_workers):
+    """
+    Test Characterization class with valid inputs for max_workers.
+    """
+    value = {
+        "dset": "characterize/rasters/fiber_lines_onshore_proximity.tif",
+        "data_dir": data_dir,
+        "method": "mean",
+        "parallel": True,
+        "max_workers": max_workers,
+    }
+    with pytest.raises(ValidationError, match="Input should be greater than 0"):
         Characterization(**value)
 
 
@@ -649,6 +689,56 @@ def test_characterizationconfig_expression_injection(data_dir, bad_expression):
     }
     with pytest.raises(ValueError, match="Will not eval().*"):
         CharacterizeConfig(**config)
+
+
+def test_characterizationconfig_propagate_max_workers(data_dir):
+    """
+    Test that top-level max_workers propagates down to characterization properties.
+    """
+    grid_path = data_dir / "characterize" / "grids" / "grid_1.gpkg"
+    grid_path.touch()
+    config = {
+        "data_dir": data_dir.as_posix(),
+        "grid": grid_path.as_posix(),
+        "characterizations": {
+            "developable_area": {
+                "dset": "characterize/rasters/developable.tif",
+                "method": "area",
+            }
+        },
+        "max_workers": 2,
+    }
+
+    config = CharacterizeConfig(**config)
+    assert (
+        config.characterizations.get("developable_area").max_workers == 2
+    ), "max_workers was not propagated from top-level to characterizations"
+
+
+def test_characterizationconfig_max_workers_precedence(data_dir):
+    """
+    Test that top-level max_workers does not overwrite pre-existing characterization-
+    level setting.
+    """
+    grid_path = data_dir / "characterize" / "grids" / "grid_1.gpkg"
+    grid_path.touch()
+    config = {
+        "data_dir": data_dir.as_posix(),
+        "grid": grid_path.as_posix(),
+        "characterizations": {
+            "developable_area": {
+                "dset": "characterize/rasters/developable.tif",
+                "method": "area",
+                "max_workers": 4,
+            }
+        },
+        "max_workers": 2,
+    }
+
+    config = CharacterizeConfig(**config)
+    assert (
+        config.characterizations.get("developable_area").max_workers == 4
+    ), "max_workers was overwritten by top-level parameter"
 
 
 if __name__ == "__main__":

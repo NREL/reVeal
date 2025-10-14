@@ -62,7 +62,8 @@
     "med_dist_to_lh_fiber": {
       "dset": "rasters/fiber_lines_onshore_proximity.tif",
       "method": "median",
-      "parallel": false
+      "parallel": true,
+      "max_workers": 4
     },
     "sum_dist_to_lh_fiber": {
       "dset": "rasters/fiber_lines_onshore_proximity.tif",

@@ -84,7 +84,6 @@ def run(
     attributes=None,
     normalize_method=None,
     invert=False,
-    max_workers=None,
     _local=True,
 ):
     """
@@ -127,9 +126,6 @@ def run(
         is False, under which values are normalized with low values closer to 0 and
         high values closer to 1. Note that this parameter will have no effect if
         ``normalize_method`` is not specified.
-    max_workers : [int, NoneType], optional
-        Maximum number of workers to use for multiprocessing, by default None. This
-        has no effect on this command.
     _local : bool
         Flag indicating whether the code is being run locally or via HPC job
         submissions. NOTE: This is not a user provided parameter - it is determined

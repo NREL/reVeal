@@ -536,7 +536,9 @@ def zonal_statistic_serial(zones_df, dset_src, stat, weights_dset_src=None):
     return stats_df
 
 
-def zonal_statistic_parallel(zones_df, dset_src, stat, weights_dset_src=None):
+def zonal_statistic_parallel(
+    zones_df, dset_src, stat, weights_dset_src=None, max_workers=None
+):
     """
     Calculate zonal statistic for the specified statistic using parallel processing.
 
@@ -555,6 +557,9 @@ def zonal_statistic_parallel(zones_df, dset_src, stat, weights_dset_src=None):
     weights_dset_src : str, optional
         Optional path to datset to use for weights. Note that only some options for
         stat support use of weights. See stat for more information.
+    max_workers: int, optional
+        If specified, sets the maximum number of workers used in parallel processing.
+        By default, None, which will use all available workers.
 
     Returns
     -------
@@ -571,7 +576,7 @@ def zonal_statistic_parallel(zones_df, dset_src, stat, weights_dset_src=None):
     n_splits = cpu_count() * 10
     results = []
     futures = {}
-    with ProcessPoolExecutor() as pool:
+    with ProcessPoolExecutor(max_workers=max_workers) as pool:
         for i, split_df in enumerate(dataframe_split(zones_df.reset_index(), n_splits)):
             future = pool.submit(
                 exact_extract_wrap,
@@ -602,7 +607,9 @@ def zonal_statistic_parallel(zones_df, dset_src, stat, weights_dset_src=None):
     return stats_df
 
 
-def zonal_statistic(zones_df, dset_src, stat, weights_dset_src=None, parallel=False):
+def zonal_statistic(
+    zones_df, dset_src, stat, weights_dset_src=None, parallel=False, max_workers=None
+):
     """
     Calculate zonal statistic for the specified statistic. Convenience function that
     wraps zonal_statistic_serial() and zonal_statistic_parallel() functions,
@@ -625,6 +632,9 @@ def zonal_statistic(zones_df, dset_src, stat, weights_dset_src=None, parallel=Fa
     parallel : bool, optional
         If True, run the zonal statistic operation with parallel processing. If False
         (default), run with serial processing.
+    max_workers: int, optional
+        If specified, sets the maximum number of workers used in parallel processing.
+        By default, None, which will use all available workers.
 
     Returns
     -------
@@ -636,7 +646,11 @@ def zonal_statistic(zones_df, dset_src, stat, weights_dset_src=None, parallel=Fa
 
     if parallel:
         return zonal_statistic_parallel(
-            zones_df, dset_src, stat, weights_dset_src=weights_dset_src
+            zones_df,
+            dset_src,
+            stat,
+            weights_dset_src=weights_dset_src,
+            max_workers=max_workers,
         )
 
     return zonal_statistic_serial(
@@ -644,7 +658,7 @@ def zonal_statistic(zones_df, dset_src, stat, weights_dset_src=None, parallel=Fa
     )
 
 
-def calc_median(zones_df, dset_src, parallel=False, **kwargs):
+def calc_median(zones_df, dset_src, parallel=False, max_workers=None, **kwargs):
     """
     Calculate zonal median of raster values over the input zones.
 
@@ -659,6 +673,9 @@ def calc_median(zones_df, dset_src, parallel=False, **kwargs):
     parallel : bool, optional
         If True, run the zonal statistic operation with parallel processing. If False
         (default), run with serial processing.
+    max_workers: int, optional
+        If specified, sets the maximum number of workers used in parallel processing.
+        By default, None, which will use all available workers.
 
     Returns
     -------
@@ -668,10 +685,14 @@ def calc_median(zones_df, dset_src, parallel=False, **kwargs):
         included.
     """
 
-    return zonal_statistic(zones_df, dset_src, stat="median", parallel=parallel)
+    return zonal_statistic(
+        zones_df, dset_src, stat="median", parallel=parallel, max_workers=max_workers
+    )
 
 
-def calc_mean(zones_df, dset_src, weights_dset_src, parallel=False, **kwargs):
+def calc_mean(
+    zones_df, dset_src, weights_dset_src, parallel=False, max_workers=None, **kwargs
+):
     """
     Calculate zonal mean or weighted mean of raster values over the input zones.
 
@@ -689,6 +710,9 @@ def calc_mean(zones_df, dset_src, weights_dset_src, parallel=False, **kwargs):
     parallel : bool, optional
         If True, run the zonal statistic operation with parallel processing. If False
         (default), run with serial processing.
+    max_workers: int, optional
+        If specified, sets the maximum number of workers used in parallel processing.
+        By default, None, which will use all available workers.
 
     Returns
     -------
@@ -704,10 +728,13 @@ def calc_mean(zones_df, dset_src, weights_dset_src, parallel=False, **kwargs):
         stat="mean",
         weights_dset_src=weights_dset_src,
         parallel=parallel,
+        max_workers=max_workers,
     )
 
 
-def calc_sum(zones_df, dset_src, weights_dset_src, parallel=False, **kwargs):
+def calc_sum(
+    zones_df, dset_src, weights_dset_src, parallel=False, max_workers=None, **kwargs
+):
     """
     Calculate zonal sum or weighted sum of raster values over the input zones.
 
@@ -725,6 +752,9 @@ def calc_sum(zones_df, dset_src, weights_dset_src, parallel=False, **kwargs):
     parallel : bool, optional
         If True, run the zonal statistic operation with parallel processing. If False
         (default), run with serial processing.
+    max_workers: int, optional
+        If specified, sets the maximum number of workers used in parallel processing.
+        By default, None, which will use all available workers.
 
     Returns
     -------
@@ -740,10 +770,13 @@ def calc_sum(zones_df, dset_src, weights_dset_src, parallel=False, **kwargs):
         stat="sum",
         weights_dset_src=weights_dset_src,
         parallel=parallel,
+        max_workers=max_workers,
     )
 
 
-def calc_area(zones_df, dset_src, weights_dset_src, parallel=False, **kwargs):
+def calc_area(
+    zones_df, dset_src, weights_dset_src, parallel=False, max_workers=None, **kwargs
+):
     """
     Calculate the area of a raster within each zone. This function works by summing
     the raster values in each zone and then multiplying by the pixel size. See
@@ -767,6 +800,9 @@ def calc_area(zones_df, dset_src, weights_dset_src, parallel=False, **kwargs):
     parallel : bool, optional
         If True, run the zonal statistic operation with parallel processing. If False
         (default), run with serial processing.
+    max_workers: int, optional
+        If specified, sets the maximum number of workers used in parallel processing.
+        By default, None, which will use all available workers.
 
     Returns
     -------
@@ -782,6 +818,7 @@ def calc_area(zones_df, dset_src, weights_dset_src, parallel=False, **kwargs):
         stat="sum",
         weights_dset_src=weights_dset_src,
         parallel=parallel,
+        max_workers=max_workers,
     )
     with rasterio.open(dset_src, "r") as src:
         height, width = src.res

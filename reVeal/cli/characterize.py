@@ -136,6 +136,11 @@ def run(
                 As a general rule of thumb, as long as the number of grid cells in your
                 grid is an order of magnitude larger than the number of cores
                 available, using ```parallel=True``` should yield improved performance.
+            - "max_workers": Integer indicating the number of workers to use for
+                parallel processing. Will only be applied to methods that support
+                parallel processing. If the top-level "max_workers" is also applied,
+                this value will take precedence. If neither are specified, all
+                available workers will be used for parallel processing.
     expressions: dict
         Additional expressions to be calculated. Must be a dictionary keyes by the name
         of the output attribute for each expression. Each value must be a string
@@ -144,8 +149,11 @@ def run(
     out_dir : str
         Output parent directory. Results will be saved to a file named "grid_char.gpkg".
     max_workers : [int, NoneType], optional
-        Maximum number of workers to use for multiprocessing, by default None. This
-        has no effect on this command.
+        Maximum number of workers to use for multiprocessing when running applicable
+        methods in parallel. By default None, will use all available workers for
+        applicable methods. Note that this value will only be applied to
+        characterizations where "max_workers" is not specified at the
+        characterization-level configuration.
     _local : bool
         Flag indicating whether the code is being run locally or via HPC job
         submissions. NOTE: This is not a user provided parameter - it is determined

@@ -366,8 +366,15 @@ def test_calc_area_apportioned_sum(
         ("sum", True),
     ],
 )
-@pytest.mark.parametrize("parallel", [False, True])
-def test_zonal_statistic(data_dir, base_grid, stat, weighted, parallel):
+@pytest.mark.parametrize(
+    "parallel,max_workers",
+    [
+        (False, None),
+        (True, None),
+        (True, 2),
+    ],
+)
+def test_zonal_statistic(data_dir, base_grid, stat, weighted, parallel, max_workers):
     """
     Unit tests for zonal_statistic().
     """
@@ -382,7 +389,12 @@ def test_zonal_statistic(data_dir, base_grid, stat, weighted, parallel):
         weights_src = None
 
     results = zonal_statistic(
-        zones_df, dset_src, stat=stat, weights_dset_src=weights_src, parallel=parallel
+        zones_df,
+        dset_src,
+        stat=stat,
+        weights_dset_src=weights_src,
+        parallel=parallel,
+        max_workers=max_workers,
     )
     results_df = pd.concat([zones_df, results], axis=1)
     results_df.reset_index(inplace=True)
@@ -395,7 +407,15 @@ def test_zonal_statistic(data_dir, base_grid, stat, weighted, parallel):
     assert_geodataframe_equal(results_df, expected_df, check_like=True)
 
 
-def test_calc_median(data_dir, base_grid):
+@pytest.mark.parametrize(
+    "parallel,max_workers",
+    [
+        (False, None),
+        (True, None),
+        (True, 2),
+    ],
+)
+def test_calc_median(data_dir, base_grid, parallel, max_workers):
     """
     Unit tests for calc_median().
     """
@@ -404,7 +424,9 @@ def test_calc_median(data_dir, base_grid):
     dset_src = (
         data_dir / "characterize" / "rasters" / "fiber_lines_onshore_proximity.tif"
     )
-    results = calc_median(zones_df, dset_src)
+    results = calc_median(
+        zones_df, dset_src, parallel=parallel, max_workers=max_workers
+    )
     results_df = pd.concat([zones_df, results], axis=1)
     results_df.reset_index(inplace=True)
 
@@ -414,8 +436,16 @@ def test_calc_median(data_dir, base_grid):
     assert_geodataframe_equal(results_df, expected_df, check_like=True)
 
 
+@pytest.mark.parametrize(
+    "parallel,max_workers",
+    [
+        (False, None),
+        (True, None),
+        (True, 2),
+    ],
+)
 @pytest.mark.parametrize("weighted", [True, False])
-def test_calc_mean(data_dir, base_grid, weighted):
+def test_calc_mean(data_dir, base_grid, weighted, parallel, max_workers):
     """
     Unit tests for calc_mean().
     """
@@ -429,7 +459,13 @@ def test_calc_mean(data_dir, base_grid, weighted):
     else:
         weights_src = None
 
-    results = calc_mean(zones_df, dset_src, weights_dset_src=weights_src)
+    results = calc_mean(
+        zones_df,
+        dset_src,
+        weights_dset_src=weights_src,
+        parallel=parallel,
+        max_workers=max_workers,
+    )
     results_df = pd.concat([zones_df, results], axis=1)
     results_df.reset_index(inplace=True)
 
@@ -441,8 +477,16 @@ def test_calc_mean(data_dir, base_grid, weighted):
     assert_geodataframe_equal(results_df, expected_df, check_like=True)
 
 
+@pytest.mark.parametrize(
+    "parallel,max_workers",
+    [
+        (False, None),
+        (True, None),
+        (True, 2),
+    ],
+)
 @pytest.mark.parametrize("weighted", [True, False])
-def test_calc_sum(data_dir, base_grid, weighted):
+def test_calc_sum(data_dir, base_grid, weighted, parallel, max_workers):
     """
     Unit tests for calc_sum().
     """
@@ -456,7 +500,13 @@ def test_calc_sum(data_dir, base_grid, weighted):
     else:
         weights_src = None
 
-    results = calc_sum(zones_df, dset_src, weights_dset_src=weights_src)
+    results = calc_sum(
+        zones_df,
+        dset_src,
+        weights_dset_src=weights_src,
+        parallel=parallel,
+        max_workers=max_workers,
+    )
     results_df = pd.concat([zones_df, results], axis=1)
     results_df.reset_index(inplace=True)
 
@@ -466,8 +516,16 @@ def test_calc_sum(data_dir, base_grid, weighted):
     assert_geodataframe_equal(results_df, expected_df, check_like=True)
 
 
+@pytest.mark.parametrize(
+    "parallel,max_workers",
+    [
+        (False, None),
+        (True, None),
+        (True, 2),
+    ],
+)
 @pytest.mark.parametrize("weighted", [True, False])
-def test_calc_area(data_dir, base_grid, weighted):
+def test_calc_area(data_dir, base_grid, weighted, parallel, max_workers):
     """
     Unit tests for calc_area().
     """
@@ -479,7 +537,13 @@ def test_calc_area(data_dir, base_grid, weighted):
     else:
         weights_src = None
 
-    results = calc_area(zones_df, dset_src, weights_dset_src=weights_src)
+    results = calc_area(
+        zones_df,
+        dset_src,
+        weights_dset_src=weights_src,
+        parallel=parallel,
+        max_workers=max_workers,
+    )
     results_df = pd.concat([zones_df, results], axis=1)
     results_df.reset_index(inplace=True)
 
