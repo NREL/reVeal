@@ -99,21 +99,28 @@ def run(
     ----------
     grid : str
         Path to vector dataset for which attribute scoring will be performed.
-        Must be an existing vector dataset in a format that can be opened by pyogrio.
-        Does not strictly need to be a grid, or even a polygon dataset, but must be
-        a vector dataset.
-    attributes: list
+        Must be an existing vector dataset in a format that can be opened by
+        ``pyogrio``. Does not strictly need to be a grid, or even a polygon dataset,
+        but must be a vector dataset.
+    attributes : list
         List of dictionaries, each specifying the name of an attribute to be included
         in the composite weighted score, and a corresponding weight. Each dictionary
         should have the following keys:
-            - "attribute": String indicating the name of the attribute to include in
-                the composite weight.
-            - "weight": Float in the range of >0, <=1 indicating the weight to apply to
-             the attribute in the composite weighted score.
-        Note that all weights must sum to 1.
+
+        -   ``attribute``: String indicating the name of the attribute to include in
+            the composite weight.
+
+        -   ``weight``: Float in the range of ``>0, <=1`` indicating the weight to
+            apply to the attribute in the composite weighted score.
+
+        .. important::
+        Note that weights across all attributes must sum to 1.
     score_name : str
         Name of the output column in which the resulting weighted scores will be
-        stored. If this column exists in the input grid, it will be overwritten.
+        stored.
+
+        .. important::
+        If this column exists in the input grid, it will be overwritten.
     out_dir : str
         Output parent directory. Results will be saved to a file named
         "grid_char_weighted_scores.gpkg".
@@ -156,6 +163,9 @@ score_weighted_cmd = CLICommandFromFunction(
     add_collect=False,
     config_preprocessor=_preprocessor,
 )
+
+score_weighted_cmd.documentation.skip_params.remove("out_dir")
+
 main = as_click_command(score_weighted_cmd)
 
 
