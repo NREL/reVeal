@@ -71,7 +71,7 @@ class BaseDownscaleConfig(BaseGridConfig):
         return self
 
     @model_validator(mode="after")
-    def validate_load_growth(self):
+    def validate_load_projections(self):
         """
         Validate the input load_projections dataset can be opened, has the expected
         attributes, and  those attributes are numeric. Also ensures that the
@@ -81,9 +81,7 @@ class BaseDownscaleConfig(BaseGridConfig):
         try:
             df = pd.read_csv(self.load_projections)
         except UnicodeDecodeError as e:
-            raise CSVReadError(
-                "Unable to parse input as 'utf-8' text. Is the input a CSV?"
-            ) from e
+            raise CSVReadError("Unable to parse input as 'utf-8' text.") from e
         except pd.errors.ParserError as e:
             raise FileFormatError(
                 "Unable to parse text as CSV. Is the input formatted correctly?"

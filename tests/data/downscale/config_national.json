@@ -4,6 +4,6 @@
   "grid_baseline_load": "dc_capacity_mw_existing",
   "load_projections": "downscale/inputs/load_growth_projections/eer_us-adp-2024-central_national.csv",
   "projection_resolution": "total",
-  "load_value": "dc_load_gw",
+  "load_value": "dc_load_mw",
   "load_year": "year"
 }

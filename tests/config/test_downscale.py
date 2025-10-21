@@ -2,10 +2,14 @@
 """
 config.characdownscale module tests
 """
+from csv import QUOTE_NONNUMERIC
+
 import pytest
 import geopandas as gpd
+import pandas as pd
 
 from reVeal.config.downscale import BaseDownscaleConfig
+from reVeal.errors import CSVReadError, FileFormatError
 
 
 @pytest.mark.parametrize(
@@ -37,7 +41,7 @@ def test_basedownscaleconfig_valid_inputs(
         "baseline_year": baseline_year,
         "load_projections": load_projections,
         "projection_resolution": projection_resolution,
-        "load_value": "dc_load_gw",
+        "load_value": "dc_load_mw",
         "load_year": "year",
     }
 
@@ -46,12 +50,17 @@ def test_basedownscaleconfig_valid_inputs(
 
 @pytest.mark.parametrize(
     "update_parameters",
-    [{"grid_priority": "best_site_score"}, {"grid_baseline_load": "existing_mw"}],
+    [
+        {"grid_priority": "best_site_score"},
+        {"grid_baseline_load": "existing_mw"},
+        {"load_value": "dc_load_gw"},
+        {"load_year": "yr"},
+    ],
 )
-def test_basedownscaleconfig_missing_attribute(data_dir, update_parameters):
+def test_validate_missing_attribute(data_dir, update_parameters):
     """
     Test that BaseDownscaleConfig raises a ValueError when a non-existent column is
-    specified for either the grid_priority or grid_baseline_load columns.
+    specified for required grid or load_projections columns.
     """
 
     grid = data_dir / "downscale" / "inputs" / "grid_char_weighted_scores.gpkg"
@@ -69,7 +78,7 @@ def test_basedownscaleconfig_missing_attribute(data_dir, update_parameters):
         "baseline_year": 2022,
         "load_projections": load_projections,
         "projection_resolution": "total",
-        "load_value": "dc_load_gw",
+        "load_value": "dc_load_mw",
         "load_year": "year",
     }
     config.update(update_parameters)
@@ -79,7 +88,7 @@ def test_basedownscaleconfig_missing_attribute(data_dir, update_parameters):
 
 
 @pytest.mark.parametrize("test_col", ["suitability_score", "dc_capacity_mw_existing"])
-def test_basedownscaleconfig_nonnumeric_attribute(data_dir, tmp_path, test_col):
+def test_validate_grid_nonnumeric_attribute(data_dir, tmp_path, test_col):
     """
     Test that BaseDownscaleConfig raises a ValueError when a non-numeric column is
     specified for either the grid_priority or grid_baseline_load columns.
@@ -105,7 +114,7 @@ def test_basedownscaleconfig_nonnumeric_attribute(data_dir, tmp_path, test_col):
         "baseline_year": 2022,
         "load_projections": load_projections,
         "projection_resolution": "total",
-        "load_value": "dc_load_gw",
+        "load_value": "dc_load_mw",
         "load_year": "year",
     }
 
@@ -113,16 +122,109 @@ def test_basedownscaleconfig_nonnumeric_attribute(data_dir, tmp_path, test_col):
         BaseDownscaleConfig(**config)
 
 
-# add tests for validate_load_growth validation errors:
-# bad CSV format
-# bad file format
-# missing columns
+def test_validate_load_projections_fileformaterror(data_dir, tmp_path):
+    """
+    Test that BaseDownscaleConfig raises a FileFormatError when passed an input
+    load_projections file that is not a valid CSV file.
+    """
+
+    grid = data_dir / "downscale" / "inputs" / "grid_char_weighted_scores.gpkg"
+    load_projections = tmp_path / "load.csv"
+    with open(load_projections, "w") as dst:
+        dst.write(
+            "Hello!\n"
+            "This is a text file that I made for tests, what do you think?\n"
+            "If I'm correct, I think that this needs 3 lines, at least, to fail."
+        )
+
+    config = {
+        "grid": grid,
+        "grid_priority": "suitability_score",
+        "grid_baseline_load": "dc_capacity_mw_existing",
+        "baseline_year": 2022,
+        "load_projections": load_projections,
+        "projection_resolution": "total",
+        "load_value": "dc_load_mw",
+        "load_year": "year",
+    }
+
+    with pytest.raises(FileFormatError, match="Unable to parse text as CSV."):
+        BaseDownscaleConfig(**config)
+
+
+def test_validate_load_projections_csvreaderror(data_dir, tmp_path):
+    """
+    Test that BaseDownscaleConfig raises a CSVReadError when passed an input
+    load_projections file that is not encoded in utf-8.
+    """
+
+    grid = data_dir / "downscale" / "inputs" / "grid_char_weighted_scores.gpkg"
+    src_projections = (
+        data_dir
+        / "downscale"
+        / "inputs"
+        / "load_growth_projections"
+        / "eer_us-adp-2024-central_national.csv"
+    )
+    load_projections = tmp_path / "load.csv"
+    load_df = pd.read_csv(src_projections)
+    load_df.to_csv(load_projections, encoding="utf-16")
+
+    config = {
+        "grid": grid,
+        "grid_priority": "suitability_score",
+        "grid_baseline_load": "dc_capacity_mw_existing",
+        "baseline_year": 2022,
+        "load_projections": load_projections,
+        "projection_resolution": "total",
+        "load_value": "dc_load_mw",
+        "load_year": "year",
+    }
+
+    with pytest.raises(CSVReadError, match="Unable to parse input as 'utf-8' text"):
+        BaseDownscaleConfig(**config)
+
+
+@pytest.mark.parametrize("test_col", ["dc_load_mw", "year"])
+def test_validate_load_projections_nonnumeric_attribute(data_dir, tmp_path, test_col):
+    """
+    Test that BaseDownscaleConfig raises a ValueError when a non-numeric column is
+    specified for either the grid_priority or grid_baseline_load columns.
+    """
+
+    grid = data_dir / "downscale" / "inputs" / "grid_char_weighted_scores.gpkg"
+    src_projections = (
+        data_dir
+        / "downscale"
+        / "inputs"
+        / "load_growth_projections"
+        / "eer_us-adp-2024-central_national.csv"
+    )
+
+    load_df = pd.read_csv(src_projections)
+    load_df[test_col] = "a"
+    load_projections = tmp_path / "projections.csv"
+    load_df.to_csv(load_projections, header=True, index=False, quoting=QUOTE_NONNUMERIC)
+
+    config = {
+        "grid": grid,
+        "grid_priority": "suitability_score",
+        "grid_baseline_load": "dc_capacity_mw_existing",
+        "baseline_year": 2022,
+        "load_projections": load_projections,
+        "projection_resolution": "total",
+        "load_value": "dc_load_mw",
+        "load_year": "year",
+    }
+
+    with pytest.raises(
+        ValueError, match="Specified load_projections attribute .* must be numeric"
+    ):
+        BaseDownscaleConfig(**config)
+
+
 # non-numeric columns
 # invalid baseline year
 
-# for grid dataset:
-# TODO: check that the grid_priority and grid_load columns exist and are
-# numeric
-
 if __name__ == "__main__":
-    pytest.main([__file__, "-s", "-k", "test_basedownscaleconfig_nonnumeric_attribute"])
+    pytest.main([__file__, "-s"])
