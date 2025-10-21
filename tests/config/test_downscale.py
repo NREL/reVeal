@@ -8,7 +8,7 @@ import pytest
 import geopandas as gpd
 import pandas as pd
 
-from reVeal.config.downscale import BaseDownscaleConfig
+from reVeal.config.downscale import BaseDownscaleConfig, TotalDownscaleConfig
 from reVeal.errors import CSVReadError, FileFormatError
 
 
@@ -254,7 +254,7 @@ def test_validate_load_projections_predates_baseline_error(data_dir):
 
 def test_validate_load_projections_duplicate_years(data_dir, tmp_path):
     """
-    Test that BaseDownscaleConfig raises a ValueError when there are duplicate
+    Test that TotalDownscaleConfig raises a ValueError when there are duplicate
     years in the load_projections dataset.
     """
 
@@ -286,7 +286,17 @@ def test_validate_load_projections_duplicate_years(data_dir, tmp_path):
     with pytest.raises(
         ValueError, match="Input load_projections dataset has duplicate years"
     ):
-        BaseDownscaleConfig(**config)
+        TotalDownscaleConfig(**config)
+
+
+# TODO:
+# Tests for RegionalDownscaleConfig:
+# valid inputs (include geopackage or geoparquet for regions)
+# sets dynamic attributes correctly - regions_ext, regions_flavor
+# raises errors under validate_regions for each of:
+#        1. Has either Polygon or MultiPolygon geometries.
+#        2. Has a column corresponding to the input region_names parameter
+#        3. Has a CRS matching the input grid.
 
 
 if __name__ == "__main__":
