@@ -1,0 +1,9 @@
+{
+  "grid": "downscale/inputs/grid_char_weighted_scores.gpkg",
+  "grid_priority": "suitability_score",
+  "grid_baseline_load": "dc_capacity_mw_existing",
+  "load_projections": "downscale/inputs/load_growth_projections/eer_us-adp-2024-central_regional.csv",
+  "projection_resolution": "regional",
+  "load_value": "dc_load_gw",
+  "load_year": "year"
+}
