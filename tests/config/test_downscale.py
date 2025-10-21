@@ -16,11 +16,8 @@ from reVeal.config.downscale import BaseDownscaleConfig
 @pytest.mark.parametrize(
     "projection_resolution", ["regional", "total", "REGIONAL", "TOTAL"]
 )
-@pytest.mark.parametrize(
-    "output_values", ["incremental", "cumulative", "INCREMENTAL", "CUMULATIVE"]
-)
 def test_basedownscaleconfig_valid_inputs(
-    data_dir, baseline_year, projection_resolution, output_values
+    data_dir, baseline_year, projection_resolution
 ):
     """
     Test that BaseDownsaleConfig can be instantiated with valid inputs.
@@ -43,7 +40,6 @@ def test_basedownscaleconfig_valid_inputs(
         "projection_resolution": projection_resolution,
         "load_value": "dc_load_gw",
         "load_year": "year",
-        "output_values": output_values,
     }
 
     BaseDownscaleConfig(**config)

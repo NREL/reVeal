@@ -2,8 +2,6 @@
 """
 config.downscale module
 """
-from typing import Optional
-
 from pydantic import (
     model_validator,
     PositiveInt,
@@ -29,15 +27,6 @@ class ProjectionResolutionEnum(BaseEnum):
     REGIONAL = "regional"
 
 
-class OutputValuesEnum(BaseEnum):
-    """
-    Enumeration for allowable output value types. Case insensitive.
-    """
-
-    INCREMENTAL = "incremental"
-    CUMULATIVE = "cumulative"
-
-
 class BaseDownscaleConfig(BaseGridConfig):
     """
     Base model for DownscaleConfig with only required inputs and datatypes.
@@ -53,7 +42,6 @@ class BaseDownscaleConfig(BaseGridConfig):
     load_projections: FilePath
     load_value: str
     load_year: str
-    output_values: Optional[OutputValuesEnum] = "incremental"
 
     @model_validator(mode="after")
     def validate_grid(self):
