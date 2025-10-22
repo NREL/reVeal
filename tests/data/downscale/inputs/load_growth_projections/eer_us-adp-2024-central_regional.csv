@@ -1,551 +1,151 @@
 year,zone,dc_load_mw
 2024,northwest,28096.82467
-2024,northwest,165094.894
 2024,upper mississippi valley,5610.72742
-2024,upper mississippi valley,197498.0829
 2024,northern great plains,11607.79388
-2024,northern great plains,60692.15211
 2024,michigan,584.3428445
-2024,michigan,98759.5827
 2024,new england,3608.536608
-2024,new england,139693.3923
 2024,upstate new york,5256.364933
-2024,upstate new york,79992.71626
 2024,metropolitan chicago,13781.69293
-2024,metropolitan chicago,104020.6732
 2024,great basin,9760.7392
-2024,great basin,93380.07321
 2024,metropolitan new york,1856.412852
-2024,metropolitan new york,83078.15529
 2024,rockies,6223.879571
-2024,rockies,71438.19314
 2024,mid-atlantic,9637.634527
-2024,mid-atlantic,260051.3071
 2024,ohio valley,12588.08521
-2024,ohio valley,271073.0449
 2024,middle mississippi valley,1494.325442
-2024,middle mississippi valley,189084.7424
 2024,central great plains,1105.126372
-2024,central great plains,73404.68623
 2024,northern california,11080.75293
-2024,northern california,131818.6922
 2024,virginia,50491.18463
-2024,virginia,114089.9006
 2024,tennessee valley,7589.553429
-2024,tennessee valley,227460.6068
 2024,southern california,3628.143997
-2024,southern california,185362.5903
 2024,carolinas,7685.080857
-2024,carolinas,213830.5398
 2024,southern great plains,2750.626768
-2024,southern great plains,114771.4453
 2024,southwest,12654.51089
-2024,southwest,105281.4618
 2024,mississippi delta,438.2597728
-2024,mississippi delta,147717.7317
 2024,southeast,13461.19785
-2024,southeast,266981.9281
 2024,texas,55337.49837
-2024,texas,384230.9654
 2024,florida,2576.618053
-2024,florida,258727.0188
 2030,northwest,54444.04776
-2030,northwest,143.4448647
-2030,northwest,243.5149127
-2030,northwest,182647.9889
 2030,upper mississippi valley,10872.07233
-2030,upper mississippi valley,5000.280046
-2030,upper mississippi valley,3287.426616
-2030,upper mississippi valley,217461.1178
 2030,northern great plains,22492.76747
-2030,northern great plains,28308.76407
-2030,northern great plains,944.7305908
-2030,northern great plains,69192.72085
 2030,michigan,1132.29821
-2030,michigan,22.14694966
-2030,michigan,157.4612503
-2030,michigan,110933.6669
 2030,new england,6992.369498
-2030,new england,19.35026675
-2030,new england,44.28740083
-2030,new england,164637.2424
 2030,upstate new york,10185.41358
-2030,upstate new york,8.910850187
-2030,upstate new york,18.35213439
-2030,upstate new york,89011.66756
 2030,metropolitan chicago,26705.19414
-2030,metropolitan chicago,35.29791952
-2030,metropolitan chicago,168.3018753
-2030,metropolitan chicago,114062.2569
 2030,great basin,18913.67362
-2030,great basin,20.69185696
-2030,great basin,254.0865587
-2030,great basin,106637.0804
 2030,metropolitan new york,3597.226358
-2030,metropolitan new york,8.258224478
-2030,metropolitan new york,14.91427679
-2030,metropolitan new york,93369.64391
 2030,rockies,12060.19543
-2030,rockies,221.2716231
-2030,rockies,376.3656849
-2030,rockies,83923.49381
 2030,mid-atlantic,18675.12902
-2030,mid-atlantic,6.031290274
-2030,mid-atlantic,30.57781437
-2030,mid-atlantic,291960.1912
 2030,ohio valley,24392.3056
-2030,ohio valley,14.15071787
-2030,ohio valley,29.57346562
-2030,ohio valley,293103.8282
 2030,middle mississippi valley,2895.598135
-2030,middle mississippi valley,6.850218211
-2030,middle mississippi valley,342.0707253
-2030,middle mississippi valley,200065.8091
 2030,central great plains,2141.435791
-2030,central great plains,12023.35761
-2030,central great plains,508.5990469
-2030,central great plains,80161.15966
 2030,northern california,21471.50249
-2030,northern california,28.35650593
-2030,northern california,299.5662596
-2030,northern california,155000.4591
 2030,virginia,97838.2613
-2030,virginia,28.50988924
-2030,virginia,22.58957426
-2030,virginia,125197.938
 2030,tennessee valley,14706.50143
-2030,tennessee valley,27.6643194
-2030,tennessee valley,157.2546499
-2030,tennessee valley,242297.9298
 2030,southern california,7030.361717
-2030,southern california,25.23510554
-2030,southern california,201.8563971
-2030,southern california,218337.8435
 2030,carolinas,14891.60819
-2030,carolinas,34.83323224
-2030,carolinas,183.9846221
-2030,carolinas,230541.3659
 2030,southern great plains,5329.969711
-2030,southern great plains,36028.5889
-2030,southern great plains,273.7500456
-2030,southern great plains,129509.9106
 2030,southwest,24521.02053
-2030,southwest,151.6658012
-2030,southwest,340.8330989
-2030,southwest,117648.3279
 2030,mississippi delta,849.2305195
-2030,mississippi delta,38.64091389
-2030,mississippi delta,77.55509213
-2030,mississippi delta,152667.9721
 2030,southeast,26084.16187
-2030,southeast,28.67960631
-2030,southeast,271.2616407
-2030,southeast,281114.8056
 2030,texas,107229.1079
-2030,texas,16708.17669
-2030,texas,1990.090921
-2030,texas,411919.4016
 2030,florida,4992.789555
-2030,florida,47.72126423
-2030,florida,84.62871752
-2030,florida,284945.8971
 2035,northwest,62739.63052
-2035,northwest,199.1292619
-2035,northwest,3681.925188
-2035,northwest,216290.5267
 2035,upper mississippi valley,13889.07569
-2035,upper mississippi valley,22455.16912
-2035,upper mississippi valley,9516.075444
-2035,upper mississippi valley,275119.8566
 2035,northern great plains,64040.69063
-2035,northern great plains,153817.4174
-2035,northern great plains,3283.400506
-2035,northern great plains,96182.4264
 2035,michigan,1304.824968
-2035,michigan,27.4003908
-2035,michigan,440.6698126
-2035,michigan,138887.3845
 2035,new england,8057.789006
-2035,new england,73.50552277
-2035,new england,219.8666581
-2035,new england,201776.7878
 2035,upstate new york,11737.355
-2035,upstate new york,24.4987044
-2035,upstate new york,111.0484238
-2035,upstate new york,105239.8942
 2035,metropolitan chicago,30774.23559
-2035,metropolitan chicago,136.4766815
-2035,metropolitan chicago,1021.981425
-2035,metropolitan chicago,143018.3313
 2035,great basin,21795.52938
-2035,great basin,51.50676773
-2035,great basin,1078.398091
-2035,great basin,134959.9351
 2035,metropolitan new york,4145.332273
-2035,metropolitan new york,18.87142595
-2035,metropolitan new york,64.34495922
-2035,metropolitan new york,112680.6164
 2035,rockies,14476.96756
-2035,rockies,3474.869519
-2035,rockies,3907.942098
-2035,rockies,107659.8869
 2035,mid-atlantic,21520.639
-2035,mid-atlantic,28.57129162
-2035,mid-atlantic,439.2271294
-2035,mid-atlantic,350642.0193
 2035,ohio valley,28108.93391
-2035,ohio valley,17.27073584
-2035,ohio valley,164.1525814
-2035,ohio valley,348061.9231
 2035,middle mississippi valley,3701.165529
-2035,middle mississippi valley,228.7689181
-2035,middle mississippi valley,6090.563621
-2035,middle mississippi valley,246635.1782
 2035,central great plains,3014.854404
-2035,central great plains,59387.40128
-2035,central great plains,4576.37863
-2035,central great plains,102348.5943
 2035,northern california,24743.0929
-2035,northern california,31.49363874
-2035,northern california,1709.059572
-2035,northern california,191272.4116
 2035,virginia,112745.773
-2035,virginia,50.16351978
-2035,virginia,169.8492334
-2035,virginia,145839.1962
 2035,tennessee valley,16947.3156
-2035,tennessee valley,35.6630819
-2035,tennessee valley,719.236395
-2035,tennessee valley,291084.8324
 2035,southern california,8101.57117
-2035,southern california,29.92122353
-2035,southern california,3297.706522
-2035,southern california,267842.3183
 2035,carolinas,17160.62704
-2035,carolinas,50.67555339
-2035,carolinas,2392.889229
-2035,carolinas,273452.7595
 2035,southern great plains,7587.449814
-2035,southern great plains,72484.89934
-2035,southern great plains,6591.837763
-2035,southern great plains,154202.6103
 2035,southwest,28265.00784
-2035,southwest,99.64627104
-2035,southwest,2142.711624
-2035,southwest,139880.2208
 2035,mississippi delta,979.163098
-2035,mississippi delta,85.28494687
-2035,mississippi delta,3962.246512
-2035,mississippi delta,173334.4994
 2035,southeast,30058.57709
-2035,southeast,53.78128118
-2035,southeast,2271.855497
-2035,southeast,339077.8228
 2035,texas,150394.7271
-2035,texas,103785.3588
-2035,texas,19918.98915
-2035,texas,508046.1759
 2035,florida,5753.535767
-2035,florida,45.45449399
-2035,florida,2229.370538
-2035,florida,329095.9449
 2040,northwest,67986.78774
-2040,northwest,3925.427528
-2040,northwest,9192.724213
-2040,northwest,254073.1818
 2040,upper mississippi valley,14483.46387
-2040,upper mississippi valley,74243.71984
-2040,upper mississippi valley,16769.4968
-2040,upper mississippi valley,344842.5138
 2040,northern great plains,105582.0246
-2040,northern great plains,233578.532
-2040,northern great plains,6360.733834
-2040,northern great plains,122421.2111
 2040,michigan,1305.742548
-2040,michigan,63.23535867
-2040,michigan,518.1135344
-2040,michigan,176398.9971
 2040,new england,8058.437949
-2040,new england,101.2895487
-2040,new england,310.2941957
-2040,new england,254699.0368
 2040,upstate new york,11738.30127
-2040,upstate new york,36.38833002
-2040,upstate new york,184.7926222
-2040,upstate new york,127810.1648
 2040,metropolitan chicago,33348.02347
-2040,metropolitan chicago,155.3149607
-2040,metropolitan chicago,2629.258147
-2040,metropolitan chicago,183230.6773
 2040,great basin,23062.11441
-2040,great basin,207.895901
-2040,great basin,2561.670996
-2040,great basin,165829.8557
 2040,metropolitan new york,4146.18248
-2040,metropolitan new york,16.92460808
-2040,metropolitan new york,120.8203472
-2040,metropolitan new york,136570.1499
 2040,rockies,15454.58062
-2040,rockies,15696.88456
-2040,rockies,8697.043429
-2040,rockies,134011.6666
 2040,mid-atlantic,21522.37441
-2040,mid-atlantic,55.95594589
-2040,mid-atlantic,698.9978115
-2040,mid-atlantic,428261.54
 2040,ohio valley,29742.15412
-2040,ohio valley,49.28327126
-2040,ohio valley,611.7125769
-2040,ohio valley,430211.493
 2040,middle mississippi valley,3859.341788
-2040,middle mississippi valley,28038.59089
-2040,middle mississippi valley,12849.98459
-2040,middle mississippi valley,307635.5062
 2040,central great plains,3872.771217
-2040,central great plains,92296.42309
-2040,central great plains,9739.825478
-2040,central great plains,127144.7548
 2040,northern california,24745.08749
-2040,northern california,194.2072667
-2040,northern california,4669.723816
-2040,northern california,238360.503
 2040,virginia,119296.6645
-2040,virginia,73.54333921
-2040,virginia,294.8517985
-2040,virginia,174679.1861
 2040,tennessee valley,17932.00905
-2040,tennessee valley,62.75018601
-2040,tennessee valley,1385.047766
-2040,tennessee valley,356169.0519
 2040,southern california,8102.224161
-2040,southern california,479.999921
-2040,southern california,6880.181704
-2040,southern california,333942.4366
 2040,carolinas,17783.79112
-2040,carolinas,108.5139927
-2040,carolinas,2989.615252
-2040,carolinas,337460.3305
 2040,southern great plains,9847.010301
-2040,southern great plains,129324.775
-2040,southern great plains,14480.45828
-2040,southern great plains,184620.1941
 2040,southwest,30623.63617
-2040,southwest,3555.602847
-2040,southwest,5835.937961
-2040,southwest,169576.3105
 2040,mississippi delta,1060.473011
-2040,mississippi delta,281.4519101
-2040,mississippi delta,8533.794583
-2040,mississippi delta,215464.6628
 2040,southeast,31805.07656
-2040,southeast,97.26672449
-2040,southeast,3454.400581
-2040,southeast,413312.2588
 2040,texas,164124.7052
-2040,texas,227429.8971
-2040,texas,48977.11636
-2040,texas,614325.4537
 2040,florida,6087.834085
-2040,florida,130.978246
-2040,florida,2627.273599
-2040,florida,377015.7572
 2045,northwest,73227.69986
-2045,northwest,16015.8692
-2045,northwest,11912.54658
-2045,northwest,277211.4175
 2045,upper mississippi valley,15078.36521
-2045,upper mississippi valley,96533.11791
-2045,upper mississippi valley,12911.88154
-2045,upper mississippi valley,373561.9654
 2045,northern great plains,147105.5903
-2045,northern great plains,298776.5884
-2045,northern great plains,4767.586685
-2045,northern great plains,135117.0346
 2045,michigan,1456.49074
-2045,michigan,3647.450778
-2045,michigan,2262.662715
-2045,michigan,191075.403
 2045,new england,8994.374287
-2045,new england,2908.782744
-2045,new england,1438.169414
-2045,new england,280212.9626
 2045,upstate new york,13101.6303
-2045,upstate new york,75.90407898
-2045,upstate new york,299.2296361
-2045,upstate new york,138314.9783
 2045,metropolitan chicago,35918.91287
-2045,metropolitan chicago,232.5218891
-2045,metropolitan chicago,3063.807629
-2045,metropolitan chicago,200148.1914
 2045,great basin,24329.30408
-2045,great basin,4063.289799
-2045,great basin,7437.087172
-2045,great basin,186281.3871
 2045,metropolitan new york,4627.159681
-2045,metropolitan new york,40.70181207
-2045,metropolitan new york,181.8247118
-2045,metropolitan new york,149815.8942
 2045,rockies,16432.39529
-2045,rockies,50736.19825
-2045,rockies,7741.329728
-2045,rockies,148229.5675
 2045,mid-atlantic,24022.06168
-2045,mid-atlantic,114.675612
-2045,mid-atlantic,1704.955579
-2045,mid-atlantic,470462.8359
 2045,ohio valley,31376.13831
-2045,ohio valley,125.0741574
-2045,ohio valley,1714.255107
-2045,ohio valley,467525.1468
 2045,middle mississippi valley,4016.758697
-2045,middle mississippi valley,47379.38502
-2045,middle mississippi valley,8771.785102
-2045,middle mississippi valley,342171.2214
 2045,central great plains,4730.422594
-2045,central great plains,111762.9223
-2045,central great plains,7227.28176
-2045,central great plains,137310.6015
 2045,northern california,27619.07288
-2045,northern california,3264.473927
-2045,northern california,5659.851048
-2045,northern california,263259.6853
 2045,virginia,125850.707
-2045,virginia,3515.363272
-2045,virginia,1935.22924
-2045,virginia,191556.0283
 2045,tennessee valley,18917.2456
-2045,tennessee valley,127.7219356
-2045,tennessee valley,1794.326412
-2045,tennessee valley,387842.2724
 2045,southern california,9043.246221
-2045,southern california,2826.696899
-2045,southern california,10235.52992
-2045,southern california,370955.5366
 2045,carolinas,19155.26871
-2045,carolinas,24261.38208
-2045,carolinas,6728.784037
-2045,carolinas,370353.2749
 2045,southern great plains,12084.55094
-2045,southern great plains,167314.2849
-2045,southern great plains,10244.2877
-2045,southern great plains,200523.9255
 2045,southwest,32988.48676
-2045,southwest,14876.56858
-2045,southwest,9302.981306
-2045,southwest,189859.4611
 2045,mississippi delta,1143.260442
-2045,mississippi delta,6890.088176
-2045,mississippi delta,7835.245763
-2045,mississippi delta,236511.0706
 2045,southeast,33552.47694
-2045,southeast,8180.952316
-2045,southeast,10925.66408
-2045,southeast,442654.4564
 2045,texas,177875.4335
-2045,texas,244143.2775
-2045,texas,29636.11751
-2045,texas,676814.4889
 2045,florida,6422.371717
-2045,florida,13957.12879
-2045,florida,3353.357923
-2045,florida,408636.5718
 2050,northwest,78479.07311
-2050,northwest,17882.48562
-2050,northwest,19973.60545
-2050,northwest,287966.5324
 2050,upper mississippi valley,15672.75062
-2050,upper mississippi valley,105090.3577
-2050,upper mississippi valley,13874.63223
-2050,upper mississippi valley,395044.4889
 2050,northern great plains,188648.3903
-2050,northern great plains,356602.9053
-2050,northern great plains,4545.961234
-2050,northern great plains,151621.4217
 2050,michigan,1632.154871
-2050,michigan,6558.584839
-2050,michigan,4527.673269
-2050,michigan,203580.2529
 2050,new england,10079.17093
-2050,new england,8690.446735
-2050,new england,5301.36995
-2050,new england,293777.9375
 2050,upstate new york,14681.79498
-2050,upstate new york,6692.475724
-2050,upstate new york,3769.670284
-2050,upstate new york,144753.7988
 2050,metropolitan chicago,38494.72846
-2050,metropolitan chicago,474.3950034
-2050,metropolitan chicago,6688.679162
-2050,metropolitan chicago,209992.4094
 2050,great basin,27263.61773
-2050,great basin,5775.156982
-2050,great basin,22052.78638
-2050,great basin,194595.007
 2050,metropolitan new york,5185.233354
-2050,metropolitan new york,1220.716797
-2050,metropolitan new york,2355.23238
-2050,metropolitan new york,156120.8242
 2050,rockies,17408.90521
-2050,rockies,82476.84011
-2050,rockies,17016.95748
-2050,rockies,158455.2395
 2050,mid-atlantic,26919.32009
-2050,mid-atlantic,5011.252299
-2050,mid-atlantic,9606.679176
-2050,mid-atlantic,488911.6518
 2050,ohio valley,35160.4506
-2050,ohio valley,5560.387062
-2050,ohio valley,7404.677052
-2050,ohio valley,491420.2776
 2050,middle mississippi valley,4175.65154
-2050,middle mississippi valley,86689.20615
-2050,middle mississippi valley,13452.20271
-2050,middle mississippi valley,364793.1872
 2050,central great plains,5602.214293
-2050,central great plains,138219.3729
-2050,central great plains,13128.58258
-2050,central great plains,150441.301
 2050,northern california,30950.16092
-2050,northern california,6685.530232
-2050,northern california,9994.290356
-2050,northern california,278157.1571
 2050,virginia,141029.494
-2050,virginia,11549.72508
-2050,virginia,3776.315447
-2050,virginia,198196.4087
 2050,tennessee valley,21199.17858
-2050,tennessee valley,263.5946995
-2050,tennessee valley,13401.65188
-2050,tennessee valley,408011.0357
 2050,southern california,10133.93563
-2050,southern california,4703.174011
-2050,southern california,18049.56201
-2050,southern california,384189.8902
 2050,carolinas,21465.79637
-2050,carolinas,37961.56014
-2050,carolinas,14184.19751
-2050,carolinas,384939.0847
 2050,southern great plains,14345.24184
-2050,southern great plains,217140.8304
-2050,southern great plains,19057.68589
-2050,southern great plains,222074.2662
 2050,southwest,35349.13607
-2050,southwest,22435.45167
-2050,southwest,14764.19527
-2050,southwest,197574.4595
 2050,mississippi delta,1226.061015
-2050,mississippi delta,24843.11781
-2050,mississippi delta,10600.60537
-2050,mississippi delta,247472.1681
 2050,southeast,37599.53946
-2050,southeast,12727.68176
-2050,southeast,17605.96566
-2050,southeast,461968.6047
 2050,texas,183997.7589
-2050,texas,315630.5457
-2050,texas,77652.01017
-2050,texas,744761.9155
 2050,florida,7197.115528
-2050,florida,27662.18885
-2050,florida,8711.043483
-2050,florida,428941.6178
