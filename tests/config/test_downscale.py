@@ -62,7 +62,7 @@ def test_basedownscaleconfig_valid_inputs(
         {"load_year": "yr"},
     ],
 )
-def test_validate_missing_attribute(data_dir, update_parameters):
+def test_basedownscaleconfig_missing_attribute(data_dir, update_parameters):
     """
     Test that BaseDownscaleConfig raises a ValueError when a non-existent column is
     specified for required grid or load_projections columns.
@@ -93,7 +93,7 @@ def test_validate_missing_attribute(data_dir, update_parameters):
 
 
 @pytest.mark.parametrize("test_col", ["suitability_score", "dc_capacity_mw_existing"])
-def test_validate_grid_nonnumeric_attribute(data_dir, tmp_path, test_col):
+def test_basedownscaleconfig_grid_nonnumeric_attribute(data_dir, tmp_path, test_col):
     """
     Test that BaseDownscaleConfig raises a ValueError when a non-numeric column is
     specified for either the grid_priority or grid_baseline_load columns.
@@ -127,7 +127,7 @@ def test_validate_grid_nonnumeric_attribute(data_dir, tmp_path, test_col):
         BaseDownscaleConfig(**config)
 
 
-def test_validate_load_projections_fileformaterror(data_dir, tmp_path):
+def test_basedownscaleconfig_load_projections_fileformaterror(data_dir, tmp_path):
     """
     Test that BaseDownscaleConfig raises a FileFormatError when passed an input
     load_projections file that is not a valid CSV file.
@@ -157,7 +157,7 @@ def test_validate_load_projections_fileformaterror(data_dir, tmp_path):
         BaseDownscaleConfig(**config)
 
 
-def test_validate_load_projections_csvreaderror(data_dir, tmp_path):
+def test_basedownscaleconfig_load_projections_csvreaderror(data_dir, tmp_path):
     """
     Test that BaseDownscaleConfig raises a CSVReadError when passed an input
     load_projections file that is not encoded in utf-8.
@@ -191,7 +191,9 @@ def test_validate_load_projections_csvreaderror(data_dir, tmp_path):
 
 
 @pytest.mark.parametrize("test_col", ["dc_load_mw", "year"])
-def test_validate_load_projections_nonnumeric_attribute(data_dir, tmp_path, test_col):
+def test_basedownscaleconfig_load_projections_nonnumeric_attribute(
+    data_dir, tmp_path, test_col
+):
     """
     Test that BaseDownscaleConfig raises a ValueError when a non-numeric column is
     specified for either the grid_priority or grid_baseline_load columns.
@@ -228,7 +230,7 @@ def test_validate_load_projections_nonnumeric_attribute(data_dir, tmp_path, test
         BaseDownscaleConfig(**config)
 
 
-def test_validate_load_projections_predates_baseline_error(data_dir):
+def test_basedownscaleconfig_load_projections_predates_baseline_error(data_dir):
     """
     Test that BaseDownsaleConfig raises a ValueError when the load projections predate
     the baseline load year.
@@ -320,7 +322,7 @@ def test_totaldownscaleconfig_resolution_error(data_dir):
         TotalDownscaleConfig(**config)
 
 
-def test_validate_load_projections_duplicate_years(data_dir, tmp_path):
+def test_totaldownscaleconfig_load_projections_duplicate_years(data_dir, tmp_path):
     """
     Test that TotalDownscaleConfig raises a ValueError when there are duplicate
     years in the load_projections dataset.
@@ -352,7 +354,7 @@ def test_validate_load_projections_duplicate_years(data_dir, tmp_path):
     }
 
     with pytest.raises(
-        ValueError, match="Input load_projections dataset has duplicate years"
+        ValueError, match="Input load_projections dataset has duplicate entries"
     ):
         TotalDownscaleConfig(**config)
 
