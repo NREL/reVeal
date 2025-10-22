@@ -267,6 +267,24 @@ class RegionalDownscaleConfig(BaseDownscaleConfig):
         return self
 
     @model_validator(mode="after")
+    def validate_load_projections_duplicate_years(self):
+        """
+        If region_weights is specified, validate the input load_projections does not
+        have duplicate entries over years.
+        """
+
+        if not self.region_weights:
+            return self
+
+        df = pd.read_csv(self.load_projections)
+        if df[self.load_year].duplicated().any():
+            raise ValueError(
+                "Input load_projections dataset has duplicate entries for some years."
+            )
+
+        return self
+
+    @model_validator(mode="after")
     def validate_load_regions(self):
         """
         If load_regions is specified, check that the column exists in the
