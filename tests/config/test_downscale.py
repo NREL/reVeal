@@ -13,6 +13,7 @@ from reVeal.config.downscale import (
     BaseDownscaleConfig,
     TotalDownscaleConfig,
     RegionalDownscaleConfig,
+    DownscaleConfig,
 )
 from reVeal.errors import CSVReadError, FileFormatError
 
@@ -898,6 +899,101 @@ def test_regionaldownscaleconfig_duplicate_years(data_dir):
         match="Input load_projections dataset has duplicate entries for some years",
     ):
         RegionalDownscaleConfig(**config)
+
+
+def test_downscaleconfig_valid_total(data_dir):
+    """
+    Test DownscaleConfig can be instantiated successfully with valid inputs
+    for projection_resolution = "total".
+    """
+    grid = data_dir / "downscale" / "inputs" / "grid_char_weighted_scores.gpkg"
+    load_projections = (
+        data_dir
+        / "downscale"
+        / "inputs"
+        / "load_growth_projections"
+        / "eer_us-adp-2024-central_national.csv"
+    )
+    downscale_config = {
+        "grid": grid,
+        "grid_priority": "suitability_score",
+        "grid_baseline_load": "dc_capacity_mw_existing",
+        "baseline_year": 2022,
+        "load_projections": load_projections,
+        "projection_resolution": "total",
+        "load_value": "dc_load_mw",
+        "load_year": "year",
+    }
+
+    downscale_config = DownscaleConfig(**downscale_config)
+    assert isinstance(downscale_config, TotalDownscaleConfig)
+
+
+def test_downscaleconfig_valid_regional_load_regions(data_dir):
+    """
+    Test DownscaleConfig can be instantiated successfully with valid inputs
+    for projection_resolution = "regional" and a load_regions column in the
+    input load_projections dataset.
+    """
+
+    grid = data_dir / "downscale" / "inputs" / "grid_char_weighted_scores.gpkg"
+    load_projections = (
+        data_dir
+        / "downscale"
+        / "inputs"
+        / "load_growth_projections"
+        / "eer_us-adp-2024-central_regional.csv"
+    )
+    regions = data_dir / "downscale" / "inputs" / "regions" / "eer_adp_zones.gpkg"
+
+    config = {
+        "grid": grid,
+        "grid_priority": "suitability_score",
+        "grid_baseline_load": "dc_capacity_mw_existing",
+        "baseline_year": 2022,
+        "load_projections": load_projections,
+        "projection_resolution": "regional",
+        "load_value": "dc_load_mw",
+        "load_regions": "zone",
+        "load_year": "year",
+        "regions": regions,
+        "region_names": "emm_zone",
+    }
+
+    downscale_config = DownscaleConfig(**config)
+    assert isinstance(downscale_config, RegionalDownscaleConfig)
+
+
+def test_downscaleconfig_valid_regional_region_weights(data_dir):
+    """
+    Test DownscaleConfig can be instantiated successfully with valid inputs
+    for projection_resolution = "regional" and a region_weights input.
+    """
+    grid = data_dir / "downscale" / "inputs" / "grid_char_weighted_scores.gpkg"
+    load_projections = (
+        data_dir
+        / "downscale"
+        / "inputs"
+        / "load_growth_projections"
+        / "eer_us-adp-2024-central_national.csv"
+    )
+    regions = data_dir / "downscale" / "inputs" / "regions" / "eer_adp_zones.gpkg"
+
+    config = {
+        "grid": grid,
+        "grid_priority": "suitability_score",
+        "grid_baseline_load": "dc_capacity_mw_existing",
+        "baseline_year": 2022,
+        "load_projections": load_projections,
+        "projection_resolution": "regional",
+        "load_value": "dc_load_mw",
+        "load_year": "year",
+        "regions": regions,
+        "region_names": "emm_zone",
+        "region_weights": DEFAULT_REGION_WEIGHTS,
+    }
+    downscale_config = DownscaleConfig(**config)
+    assert isinstance(downscale_config, RegionalDownscaleConfig)
 
 
 if __name__ == "__main__":

@@ -58,6 +58,7 @@ class BaseDownscaleConfig(BaseGridConfig):
     """
 
     # pylint: disable=too-few-public-methods
+    model_config = {"extra": "allow"}
 
     # Input at instantiation
     grid_priority: str
@@ -349,23 +350,29 @@ class RegionalDownscaleConfig(BaseDownscaleConfig):
         return self
 
 
-# class DownscaleConfig(BaseDownscaleConfig):
-#     """
-#     Model for downscaling configuration. Based on the inputs, wraps either
-#     BaseDownScaleConfig or RegionalDownscaleConfig.
-#     """
-#     # pylint: disable=too-few-public-methods
+class DownscaleConfig(BaseDownscaleConfig):
+    """
+    Wrapper class for downscaling configuration. Based on the the projection
+    resolution of the inputs,  instantiates either a TotalDownScaleConfig or
+    RegionalDownscaleConfig.
+    """
 
-#     def __init__(self, *args, **kwargs):
+    # pylint: disable=too-few-public-methods
 
-#         base_config = super(**self)
-#         resolution = base_config.projection_resolution
-#         if resolution == "total":
-#             self = TotalDownscaleConfig(**self)
-#         elif resolution == "regional":
-#             self = RegionalDownscaleConfig(**self)
-#         else:
-#             raise ValueError(
-#                 f"Unexpected input for projection_resolution: {resolution}"
-#                 f"Expected values are: {ProjectionResolutionEnum}"
-#             )
+    def __new__(cls, **kwargs):
+        """
+        Wrapper to instantiate the correct type of config class based
+        on the inputs.
+        """
+        base_config = BaseDownscaleConfig(**kwargs)
+        resolution = base_config.projection_resolution
+        if resolution == "total":
+            return TotalDownscaleConfig(**kwargs)
+
+        if resolution == "regional":
+            return RegionalDownscaleConfig(**kwargs)
+
+        raise ValueError(
+            f"Unexpected input for projection_resolution: {resolution}"
+            f"Expected values are: {ProjectionResolutionEnum}"
+        )
