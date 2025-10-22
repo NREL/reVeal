@@ -7,8 +7,13 @@ from csv import QUOTE_NONNUMERIC
 import pytest
 import geopandas as gpd
 import pandas as pd
+from pydantic import ValidationError
 
-from reVeal.config.downscale import BaseDownscaleConfig, TotalDownscaleConfig
+from reVeal.config.downscale import (
+    BaseDownscaleConfig,
+    TotalDownscaleConfig,
+    RegionalDownscaleConfig,
+)
 from reVeal.errors import CSVReadError, FileFormatError
 
 
@@ -252,6 +257,69 @@ def test_validate_load_projections_predates_baseline_error(data_dir):
         BaseDownscaleConfig(**config)
 
 
+@pytest.mark.parametrize(
+    "baseline_year",
+    [2020, 2023],
+)
+@pytest.mark.parametrize("projection_resolution", ["total", "TOTAL"])
+def test_totaldownscaleconfig_valid_inputs(
+    data_dir, baseline_year, projection_resolution
+):
+    """
+    Test that TotalDownsaleConfig can be instantiated with valid inputs.
+    """
+
+    grid = data_dir / "downscale" / "inputs" / "grid_char_weighted_scores.gpkg"
+    load_projections = (
+        data_dir
+        / "downscale"
+        / "inputs"
+        / "load_growth_projections"
+        / "eer_us-adp-2024-central_national.csv"
+    )
+    config = {
+        "grid": grid,
+        "grid_priority": "suitability_score",
+        "grid_baseline_load": "dc_capacity_mw_existing",
+        "baseline_year": baseline_year,
+        "load_projections": load_projections,
+        "projection_resolution": projection_resolution,
+        "load_value": "dc_load_mw",
+        "load_year": "year",
+    }
+
+    TotalDownscaleConfig(**config)
+
+
+def test_totaldownscaleconfig_resolution_error(data_dir):
+    """
+    Test that TotalDownsaleConfig raises a validation error when passed "total" as
+    the projection_resolution instead of "regional".
+    """
+
+    grid = data_dir / "downscale" / "inputs" / "grid_char_weighted_scores.gpkg"
+    load_projections = (
+        data_dir
+        / "downscale"
+        / "inputs"
+        / "load_growth_projections"
+        / "eer_us-adp-2024-central_national.csv"
+    )
+    config = {
+        "grid": grid,
+        "grid_priority": "suitability_score",
+        "grid_baseline_load": "dc_capacity_mw_existing",
+        "baseline_year": 2022,
+        "load_projections": load_projections,
+        "projection_resolution": "regional",
+        "load_value": "dc_load_mw",
+        "load_year": "year",
+    }
+
+    with pytest.raises(ValidationError, match="Input should be 'total"):
+        TotalDownscaleConfig(**config)
+
+
 def test_validate_load_projections_duplicate_years(data_dir, tmp_path):
     """
     Test that TotalDownscaleConfig raises a ValueError when there are duplicate
@@ -289,14 +357,90 @@ def test_validate_load_projections_duplicate_years(data_dir, tmp_path):
         TotalDownscaleConfig(**config)
 
 
+@pytest.mark.parametrize(
+    "baseline_year",
+    [2020, 2023],
+)
+@pytest.mark.parametrize("projection_resolution", ["regional", "REGIONAL"])
+@pytest.mark.parametrize("regions_ext", ["gpkg", "parquet"])
+def test_regionaldownscaleconfig_valid_inputs_load_regions(
+    data_dir, baseline_year, projection_resolution, regions_ext
+):
+    """
+    Test that RegionalDownsaleConfig can be instantiated with valid inputs, including
+    regional load projections (specified via the load_regions parameter).
+    """
+
+    grid = data_dir / "downscale" / "inputs" / "grid_char_weighted_scores.gpkg"
+    load_projections = (
+        data_dir
+        / "downscale"
+        / "inputs"
+        / "load_growth_projections"
+        / "eer_us-adp-2024-central_regional.csv"
+    )
+    regions = (
+        data_dir / "downscale" / "inputs" / "regions" / f"eer_adp_zones.{regions_ext}"
+    )
+    config = {
+        "grid": grid,
+        "grid_priority": "suitability_score",
+        "grid_baseline_load": "dc_capacity_mw_existing",
+        "baseline_year": baseline_year,
+        "load_projections": load_projections,
+        "projection_resolution": projection_resolution,
+        "load_value": "dc_load_mw",
+        "load_year": "year",
+        "load_regions": "zone",
+        "regions": regions,
+        "region_names": "emm_zone",
+    }
+
+    downscale_config = RegionalDownscaleConfig(**config)
+    assert downscale_config.regions_ext == f".{regions_ext}"
+    expected_regions_flavor = "ogr" if regions_ext == "gpkg" else "geoparquet"
+    assert downscale_config.regions_flavor == expected_regions_flavor
+
+
+def test_regionaldownscaleconfig_resolution_error(data_dir):
+    """
+    Test that RegionalDownsaleConfig raises a validation error when passed "regional"
+    as the projection_resolution instead of "total".
+    """
+
+    grid = data_dir / "downscale" / "inputs" / "grid_char_weighted_scores.gpkg"
+    load_projections = (
+        data_dir
+        / "downscale"
+        / "inputs"
+        / "load_growth_projections"
+        / "eer_us-adp-2024-central_national.csv"
+    )
+    regions = data_dir / "downscale" / "inputs" / "regions" / "eer_adp_zones.gpkg"
+    config = {
+        "grid": grid,
+        "grid_priority": "suitability_score",
+        "grid_baseline_load": "dc_capacity_mw_existing",
+        "baseline_year": 2022,
+        "load_projections": load_projections,
+        "projection_resolution": "total",
+        "load_value": "dc_load_mw",
+        "load_year": "year",
+        "load_regions": "zone",
+        "regions": regions,
+        "region_names": "emm_zone",
+    }
+
+    with pytest.raises(ValidationError, match="Input should be 'regional"):
+        RegionalDownscaleConfig(**config)
+
+
 # TODO:
 # Tests for RegionalDownscaleConfig:
-# valid inputs (include geopackage or geoparquet for regions)
-# sets dynamic attributes correctly - regions_ext, regions_flavor
 # raises errors under validate_regions for each of:
-#        1. Has either Polygon or MultiPolygon geometries.
-#        2. Has a column corresponding to the input region_names parameter
-#        3. Has a CRS matching the input grid.
+#        1. non-polygon geometries
+#        2. missing region_names column
+#        3. CRS doesn't match grid CRS
 
 
 if __name__ == "__main__":

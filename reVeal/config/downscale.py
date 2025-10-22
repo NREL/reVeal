@@ -34,6 +34,23 @@ class ProjectionResolutionEnum(BaseEnum):
     REGIONAL = "regional"
 
 
+class TotalResolutionEnum(BaseEnum):
+    """
+    Enumeration for allowable load resolutions for total downscaling. Case insensitive.
+    """
+
+    TOTAL = "total"
+
+
+class RegionalResolutionEnum(BaseEnum):
+    """
+    Enumeration for allowable load resolutions for regional downscaling. Case
+    insensitive.
+    """
+
+    REGIONAL = "regional"
+
+
 class BaseDownscaleConfig(BaseGridConfig):
     """
     Base model for DownscaleConfig with only required inputs and datatypes.
@@ -117,9 +134,6 @@ class BaseDownscaleConfig(BaseGridConfig):
                 f"baseline_year ({self.baseline_year})."
             )
 
-        if df["year"].duplicated().any():
-            raise ValueError("Input load_projections dataset has duplicate years")
-
         return self
 
 
@@ -130,6 +144,7 @@ class TotalDownscaleConfig(BaseDownscaleConfig):
     """
 
     # pylint: disable=too-few-public-methods
+    projection_resolution: TotalResolutionEnum
 
     @model_validator(mode="after")
     def validate_load_projections_duplicates(self):
@@ -153,6 +168,7 @@ class RegionalDownscaleConfig(BaseDownscaleConfig):
     """
 
     # pylint: disable=too-few-public-methods
+    projection_resolution: RegionalResolutionEnum
     load_regions: Optional[str] = None
     region_weights: Optional[dict] = None
     regions: FilePath
@@ -166,7 +182,7 @@ class RegionalDownscaleConfig(BaseDownscaleConfig):
         """
         Dynamically set the regions_ext property.
         """
-        self.regions_ext = self.grid.suffix
+        self.regions_ext = self.regions.suffix
 
         return self
 
@@ -181,7 +197,7 @@ class RegionalDownscaleConfig(BaseDownscaleConfig):
             A TypeError will be raised if the input dset is not either a geoparquet
             or compatible with reading with ogr.
         """
-        if self.grid_ext == ".parquet":
+        if self.regions_ext == ".parquet":
             self.regions_flavor = "geoparquet"
         elif _get_drivers_for_path(self.grid):
             self.regions_flavor = "ogr"
@@ -210,7 +226,7 @@ class RegionalDownscaleConfig(BaseDownscaleConfig):
         else:
             raise TypeError(f"Unrecognized file format for {self.regions}.")
 
-        valid_geom_types = ["Polygon", "MultiPolygons"]
+        valid_geom_types = ["polygon", "multipolygon"]
         if geom_type not in valid_geom_types:
             raise TypeError(
                 "Input regions dataset must have geometries of one of the following "

@@ -8,6 +8,8 @@ from typing import Optional
 from pydantic import BaseModel, FilePath, model_validator
 from pyogrio._ogr import _get_drivers_for_path
 
+from reVeal.fileio import get_crs_pyogrio, get_crs_parquet
+
 
 class BaseModelStrict(BaseModel):
     """
@@ -49,6 +51,7 @@ class BaseGridConfig(BaseModelStrict):
     # Dynamically derived attributes
     grid_ext: Optional[str] = None
     grid_flavor: Optional[str] = None
+    grid_crs: Optional[str] = None
 
     @model_validator(mode="after")
     def set_grid_ext(self):
@@ -76,6 +79,19 @@ class BaseGridConfig(BaseModelStrict):
             self.grid_flavor = "ogr"
         else:
             raise TypeError(f"Unrecognized file format for {self.grid}.")
+
+        return self
+
+    @model_validator(mode="after")
+    def set_grid_crs(self):
+        """
+        Dynamically set the crs property.
+        """
+
+        if self.grid_flavor == "geoparquet":
+            self.grid_crs = get_crs_parquet(self.grid)
+        else:
+            self.grid_crs = get_crs_pyogrio(self.grid)
 
         return self
 

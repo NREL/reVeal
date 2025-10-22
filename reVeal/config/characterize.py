@@ -382,8 +382,6 @@ class CharacterizeConfig(BaseCharacterizeConfig):
     """
 
     # pylint: disable=too-few-public-methods
-    # Dynamically derived attributes
-    grid_crs: Optional[str] = None
 
     @model_validator(mode="before")
     def propagate_datadir(self):
@@ -468,19 +466,6 @@ class CharacterizeConfig(BaseCharacterizeConfig):
             check_eval_str(v)
 
         return value
-
-    @model_validator(mode="after")
-    def set_crs(self):
-        """
-        Dynamically set the crs property.
-        """
-
-        if Path(self.grid).suffix == ".parquet":
-            self.grid_crs = get_crs_parquet(self.grid)
-        else:
-            self.grid_crs = get_crs_pyogrio(self.grid)
-
-        return self
 
     @model_validator(mode="after")
     def validate_crs(self):
