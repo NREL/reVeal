@@ -729,5 +729,93 @@ def test_regionaldownscaleconfig_duplicate_region_years(data_dir, tmp_path):
         RegionalDownscaleConfig(**config)
 
 
+def test_regionaldownscaleconfig_region_inconsistency_projections(data_dir, tmp_path):
+    """
+    Test that RegionalDownsaleConfig raises a ValueError when there are
+    inconsistent regions between the regions dataset and the load projections
+    dataset.
+    """
+
+    grid = data_dir / "downscale" / "inputs" / "grid_char_weighted_scores.gpkg"
+    src_projections = (
+        data_dir
+        / "downscale"
+        / "inputs"
+        / "load_growth_projections"
+        / "eer_us-adp-2024-central_regional.csv"
+    )
+
+    load_df = pd.read_csv(src_projections)
+    load_df["zone"] = load_df["zone"] + " Zone"
+    load_projections = tmp_path / "projections.csv"
+    load_df.to_csv(load_projections, header=True, index=False)
+
+    regions = data_dir / "downscale" / "inputs" / "regions" / "eer_adp_zones.gpkg"
+
+    config = {
+        "grid": grid,
+        "grid_priority": "suitability_score",
+        "grid_baseline_load": "dc_capacity_mw_existing",
+        "baseline_year": 2022,
+        "load_projections": load_projections,
+        "projection_resolution": "regional",
+        "load_value": "dc_load_mw",
+        "load_year": "year",
+        "load_regions": "zone",
+        "regions": regions,
+        "region_names": "emm_zone",
+    }
+
+    with pytest.raises(
+        ValueError, match="Region names do not match between .* and zone column in"
+    ):
+        RegionalDownscaleConfig(**config)
+
+
+def test_regionaldownscaleconfig_region_inconsistency_weights(data_dir):
+    """
+    Test that RegionalDownsaleConfig raises a ValueError when there are
+    inconsistent regions between the regions dataset and the region weights
+    dictionary.
+    """
+
+    grid = data_dir / "downscale" / "inputs" / "grid_char_weighted_scores.gpkg"
+    load_projections = (
+        data_dir
+        / "downscale"
+        / "inputs"
+        / "load_growth_projections"
+        / "eer_us-adp-2024-central_national.csv"
+    )
+    regions = data_dir / "downscale" / "inputs" / "regions" / "eer_adp_zones.gpkg"
+    region_weights = {
+        "Carolinas": 0.04,
+        "Central Great Plains": 0.04,
+        "Florida": 0.04,
+        "Great Basin": 0.04,
+        "Metropolitan Chicago": 0.04,
+    }
+
+    config = {
+        "grid": grid,
+        "grid_priority": "suitability_score",
+        "grid_baseline_load": "dc_capacity_mw_existing",
+        "baseline_year": 2022,
+        "load_projections": load_projections,
+        "projection_resolution": "regional",
+        "load_value": "dc_load_mw",
+        "load_year": "year",
+        "regions": regions,
+        "region_weights": region_weights,
+        "region_names": "emm_zone",
+    }
+
+    with pytest.raises(
+        ValueError,
+        match="Region names do not match between .* and keys in region_weights",
+    ):
+        RegionalDownscaleConfig(**config)
+
+
 if __name__ == "__main__":
     pytest.main([__file__, "-s"])

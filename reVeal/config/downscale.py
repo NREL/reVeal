@@ -22,6 +22,7 @@ from reVeal.fileio import (
     get_geom_type_pyogrio,
     get_crs_parquet,
     get_crs_pyogrio,
+    read_vectors,
 )
 
 
@@ -293,15 +294,41 @@ class RegionalDownscaleConfig(BaseDownscaleConfig):
 
         return self
 
-    # check that either load_regions or region_weights is provided,b ut not both
-    # if load_regions is provided:
-    # validate the the load region column exists in the input loads dataframe
-    # check for duplicates by load_region and year
-    # check that load_regions maps to regions in regions dataset???
-    # maybe move this downstream?
-    # if region_weights is provided:
-    # check that region_weights maps to regions in the regions dataset???
-    # maybe move this downstream?
+    @model_validator(mode="after")
+    def validate_region_consistency(self):
+        """
+        Check that the regions in the regions dataset match either the
+        load_regions in the load_projections dataset or the keys of the
+        region_weights.
+        """
+        regions_df = read_vectors(self.regions, columns=[self.region_names])
+        expected_regions = regions_df[self.region_names].str.lower().unique().tolist()
+
+        if self.load_regions:
+            projections_df = pd.read_csv(
+                self.load_projections, usecols=[self.load_regions]
+            )
+            projection_regions = (
+                projections_df[self.load_regions].str.lower().unique().tolist()
+            )
+            source = f"{self.load_regions} column in {self.load_projections}"
+        elif self.region_weights:
+            projection_regions = [str(k).lower() for k in self.region_weights.keys()]
+            source = "keys in region_weights"
+        else:
+            raise ValueError("Either load_regions or region_weights must be specified.")
+
+        differences = list(
+            set(expected_regions).symmetric_difference(set(projection_regions))
+        )
+        if len(differences) > 0:
+            raise ValueError(
+                f"Region names do not match between {self.region_names} "
+                f"column in {self.regions} and {source}. The following keys are not "
+                f"matched across the two sources: {differences}."
+            )
+
+        return self
 
 
 # class DownscaleConfig(BaseDownscaleConfig):
