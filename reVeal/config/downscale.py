@@ -271,8 +271,7 @@ class RegionalDownscaleConfig(BaseDownscaleConfig):
         If load_regions is specified, check that the column exists in the
         load_projections dataset.
 
-        Also check for duplicat entries over load_regions
-        and years.
+        Also check for duplicate entries over load_regions and years.
         """
         if not self.load_regions:
             return self

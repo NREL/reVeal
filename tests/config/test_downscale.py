@@ -652,5 +652,82 @@ def test_regionaldownscaleconfig_both_load_regions_and_region_weights(data_dir):
         RegionalDownscaleConfig(**config)
 
 
+def test_regionaldownscaleconfig_missing_load_regions(data_dir):
+    """
+    Test that RegionalDownsaleConfig raises a ValueError when passed input load_regions
+    column that does not exist in the load_projections dataset.
+    """
+
+    grid = data_dir / "downscale" / "inputs" / "grid_char_weighted_scores.gpkg"
+    load_projections = (
+        data_dir
+        / "downscale"
+        / "inputs"
+        / "load_growth_projections"
+        / "eer_us-adp-2024-central_national.csv"
+    )
+    regions = data_dir / "downscale" / "inputs" / "regions" / "eer_adp_zones.gpkg"
+    config = {
+        "grid": grid,
+        "grid_priority": "suitability_score",
+        "grid_baseline_load": "dc_capacity_mw_existing",
+        "baseline_year": 2022,
+        "load_projections": load_projections,
+        "projection_resolution": "regional",
+        "load_value": "dc_load_mw",
+        "load_year": "year",
+        "load_regions": "REGION",
+        "regions": regions,
+        "region_names": "emm_zone",
+    }
+
+    with pytest.raises(
+        ValueError, match="Specified attribute .* does not exist in the input"
+    ):
+        RegionalDownscaleConfig(**config)
+
+
+def test_regionaldownscaleconfig_duplicate_region_years(data_dir, tmp_path):
+    """
+    Test that RegionalDownsaleConfig raises a ValueError when there are duplicate
+    entries for regions + year in the load_projections dataset.
+    """
+
+    grid = data_dir / "downscale" / "inputs" / "grid_char_weighted_scores.gpkg"
+    src_projections = (
+        data_dir
+        / "downscale"
+        / "inputs"
+        / "load_growth_projections"
+        / "eer_us-adp-2024-central_regional.csv"
+    )
+
+    load_df = pd.read_csv(src_projections)
+    new_load_df = pd.concat([load_df.iloc[0:1], load_df], ignore_index=True)
+    load_projections = tmp_path / "projections.csv"
+    new_load_df.to_csv(load_projections, header=True, index=False)
+
+    regions = data_dir / "downscale" / "inputs" / "regions" / "eer_adp_zones.gpkg"
+
+    config = {
+        "grid": grid,
+        "grid_priority": "suitability_score",
+        "grid_baseline_load": "dc_capacity_mw_existing",
+        "baseline_year": 2022,
+        "load_projections": load_projections,
+        "projection_resolution": "regional",
+        "load_value": "dc_load_mw",
+        "load_year": "year",
+        "load_regions": "zone",
+        "regions": regions,
+        "region_names": "emm_zone",
+    }
+
+    with pytest.raises(
+        ValueError, match="Input load_projections dataset has duplicate entries"
+    ):
+        RegionalDownscaleConfig(**config)
+
+
 if __name__ == "__main__":
     pytest.main([__file__, "-s"])
