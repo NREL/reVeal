@@ -18,6 +18,7 @@ from reVeal.config.config import load_config, BaseGridConfig
 from reVeal.config.characterize import CharacterizeConfig
 from reVeal.config.normalize import NormalizeConfig, GRID_IDX
 from reVeal.config.score_weighted import ScoreWeightedConfig
+from reVeal.config.downscale import DownscaleConfig
 from reVeal import overlay, normalization
 
 OVERLAY_METHODS = {
@@ -503,3 +504,22 @@ class ScoreWeightedGrid(RunnableGrid):
             )
 
         return results_df
+
+
+class DownscaleGrid(RunnableGrid):
+    """
+    Subclass of RunnableGrid for calculating weighted composite score.
+    """
+
+    CONFIG_CLASS = DownscaleConfig
+
+    def run(self):
+        """
+        Run load downscaling based on the input configuration.
+
+        Returns
+        -------
+        gpd.GeoDataFrame
+            A GeoDataFrame with downscaled load values attributes.
+        """
+        raise NotImplementedError("run method is not implemented for DownscaleGrid")
