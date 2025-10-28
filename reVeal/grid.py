@@ -540,6 +540,7 @@ class DownscaleGrid(RunnableGrid):
                     self.config.load_year,
                     self.config.region_weights,
                 )
+                self.config.load_regions = "region"
             else:
                 regional_load_df = load_df
 
