@@ -63,6 +63,20 @@ def apportion_load_to_regions(load_df, load_value_col, load_year_col, region_wei
     return region_loads_df
 
 
+def downscale_total(
+    grid_df,
+    grid_priority_col,
+    grid_baseline_load_col,
+    baseline_year,
+    load_df,
+    load_value_col,
+    load_year_col,
+):
+    # TODO: rename columns for consistency across the input datasets
+
+    return grid_df
+
+
 def downscale_regional(
     grid_df,
     grid_priority_col,
@@ -76,20 +90,6 @@ def downscale_regional(
 ):
     # TODO: drop grids with unknown regions
     # TODO: check for validity/consistency of regions across datasets
-    # TODO: rename columns for consistency across the input datasets
-
-    return grid_df
-
-
-def downscale_total(
-    grid_df,
-    grid_priority_col,
-    grid_baseline_load_col,
-    baseline_year,
-    load_df,
-    load_value_col,
-    load_year_col,
-):
     # TODO: rename columns for consistency across the input datasets
 
     return grid_df
