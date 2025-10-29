@@ -86,10 +86,10 @@ def test_downscale_total(data_dir):
         load_year_col="year",
     )
 
-    # expected_src = data_dir / "load" / "grid_downscaled_total.gpkg"
-    # expected_df = gpd.read_file(expected_src)
+    expected_src = data_dir / "load" / "grid_downscaled_total.gpkg"
+    expected_df = gpd.read_file(expected_src)
 
-    # assert_geodataframe_equal(results_df, expected_df)
+    assert_geodataframe_equal(results_df, expected_df)
 
 
 def test_downscale_regional(data_dir):
@@ -133,4 +133,4 @@ def test_downscale_regional(data_dir):
 
 
 if __name__ == "__main__":
-    pytest.main([__file__, "-s"])
+    pytest.main([__file__, "-s", "-k", "test_downscale_total"])
