@@ -257,6 +257,7 @@ def downscale_total(
         for group_id, year_df in load_df.groupby(by=[load_year_col]):
             year = group_id[0]
             grid_year_df["year"] = year
+            grid_year_df[f"new_{load_value_col}"] = float(0.0)
 
             if len(year_df) > 1:
                 raise ValueError(f"Multiple records for load projections year {year}")
@@ -310,7 +311,6 @@ def downscale_total(
             grid_year_df["_developable_capacity"] -= grid_year_df[
                 f"new_{load_value_col}"
             ]
-            grid_year_df[f"new_{load_value_col}"] = float(0.0)
             grid_year_df.reset_index(inplace=True)
 
             grid_years.append(grid_year_df.copy())
