@@ -2,6 +2,7 @@
   "grid": "downscale/inputs/grid_char_weighted_scores.gpkg",
   "grid_priority": "suitability_score",
   "grid_baseline_load": "dc_capacity_mw_existing",
+  "grid_capacity_col": "developable_capacity_mw",
   "baseline_year": 2022,
   "projection_resolution": "regional",
   "load_projections": "downscale/inputs/load_growth_projections/eer_us-adp-2024-central_regional.csv",
@@ -9,5 +10,10 @@
   "load_year": "year",
   "regions": "downscale/inputs/regions/eer_adp_zones.gpkg",
   "region_names": "emm_zone",
-  "load_regions": "zone"
+  "load_regions": "zone",
+  "max_site_addition_per_year": 1000,
+  "site_saturation_limit": 0.5,
+  "priority_power": 100,
+  "n_bootstraps": 500,
+  "random_seed": 0
 }
