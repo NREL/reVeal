@@ -402,7 +402,7 @@ valid-metaclass-classmethod-first-arg=mcs
 [DESIGN]
 
 # Maximum number of arguments for function / method
-max-args=15
+max-args=16
 
 # Maximum number of attributes for a class (see R0902).
 max-attributes=10
@@ -426,13 +426,13 @@ max-public-methods=20
 max-returns=6
 
 # Maximum number of statements in function / method body
-max-statements=50
+max-statements=60
 
 # Minimum number of public methods for a class (see R0903).
 min-public-methods=0
 
 # Maximum number of position arguments
-max-positional-arguments=15
+max-positional-arguments=16
 
 
 [IMPORTS]

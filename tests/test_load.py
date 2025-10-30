@@ -59,7 +59,8 @@ def test_apportion_load_to_regions_bad_weights(data_dir):
         apportion_load_to_regions(load_df, "dc_load_mw", "year", region_weights)
 
 
-def test_downscale_total(data_dir):
+@pytest.mark.parametrize("max_site_addition_per_year", [1000, None])
+def test_downscale_total(data_dir, max_site_addition_per_year):
     """
     Unit test for downscale_total() - checks that it produced the expected results for
     known inputs.
@@ -85,6 +86,7 @@ def test_downscale_total(data_dir):
         load_df=load_df,
         load_value_col="dc_load_mw",
         load_year_col="year",
+        max_site_addition_per_year=max_site_addition_per_year,
         site_saturation_limit=0.5,
         priority_power=100,
         n_bootstraps=500,
@@ -92,13 +94,17 @@ def test_downscale_total(data_dir):
     )
     results_df.reset_index(inplace=True)
 
-    expected_src = data_dir / "load" / "grid_downscaled_total.gpkg"
+    if max_site_addition_per_year:
+        expected_src = data_dir / "load" / "grid_downscaled_total_year_cap.gpkg"
+    else:
+        expected_src = data_dir / "load" / "grid_downscaled_total.gpkg"
     expected_df = gpd.read_file(expected_src)
 
     assert_geodataframe_equal(results_df, expected_df, check_like=True)
 
 
-def test_downscale_regional(data_dir):
+@pytest.mark.parametrize("max_site_addition_per_year", [1000, None])
+def test_downscale_regional(data_dir, max_site_addition_per_year):
     """
     Unit test for downscale_regional() - checks that it produced the expected results
     for known inputs.
@@ -131,6 +137,7 @@ def test_downscale_regional(data_dir):
         load_value_col="dc_load_mw",
         load_year_col="year",
         load_region_col="zone_group",
+        max_site_addition_per_year=max_site_addition_per_year,
         site_saturation_limit=0.5,
         priority_power=100,
         n_bootstraps=100,
@@ -138,7 +145,10 @@ def test_downscale_regional(data_dir):
     )
     results_df.reset_index(inplace=True)
 
-    expected_src = data_dir / "load" / "grid_downscaled_regional.gpkg"
+    if max_site_addition_per_year:
+        expected_src = data_dir / "load" / "grid_downscaled_regional_year_cap.gpkg"
+    else:
+        expected_src = data_dir / "load" / "grid_downscaled_regional.gpkg"
     expected_df = gpd.read_file(expected_src)
 
     assert_geodataframe_equal(results_df, expected_df, check_like=True)
