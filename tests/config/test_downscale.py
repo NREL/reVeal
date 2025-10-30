@@ -130,6 +130,56 @@ def test_basedownscaleconfig_valid_inputs_required_only(
 @pytest.mark.parametrize(
     "update_parameters",
     [
+        {"max_site_addition_per_year": 0},
+        {"max_site_addition_per_year": -1},
+        {"site_saturation_limit": 0},
+        {"site_saturation_limit": -1},
+        {"priority_power": 0},
+        {"priority_power": -1},
+        {"n_bootsraps": 0},
+        {"n_bootsraps": -1},
+        {"random_seed": "one"},
+    ],
+)
+def test_basedownscaleconfig_bad_optional_inputs(data_dir, update_parameters):
+    """
+    Test that BaseDownsaleConfig raises validation errors for optional inputs that
+    don't meed the corresponding field constraints.
+    """
+
+    grid = data_dir / "downscale" / "inputs" / "grid_char_weighted_scores.gpkg"
+    load_projections = (
+        data_dir
+        / "downscale"
+        / "inputs"
+        / "load_growth_projections"
+        / "eer_us-adp-2024-central_national.csv"
+    )
+    config = {
+        "grid": grid,
+        "grid_priority": "suitability_score",
+        "grid_baseline_load": "dc_capacity_mw_existing",
+        "grid_capacity": "developable_capacity_mw",
+        "baseline_year": 2022,
+        "load_projections": load_projections,
+        "projection_resolution": "total",
+        "load_value": "dc_load_mw",
+        "load_year": "year",
+        "max_site_addition_per_year": 1000,
+        "site_saturation_limit": 0.5,
+        "priority_power": 3,
+        "n_bootsraps": 100,
+        "random_seed": 1,
+    }
+    config.update(update_parameters)
+
+    with pytest.raises(ValidationError, match="Input should be"):
+        BaseDownscaleConfig(**config)
+
+
+@pytest.mark.parametrize(
+    "update_parameters",
+    [
         {"grid_priority": "best_site_score"},
         {"grid_baseline_load": "existing_mw"},
         {"grid_capacity": "cap_mw"},
