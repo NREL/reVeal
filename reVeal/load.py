@@ -471,9 +471,6 @@ def downscale_regional(
         of the projection) and a "new_" and "total_" load column, named with a suffix
         corresponding to the ``load_value_col``.
 
-        .. note::
-            If sites in the grid that do not intersect the ``
-
     Raises
     ------
     ValueError
