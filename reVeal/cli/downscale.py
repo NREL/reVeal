@@ -83,6 +83,7 @@ def run(
     grid_priority,
     grid_baseline_load,
     baseline_year,
+    grid_capacity,
     projection_resolution,
     load_projections,
     load_value,
@@ -92,6 +93,11 @@ def run(
     region_names=None,
     load_regions=None,
     region_weights=None,
+    max_site_addition_per_year=None,
+    site_saturation_limit=1,
+    priority_power=1,
+    n_bootstraps=10_000,
+    random_seed=0,
     max_workers=None,
     _local=True,
 ):
@@ -117,6 +123,9 @@ def run(
     baseline_year : int
         Year corresponding to the baseline load values in the ``grid_baseline_load``
         column.
+    grid_capacity : str
+        Name of attribute column in ``grid`` dataset indicating the developable
+        capacity of load within each site.
     projection_resolution : str
         Resolution of ``load_projections`` dataset. Refer to
         :obj:`reVeal.config.downscale.ProjectionResolutionEnum`.
@@ -158,6 +167,44 @@ def run(
         .. note::
             If ``projection_resolution == "regional"``, either this option or
             ``load_regions``, but not both, must be specified.
+    max_site_addition_per_year : float, optional
+        Value indicating the maximum allowable increment of load that can be added in
+        a given year to an individual site. The default value is None, which will not
+        apply a cap. This value can be used to ensure that the rate of expansion of
+        large load capacity in localized areas is not unrealistically rapid. Using
+        this parameter can also have the effect of achieving greater geographic
+        dispersion of load: since there is a limit to the pace at which individual
+        sites can build out load, more sites are typically required for the same amount
+        of project load.
+    site_saturation_limit : float, optional
+        Adjustment factor limit the developable capacity of load within each site.
+        This value is used to scale the values in the ``grid_capacity``. For
+        example, to limit the maximum deployed load in each site to half of the
+        actual developable load, use ``site_saturation_limit=0.5``. The lower this
+        value is set, the greater the degree of dispersion of load across sites will
+        be. The dfault is 1, which leaves the values in the ``grid_capacity``
+        unmodified.
+    priority_power : int, optional
+        This factor can be used to exaggerate the influence of the values in
+        ``grid_priority``, such that higher values have an increased likelihood of
+        load deployment and lower values have a decreased likelihood. This effect is
+        implemented by raising the values in ``grid_priority`` to the specified
+        ``priority_power``. As a result, if the input  values in ``grid_priority``
+        are < 1, setting ``priority_power`` to high values can result in completely
+        eliminating lower priority sites from consideration. The default value is 1,
+        which leaves the values in ``grid_priority`` unmodified. To achieve
+        less dispersion and greater clustering of downscaled load in higher priority
+        sites, increase this value.
+    n_bootstraps : int, optional
+        Number of bootstraps to simulate in each projection year. Default is 10,000.
+        In general, larger values will produce more stable results, with less chance
+        for lower priority sites to receive large amounts of deployed load. However,
+        larger values will also cause longer run times.
+    random_seed : int, optional
+        Random seed to use for reproducible bootstrapping. Default is 0. In general,
+        this value does not need to be modified. The exception is if you are interested
+        in testing sensitivities and/or producing multiple realizations or scenarios of
+        deployment for a given set of values in ``load_priority``.
     max_workers : [int, NoneType], optional
         Maximum number of workers to use for multiprocessing when running downscaling.
         By default None, will use all available workers.
@@ -179,6 +226,7 @@ def run(
         grid_priority=grid_priority,
         grid_baseline_load=grid_baseline_load,
         baseline_year=baseline_year,
+        grid_capacity=grid_capacity,
         projection_resolution=projection_resolution,
         load_projections=load_projections,
         load_value=load_value,
@@ -188,6 +236,11 @@ def run(
         out_dir=out_dir,
         load_regions=load_regions,
         region_weights=region_weights,
+        max_site_addition_per_year=max_site_addition_per_year,
+        site_saturation_limit=site_saturation_limit,
+        priority_power=priority_power,
+        n_bootstraps=n_bootstraps,
+        random_seed=random_seed,
     )
 
     if max_workers is not None:

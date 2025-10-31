@@ -177,8 +177,7 @@ def downscale_total(
         Year corresponding to the baseline load values in ``grid_baseline_load_col``.
     grid_capacity_col : str
         Name of column in ``grid_df`` indicating the developable capacity of
-        load within each site. Note that this value can modified using the
-        ``site_saturation_limit`` parameter.
+        load within each site.
     load_df : pandas.DataFrame
         Dataframe containing aggregate load projections for the area encompassing the
         input ``grid_df`` sites.
@@ -191,7 +190,7 @@ def downscale_total(
         Value indicating the maximum allowable increment of load that can be added in
         a given year to an individual site. The default value is None, which will not
         apply a cap. This value can be used to ensure that the rate of expansion of
-        data center capacity in localized areas is not unrealistically rapid. Using
+        large load capacity in localized areas is not unrealistically rapid. Using
         this parameter can also have the effect of achieving greater geographic
         dispersion of load: since there is a limit to the pace at which individual
         sites can build out load, more sites are typically required for the same amount
@@ -201,7 +200,7 @@ def downscale_total(
         This value is used to scale the values in the ``grid_capacity_col``. For
         example, to limit the maximum deployed load in each site to half of the
         actual developable load, use ``site_saturation_limit=0.5``. The lower this
-        value is set, the greater the degree of dispersion of load  across sites will
+        value is set, the greater the degree of dispersion of load across sites will
         be. The dfault is 1, which leaves the values in the ``grid_capacity_col``
         unmodified.
     priority_power : int, optional

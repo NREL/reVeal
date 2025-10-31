@@ -60,8 +60,8 @@ class BaseDownscaleConfig(BaseGridConfig):
     # Input at instantiation
     grid_priority: str
     grid_baseline_load: str
-    grid_capacity: str
     baseline_year: PositiveInt
+    grid_capacity: str
     projection_resolution: ProjectionResolutionEnum
     load_projections: FilePath
     load_value: str
