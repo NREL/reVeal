@@ -140,9 +140,14 @@ def run(
         Name of column containing load values in ``load_projections`` dataset to
         disaggregate.
 
+        .. important::
+            The projected values of load found in this column are expected to be and
+            will be treated as incremental additions of load in each year, NOT
+            cumulative values.
+
         .. note::
-            This value will also be used as the name for the column containing
-            downscaled load values in the output GeoPackage.
+            This value will be used as the name the columns containing downscaled load
+            values in the output grid GeoPackage.
     load_year : str
         Name of column in ``load_projections`` dataset containing year values.
     out_dir : str
