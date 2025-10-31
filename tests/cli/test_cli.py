@@ -361,5 +361,46 @@ def test_downscale(
     ), "Expected progress messages were not found in log file."
 
 
+def test_downscale_invalid_config(
+    cli_runner,
+    tmp_path,
+    data_dir,
+):
+    """
+    Check for sane error message in log when an invalid configuration is passed.
+    """
+    in_config_path = data_dir / "downscale" / "config_total.json"
+    with open(in_config_path, "r") as f:
+        config_data = json.load(f)
+    config_data["grid"] = (data_dir / config_data["grid"]).as_posix()
+    config_data["load_projections"] = (
+        data_dir / config_data["load_projections"]
+    ).as_posix()
+    config_data["load_value"] = "MW"
+
+    config_path = tmp_path / "config.json"
+    with open(config_path, "w") as f:
+        json.dump(config_data, f)
+
+    result = cli_runner.invoke(
+        main,
+        ["downscale", "-c", config_path.as_posix()],
+    )
+    assert result.exit_code == 1
+
+    log_paths = list((tmp_path / "logs").glob("*.log"))
+    if len(log_paths) == 0:
+        raise ValueError("Logs were not created by command.")
+    log_path = log_paths[0]
+    with open(log_path, "r") as f:
+        log = f.read()
+    expected_contents = (
+        "Configuration did not pass validation. The following issues were identified:\n"
+        "1 validation error for BaseDownscaleConfig\n"
+        "  Value error, Specified attribute MW does not exist in the input"
+    )
+    assert expected_contents in log, "Expected error message not found in log file"
+
+
 if __name__ == "__main__":
     pytest.main([__file__, "-s"])
