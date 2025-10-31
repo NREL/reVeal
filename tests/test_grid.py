@@ -404,7 +404,7 @@ def test_run_scoreweightedgrid_overwrite_output(data_dir, score_wt_grid):
     ).all(), "Unexpected output values"
 
 
-def test_run_downscalegrid_total(data_dir, downscale_total_grid):
+def test_run_totaldownscalegrid(data_dir, downscale_total_grid):
     """
     Test the run() function of DownscaleGrid with total resolution load projections.
     """
@@ -420,7 +420,7 @@ def test_run_downscalegrid_total(data_dir, downscale_total_grid):
     assert_geodataframe_equal(results_df, expected_df, check_like=True)
 
 
-def test_run_downscalegrid_regional(data_dir, downscale_regional_grid):
+def test_run_regionaldownscalegrid(data_dir, downscale_regional_grid):
     """
     Test the run() function of DownscaleGrid with regional resolution load projections.
     """
@@ -441,7 +441,7 @@ def test_run_downscalegrid_regional(data_dir, downscale_regional_grid):
     assert_geodataframe_equal(results_df, expected_df, check_like=True)
 
 
-def test_run_downscalegrid_region_weights(data_dir, downscale_region_weights_grid):
+def test_run_regionaldownscalegrid_weights(data_dir, downscale_region_weights_grid):
     """
     Test the run() function of DownscaleGrid with total resolution load projections
     and region weights.
