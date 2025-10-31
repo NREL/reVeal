@@ -403,32 +403,56 @@ def test_run_scoreweightedgrid_overwrite_output(data_dir, score_wt_grid):
     ).all(), "Unexpected output values"
 
 
-def test_run_downscalegrid_total(downscale_total_grid):
+def test_run_downscalegrid_total(data_dir, downscale_total_grid):
     """
     Test the run() function of DownscaleGrid with total resolution load projections.
     """
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
-        downscale_total_grid.run()
+        results_df = downscale_total_grid.run()
+
+    expected_src = (
+        data_dir / "downscale" / "outputs" / "grid_downscaled_total_year_cap.gpkg"
+    )
+    expected_df = gpd.read_file(expected_src)
+
+    assert_geodataframe_equal(results_df, expected_df, check_like=True)
 
 
-def test_run_downscalegrid_regional(downscale_regional_grid):
+def test_run_downscalegrid_regional(data_dir, downscale_regional_grid):
     """
     Test the run() function of DownscaleGrid with regional resolution load projections.
     """
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
-        downscale_regional_grid.run()
+        results_df = downscale_regional_grid.run()
+
+    expected_src = (
+        data_dir / "downscale" / "outputs" / "grid_downscaled_regional_year_cap.gpkg"
+    )
+    expected_df = gpd.read_file(expected_src)
+
+    assert_geodataframe_equal(results_df, expected_df, check_like=True)
 
 
-def test_run_downscalegrid_region_weights(downscale_region_weights_grid):
+def test_run_downscalegrid_region_weights(data_dir, downscale_region_weights_grid):
     """
     Test the run() function of DownscaleGrid with total resolution load projections
     and region weights.
     """
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
-        downscale_region_weights_grid.run()
+        results_df = downscale_region_weights_grid.run()
+
+    expected_src = (
+        data_dir
+        / "downscale"
+        / "outputs"
+        / "grid_downscaled_region_weights_year_cap.gpkg"
+    )
+    expected_df = gpd.read_file(expected_src)
+
+    assert_geodataframe_equal(results_df, expected_df, check_like=True)
 
 
 if __name__ == "__main__":
