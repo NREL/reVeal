@@ -18,7 +18,7 @@ from reVeal.config.config import load_config, BaseGridConfig
 from reVeal.config.characterize import CharacterizeConfig
 from reVeal.config.normalize import NormalizeConfig, GRID_IDX
 from reVeal.config.score_weighted import ScoreWeightedConfig
-from reVeal.config.downscale import BaseDownscaleConfig
+from reVeal.config.downscale import TotalDownscaleConfig, RegionalDownscaleConfig
 from reVeal import overlay, normalization, load
 
 OVERLAY_METHODS = {
@@ -506,12 +506,13 @@ class ScoreWeightedGrid(RunnableGrid):
         return results_df
 
 
-class DownscaleGrid(RunnableGrid):
+class TotalDownscaleGrid(RunnableGrid):
     """
-    Subclass of RunnableGrid for calculating weighted composite score.
+    Subclass of RunnableGrid for downscaling aggregate load projections to sites in
+    grid.
     """
 
-    CONFIG_CLASS = BaseDownscaleConfig
+    CONFIG_CLASS = TotalDownscaleConfig
 
     def run(self):
         """
@@ -523,70 +524,87 @@ class DownscaleGrid(RunnableGrid):
             A GeoDataFrame with downscaled load values attributes.
         """
 
+        LOGGER.info("Loading load projections")
         load_df = pd.read_csv(self.config.load_projections)
 
-        if self.config.projection_resolution == "regional":
-            LOGGER.info("Assigning grid cells to regions")
-            regions_lkup_df = overlay.calc_area_weighted_majority(
-                self.df, self.config.regions, self.config.region_names
+        LOGGER.info("Downscaling regional load projections to grid")
+        downscaled_df = load.downscale_total(
+            grid_df=self.df,
+            grid_priority_col=self.config.grid_priority,
+            grid_baseline_load_col=self.config.grid_baseline_load,
+            baseline_year=self.config.baseline_year,
+            grid_capacity_col=self.config.grid_capacity,
+            load_df=load_df,
+            load_value_col=self.config.load_value,
+            load_year_col=self.config.load_year,
+            max_site_addition_per_year=self.config.max_site_addition_per_year,
+            site_saturation_limit=self.config.site_saturation_limit,
+            priority_power=self.config.priority_power,
+            n_bootstraps=self.config.n_bootstraps,
+            random_seed=self.config.random_seed,
+            hide_pbar=True,
+        )
+
+        return downscaled_df
+
+
+class RegionalDownscaleGrid(RunnableGrid):
+    """
+    Subclass of RunnableGrid for downscaling regional load projections to sites in
+    grid.
+    """
+
+    CONFIG_CLASS = RegionalDownscaleConfig
+
+    def run(self):
+        """
+        Run load downscaling based on the input configuration.
+
+        Returns
+        -------
+        gpd.GeoDataFrame
+            A GeoDataFrame with downscaled load values attributes.
+        """
+
+        LOGGER.info("Loading load projections.")
+        load_df = pd.read_csv(self.config.load_projections)
+
+        LOGGER.info("Assigning grid cells to regions")
+        regions_lkup_df = overlay.calc_area_weighted_majority(
+            self.df, self.config.regions, self.config.region_names
+        )
+        self.df = pd.concat([self.df, regions_lkup_df], axis=1)
+
+        if self.config.region_weights:
+            LOGGER.info("Apportioning load to regions based on weights")
+            regional_load_df = load.apportion_load_to_regions(
+                load_df,
+                self.config.load_value,
+                self.config.load_year,
+                self.config.region_weights,
             )
-            self.df = pd.concat([self.df, regions_lkup_df], axis=1)
-
-            if self.config.region_weights:
-                LOGGER.info("Apportioning load to regions based on weights")
-                regional_load_df = load.apportion_load_to_regions(
-                    load_df,
-                    self.config.load_value,
-                    self.config.load_year,
-                    self.config.region_weights,
-                )
-                self.config.load_regions = "region"
-            else:
-                regional_load_df = load_df
-
-            LOGGER.info("Downscaling load to grid.")
-            downscaled_df = load.downscale_regional(
-                grid_df=self.df,
-                grid_priority_col=self.config.grid_priority,
-                grid_baseline_load_col=self.config.grid_baseline_load,
-                baseline_year=self.config.baseline_year,
-                grid_capacity_col=self.config.grid_capacity,
-                grid_region_col=self.config.region_names,
-                load_df=regional_load_df,
-                load_value_col=self.config.load_value,
-                load_year_col=self.config.load_year,
-                load_region_col=self.config.load_regions,
-                max_site_addition_per_year=self.config.max_site_addition_per_year,
-                site_saturation_limit=self.config.site_saturation_limit,
-                priority_power=self.config.priority_power,
-                n_bootstraps=self.config.n_bootstraps,
-                random_seed=self.config.random_seed,
-                hide_pbar=True,
-            )
-
-        elif self.config.projection_resolution == "total":
-            LOGGER.info("Downscaling load to grid.")
-            downscaled_df = load.downscale_total(
-                grid_df=self.df,
-                grid_priority_col=self.config.grid_priority,
-                grid_baseline_load_col=self.config.grid_baseline_load,
-                baseline_year=self.config.baseline_year,
-                grid_capacity_col=self.config.grid_capacity,
-                load_df=load_df,
-                load_value_col=self.config.load_value,
-                load_year_col=self.config.load_year,
-                max_site_addition_per_year=self.config.max_site_addition_per_year,
-                site_saturation_limit=self.config.site_saturation_limit,
-                priority_power=self.config.priority_power,
-                n_bootstraps=self.config.n_bootstraps,
-                random_seed=self.config.random_seed,
-                hide_pbar=True,
-            )
-
+            self.config.load_regions = "region"
         else:
-            raise ValueError(
-                "Unexpected value for self.config.projection_resolution: "
-                f"{self.config.projection_resolution}."
-            )
+            regional_load_df = load_df
+
+        LOGGER.info("Downscaling aggregate load to grid")
+        downscaled_df = load.downscale_regional(
+            grid_df=self.df,
+            grid_priority_col=self.config.grid_priority,
+            grid_baseline_load_col=self.config.grid_baseline_load,
+            baseline_year=self.config.baseline_year,
+            grid_capacity_col=self.config.grid_capacity,
+            grid_region_col=self.config.region_names,
+            load_df=regional_load_df,
+            load_value_col=self.config.load_value,
+            load_year_col=self.config.load_year,
+            load_region_col=self.config.load_regions,
+            max_site_addition_per_year=self.config.max_site_addition_per_year,
+            site_saturation_limit=self.config.site_saturation_limit,
+            priority_power=self.config.priority_power,
+            n_bootstraps=self.config.n_bootstraps,
+            random_seed=self.config.random_seed,
+            hide_pbar=True,
+        )
 
         return downscaled_df

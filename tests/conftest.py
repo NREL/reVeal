@@ -15,7 +15,8 @@ from reVeal.grid import (
     CharacterizeGrid,
     NormalizeGrid,
     ScoreWeightedGrid,
-    DownscaleGrid,
+    TotalDownscaleGrid,
+    RegionalDownscaleGrid,
 )
 
 TEST_DATA_DIR = PACKAGE_DIR.parent.joinpath("tests", "data")
@@ -120,7 +121,7 @@ def downscale_total_grid():
 
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
-        grid = DownscaleGrid(config_data)
+        grid = TotalDownscaleGrid(config_data)
 
     return grid
 
@@ -140,7 +141,7 @@ def downscale_regional_grid():
 
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
-        grid = DownscaleGrid(config_data)
+        grid = RegionalDownscaleGrid(config_data)
 
     return grid
 
@@ -163,6 +164,6 @@ def downscale_region_weights_grid():
 
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
-        grid = DownscaleGrid(config_data)
+        grid = RegionalDownscaleGrid(config_data)
 
     return grid

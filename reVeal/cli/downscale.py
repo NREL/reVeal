@@ -15,7 +15,7 @@ from reVeal.config.downscale import (
     RegionalDownscaleConfig,
 )
 from reVeal.log import get_logger, remove_streamhandlers
-from reVeal.grid import DownscaleGrid
+from reVeal.grid import TotalDownscaleGrid, RegionalDownscaleGrid
 
 LOGGER = logging.getLogger(__name__)
 
@@ -249,11 +249,20 @@ def run(
     )
 
     if max_workers is not None:
-        if DownscaleConfig.max_workers is None:
-            DownscaleConfig.max_workers = max_workers
+        if config.max_workers is None:
+            config.max_workers = max_workers
 
-    LOGGER.info("Initializing DownscaleGrid from input config...")
-    downscale_grid = DownscaleGrid(config)
+    if isinstance(config, TotalDownscaleConfig):
+        LOGGER.info("Initializing TotalDownscaleConfig from input config...")
+        downscale_grid = TotalDownscaleGrid(config)
+    elif isinstance(config, RegionalDownscaleConfig):
+        LOGGER.info("Initializing RegionalDownscaleGrid from input config...")
+        downscale_grid = RegionalDownscaleGrid(config)
+    else:
+        raise TypeError(
+            f"Unexpected type of config: {type(config)}. Must be one of the following: "
+            "[TotalDownscaleConfig, RegionalDownscaleConfig]"
+        )
     LOGGER.info("Initialization complete.")
 
     LOGGER.info("Running downscaling...")
