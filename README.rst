@@ -2,13 +2,13 @@
 reVeal
 ******
 
-|License| |Zenodo| |Ruff| |Pixi| |SWR| |Codecov|
+|License| |Zenodo| |PyPi| |PythonV| |Ruff| |Pixi| |SWR| |Codecov|
 
-.. |PythonV| image:: https://badge.fury.io/py/reVeal.svg
-    :target: https://pypi.org/project/reVeal/
+.. |PyPi| image:: https://badge.fury.io/py/NLR-reVeal.svg
+    :target: https://pypi.org/project/NLR-reVeal/
 
-.. |PyPi| image:: https://img.shields.io/pypi/pyversions/reVeal.svg
-    :target: https://pypi.org/project/reVeal/
+.. |PythonV| image:: https://img.shields.io/pypi/pyversions/NLR-reVeal.svg
+    :target: https://pypi.org/project/NLR-reVeal/
 
 .. |Ruff| image:: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json
     :target: https://github.com/astral-sh/ruff
