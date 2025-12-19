@@ -1,9 +1,10 @@
 """reVeal"""
+
 from pathlib import Path
 
 import pyproj
 
-from reVeal.version import __version__
+from reVeal._version import __version__
 
 # stop to_crs() bugs
 pyproj.network.set_network_enabled(active=False)

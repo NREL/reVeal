@@ -2,18 +2,19 @@
 """
 sphinx documentation config file
 """
+
 # pylint:disable=invalid-name,redefined-builtin,unused-argument
 import os
 import sys
 
-from reVeal.version import __version__
+from reVeal._version import __version__
 
 
 sys.path.insert(0, os.path.abspath("../../"))
 
 project = "reVeal"
-copyright = "2025, Alliance for Sustainable Energy, LLC and Root Geospatial LLC"
-author = "NREL: Michael Gleason, Pavlo Pinchuk, Victor Igwe, Travis Williams"
+copyright = "2025, Alliance for Energy Innovation, LLC and Root Geospatial LLC"
+author = "NLR: Michael Gleason, Pavlo Pinchuk, Victor Igwe, Travis Williams"
 
 pkg = os.path.dirname(os.path.abspath(os.path.dirname(__file__)))
 pkg = os.path.dirname(pkg)
@@ -62,7 +63,7 @@ html_theme_options = {
 html_css_file = ["custom.css"]
 html_context = {
     "display_github": True,
-    "github_user": "nrel",
+    "github_user": "nlr",
     "github_repo": "reVeal",
     "github_version": "main",
     "conf_py_path": "/docs/source/",

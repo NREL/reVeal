@@ -146,4 +146,12 @@ dmypy.json
 docs/_build
 docs/source/_autosummary
 
-scripts/
+# Misc
+/scripts
+
+# pixi environments
+.pixi/*
+!.pixi/config.toml
+
+# Dynamic versioning
+reVeal/_version.py
