@@ -6,7 +6,7 @@ requires = [
 build-backend = 'setuptools.build_meta'
 
 [project]
-name = "reVeal"
+name = "NLR-reVeal"
 dynamic = ["version"]
 description = "The reV Extension for Analyzing Large Loads."
 readme = "README.rst"
@@ -130,7 +130,7 @@ rasterio = ">=1.4.4,<2"
 tqdm = ">=4.67.1,<5"
 
 [tool.pixi.pypi-dependencies]
-reVeal = { path = ".", editable = true }
+NLR-reVeal = { path = ".", editable = true }
 
 [tool.pixi.feature.dev.dependencies]
 ipython = ">=8.29.0,<9"
