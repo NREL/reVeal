@@ -1,0 +1,112 @@
+name: Python checks
+permissions:
+  contents: read
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+#   lint:
+#     name: Lint Python Code Base with Ruff
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v6
+#       - uses: astral-sh/ruff-action@v3
+#         with:
+#           version: "latest"
+#           args: "check"
+#           src: "./reVeal"
+#       - uses: astral-sh/ruff-action@v3
+#         with:
+#           version: "latest"
+#           args: "format --check"
+#           src: "./reVeal"
+
+  locked-tests:
+    # needs: lint
+    name: Pixi-Locked Unit Tests
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v6
+      with:
+        fetch-depth: 0
+        fetch-tags: true
+
+    - uses: prefix-dev/setup-pixi@v0.9.3
+      with:
+        pixi-version: v0.59.0
+        locked: true
+        cache: true
+        cache-write: false
+        environments: dev
+
+    - run: |
+        pixi reinstall -e dev --locked reVeal
+        pixi run -e dev --locked tests
+
+  tests:
+    # needs: lint
+    name: Python Unit Tests (Pixi)
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v6
+      with:
+        fetch-depth: 0
+        fetch-tags: true
+
+    - uses: prefix-dev/setup-pixi@v0.9.3
+      with:
+        pixi-version: v0.59.0
+        locked: true
+        cache: true
+        cache-write: ${{ github.ref == 'refs/heads/main' }}
+        environments: dev
+
+    - run: |
+        pixi reinstall -e dev reVeal
+        pixi run -e dev tests
+
+  mamba-test:
+    # needs: lint
+    name: Mamba Test
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v6
+      with:
+        fetch-depth: 0
+        fetch-tags: true
+
+    - name: Install Environment
+      uses: mamba-org/setup-micromamba@main
+      with:
+        environment-file: environment.yml
+        cache-environment: true
+
+    - name: Install Package
+      shell: bash -l {0}
+      run: |
+        python -m pip install .[test]
+
+    - name: Run Pytest
+      shell: bash -l {0}
+      run: |
+        python -m pytest -v --disable-warnings -m "not skip_ci"

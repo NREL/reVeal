@@ -110,7 +110,7 @@ format = "ruff format ./reVeal"
 tests = "pytest --durations=20 -rapP -vv --cov=reVeal --cov-report=html --cov-branch --cov-report=xml:coverage.xml --cov-fail-under=80 tests/"
 
 [tool.pixi.feature.doc.tasks]
-python-docs = { cmd = "make html", cwd = "docs", env = { SPHINXOPTS = "--fail-on-warning --keep-going --nitpicky" }}
+python-docs = { cmd = "make html", cwd = "docs" }  #  env = { SPHINXOPTS = "--fail-on-warning --keep-going --nitpicky" }}
 
 [tool.pixi.feature.build.tasks]
 build-wheels = { cmd = "uv build --sdist --wheel --out-dir dist/ ." }

@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Question
+    url: https://github.com/NREL/reV/discussions
+    about: |
+      Ask questions about the reV suite (including reVeal) and discuss with the developers and
+      other users here. If you have a question like "How do I calculate site-suitability scores?", please
+      include a self-contained reproducible example of what you have tried already, if possible.

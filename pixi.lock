@@ -19696,8 +19696,8 @@ packages:
   requires_python: '>=3.9'
 - pypi: ./
   name: reveal
-  version: 0.1.1.dev15+g519da852b.d20251219
-  sha256: 9a6d73cc60b3b0930469561b14d7723820f5446eb0e34222cae8af822496c90f
+  version: 0.1.1.dev31+g54f12ce15.d20251219
+  sha256: 91c9bf7b0bb9c43e4f369f9cc9a074975a2c723462d9b39ce95c60bc3c3163e5
   requires_dist:
   - exactextract>=0.3.0,<0.4
   - geopandas>=1.1.1,<2
