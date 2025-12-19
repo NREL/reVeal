@@ -1,0 +1,38 @@
+cff-version: 1.2.0
+title: reVeal
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - family-names: Gleason
+    given-names: Michael
+    affiliation: National Laboratory of the Rockies
+    orcid: 'https://orcid.org/0009-0003-5916-6726'
+  - family-names: Pinchuk
+    given-names: Pavlo
+    affiliation: National Laboratory of the Rockies
+    orcid: 'https://orcid.org/0000-0003-4736-4728'
+  - family-names: Igwe
+    given-names: Victor
+    affiliation: National Laboratory of the Rockies
+  - family-names: Williams
+    given-names: Travis
+    affiliation: National Laboratory of the Rockies
+    orcid: 'https://orcid.org/0000-0003-0973-1865'
+repository-code: 'https://github.com/NREL/reVeal'
+abstract: >-
+  reVeal (the reV Extension for Analyzing Large Loads)
+  is an open-source geospatial software package for
+  modeling the site-suitability and spatial patterns
+  of deployment of large sources of electricity demand
+  under future scenarios.
+keywords:
+  - Load Analysis
+  - Supply Curve
+  - Siting
+  - Geospatial
+  - Site-Suitability
+license: BSD-3-Clause
+version: 0.2.0
+date-released: '2025-12-18'
