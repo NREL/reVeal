@@ -27,7 +27,7 @@ jobs:
 
   locked-tests:
     # needs: lint
-    name: Pixi-Locked Unit Tests
+    name: Pixi-Locked Tests
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -54,7 +54,7 @@ jobs:
 
   tests:
     # needs: lint
-    name: Python Unit Tests (Pixi)
+    name: Python Tests (Pixi)
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false

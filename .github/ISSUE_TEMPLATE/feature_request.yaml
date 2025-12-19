@@ -54,7 +54,7 @@ body:
       description: >
         Please provide any relevant GitHub issues, code examples, references, screenshots, or other material
         that help describe and support the feature request.
-  - type: input
+  - type: checkboxes
     id: charge-code
     attributes:
       label: Charge code
