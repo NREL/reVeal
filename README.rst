@@ -40,7 +40,7 @@ The quickest way to install reVeal for users is from PyPi:
 
 .. code-block:: bash
 
-    pip install reVeal
+    pip install NLR-reVeal
 
 If you would like to install and run reVeal from source, we recommend using `pixi <https://pixi.sh/latest/>`_:
 
