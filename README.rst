@@ -2,7 +2,7 @@
 reVeal
 ******
 
-|License| |Ruff| |Pixi| |SWR|
+|License| |Zenodo| |Ruff| |Pixi| |SWR| |Codecov|
 
 .. |PythonV| image:: https://badge.fury.io/py/reVeal.svg
     :target: https://pypi.org/project/reVeal/
@@ -22,8 +22,11 @@ reVeal
 .. |SWR| image:: https://img.shields.io/badge/SWR--25--147_-blue?label=NLR
     :alt: Static Badge
 
-.. |Zenodo| image:: https://zenodo.org/badge/DOI/10.5281/zenodo.17633670.svg
-    :target: https://doi.org/10.5281/zenodo.17633670
+.. |Zenodo| image:: https://zenodo.org/badge/1038758980.svg
+    :target: https://doi.org/10.5281/zenodo.17984036
+
+.. |Codecov| image:: https://codecov.io/github/NREL/reVeal/graph/badge.svg?token=NXBPNUPT3Y
+    :target: https://codecov.io/github/NREL/reVeal
 
 .. inclusion-intro
 
