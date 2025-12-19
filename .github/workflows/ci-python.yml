@@ -27,7 +27,7 @@ jobs:
 
   locked-tests:
     # needs: lint
-    name: Pixi-Locked Tests
+    name: Pixi-Locked Test
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -50,8 +50,7 @@ jobs:
         activate-environment: false
 
     - run: |
-        pixi reinstall -e dev --locked reVeal
-        pixi run -e dev --locked tests
+        pixi reinstall -e dev --locked NLR-reVeal
 
   tests:
     # needs: lint
@@ -80,7 +79,7 @@ jobs:
         activate-environment: false
 
     - run: |
-        pixi reinstall -e dev reVeal
+        pixi reinstall -e dev NLR-reVeal
         pixi run -e dev tests
 
   mamba-test:
