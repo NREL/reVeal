@@ -18,7 +18,6 @@ repos:
     -   id: mixed-line-ending
         exclude_types: [csv]
     -   id: sort-simple-yaml
-    -   id: requirements-txt-fixer
     -   id: pretty-format-json
         args: [--autofix, --no-sort-keys]
         exclude_types: [geojson]
