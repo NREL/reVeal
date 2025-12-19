@@ -22,7 +22,7 @@ reVeal
 .. |SWR| image:: https://img.shields.io/badge/SWR--25--147_-blue?label=NLR
     :alt: Static Badge
 
-.. |Zenodo| image:: https://zenodo.org/badge/1038758980.svg
+.. |Zenodo| image:: https://zenodo.org/badge/DOI/10.5281/zenodo.17984036.svg
     :target: https://doi.org/10.5281/zenodo.17984036
 
 .. |Codecov| image:: https://codecov.io/github/NREL/reVeal/graph/badge.svg?token=NXBPNUPT3Y
