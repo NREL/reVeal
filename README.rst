@@ -36,7 +36,7 @@ the `reV ecosystem of tools <https://nrel.github.io/reV/#rev-ecosystem>`_.
 
 Installing reVeal
 =================
-The quickest way to install reVeal for users is from PyPi:
+The quickest way to install reVeal for users is from PyPI:
 
 .. code-block:: bash
 
