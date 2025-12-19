@@ -19,7 +19,7 @@ reVeal
 .. |Pixi| image:: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/prefix-dev/pixi/main/assets/badge/v0.json
     :target: https://pixi.sh
 
-.. |SWR| image:: https://img.shields.io/badge/SWR-25-147_-blue?label=NLR
+.. |SWR| image:: https://img.shields.io/badge/SWR--25--147_-blue?label=NLR
     :alt: Static Badge
 
 .. |Zenodo| image:: https://zenodo.org/badge/DOI/10.5281/zenodo.17633670.svg
