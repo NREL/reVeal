@@ -25,6 +25,7 @@ jobs:
         cache: true
         cache-write: false
         environments: dev
+        activate-environment: false
 
     - name: Generate coverage report
       run: |

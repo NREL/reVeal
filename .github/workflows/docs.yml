@@ -28,6 +28,7 @@ jobs:
           locked: true
           cache: false  # Don't use cache because we use the ``doc`` environment
           environments: doc
+          activate-environment: false
 
       - name: Build Docs
         run: pixi run -e doc python-docs  # This errors on warnings

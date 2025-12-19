@@ -47,6 +47,7 @@ jobs:
         cache: true
         cache-write: false
         environments: dev
+        activate-environment: false
 
     - run: |
         pixi reinstall -e dev --locked reVeal
@@ -76,6 +77,7 @@ jobs:
         cache: true
         cache-write: ${{ github.ref == 'refs/heads/main' }}
         environments: dev
+        activate-environment: false
 
     - run: |
         pixi reinstall -e dev reVeal

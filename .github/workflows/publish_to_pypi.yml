@@ -26,6 +26,7 @@ jobs:
         locked: true
         cache: false
         environments: build
+        activate-environment: false
 
     - name: Build and publish
       run: pixi run -e build publish-pypi
