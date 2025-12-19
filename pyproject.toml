@@ -17,7 +17,7 @@ maintainers = [
   {name = "Pavlo Pinchuk", email = "ppinchuk@nrel.gov"},
 ]
 license = "BSD-3-Clause"
-keywords = ["reVeal", "NLR", "Supply Curve", "Visualization", "Graphics"]
+keywords = ["reVeal", "NLR", "Load Analysis", "Geospatial", "Site-Suitability"]
 requires-python = ">= 3.12"
 classifiers = [
   "Development Status :: 4 - Beta",
