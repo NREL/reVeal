@@ -1,0 +1,76 @@
+reVeal.config.downscale.RegionalResolutionEnum
+==============================================
+
+.. currentmodule:: reVeal.config.downscale
+
+.. autoclass:: RegionalResolutionEnum
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~RegionalResolutionEnum.encode
+      ~RegionalResolutionEnum.replace
+      ~RegionalResolutionEnum.split
+      ~RegionalResolutionEnum.rsplit
+      ~RegionalResolutionEnum.join
+      ~RegionalResolutionEnum.capitalize
+      ~RegionalResolutionEnum.casefold
+      ~RegionalResolutionEnum.title
+      ~RegionalResolutionEnum.center
+      ~RegionalResolutionEnum.count
+      ~RegionalResolutionEnum.expandtabs
+      ~RegionalResolutionEnum.find
+      ~RegionalResolutionEnum.partition
+      ~RegionalResolutionEnum.index
+      ~RegionalResolutionEnum.ljust
+      ~RegionalResolutionEnum.lower
+      ~RegionalResolutionEnum.lstrip
+      ~RegionalResolutionEnum.rfind
+      ~RegionalResolutionEnum.rindex
+      ~RegionalResolutionEnum.rjust
+      ~RegionalResolutionEnum.rstrip
+      ~RegionalResolutionEnum.rpartition
+      ~RegionalResolutionEnum.splitlines
+      ~RegionalResolutionEnum.strip
+      ~RegionalResolutionEnum.swapcase
+      ~RegionalResolutionEnum.translate
+      ~RegionalResolutionEnum.upper
+      ~RegionalResolutionEnum.startswith
+      ~RegionalResolutionEnum.endswith
+      ~RegionalResolutionEnum.removeprefix
+      ~RegionalResolutionEnum.removesuffix
+      ~RegionalResolutionEnum.isascii
+      ~RegionalResolutionEnum.islower
+      ~RegionalResolutionEnum.isupper
+      ~RegionalResolutionEnum.istitle
+      ~RegionalResolutionEnum.isspace
+      ~RegionalResolutionEnum.isdecimal
+      ~RegionalResolutionEnum.isdigit
+      ~RegionalResolutionEnum.isnumeric
+      ~RegionalResolutionEnum.isalpha
+      ~RegionalResolutionEnum.isalnum
+      ~RegionalResolutionEnum.isidentifier
+      ~RegionalResolutionEnum.isprintable
+      ~RegionalResolutionEnum.zfill
+      ~RegionalResolutionEnum.format
+      ~RegionalResolutionEnum.format_map
+      ~RegionalResolutionEnum.maketrans
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~RegionalResolutionEnum.REGIONAL
+   
+   

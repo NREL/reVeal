@@ -1,0 +1,6 @@
+reVeal.log.remove\_streamhandlers
+=================================
+
+.. currentmodule:: reVeal.log
+
+.. autofunction:: remove_streamhandlers

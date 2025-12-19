@@ -1,0 +1,6 @@
+reVeal.fileio.get\_crs\_raster
+==============================
+
+.. currentmodule:: reVeal.fileio
+
+.. autofunction:: get_crs_raster

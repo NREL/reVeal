@@ -1,0 +1,6 @@
+reVeal.overlay.exact\_extract\_wrap
+===================================
+
+.. currentmodule:: reVeal.overlay
+
+.. autofunction:: exact_extract_wrap

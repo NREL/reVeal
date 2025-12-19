@@ -1,0 +1,6 @@
+reVeal.grid.run\_characterization
+=================================
+
+.. currentmodule:: reVeal.grid
+
+.. autofunction:: run_characterization

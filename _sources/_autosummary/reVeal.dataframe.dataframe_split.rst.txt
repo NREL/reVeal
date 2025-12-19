@@ -1,0 +1,6 @@
+reVeal.dataframe.dataframe\_split
+=================================
+
+.. currentmodule:: reVeal.dataframe
+
+.. autofunction:: dataframe_split

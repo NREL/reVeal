@@ -1,0 +1,6 @@
+reVeal.log.init\_logger
+=======================
+
+.. currentmodule:: reVeal.log
+
+.. autofunction:: init_logger

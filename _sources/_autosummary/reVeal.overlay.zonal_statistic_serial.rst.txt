@@ -1,0 +1,6 @@
+reVeal.overlay.zonal\_statistic\_serial
+=======================================
+
+.. currentmodule:: reVeal.overlay
+
+.. autofunction:: zonal_statistic_serial

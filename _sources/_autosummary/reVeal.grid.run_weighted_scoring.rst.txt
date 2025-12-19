@@ -1,0 +1,6 @@
+reVeal.grid.run\_weighted\_scoring
+==================================
+
+.. currentmodule:: reVeal.grid
+
+.. autofunction:: run_weighted_scoring

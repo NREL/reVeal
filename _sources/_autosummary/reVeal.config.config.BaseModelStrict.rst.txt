@@ -1,0 +1,33 @@
+reVeal.config.config.BaseModelStrict
+====================================
+
+.. currentmodule:: reVeal.config.config
+
+.. autoclass:: BaseModelStrict
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~BaseModelStrict.model_computed_fields
+      ~BaseModelStrict.model_config
+      ~BaseModelStrict.model_extra
+      ~BaseModelStrict.model_fields
+      ~BaseModelStrict.model_fields_set
+   
+   

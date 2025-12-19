@@ -1,0 +1,6 @@
+reVeal.fileio.get\_attributes\_pyogrio
+======================================
+
+.. currentmodule:: reVeal.fileio
+
+.. autofunction:: get_attributes_pyogrio

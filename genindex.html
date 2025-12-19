@@ -1,0 +1,2269 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Index &#8212; reVeal 0.2.2 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=a5c4661c" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=000c92bf"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/tabs.js?v=3030b3cb"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'genindex';</script>
+    <link rel="index" title="Index" href="#" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.2" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">reVeal 0.2.2 documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="index.html">
+    Home page
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="misc/installation_usage.html">
+    Installation and Usage
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="misc/examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="_cli/cli.html">
+    CLI reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="_autosummary/reVeal.html">
+    API reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="index.html">
+    Home page
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="misc/installation_usage.html">
+    Installation and Usage
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="misc/examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="_cli/cli.html">
+    CLI reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="_autosummary/reVeal.html">
+    API reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none"></div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+
+<h1 id="index">Index</h1>
+
+<div class="genindex-jumpbox">
+ <a href="#Symbols"><strong>Symbols</strong></a>
+ | <a href="#_"><strong>_</strong></a>
+ | <a href="#A"><strong>A</strong></a>
+ | <a href="#B"><strong>B</strong></a>
+ | <a href="#C"><strong>C</strong></a>
+ | <a href="#D"><strong>D</strong></a>
+ | <a href="#E"><strong>E</strong></a>
+ | <a href="#F"><strong>F</strong></a>
+ | <a href="#G"><strong>G</strong></a>
+ | <a href="#I"><strong>I</strong></a>
+ | <a href="#J"><strong>J</strong></a>
+ | <a href="#L"><strong>L</strong></a>
+ | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
+ | <a href="#P"><strong>P</strong></a>
+ | <a href="#R"><strong>R</strong></a>
+ | <a href="#S"><strong>S</strong></a>
+ | <a href="#T"><strong>T</strong></a>
+ | <a href="#U"><strong>U</strong></a>
+ | <a href="#V"><strong>V</strong></a>
+ | <a href="#W"><strong>W</strong></a>
+ | <a href="#Z"><strong>Z</strong></a>
+ 
+</div>
+<h2 id="Symbols">Symbols</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    --after-step
+
+      <ul>
+        <li><a href="_cli/reVeal%20reset-status.html#cmdoption-reVeal-reset-status-a">reVeal-reset-status command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --background
+
+      <ul>
+        <li><a href="_cli/reVeal%20pipeline.html#cmdoption-reVeal-pipeline-background">reVeal-pipeline command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --cancel
+
+      <ul>
+        <li><a href="_cli/reVeal%20batch.html#cmdoption-reVeal-batch-cancel">reVeal-batch command line option</a>
+</li>
+        <li><a href="_cli/reVeal%20pipeline.html#cmdoption-reVeal-pipeline-cancel">reVeal-pipeline command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --config_file
+
+      <ul>
+        <li><a href="_cli/reVeal%20batch.html#cmdoption-reVeal-batch-c">reVeal-batch command line option</a>
+</li>
+        <li><a href="_cli/reVeal%20characterize.html#cmdoption-reVeal-characterize-c">reVeal-characterize command line option</a>
+</li>
+        <li><a href="_cli/reVeal%20normalize.html#cmdoption-reVeal-normalize-c">reVeal-normalize command line option</a>
+</li>
+        <li><a href="_cli/reVeal%20pipeline.html#cmdoption-reVeal-pipeline-c">reVeal-pipeline command line option</a>
+</li>
+        <li><a href="_cli/reVeal%20score-weighted.html#cmdoption-reVeal-score-weighted-c">reVeal-score-weighted command line option</a>
+</li>
+        <li><a href="_cli/reVeal%20script.html#cmdoption-reVeal-script-c">reVeal-script command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --delete
+
+      <ul>
+        <li><a href="_cli/reVeal%20batch.html#cmdoption-reVeal-batch-delete">reVeal-batch command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --dry
+
+      <ul>
+        <li><a href="_cli/reVeal%20batch.html#cmdoption-reVeal-batch-dry">reVeal-batch command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --force
+
+      <ul>
+        <li><a href="_cli/reVeal%20reset-status.html#cmdoption-reVeal-reset-status-f">reVeal-reset-status command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --include
+
+      <ul>
+        <li><a href="_cli/reVeal%20status.html#cmdoption-reVeal-status-i">reVeal-status command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --monitor
+
+      <ul>
+        <li><a href="_cli/reVeal%20pipeline.html#cmdoption-reVeal-pipeline-monitor">reVeal-pipeline command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --monitor-background
+
+      <ul>
+        <li><a href="_cli/reVeal%20batch.html#cmdoption-reVeal-batch-monitor-background">reVeal-batch command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --pipe_steps
+
+      <ul>
+        <li><a href="_cli/reVeal%20status.html#cmdoption-reVeal-status-ps">reVeal-status command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --recursive
+
+      <ul>
+        <li><a href="_cli/reVeal%20pipeline.html#cmdoption-reVeal-pipeline-r">reVeal-pipeline command line option</a>
+</li>
+        <li><a href="_cli/reVeal%20status.html#cmdoption-reVeal-status-r">reVeal-status command line option</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    --status
+
+      <ul>
+        <li><a href="_cli/reVeal%20status.html#cmdoption-reVeal-status-s">reVeal-status command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --type
+
+      <ul>
+        <li><a href="_cli/reVeal%20template-configs.html#cmdoption-reVeal-template-configs-t">reVeal-template-configs command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --verbose
+
+      <ul>
+        <li><a href="_cli/reVeal.html#cmdoption-reVeal-v">reVeal command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --version
+
+      <ul>
+        <li><a href="_cli/reVeal.html#cmdoption-reVeal-version">reVeal command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -a
+
+      <ul>
+        <li><a href="_cli/reVeal%20reset-status.html#cmdoption-reVeal-reset-status-a">reVeal-reset-status command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -c
+
+      <ul>
+        <li><a href="_cli/reVeal%20batch.html#cmdoption-reVeal-batch-c">reVeal-batch command line option</a>
+</li>
+        <li><a href="_cli/reVeal%20characterize.html#cmdoption-reVeal-characterize-c">reVeal-characterize command line option</a>
+</li>
+        <li><a href="_cli/reVeal%20normalize.html#cmdoption-reVeal-normalize-c">reVeal-normalize command line option</a>
+</li>
+        <li><a href="_cli/reVeal%20pipeline.html#cmdoption-reVeal-pipeline-c">reVeal-pipeline command line option</a>
+</li>
+        <li><a href="_cli/reVeal%20score-weighted.html#cmdoption-reVeal-score-weighted-c">reVeal-score-weighted command line option</a>
+</li>
+        <li><a href="_cli/reVeal%20script.html#cmdoption-reVeal-script-c">reVeal-script command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -f
+
+      <ul>
+        <li><a href="_cli/reVeal%20reset-status.html#cmdoption-reVeal-reset-status-f">reVeal-reset-status command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -i
+
+      <ul>
+        <li><a href="_cli/reVeal%20status.html#cmdoption-reVeal-status-i">reVeal-status command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -ps
+
+      <ul>
+        <li><a href="_cli/reVeal%20status.html#cmdoption-reVeal-status-ps">reVeal-status command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -r
+
+      <ul>
+        <li><a href="_cli/reVeal%20pipeline.html#cmdoption-reVeal-pipeline-r">reVeal-pipeline command line option</a>
+</li>
+        <li><a href="_cli/reVeal%20status.html#cmdoption-reVeal-status-r">reVeal-status command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -s
+
+      <ul>
+        <li><a href="_cli/reVeal%20status.html#cmdoption-reVeal-status-s">reVeal-status command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -t
+
+      <ul>
+        <li><a href="_cli/reVeal%20template-configs.html#cmdoption-reVeal-template-configs-t">reVeal-template-configs command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -v
+
+      <ul>
+        <li><a href="_cli/reVeal.html#cmdoption-reVeal-v">reVeal command line option</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="_">_</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.__add__">__add__() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.__add__">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.__add__">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.__add__">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.__add__">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.__add__">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.__mul__">__mul__() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.__mul__">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.__mul__">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.__mul__">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.__mul__">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.__mul__">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/reVeal.load.apportion_load_to_regions.html#reVeal.load.apportion_load_to_regions">apportion_load_to_regions() (in module reVeal.load)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.normalize.Attribute.html#reVeal.config.normalize.Attribute">Attribute (class in reVeal.config.normalize)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.score_weighted.Attribute.html#reVeal.config.score_weighted.Attribute">(class in reVeal.config.score_weighted)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/reVeal.config.normalize.Attribute.html#reVeal.config.normalize.Attribute.attribute_check">attribute_check() (Attribute method)</a>, <a href="_autosummary/reVeal.config.score_weighted.Attribute.html#reVeal.config.score_weighted.Attribute.attribute_check">[1]</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.Characterization.html#reVeal.config.characterize.Characterization.attribute_check">(Characterization method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/reVeal.fileio.attribute_is_numeric.html#reVeal.fileio.attribute_is_numeric">attribute_is_numeric() (in module reVeal.fileio)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="B">B</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/reVeal.config.characterize.CharacterizeConfig.html#reVeal.config.characterize.CharacterizeConfig.base_validator">base_validator() (CharacterizeConfig method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeConfig.html#reVeal.config.normalize.NormalizeConfig.base_validator">(NormalizeConfig method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.score_weighted.ScoreWeightedConfig.html#reVeal.config.score_weighted.ScoreWeightedConfig.base_validator">(ScoreWeightedConfig method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/reVeal.config.characterize.BaseCharacterizeConfig.html#reVeal.config.characterize.BaseCharacterizeConfig">BaseCharacterizeConfig (class in reVeal.config.characterize)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.downscale.BaseDownscaleConfig.html#reVeal.config.downscale.BaseDownscaleConfig">BaseDownscaleConfig (class in reVeal.config.downscale)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum">BaseEnum (class in reVeal.config.config)</a>
+</li>
+      <li><a href="_autosummary/reVeal.grid.BaseGrid.html#reVeal.grid.BaseGrid">BaseGrid (class in reVeal.grid)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.config.BaseGridConfig.html#reVeal.config.config.BaseGridConfig">BaseGridConfig (class in reVeal.config.config)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.config.BaseModelStrict.html#reVeal.config.config.BaseModelStrict">BaseModelStrict (class in reVeal.config.config)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.normalize.BaseNormalizeConfig.html#reVeal.config.normalize.BaseNormalizeConfig">BaseNormalizeConfig (class in reVeal.config.normalize)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.score_weighted.BaseScoreWeightedConfig.html#reVeal.config.score_weighted.BaseScoreWeightedConfig">BaseScoreWeightedConfig (class in reVeal.config.score_weighted)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="C">C</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/reVeal.overlay.calc_area.html#reVeal.overlay.calc_area">calc_area() (in module reVeal.overlay)</a>
+</li>
+      <li><a href="_autosummary/reVeal.overlay.calc_area_apportioned_sum.html#reVeal.overlay.calc_area_apportioned_sum">calc_area_apportioned_sum() (in module reVeal.overlay)</a>
+</li>
+      <li><a href="_autosummary/reVeal.overlay.calc_area_weighted_average.html#reVeal.overlay.calc_area_weighted_average">calc_area_weighted_average() (in module reVeal.overlay)</a>
+</li>
+      <li><a href="_autosummary/reVeal.overlay.calc_area_weighted_majority.html#reVeal.overlay.calc_area_weighted_majority">calc_area_weighted_majority() (in module reVeal.overlay)</a>
+</li>
+      <li><a href="_autosummary/reVeal.overlay.calc_feature_count.html#reVeal.overlay.calc_feature_count">calc_feature_count() (in module reVeal.overlay)</a>
+</li>
+      <li><a href="_autosummary/reVeal.overlay.calc_mean.html#reVeal.overlay.calc_mean">calc_mean() (in module reVeal.overlay)</a>
+</li>
+      <li><a href="_autosummary/reVeal.overlay.calc_median.html#reVeal.overlay.calc_median">calc_median() (in module reVeal.overlay)</a>
+</li>
+      <li><a href="_autosummary/reVeal.normalization.calc_minmax.html#reVeal.normalization.calc_minmax">calc_minmax() (in module reVeal.normalization)</a>
+</li>
+      <li><a href="_autosummary/reVeal.overlay.calc_percent_covered.html#reVeal.overlay.calc_percent_covered">calc_percent_covered() (in module reVeal.overlay)</a>
+</li>
+      <li><a href="_autosummary/reVeal.normalization.calc_percentile.html#reVeal.normalization.calc_percentile">calc_percentile() (in module reVeal.normalization)</a>
+</li>
+      <li><a href="_autosummary/reVeal.overlay.calc_sum.html#reVeal.overlay.calc_sum">calc_sum() (in module reVeal.overlay)</a>
+</li>
+      <li><a href="_autosummary/reVeal.overlay.calc_sum_area.html#reVeal.overlay.calc_sum_area">calc_sum_area() (in module reVeal.overlay)</a>
+</li>
+      <li><a href="_autosummary/reVeal.overlay.calc_sum_attribute.html#reVeal.overlay.calc_sum_attribute">calc_sum_attribute() (in module reVeal.overlay)</a>
+</li>
+      <li><a href="_autosummary/reVeal.overlay.calc_sum_attribute_length.html#reVeal.overlay.calc_sum_attribute_length">calc_sum_attribute_length() (in module reVeal.overlay)</a>
+</li>
+      <li><a href="_autosummary/reVeal.overlay.calc_sum_length.html#reVeal.overlay.calc_sum_length">calc_sum_length() (in module reVeal.overlay)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.capitalize">capitalize() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.capitalize">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.capitalize">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.capitalize">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.capitalize">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.capitalize">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.casefold">casefold() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.casefold">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.casefold">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.casefold">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.casefold">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.casefold">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.center">center() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.center">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.center">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.center">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.center">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.center">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/reVeal.config.characterize.Characterization.html#reVeal.config.characterize.Characterization">Characterization (class in reVeal.config.characterize)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.characterize.CharacterizeConfig.html#reVeal.config.characterize.CharacterizeConfig">CharacterizeConfig (class in reVeal.config.characterize)</a>
+</li>
+      <li><a href="_autosummary/reVeal.grid.CharacterizeGrid.html#reVeal.grid.CharacterizeGrid">CharacterizeGrid (class in reVeal.grid)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.normalize.NormalizeConfig.html#reVeal.config.normalize.NormalizeConfig.check_attributes_and_normalize_method">check_attributes_and_normalize_method() (NormalizeConfig method)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.downscale.RegionalDownscaleConfig.html#reVeal.config.downscale.RegionalDownscaleConfig.check_load_regions_or_region_weights">check_load_regions_or_region_weights() (RegionalDownscaleConfig method)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.characterize.Characterization.html#reVeal.config.characterize.Characterization.check_method_applicability">check_method_applicability() (Characterization method)</a>
+</li>
+      <li>
+    COMMANDS
+
+      <ul>
+        <li><a href="_cli/reVeal%20template-configs.html#cmdoption-reVeal-template-configs-arg-COMMANDS">reVeal-template-configs command line option</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/reVeal.grid.CharacterizeGrid.html#reVeal.grid.CharacterizeGrid.CONFIG_CLASS">CONFIG_CLASS (CharacterizeGrid attribute)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.grid.NormalizeGrid.html#reVeal.grid.NormalizeGrid.CONFIG_CLASS">(NormalizeGrid attribute)</a>
+</li>
+        <li><a href="_autosummary/reVeal.grid.RegionalDownscaleGrid.html#reVeal.grid.RegionalDownscaleGrid.CONFIG_CLASS">(RegionalDownscaleGrid attribute)</a>
+</li>
+        <li><a href="_autosummary/reVeal.grid.RunnableGrid.html#reVeal.grid.RunnableGrid.CONFIG_CLASS">(RunnableGrid attribute)</a>
+</li>
+        <li><a href="_autosummary/reVeal.grid.ScoreWeightedGrid.html#reVeal.grid.ScoreWeightedGrid.CONFIG_CLASS">(ScoreWeightedGrid attribute)</a>
+</li>
+        <li><a href="_autosummary/reVeal.grid.TotalDownscaleGrid.html#reVeal.grid.TotalDownscaleGrid.CONFIG_CLASS">(TotalDownscaleGrid attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.count">count() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.count">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.count">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.count">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.count">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.count">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/reVeal.grid.create_grid.html#reVeal.grid.create_grid">create_grid() (in module reVeal.grid)</a>
+</li>
+      <li><a href="_autosummary/reVeal.errors.CSVReadError.html#reVeal.errors.CSVReadError">CSVReadError</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/reVeal.dataframe.dataframe_split.html#reVeal.dataframe.dataframe_split">dataframe_split() (in module reVeal.dataframe)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum">DatasetFormatEnum (class in reVeal.config.characterize)</a>
+</li>
+      <li>
+    DIRECTORY
+
+      <ul>
+        <li><a href="_cli/reVeal%20reset-status.html#cmdoption-reVeal-reset-status-arg-DIRECTORY">reVeal-reset-status command line option</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/reVeal.load.downscale_regional.html#reVeal.load.downscale_regional">downscale_regional() (in module reVeal.load)</a>
+</li>
+      <li><a href="_autosummary/reVeal.load.downscale_total.html#reVeal.load.downscale_total">downscale_total() (in module reVeal.load)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.downscale.DownscaleConfig.html#reVeal.config.downscale.DownscaleConfig">DownscaleConfig (class in reVeal.config.downscale)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="E">E</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.encode">encode() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.encode">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.encode">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.encode">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.encode">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.encode">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.endswith">endswith() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.endswith">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.endswith">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.endswith">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.endswith">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.endswith">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/reVeal.overlay.exact_extract_wrap.html#reVeal.overlay.exact_extract_wrap">exact_extract_wrap() (in module reVeal.overlay)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.expandtabs">expandtabs() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.expandtabs">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.expandtabs">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.expandtabs">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.expandtabs">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.expandtabs">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="F">F</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/reVeal.errors.FileFormatError.html#reVeal.errors.FileFormatError">FileFormatError</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.find">find() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.find">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.find">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.find">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.find">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.find">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+      <li>
+    FOLDER
+
+      <ul>
+        <li><a href="_cli/reVeal%20status.html#cmdoption-reVeal-status-arg-FOLDER">reVeal-status command line option</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.format">format() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.format">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.format">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.format">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.format">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.format">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.format_map">format_map() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.format_map">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.format_map">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.format_map">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.format_map">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.format_map">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="G">G</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/reVeal.fileio.get_attributes_parquet.html#reVeal.fileio.get_attributes_parquet">get_attributes_parquet() (in module reVeal.fileio)</a>
+</li>
+      <li><a href="_autosummary/reVeal.fileio.get_attributes_pyogrio.html#reVeal.fileio.get_attributes_pyogrio">get_attributes_pyogrio() (in module reVeal.fileio)</a>
+</li>
+      <li><a href="_autosummary/reVeal.fileio.get_crs_parquet.html#reVeal.fileio.get_crs_parquet">get_crs_parquet() (in module reVeal.fileio)</a>
+</li>
+      <li><a href="_autosummary/reVeal.fileio.get_crs_pyogrio.html#reVeal.fileio.get_crs_pyogrio">get_crs_pyogrio() (in module reVeal.fileio)</a>
+</li>
+      <li><a href="_autosummary/reVeal.fileio.get_crs_raster.html#reVeal.fileio.get_crs_raster">get_crs_raster() (in module reVeal.fileio)</a>
+</li>
+      <li><a href="_autosummary/reVeal.fileio.get_geom_info_parquet.html#reVeal.fileio.get_geom_info_parquet">get_geom_info_parquet() (in module reVeal.fileio)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/reVeal.fileio.get_geom_type_parquet.html#reVeal.fileio.get_geom_type_parquet">get_geom_type_parquet() (in module reVeal.fileio)</a>
+</li>
+      <li><a href="_autosummary/reVeal.fileio.get_geom_type_pyogrio.html#reVeal.fileio.get_geom_type_pyogrio">get_geom_type_pyogrio() (in module reVeal.fileio)</a>
+</li>
+      <li><a href="_autosummary/reVeal.log.get_logger.html#reVeal.log.get_logger">get_logger() (in module reVeal.log)</a>
+</li>
+      <li><a href="_autosummary/reVeal.grid.get_method_from_members.html#reVeal.grid.get_method_from_members">get_method_from_members() (in module reVeal.grid)</a>
+</li>
+      <li><a href="_autosummary/reVeal.grid.get_neighbors.html#reVeal.grid.get_neighbors">get_neighbors() (in module reVeal.grid)</a>
+</li>
+      <li><a href="_autosummary/reVeal.normalization.get_values.html#reVeal.normalization.get_values">get_values() (in module reVeal.normalization)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="I">I</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.index">index() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.index">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.index">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.index">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.index">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.index">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/reVeal.log.init_logger.html#reVeal.log.init_logger">init_logger() (in module reVeal.log)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.characterize.Characterization.html#reVeal.config.characterize.Characterization.is_valid_method">is_valid_method() (Characterization class method)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.isalnum">isalnum() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.isalnum">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.isalnum">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.isalnum">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.isalnum">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.isalnum">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.isalpha">isalpha() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.isalpha">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.isalpha">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.isalpha">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.isalpha">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.isalpha">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.isascii">isascii() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.isascii">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.isascii">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.isascii">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.isascii">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.isascii">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.isdecimal">isdecimal() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.isdecimal">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.isdecimal">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.isdecimal">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.isdecimal">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.isdecimal">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.isdigit">isdigit() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.isdigit">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.isdigit">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.isdigit">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.isdigit">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.isdigit">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.isidentifier">isidentifier() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.isidentifier">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.isidentifier">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.isidentifier">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.isidentifier">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.isidentifier">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.islower">islower() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.islower">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.islower">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.islower">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.islower">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.islower">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.isnumeric">isnumeric() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.isnumeric">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.isnumeric">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.isnumeric">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.isnumeric">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.isnumeric">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.isprintable">isprintable() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.isprintable">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.isprintable">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.isprintable">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.isprintable">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.isprintable">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.isspace">isspace() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.isspace">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.isspace">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.isspace">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.isspace">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.isspace">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.istitle">istitle() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.istitle">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.istitle">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.istitle">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.istitle">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.istitle">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.isupper">isupper() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.isupper">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.isupper">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.isupper">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.isupper">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.isupper">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="J">J</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.join">join() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.join">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.join">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.join">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.join">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.join">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.ljust">ljust() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.ljust">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.ljust">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.ljust">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.ljust">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.ljust">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/reVeal.config.config.load_config.html#reVeal.config.config.load_config">load_config() (in module reVeal.config.config)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.lower">lower() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.lower">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.lower">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.lower">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.lower">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.lower">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.lstrip">lstrip() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.lstrip">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.lstrip">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.lstrip">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.lstrip">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.lstrip">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="M">M</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.maketrans">maketrans() (BaseEnum static method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.maketrans">(DatasetFormatEnum static method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.maketrans">(NormalizeMethodEnum static method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.maketrans">(ProjectionResolutionEnum static method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.maketrans">(RegionalResolutionEnum static method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.maketrans">(TotalResolutionEnum static method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/reVeal.config.normalize.Attribute.html#reVeal.config.normalize.Attribute.model_config">model_config (Attribute attribute)</a>, <a href="_autosummary/reVeal.config.score_weighted.Attribute.html#reVeal.config.score_weighted.Attribute.model_config">[1]</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.BaseCharacterizeConfig.html#reVeal.config.characterize.BaseCharacterizeConfig.model_config">(BaseCharacterizeConfig attribute)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.BaseDownscaleConfig.html#reVeal.config.downscale.BaseDownscaleConfig.model_config">(BaseDownscaleConfig attribute)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.config.BaseGridConfig.html#reVeal.config.config.BaseGridConfig.model_config">(BaseGridConfig attribute)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.config.BaseModelStrict.html#reVeal.config.config.BaseModelStrict.model_config">(BaseModelStrict attribute)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.BaseNormalizeConfig.html#reVeal.config.normalize.BaseNormalizeConfig.model_config">(BaseNormalizeConfig attribute)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.score_weighted.BaseScoreWeightedConfig.html#reVeal.config.score_weighted.BaseScoreWeightedConfig.model_config">(BaseScoreWeightedConfig attribute)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.characterize.Characterization.html#reVeal.config.characterize.Characterization.model_config">(Characterization attribute)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.characterize.CharacterizeConfig.html#reVeal.config.characterize.CharacterizeConfig.model_config">(CharacterizeConfig attribute)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.DownscaleConfig.html#reVeal.config.downscale.DownscaleConfig.model_config">(DownscaleConfig attribute)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeConfig.html#reVeal.config.normalize.NormalizeConfig.model_config">(NormalizeConfig attribute)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalDownscaleConfig.html#reVeal.config.downscale.RegionalDownscaleConfig.model_config">(RegionalDownscaleConfig attribute)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.score_weighted.ScoreWeightedConfig.html#reVeal.config.score_weighted.ScoreWeightedConfig.model_config">(ScoreWeightedConfig attribute)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalDownscaleConfig.html#reVeal.config.downscale.TotalDownscaleConfig.model_config">(TotalDownscaleConfig attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/reVeal.config.normalize.Attribute.html#reVeal.config.normalize.Attribute.model_extra">model_extra (Attribute property)</a>, <a href="_autosummary/reVeal.config.score_weighted.Attribute.html#reVeal.config.score_weighted.Attribute.model_extra">[1]</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.BaseCharacterizeConfig.html#reVeal.config.characterize.BaseCharacterizeConfig.model_extra">(BaseCharacterizeConfig property)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.BaseDownscaleConfig.html#reVeal.config.downscale.BaseDownscaleConfig.model_extra">(BaseDownscaleConfig property)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.config.BaseGridConfig.html#reVeal.config.config.BaseGridConfig.model_extra">(BaseGridConfig property)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.config.BaseModelStrict.html#reVeal.config.config.BaseModelStrict.model_extra">(BaseModelStrict property)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.BaseNormalizeConfig.html#reVeal.config.normalize.BaseNormalizeConfig.model_extra">(BaseNormalizeConfig property)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.score_weighted.BaseScoreWeightedConfig.html#reVeal.config.score_weighted.BaseScoreWeightedConfig.model_extra">(BaseScoreWeightedConfig property)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.characterize.Characterization.html#reVeal.config.characterize.Characterization.model_extra">(Characterization property)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.characterize.CharacterizeConfig.html#reVeal.config.characterize.CharacterizeConfig.model_extra">(CharacterizeConfig property)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.DownscaleConfig.html#reVeal.config.downscale.DownscaleConfig.model_extra">(DownscaleConfig property)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeConfig.html#reVeal.config.normalize.NormalizeConfig.model_extra">(NormalizeConfig property)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalDownscaleConfig.html#reVeal.config.downscale.RegionalDownscaleConfig.model_extra">(RegionalDownscaleConfig property)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.score_weighted.ScoreWeightedConfig.html#reVeal.config.score_weighted.ScoreWeightedConfig.model_extra">(ScoreWeightedConfig property)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalDownscaleConfig.html#reVeal.config.downscale.TotalDownscaleConfig.model_extra">(TotalDownscaleConfig property)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/reVeal.config.normalize.Attribute.html#reVeal.config.normalize.Attribute.model_fields_set">model_fields_set (Attribute property)</a>, <a href="_autosummary/reVeal.config.score_weighted.Attribute.html#reVeal.config.score_weighted.Attribute.model_fields_set">[1]</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.BaseCharacterizeConfig.html#reVeal.config.characterize.BaseCharacterizeConfig.model_fields_set">(BaseCharacterizeConfig property)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.BaseDownscaleConfig.html#reVeal.config.downscale.BaseDownscaleConfig.model_fields_set">(BaseDownscaleConfig property)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.config.BaseGridConfig.html#reVeal.config.config.BaseGridConfig.model_fields_set">(BaseGridConfig property)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.config.BaseModelStrict.html#reVeal.config.config.BaseModelStrict.model_fields_set">(BaseModelStrict property)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.BaseNormalizeConfig.html#reVeal.config.normalize.BaseNormalizeConfig.model_fields_set">(BaseNormalizeConfig property)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.score_weighted.BaseScoreWeightedConfig.html#reVeal.config.score_weighted.BaseScoreWeightedConfig.model_fields_set">(BaseScoreWeightedConfig property)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.characterize.Characterization.html#reVeal.config.characterize.Characterization.model_fields_set">(Characterization property)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.characterize.CharacterizeConfig.html#reVeal.config.characterize.CharacterizeConfig.model_fields_set">(CharacterizeConfig property)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.DownscaleConfig.html#reVeal.config.downscale.DownscaleConfig.model_fields_set">(DownscaleConfig property)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeConfig.html#reVeal.config.normalize.NormalizeConfig.model_fields_set">(NormalizeConfig property)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalDownscaleConfig.html#reVeal.config.downscale.RegionalDownscaleConfig.model_fields_set">(RegionalDownscaleConfig property)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.score_weighted.ScoreWeightedConfig.html#reVeal.config.score_weighted.ScoreWeightedConfig.model_fields_set">(ScoreWeightedConfig property)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalDownscaleConfig.html#reVeal.config.downscale.TotalDownscaleConfig.model_fields_set">(TotalDownscaleConfig property)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    module
+
+      <ul>
+        <li><a href="_autosummary/reVeal.html#module-reVeal">reVeal</a>
+</li>
+        <li><a href="_autosummary/reVeal.cli.html#module-reVeal.cli">reVeal.cli</a>
+</li>
+        <li><a href="_autosummary/reVeal.cli.characterize.html#module-reVeal.cli.characterize">reVeal.cli.characterize</a>
+</li>
+        <li><a href="_autosummary/reVeal.cli.cli.html#module-reVeal.cli.cli">reVeal.cli.cli</a>
+</li>
+        <li><a href="_autosummary/reVeal.cli.downscale.html#module-reVeal.cli.downscale">reVeal.cli.downscale</a>
+</li>
+        <li><a href="_autosummary/reVeal.cli.normalize.html#module-reVeal.cli.normalize">reVeal.cli.normalize</a>
+</li>
+        <li><a href="_autosummary/reVeal.cli.score_weighted.html#module-reVeal.cli.score_weighted">reVeal.cli.score_weighted</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.html#module-reVeal.config">reVeal.config</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.characterize.html#module-reVeal.config.characterize">reVeal.config.characterize</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.config.html#module-reVeal.config.config">reVeal.config.config</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.html#module-reVeal.config.downscale">reVeal.config.downscale</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.html#module-reVeal.config.normalize">reVeal.config.normalize</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.score_weighted.html#module-reVeal.config.score_weighted">reVeal.config.score_weighted</a>
+</li>
+        <li><a href="_autosummary/reVeal.dataframe.html#module-reVeal.dataframe">reVeal.dataframe</a>
+</li>
+        <li><a href="_autosummary/reVeal.errors.html#module-reVeal.errors">reVeal.errors</a>
+</li>
+        <li><a href="_autosummary/reVeal.fileio.html#module-reVeal.fileio">reVeal.fileio</a>
+</li>
+        <li><a href="_autosummary/reVeal.grid.html#module-reVeal.grid">reVeal.grid</a>
+</li>
+        <li><a href="_autosummary/reVeal.load.html#module-reVeal.load">reVeal.load</a>
+</li>
+        <li><a href="_autosummary/reVeal.log.html#module-reVeal.log">reVeal.log</a>
+</li>
+        <li><a href="_autosummary/reVeal.normalization.html#module-reVeal.normalization">reVeal.normalization</a>
+</li>
+        <li><a href="_autosummary/reVeal.overlay.html#module-reVeal.overlay">reVeal.overlay</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/reVeal.config.normalize.NormalizeConfig.html#reVeal.config.normalize.NormalizeConfig">NormalizeConfig (class in reVeal.config.normalize)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/reVeal.grid.NormalizeGrid.html#reVeal.grid.NormalizeGrid">NormalizeGrid (class in reVeal.grid)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum">NormalizeMethodEnum (class in reVeal.config.normalize)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/reVeal.config.characterize.Characterization.html#reVeal.config.characterize.Characterization.parallel_check">parallel_check() (Characterization method)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.partition">partition() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.partition">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.partition">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.partition">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.partition">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.partition">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum">ProjectionResolutionEnum (class in reVeal.config.downscale)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.characterize.CharacterizeConfig.html#reVeal.config.characterize.CharacterizeConfig.propagate_datadir">propagate_datadir() (CharacterizeConfig method)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.normalize.NormalizeConfig.html#reVeal.config.normalize.NormalizeConfig.propagate_grid">propagate_grid() (NormalizeConfig method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.score_weighted.ScoreWeightedConfig.html#reVeal.config.score_weighted.ScoreWeightedConfig.propagate_grid">(ScoreWeightedConfig method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/reVeal.config.normalize.NormalizeConfig.html#reVeal.config.normalize.NormalizeConfig.propagate_normalize_method">propagate_normalize_method() (NormalizeConfig method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/reVeal.fileio.read_vectors.html#reVeal.fileio.read_vectors">read_vectors() (in module reVeal.fileio)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.downscale.RegionalDownscaleConfig.html#reVeal.config.downscale.RegionalDownscaleConfig">RegionalDownscaleConfig (class in reVeal.config.downscale)</a>
+</li>
+      <li><a href="_autosummary/reVeal.grid.RegionalDownscaleGrid.html#reVeal.grid.RegionalDownscaleGrid">RegionalDownscaleGrid (class in reVeal.grid)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum">RegionalResolutionEnum (class in reVeal.config.downscale)</a>
+</li>
+      <li><a href="_autosummary/reVeal.log.remove_streamhandlers.html#reVeal.log.remove_streamhandlers">remove_streamhandlers() (in module reVeal.log)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.removeprefix">removeprefix() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.removeprefix">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.removeprefix">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.removeprefix">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.removeprefix">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.removeprefix">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.removesuffix">removesuffix() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.removesuffix">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.removesuffix">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.removesuffix">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.removesuffix">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.removesuffix">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.replace">replace() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.replace">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.replace">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.replace">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.replace">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.replace">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+      <li>
+    reVeal
+
+      <ul>
+        <li><a href="_autosummary/reVeal.html#module-reVeal">module</a>
+</li>
+      </ul></li>
+      <li>
+    reVeal command line option
+
+      <ul>
+        <li><a href="_cli/reVeal.html#cmdoption-reVeal-v">--verbose</a>
+</li>
+        <li><a href="_cli/reVeal.html#cmdoption-reVeal-version">--version</a>
+</li>
+        <li><a href="_cli/reVeal.html#cmdoption-reVeal-v">-v</a>
+</li>
+      </ul></li>
+      <li>
+    reVeal-batch command line option
+
+      <ul>
+        <li><a href="_cli/reVeal%20batch.html#cmdoption-reVeal-batch-cancel">--cancel</a>
+</li>
+        <li><a href="_cli/reVeal%20batch.html#cmdoption-reVeal-batch-c">--config_file</a>
+</li>
+        <li><a href="_cli/reVeal%20batch.html#cmdoption-reVeal-batch-delete">--delete</a>
+</li>
+        <li><a href="_cli/reVeal%20batch.html#cmdoption-reVeal-batch-dry">--dry</a>
+</li>
+        <li><a href="_cli/reVeal%20batch.html#cmdoption-reVeal-batch-monitor-background">--monitor-background</a>
+</li>
+        <li><a href="_cli/reVeal%20batch.html#cmdoption-reVeal-batch-c">-c</a>
+</li>
+      </ul></li>
+      <li>
+    reVeal-characterize command line option
+
+      <ul>
+        <li><a href="_cli/reVeal%20characterize.html#cmdoption-reVeal-characterize-c">--config_file</a>
+</li>
+        <li><a href="_cli/reVeal%20characterize.html#cmdoption-reVeal-characterize-c">-c</a>
+</li>
+      </ul></li>
+      <li>
+    reVeal-normalize command line option
+
+      <ul>
+        <li><a href="_cli/reVeal%20normalize.html#cmdoption-reVeal-normalize-c">--config_file</a>
+</li>
+        <li><a href="_cli/reVeal%20normalize.html#cmdoption-reVeal-normalize-c">-c</a>
+</li>
+      </ul></li>
+      <li>
+    reVeal-pipeline command line option
+
+      <ul>
+        <li><a href="_cli/reVeal%20pipeline.html#cmdoption-reVeal-pipeline-background">--background</a>
+</li>
+        <li><a href="_cli/reVeal%20pipeline.html#cmdoption-reVeal-pipeline-cancel">--cancel</a>
+</li>
+        <li><a href="_cli/reVeal%20pipeline.html#cmdoption-reVeal-pipeline-c">--config_file</a>
+</li>
+        <li><a href="_cli/reVeal%20pipeline.html#cmdoption-reVeal-pipeline-monitor">--monitor</a>
+</li>
+        <li><a href="_cli/reVeal%20pipeline.html#cmdoption-reVeal-pipeline-r">--recursive</a>
+</li>
+        <li><a href="_cli/reVeal%20pipeline.html#cmdoption-reVeal-pipeline-c">-c</a>
+</li>
+        <li><a href="_cli/reVeal%20pipeline.html#cmdoption-reVeal-pipeline-r">-r</a>
+</li>
+      </ul></li>
+      <li>
+    reVeal-reset-status command line option
+
+      <ul>
+        <li><a href="_cli/reVeal%20reset-status.html#cmdoption-reVeal-reset-status-a">--after-step</a>
+</li>
+        <li><a href="_cli/reVeal%20reset-status.html#cmdoption-reVeal-reset-status-f">--force</a>
+</li>
+        <li><a href="_cli/reVeal%20reset-status.html#cmdoption-reVeal-reset-status-a">-a</a>
+</li>
+        <li><a href="_cli/reVeal%20reset-status.html#cmdoption-reVeal-reset-status-f">-f</a>
+</li>
+        <li><a href="_cli/reVeal%20reset-status.html#cmdoption-reVeal-reset-status-arg-DIRECTORY">DIRECTORY</a>
+</li>
+      </ul></li>
+      <li>
+    reVeal-score-weighted command line option
+
+      <ul>
+        <li><a href="_cli/reVeal%20score-weighted.html#cmdoption-reVeal-score-weighted-c">--config_file</a>
+</li>
+        <li><a href="_cli/reVeal%20score-weighted.html#cmdoption-reVeal-score-weighted-c">-c</a>
+</li>
+      </ul></li>
+      <li>
+    reVeal-script command line option
+
+      <ul>
+        <li><a href="_cli/reVeal%20script.html#cmdoption-reVeal-script-c">--config_file</a>
+</li>
+        <li><a href="_cli/reVeal%20script.html#cmdoption-reVeal-script-c">-c</a>
+</li>
+      </ul></li>
+      <li>
+    reVeal-status command line option
+
+      <ul>
+        <li><a href="_cli/reVeal%20status.html#cmdoption-reVeal-status-i">--include</a>
+</li>
+        <li><a href="_cli/reVeal%20status.html#cmdoption-reVeal-status-ps">--pipe_steps</a>
+</li>
+        <li><a href="_cli/reVeal%20status.html#cmdoption-reVeal-status-r">--recursive</a>
+</li>
+        <li><a href="_cli/reVeal%20status.html#cmdoption-reVeal-status-s">--status</a>
+</li>
+        <li><a href="_cli/reVeal%20status.html#cmdoption-reVeal-status-i">-i</a>
+</li>
+        <li><a href="_cli/reVeal%20status.html#cmdoption-reVeal-status-ps">-ps</a>
+</li>
+        <li><a href="_cli/reVeal%20status.html#cmdoption-reVeal-status-r">-r</a>
+</li>
+        <li><a href="_cli/reVeal%20status.html#cmdoption-reVeal-status-s">-s</a>
+</li>
+        <li><a href="_cli/reVeal%20status.html#cmdoption-reVeal-status-arg-FOLDER">FOLDER</a>
+</li>
+      </ul></li>
+      <li>
+    reVeal-template-configs command line option
+
+      <ul>
+        <li><a href="_cli/reVeal%20template-configs.html#cmdoption-reVeal-template-configs-t">--type</a>
+</li>
+        <li><a href="_cli/reVeal%20template-configs.html#cmdoption-reVeal-template-configs-t">-t</a>
+</li>
+        <li><a href="_cli/reVeal%20template-configs.html#cmdoption-reVeal-template-configs-arg-COMMANDS">COMMANDS</a>
+</li>
+      </ul></li>
+      <li>
+    reVeal.cli
+
+      <ul>
+        <li><a href="_autosummary/reVeal.cli.html#module-reVeal.cli">module</a>
+</li>
+      </ul></li>
+      <li>
+    reVeal.cli.characterize
+
+      <ul>
+        <li><a href="_autosummary/reVeal.cli.characterize.html#module-reVeal.cli.characterize">module</a>
+</li>
+      </ul></li>
+      <li>
+    reVeal.cli.cli
+
+      <ul>
+        <li><a href="_autosummary/reVeal.cli.cli.html#module-reVeal.cli.cli">module</a>
+</li>
+      </ul></li>
+      <li>
+    reVeal.cli.downscale
+
+      <ul>
+        <li><a href="_autosummary/reVeal.cli.downscale.html#module-reVeal.cli.downscale">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    reVeal.cli.normalize
+
+      <ul>
+        <li><a href="_autosummary/reVeal.cli.normalize.html#module-reVeal.cli.normalize">module</a>
+</li>
+      </ul></li>
+      <li>
+    reVeal.cli.score_weighted
+
+      <ul>
+        <li><a href="_autosummary/reVeal.cli.score_weighted.html#module-reVeal.cli.score_weighted">module</a>
+</li>
+      </ul></li>
+      <li>
+    reVeal.config
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.html#module-reVeal.config">module</a>
+</li>
+      </ul></li>
+      <li>
+    reVeal.config.characterize
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.html#module-reVeal.config.characterize">module</a>
+</li>
+      </ul></li>
+      <li>
+    reVeal.config.config
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.config.html#module-reVeal.config.config">module</a>
+</li>
+      </ul></li>
+      <li>
+    reVeal.config.downscale
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.downscale.html#module-reVeal.config.downscale">module</a>
+</li>
+      </ul></li>
+      <li>
+    reVeal.config.normalize
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.normalize.html#module-reVeal.config.normalize">module</a>
+</li>
+      </ul></li>
+      <li>
+    reVeal.config.score_weighted
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.score_weighted.html#module-reVeal.config.score_weighted">module</a>
+</li>
+      </ul></li>
+      <li>
+    reVeal.dataframe
+
+      <ul>
+        <li><a href="_autosummary/reVeal.dataframe.html#module-reVeal.dataframe">module</a>
+</li>
+      </ul></li>
+      <li>
+    reVeal.errors
+
+      <ul>
+        <li><a href="_autosummary/reVeal.errors.html#module-reVeal.errors">module</a>
+</li>
+      </ul></li>
+      <li>
+    reVeal.fileio
+
+      <ul>
+        <li><a href="_autosummary/reVeal.fileio.html#module-reVeal.fileio">module</a>
+</li>
+      </ul></li>
+      <li>
+    reVeal.grid
+
+      <ul>
+        <li><a href="_autosummary/reVeal.grid.html#module-reVeal.grid">module</a>
+</li>
+      </ul></li>
+      <li>
+    reVeal.load
+
+      <ul>
+        <li><a href="_autosummary/reVeal.load.html#module-reVeal.load">module</a>
+</li>
+      </ul></li>
+      <li>
+    reVeal.log
+
+      <ul>
+        <li><a href="_autosummary/reVeal.log.html#module-reVeal.log">module</a>
+</li>
+      </ul></li>
+      <li>
+    reVeal.normalization
+
+      <ul>
+        <li><a href="_autosummary/reVeal.normalization.html#module-reVeal.normalization">module</a>
+</li>
+      </ul></li>
+      <li>
+    reVeal.overlay
+
+      <ul>
+        <li><a href="_autosummary/reVeal.overlay.html#module-reVeal.overlay">module</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.rfind">rfind() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.rfind">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.rfind">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.rfind">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.rfind">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.rfind">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.rindex">rindex() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.rindex">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.rindex">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.rindex">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.rindex">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.rindex">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.rjust">rjust() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.rjust">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.rjust">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.rjust">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.rjust">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.rjust">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.rpartition">rpartition() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.rpartition">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.rpartition">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.rpartition">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.rpartition">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.rpartition">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.rsplit">rsplit() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.rsplit">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.rsplit">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.rsplit">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.rsplit">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.rsplit">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.rstrip">rstrip() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.rstrip">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.rstrip">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.rstrip">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.rstrip">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.rstrip">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/reVeal.grid.CharacterizeGrid.html#reVeal.grid.CharacterizeGrid.run">run() (CharacterizeGrid method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.cli.characterize.run.html#reVeal.cli.characterize.run">(in module reVeal.cli.characterize)</a>
+</li>
+        <li><a href="_autosummary/reVeal.cli.downscale.run.html#reVeal.cli.downscale.run">(in module reVeal.cli.downscale)</a>
+</li>
+        <li><a href="_autosummary/reVeal.cli.normalize.run.html#reVeal.cli.normalize.run">(in module reVeal.cli.normalize)</a>
+</li>
+        <li><a href="_autosummary/reVeal.cli.score_weighted.run.html#reVeal.cli.score_weighted.run">(in module reVeal.cli.score_weighted)</a>
+</li>
+        <li><a href="_autosummary/reVeal.grid.NormalizeGrid.html#reVeal.grid.NormalizeGrid.run">(NormalizeGrid method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.grid.RegionalDownscaleGrid.html#reVeal.grid.RegionalDownscaleGrid.run">(RegionalDownscaleGrid method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.grid.RunnableGrid.html#reVeal.grid.RunnableGrid.run">(RunnableGrid method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.grid.ScoreWeightedGrid.html#reVeal.grid.ScoreWeightedGrid.run">(ScoreWeightedGrid method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.grid.TotalDownscaleGrid.html#reVeal.grid.TotalDownscaleGrid.run">(TotalDownscaleGrid method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/reVeal.grid.run_characterization.html#reVeal.grid.run_characterization">run_characterization() (in module reVeal.grid)</a>
+</li>
+      <li><a href="_autosummary/reVeal.grid.run_normalization.html#reVeal.grid.run_normalization">run_normalization() (in module reVeal.grid)</a>
+</li>
+      <li><a href="_autosummary/reVeal.grid.run_weighted_scoring.html#reVeal.grid.run_weighted_scoring">run_weighted_scoring() (in module reVeal.grid)</a>
+</li>
+      <li><a href="_autosummary/reVeal.grid.RunnableGrid.html#reVeal.grid.RunnableGrid">RunnableGrid (class in reVeal.grid)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/reVeal.config.score_weighted.ScoreWeightedConfig.html#reVeal.config.score_weighted.ScoreWeightedConfig">ScoreWeightedConfig (class in reVeal.config.score_weighted)</a>
+</li>
+      <li><a href="_autosummary/reVeal.grid.ScoreWeightedGrid.html#reVeal.grid.ScoreWeightedGrid">ScoreWeightedGrid (class in reVeal.grid)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.characterize.Characterization.html#reVeal.config.characterize.Characterization.set_crs">set_crs() (Characterization method)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.characterize.Characterization.html#reVeal.config.characterize.Characterization.set_dset_ext">set_dset_ext() (Characterization method)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.characterize.Characterization.html#reVeal.config.characterize.Characterization.set_dset_format">set_dset_format() (Characterization method)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.characterize.Characterization.html#reVeal.config.characterize.Characterization.set_dset_src">set_dset_src() (Characterization method)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.characterize.BaseCharacterizeConfig.html#reVeal.config.characterize.BaseCharacterizeConfig.set_grid_crs">set_grid_crs() (BaseCharacterizeConfig method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.downscale.BaseDownscaleConfig.html#reVeal.config.downscale.BaseDownscaleConfig.set_grid_crs">(BaseDownscaleConfig method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.config.BaseGridConfig.html#reVeal.config.config.BaseGridConfig.set_grid_crs">(BaseGridConfig method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.BaseNormalizeConfig.html#reVeal.config.normalize.BaseNormalizeConfig.set_grid_crs">(BaseNormalizeConfig method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.score_weighted.BaseScoreWeightedConfig.html#reVeal.config.score_weighted.BaseScoreWeightedConfig.set_grid_crs">(BaseScoreWeightedConfig method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.characterize.CharacterizeConfig.html#reVeal.config.characterize.CharacterizeConfig.set_grid_crs">(CharacterizeConfig method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.DownscaleConfig.html#reVeal.config.downscale.DownscaleConfig.set_grid_crs">(DownscaleConfig method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeConfig.html#reVeal.config.normalize.NormalizeConfig.set_grid_crs">(NormalizeConfig method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalDownscaleConfig.html#reVeal.config.downscale.RegionalDownscaleConfig.set_grid_crs">(RegionalDownscaleConfig method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.score_weighted.ScoreWeightedConfig.html#reVeal.config.score_weighted.ScoreWeightedConfig.set_grid_crs">(ScoreWeightedConfig method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalDownscaleConfig.html#reVeal.config.downscale.TotalDownscaleConfig.set_grid_crs">(TotalDownscaleConfig method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/reVeal.config.characterize.BaseCharacterizeConfig.html#reVeal.config.characterize.BaseCharacterizeConfig.set_grid_ext">set_grid_ext() (BaseCharacterizeConfig method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.downscale.BaseDownscaleConfig.html#reVeal.config.downscale.BaseDownscaleConfig.set_grid_ext">(BaseDownscaleConfig method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.config.BaseGridConfig.html#reVeal.config.config.BaseGridConfig.set_grid_ext">(BaseGridConfig method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.BaseNormalizeConfig.html#reVeal.config.normalize.BaseNormalizeConfig.set_grid_ext">(BaseNormalizeConfig method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.score_weighted.BaseScoreWeightedConfig.html#reVeal.config.score_weighted.BaseScoreWeightedConfig.set_grid_ext">(BaseScoreWeightedConfig method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.characterize.CharacterizeConfig.html#reVeal.config.characterize.CharacterizeConfig.set_grid_ext">(CharacterizeConfig method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.DownscaleConfig.html#reVeal.config.downscale.DownscaleConfig.set_grid_ext">(DownscaleConfig method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeConfig.html#reVeal.config.normalize.NormalizeConfig.set_grid_ext">(NormalizeConfig method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalDownscaleConfig.html#reVeal.config.downscale.RegionalDownscaleConfig.set_grid_ext">(RegionalDownscaleConfig method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.score_weighted.ScoreWeightedConfig.html#reVeal.config.score_weighted.ScoreWeightedConfig.set_grid_ext">(ScoreWeightedConfig method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalDownscaleConfig.html#reVeal.config.downscale.TotalDownscaleConfig.set_grid_ext">(TotalDownscaleConfig method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/reVeal.config.characterize.BaseCharacterizeConfig.html#reVeal.config.characterize.BaseCharacterizeConfig.set_grid_flavor">set_grid_flavor() (BaseCharacterizeConfig method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.downscale.BaseDownscaleConfig.html#reVeal.config.downscale.BaseDownscaleConfig.set_grid_flavor">(BaseDownscaleConfig method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.config.BaseGridConfig.html#reVeal.config.config.BaseGridConfig.set_grid_flavor">(BaseGridConfig method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.BaseNormalizeConfig.html#reVeal.config.normalize.BaseNormalizeConfig.set_grid_flavor">(BaseNormalizeConfig method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.score_weighted.BaseScoreWeightedConfig.html#reVeal.config.score_weighted.BaseScoreWeightedConfig.set_grid_flavor">(BaseScoreWeightedConfig method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.characterize.CharacterizeConfig.html#reVeal.config.characterize.CharacterizeConfig.set_grid_flavor">(CharacterizeConfig method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.DownscaleConfig.html#reVeal.config.downscale.DownscaleConfig.set_grid_flavor">(DownscaleConfig method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeConfig.html#reVeal.config.normalize.NormalizeConfig.set_grid_flavor">(NormalizeConfig method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalDownscaleConfig.html#reVeal.config.downscale.RegionalDownscaleConfig.set_grid_flavor">(RegionalDownscaleConfig method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.score_weighted.ScoreWeightedConfig.html#reVeal.config.score_weighted.ScoreWeightedConfig.set_grid_flavor">(ScoreWeightedConfig method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalDownscaleConfig.html#reVeal.config.downscale.TotalDownscaleConfig.set_grid_flavor">(TotalDownscaleConfig method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/reVeal.config.downscale.RegionalDownscaleConfig.html#reVeal.config.downscale.RegionalDownscaleConfig.set_regions_ext">set_regions_ext() (RegionalDownscaleConfig method)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.downscale.RegionalDownscaleConfig.html#reVeal.config.downscale.RegionalDownscaleConfig.set_regions_flavor">set_regions_flavor() (RegionalDownscaleConfig method)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.characterize.Characterization.html#reVeal.config.characterize.Characterization.set_weights_dset_src">set_weights_dset_src() (Characterization method)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.split">split() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.split">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.split">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.split">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.split">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.split">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.splitlines">splitlines() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.splitlines">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.splitlines">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.splitlines">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.splitlines">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.splitlines">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.startswith">startswith() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.startswith">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.startswith">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.startswith">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.startswith">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.startswith">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.strip">strip() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.strip">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.strip">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.strip">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.strip">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.strip">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.swapcase">swapcase() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.swapcase">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.swapcase">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.swapcase">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.swapcase">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.swapcase">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="T">T</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.title">title() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.title">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.title">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.title">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.title">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.title">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/reVeal.config.downscale.TotalDownscaleConfig.html#reVeal.config.downscale.TotalDownscaleConfig">TotalDownscaleConfig (class in reVeal.config.downscale)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/reVeal.grid.TotalDownscaleGrid.html#reVeal.grid.TotalDownscaleGrid">TotalDownscaleGrid (class in reVeal.grid)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum">TotalResolutionEnum (class in reVeal.config.downscale)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.translate">translate() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.translate">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.translate">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.translate">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.translate">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.translate">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="U">U</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.upper">upper() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.upper">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.upper">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.upper">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.upper">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.upper">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="V">V</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/reVeal.config.normalize.NormalizeConfig.html#reVeal.config.normalize.NormalizeConfig.validate_attributes">validate_attributes() (NormalizeConfig class method)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.characterize.CharacterizeConfig.html#reVeal.config.characterize.CharacterizeConfig.validate_characterizations">validate_characterizations() (CharacterizeConfig class method)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.characterize.CharacterizeConfig.html#reVeal.config.characterize.CharacterizeConfig.validate_crs">validate_crs() (CharacterizeConfig method)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.characterize.CharacterizeConfig.html#reVeal.config.characterize.CharacterizeConfig.validate_expressions">validate_expressions() (CharacterizeConfig class method)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.downscale.BaseDownscaleConfig.html#reVeal.config.downscale.BaseDownscaleConfig.validate_grid">validate_grid() (BaseDownscaleConfig method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.downscale.DownscaleConfig.html#reVeal.config.downscale.DownscaleConfig.validate_grid">(DownscaleConfig method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalDownscaleConfig.html#reVeal.config.downscale.RegionalDownscaleConfig.validate_grid">(RegionalDownscaleConfig method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalDownscaleConfig.html#reVeal.config.downscale.TotalDownscaleConfig.validate_grid">(TotalDownscaleConfig method)</a>
+</li>
+      </ul></li>
+      <li><a href="_autosummary/reVeal.config.downscale.BaseDownscaleConfig.html#reVeal.config.downscale.BaseDownscaleConfig.validate_load_projections">validate_load_projections() (BaseDownscaleConfig method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.downscale.DownscaleConfig.html#reVeal.config.downscale.DownscaleConfig.validate_load_projections">(DownscaleConfig method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalDownscaleConfig.html#reVeal.config.downscale.RegionalDownscaleConfig.validate_load_projections">(RegionalDownscaleConfig method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalDownscaleConfig.html#reVeal.config.downscale.TotalDownscaleConfig.validate_load_projections">(TotalDownscaleConfig method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/reVeal.config.downscale.RegionalDownscaleConfig.html#reVeal.config.downscale.RegionalDownscaleConfig.validate_load_projections_duplicate_years">validate_load_projections_duplicate_years() (RegionalDownscaleConfig method)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.downscale.TotalDownscaleConfig.html#reVeal.config.downscale.TotalDownscaleConfig.validate_load_projections_duplicates">validate_load_projections_duplicates() (TotalDownscaleConfig method)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.downscale.RegionalDownscaleConfig.html#reVeal.config.downscale.RegionalDownscaleConfig.validate_load_regions">validate_load_regions() (RegionalDownscaleConfig method)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.downscale.RegionalDownscaleConfig.html#reVeal.config.downscale.RegionalDownscaleConfig.validate_region_consistency">validate_region_consistency() (RegionalDownscaleConfig method)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.downscale.RegionalDownscaleConfig.html#reVeal.config.downscale.RegionalDownscaleConfig.validate_regions">validate_regions() (RegionalDownscaleConfig method)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.score_weighted.ScoreWeightedConfig.html#reVeal.config.score_weighted.ScoreWeightedConfig.validate_score_name">validate_score_name() (ScoreWeightedConfig method)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.score_weighted.ScoreWeightedConfig.html#reVeal.config.score_weighted.ScoreWeightedConfig.validate_sum_attribute_weights">validate_sum_attribute_weights() (ScoreWeightedConfig method)</a>
+</li>
+      <li><a href="_autosummary/reVeal.config.downscale.RegionalDownscaleConfig.html#reVeal.config.downscale.RegionalDownscaleConfig.validate_sum_region_weights">validate_sum_region_weights() (RegionalDownscaleConfig method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="W">W</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/reVeal.config.characterize.Characterization.html#reVeal.config.characterize.Characterization.weights_dset_check">weights_dset_check() (Characterization method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/reVeal.config.characterize.Characterization.html#reVeal.config.characterize.Characterization.where_check">where_check() (Characterization method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="Z">Z</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/reVeal.config.config.BaseEnum.html#reVeal.config.config.BaseEnum.zfill">zfill() (BaseEnum method)</a>
+
+      <ul>
+        <li><a href="_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum.zfill">(DatasetFormatEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.normalize.NormalizeMethodEnum.html#reVeal.config.normalize.NormalizeMethodEnum.zfill">(NormalizeMethodEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.ProjectionResolutionEnum.html#reVeal.config.downscale.ProjectionResolutionEnum.zfill">(ProjectionResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.RegionalResolutionEnum.html#reVeal.config.downscale.RegionalResolutionEnum.zfill">(RegionalResolutionEnum method)</a>
+</li>
+        <li><a href="_autosummary/reVeal.config.downscale.TotalResolutionEnum.html#reVeal.config.downscale.TotalResolutionEnum.zfill">(TotalResolutionEnum method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_autosummary/reVeal.overlay.zonal_statistic.html#reVeal.overlay.zonal_statistic">zonal_statistic() (in module reVeal.overlay)</a>
+</li>
+      <li><a href="_autosummary/reVeal.overlay.zonal_statistic_parallel.html#reVeal.overlay.zonal_statistic_parallel">zonal_statistic_parallel() (in module reVeal.overlay)</a>
+</li>
+      <li><a href="_autosummary/reVeal.overlay.zonal_statistic_serial.html#reVeal.overlay.zonal_statistic_serial">zonal_statistic_serial() (in module reVeal.overlay)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, Alliance for Energy Innovation, LLC and Root Geospatial LLC.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

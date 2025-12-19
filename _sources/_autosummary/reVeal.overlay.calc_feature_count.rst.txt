@@ -1,0 +1,6 @@
+reVeal.overlay.calc\_feature\_count
+===================================
+
+.. currentmodule:: reVeal.overlay
+
+.. autofunction:: calc_feature_count

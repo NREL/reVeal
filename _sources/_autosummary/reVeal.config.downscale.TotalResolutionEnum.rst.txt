@@ -1,0 +1,76 @@
+reVeal.config.downscale.TotalResolutionEnum
+===========================================
+
+.. currentmodule:: reVeal.config.downscale
+
+.. autoclass:: TotalResolutionEnum
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~TotalResolutionEnum.encode
+      ~TotalResolutionEnum.replace
+      ~TotalResolutionEnum.split
+      ~TotalResolutionEnum.rsplit
+      ~TotalResolutionEnum.join
+      ~TotalResolutionEnum.capitalize
+      ~TotalResolutionEnum.casefold
+      ~TotalResolutionEnum.title
+      ~TotalResolutionEnum.center
+      ~TotalResolutionEnum.count
+      ~TotalResolutionEnum.expandtabs
+      ~TotalResolutionEnum.find
+      ~TotalResolutionEnum.partition
+      ~TotalResolutionEnum.index
+      ~TotalResolutionEnum.ljust
+      ~TotalResolutionEnum.lower
+      ~TotalResolutionEnum.lstrip
+      ~TotalResolutionEnum.rfind
+      ~TotalResolutionEnum.rindex
+      ~TotalResolutionEnum.rjust
+      ~TotalResolutionEnum.rstrip
+      ~TotalResolutionEnum.rpartition
+      ~TotalResolutionEnum.splitlines
+      ~TotalResolutionEnum.strip
+      ~TotalResolutionEnum.swapcase
+      ~TotalResolutionEnum.translate
+      ~TotalResolutionEnum.upper
+      ~TotalResolutionEnum.startswith
+      ~TotalResolutionEnum.endswith
+      ~TotalResolutionEnum.removeprefix
+      ~TotalResolutionEnum.removesuffix
+      ~TotalResolutionEnum.isascii
+      ~TotalResolutionEnum.islower
+      ~TotalResolutionEnum.isupper
+      ~TotalResolutionEnum.istitle
+      ~TotalResolutionEnum.isspace
+      ~TotalResolutionEnum.isdecimal
+      ~TotalResolutionEnum.isdigit
+      ~TotalResolutionEnum.isnumeric
+      ~TotalResolutionEnum.isalpha
+      ~TotalResolutionEnum.isalnum
+      ~TotalResolutionEnum.isidentifier
+      ~TotalResolutionEnum.isprintable
+      ~TotalResolutionEnum.zfill
+      ~TotalResolutionEnum.format
+      ~TotalResolutionEnum.format_map
+      ~TotalResolutionEnum.maketrans
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~TotalResolutionEnum.TOTAL
+   
+   

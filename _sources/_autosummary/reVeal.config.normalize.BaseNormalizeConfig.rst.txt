@@ -1,0 +1,43 @@
+reVeal.config.normalize.BaseNormalizeConfig
+===========================================
+
+.. currentmodule:: reVeal.config.normalize
+
+.. autoclass:: BaseNormalizeConfig
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~BaseNormalizeConfig.set_grid_crs
+      ~BaseNormalizeConfig.set_grid_ext
+      ~BaseNormalizeConfig.set_grid_flavor
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~BaseNormalizeConfig.model_computed_fields
+      ~BaseNormalizeConfig.model_config
+      ~BaseNormalizeConfig.model_extra
+      ~BaseNormalizeConfig.model_fields
+      ~BaseNormalizeConfig.model_fields_set
+      ~BaseNormalizeConfig.attributes
+      ~BaseNormalizeConfig.normalize_method
+      ~BaseNormalizeConfig.invert
+      ~BaseNormalizeConfig.grid
+      ~BaseNormalizeConfig.grid_ext
+      ~BaseNormalizeConfig.grid_flavor
+      ~BaseNormalizeConfig.grid_crs
+   
+   

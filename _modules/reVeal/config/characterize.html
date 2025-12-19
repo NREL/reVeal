@@ -1,0 +1,962 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>reVeal.config.characterize &#8212; reVeal 0.2.2 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/documentation_options.js?v=000c92bf"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/tabs.js?v=3030b3cb"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/reVeal/config/characterize';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.2" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">reVeal 0.2.2 documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../index.html">
+    Home page
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../misc/installation_usage.html">
+    Installation and Usage
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../misc/examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../_cli/cli.html">
+    CLI reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../_autosummary/reVeal.html">
+    API reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../index.html">
+    Home page
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../misc/installation_usage.html">
+    Installation and Usage
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../misc/examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../_cli/cli.html">
+    CLI reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../_autosummary/reVeal.html">
+    API reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">reVeal.config.characterize</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for reVeal.config.characterize</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">config.characterize module</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">rasterio.drivers</span><span class="w"> </span><span class="kn">import</span> <span class="n">raster_driver_extensions</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyogrio._ogr</span><span class="w"> </span><span class="kn">import</span> <span class="n">_get_drivers_for_path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">field_validator</span><span class="p">,</span>
+    <span class="n">model_validator</span><span class="p">,</span>
+    <span class="n">FilePath</span><span class="p">,</span>
+    <span class="n">DirectoryPath</span><span class="p">,</span>
+    <span class="n">constr</span><span class="p">,</span>
+    <span class="n">NonNegativeInt</span><span class="p">,</span>
+    <span class="n">PositiveInt</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rex.utilities</span><span class="w"> </span><span class="kn">import</span> <span class="n">check_eval_str</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">reVeal.fileio</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">get_geom_type_pyogrio</span><span class="p">,</span>
+    <span class="n">get_geom_type_parquet</span><span class="p">,</span>
+    <span class="n">get_crs_raster</span><span class="p">,</span>
+    <span class="n">get_crs_pyogrio</span><span class="p">,</span>
+    <span class="n">get_crs_parquet</span><span class="p">,</span>
+    <span class="n">attribute_is_numeric</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">reVeal.config.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseEnum</span><span class="p">,</span> <span class="n">BaseModelStrict</span><span class="p">,</span> <span class="n">BaseGridConfig</span>
+
+
+<span class="n">VALID_CHARACTERIZATION_METHODS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;feature count&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;valid_inputs&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;point&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;attribute_required&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;supports_weights&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;supports_parallel&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;supports_where&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;sum attribute&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;valid_inputs&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;point&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;attribute_required&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s2">&quot;supports_weights&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;supports_parallel&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;supports_where&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;sum length&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;valid_inputs&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;line&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;attribute_required&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;supports_weights&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;supports_parallel&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;supports_where&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;sum attribute-length&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;valid_inputs&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;line&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;attribute_required&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s2">&quot;supports_weights&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;supports_parallel&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;supports_where&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;sum area&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;valid_inputs&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;polygon&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;attribute_required&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;supports_weights&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;supports_parallel&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;supports_where&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;area-weighted average&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;valid_inputs&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;polygon&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;attribute_required&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s2">&quot;supports_weights&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;supports_parallel&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;supports_where&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;percent covered&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;valid_inputs&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;polygon&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;attribute_required&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;supports_weights&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;supports_parallel&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;supports_where&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;area-apportioned sum&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;valid_inputs&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;polygon&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;attribute_required&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s2">&quot;supports_weights&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;supports_parallel&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;supports_where&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;mean&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;valid_inputs&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;raster&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;attribute_required&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;supports_weights&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s2">&quot;supports_parallel&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s2">&quot;supports_where&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;median&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;valid_inputs&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;raster&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;attribute_required&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;supports_weights&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;supports_parallel&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s2">&quot;supports_where&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;sum&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;valid_inputs&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;raster&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;attribute_required&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;supports_weights&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s2">&quot;supports_parallel&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s2">&quot;supports_where&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;area&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;valid_inputs&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;raster&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;attribute_required&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;supports_weights&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s2">&quot;supports_parallel&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s2">&quot;supports_where&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+
+
+<div class="viewcode-block" id="DatasetFormatEnum">
+<a class="viewcode-back" href="../../../_autosummary/reVeal.config.characterize.DatasetFormatEnum.html#reVeal.config.characterize.DatasetFormatEnum">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">DatasetFormatEnum</span><span class="p">(</span><span class="n">BaseEnum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Enumeration for allowable dataset formats. Case insensitive.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">RASTER</span> <span class="o">=</span> <span class="s2">&quot;raster&quot;</span>
+    <span class="n">POINT</span> <span class="o">=</span> <span class="s2">&quot;point&quot;</span>
+    <span class="n">LINE</span> <span class="o">=</span> <span class="s2">&quot;line&quot;</span>
+    <span class="n">POLYGON</span> <span class="o">=</span> <span class="s2">&quot;polygon&quot;</span></div>
+
+
+
+<div class="viewcode-block" id="Characterization">
+<a class="viewcode-back" href="../../../_autosummary/reVeal.config.characterize.Characterization.html#reVeal.config.characterize.Characterization">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Characterization</span><span class="p">(</span><span class="n">BaseModelStrict</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Inputs for a single characterization entry in the CharacterizeConfig.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># pylint: disable=too-few-public-methods</span>
+
+    <span class="c1"># Input at instantiation</span>
+    <span class="n">dset</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">data_dir</span><span class="p">:</span> <span class="n">DirectoryPath</span>
+    <span class="n">method</span><span class="p">:</span> <span class="n">constr</span><span class="p">(</span><span class="n">to_lower</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">attribute</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">weights_dset</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">parallel</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">max_workers</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PositiveInt</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">neighbor_order</span><span class="p">:</span> <span class="n">NonNegativeInt</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">buffer_distance</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">where</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="c1"># Derived dynamically</span>
+    <span class="n">dset_src</span><span class="p">:</span> <span class="n">FilePath</span>
+    <span class="n">dset_format</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DatasetFormatEnum</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">dset_ext</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">crs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">weights_dset_src</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">FilePath</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="Characterization.is_valid_method">
+<a class="viewcode-back" href="../../../_autosummary/reVeal.config.characterize.Characterization.html#reVeal.config.characterize.Characterization.is_valid_method">[docs]</a>
+    <span class="nd">@field_validator</span><span class="p">(</span><span class="s2">&quot;method&quot;</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_valid_method</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Check that method is one of the allowable values.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        value : str</span>
+<span class="sd">            Input value</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        str</span>
+<span class="sd">            Output value</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            A ValueError will be raised if the input method is invalid.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># pylint: disable=no-self-argument</span>
+
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">VALID_CHARACTERIZATION_METHODS</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Invalid method specified: </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">. &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;Valid options are: </span><span class="si">{</span><span class="n">VALID_CHARACTERIZATION_METHODS</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">value</span></div>
+
+
+<div class="viewcode-block" id="Characterization.set_dset_src">
+<a class="viewcode-back" href="../../../_autosummary/reVeal.config.characterize.Characterization.html#reVeal.config.characterize.Characterization.set_dset_src">[docs]</a>
+    <span class="nd">@model_validator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;before&quot;</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_dset_src</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Dynamically set the the dset_source property by joining input data_dir</span>
+<span class="sd">        and dset.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;data_dir&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;dset&quot;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;dset_src&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="s2">&quot;data_dir&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;dset&quot;</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="Characterization.set_weights_dset_src">
+<a class="viewcode-back" href="../../../_autosummary/reVeal.config.characterize.Characterization.html#reVeal.config.characterize.Characterization.set_weights_dset_src">[docs]</a>
+    <span class="nd">@model_validator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;before&quot;</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_weights_dset_src</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Dynamically set the the weights_dset_src property by joining input data_dir</span>
+<span class="sd">        and weights_dset.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;data_dir&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;weights_dset&quot;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;weights_dset_src&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="s2">&quot;data_dir&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;weights_dset&quot;</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="Characterization.set_dset_ext">
+<a class="viewcode-back" href="../../../_autosummary/reVeal.config.characterize.Characterization.html#reVeal.config.characterize.Characterization.set_dset_ext">[docs]</a>
+    <span class="nd">@model_validator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;after&quot;</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_dset_ext</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Dynamically set the dset_ext property.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">dset_ext</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dset_src</span><span class="o">.</span><span class="n">suffix</span>
+
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="Characterization.set_dset_format">
+<a class="viewcode-back" href="../../../_autosummary/reVeal.config.characterize.Characterization.html#reVeal.config.characterize.Characterization.set_dset_format">[docs]</a>
+    <span class="nd">@model_validator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;after&quot;</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_dset_format</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Dynamically set the the dset_source property.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dset_ext</span> <span class="o">==</span> <span class="s2">&quot;.parquet&quot;</span><span class="p">:</span>
+            <span class="n">dset_format</span> <span class="o">=</span> <span class="n">get_geom_type_parquet</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dset_src</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">_get_drivers_for_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dset</span><span class="p">):</span>
+            <span class="n">dset_format</span> <span class="o">=</span> <span class="n">get_geom_type_pyogrio</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dset_src</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">dset_ext</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="ow">in</span> <span class="n">raster_driver_extensions</span><span class="p">():</span>
+            <span class="c1"># note: order matters in these checks - do raster to avoid confusion on</span>
+            <span class="c1"># gpkg</span>
+            <span class="n">dset_format</span> <span class="o">=</span> <span class="s2">&quot;raster&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unsupported file format for </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dset_src</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">dset_format</span> <span class="o">=</span> <span class="n">DatasetFormatEnum</span><span class="p">(</span><span class="n">dset_format</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="Characterization.where_check">
+<a class="viewcode-back" href="../../../_autosummary/reVeal.config.characterize.Characterization.html#reVeal.config.characterize.Characterization.where_check">[docs]</a>
+    <span class="nd">@model_validator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;after&quot;</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">where_check</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Check that entry for where does not contain any questionable code.</span>
+<span class="sd">        Also issues a warning if where is specified but doesn&#39;t apply to the specified</span>
+<span class="sd">        method.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">where</span><span class="p">:</span>
+            <span class="c1"># always check, even if it doesn&#39;t apply (overkill, but just in case)</span>
+            <span class="n">check_eval_str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">where</span><span class="p">)</span>
+            <span class="n">method_info</span> <span class="o">=</span> <span class="n">VALID_CHARACTERIZATION_METHODS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">method_info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;supports_where&quot;</span><span class="p">):</span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;where specified but will not be applied for </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="Characterization.attribute_check">
+<a class="viewcode-back" href="../../../_autosummary/reVeal.config.characterize.Characterization.html#reVeal.config.characterize.Characterization.attribute_check">[docs]</a>
+    <span class="nd">@model_validator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;after&quot;</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">attribute_check</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Check that attribute is provided for required methods and warn if attribute</span>
+<span class="sd">        is provided for methods where it doesn&#39;t apply. Also ensure that the attribute</span>
+<span class="sd">        is present in the input dataset and is a numeric datatype.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            A ValueError will be raised if attribute is missing for a required method</span>
+<span class="sd">            or does not exist in the input dataset.</span>
+<span class="sd">        TypeError</span>
+<span class="sd">            A TypeError will be raised if the input attribute exists in the dataset</span>
+<span class="sd">            but is not a numeric datatype.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">method_info</span> <span class="o">=</span> <span class="n">VALID_CHARACTERIZATION_METHODS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">method_info</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">method_info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;attribute_required&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Missing information required to determine if attribute is required &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;for the specified method </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+        <span class="n">attribute_required</span> <span class="o">=</span> <span class="n">method_info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;attribute_required&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">attribute_required</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">attribute</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;attribute was not provided, but is required for method </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">attribute_required</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">attribute</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;attribute specified but will not be applied for </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="n">attribute_required</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">attribute</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">attribute_is_numeric</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dset_src</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">attribute</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Attribute </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">attribute</span><span class="si">}</span><span class="s2"> in </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dset_src</span><span class="si">}</span><span class="s2"> is invalid type. &quot;</span>
+                    <span class="s2">&quot;Must be a numeric dtype.&quot;</span>
+                <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="Characterization.set_crs">
+<a class="viewcode-back" href="../../../_autosummary/reVeal.config.characterize.Characterization.html#reVeal.config.characterize.Characterization.set_crs">[docs]</a>
+    <span class="nd">@model_validator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;after&quot;</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_crs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Dynamically set the crs property.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dset_format</span> <span class="o">==</span> <span class="s2">&quot;raster&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">crs</span> <span class="o">=</span> <span class="n">get_crs_raster</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dset_src</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">dset_ext</span> <span class="o">==</span> <span class="s2">&quot;.parquet&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">crs</span> <span class="o">=</span> <span class="n">get_crs_parquet</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dset_src</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">crs</span> <span class="o">=</span> <span class="n">get_crs_pyogrio</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dset_src</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="Characterization.check_method_applicability">
+<a class="viewcode-back" href="../../../_autosummary/reVeal.config.characterize.Characterization.html#reVeal.config.characterize.Characterization.check_method_applicability">[docs]</a>
+    <span class="nd">@model_validator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;after&quot;</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">check_method_applicability</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Check that the specified method is applicable to the input dset_format.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">applicable_types</span> <span class="o">=</span> <span class="n">VALID_CHARACTERIZATION_METHODS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="s2">&quot;valid_inputs&quot;</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dset_format</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">applicable_types</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Incompatible method (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="si">}</span><span class="s2">) and dataset format &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dset_format</span><span class="si">}</span><span class="s2">) for dataset </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dset_src</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="Characterization.weights_dset_check">
+<a class="viewcode-back" href="../../../_autosummary/reVeal.config.characterize.Characterization.html#reVeal.config.characterize.Characterization.weights_dset_check">[docs]</a>
+    <span class="nd">@model_validator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;after&quot;</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">weights_dset_check</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Check that, if weights_dset is provided, the selected method is applicable</span>
+<span class="sd">        to the method. If not, warn the user.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">weights_dset</span><span class="p">:</span>
+            <span class="n">method_info</span> <span class="o">=</span> <span class="n">VALID_CHARACTERIZATION_METHODS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">method_info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;supports_weights&quot;</span><span class="p">):</span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;weights_dset specified but will not be applied for </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="Characterization.parallel_check">
+<a class="viewcode-back" href="../../../_autosummary/reVeal.config.characterize.Characterization.html#reVeal.config.characterize.Characterization.parallel_check">[docs]</a>
+    <span class="nd">@model_validator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;after&quot;</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">parallel_check</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Check that, if parallel is set to True or max_workers was provided, the</span>
+<span class="sd">        selected method can be parallelized. If not, warn the user.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parallel</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_workers</span><span class="p">:</span>
+            <span class="n">method_info</span> <span class="o">=</span> <span class="n">VALID_CHARACTERIZATION_METHODS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">method_info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;supports_parallel&quot;</span><span class="p">):</span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                    <span class="s2">&quot;parallel specified as True and/or max_workers provided but &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;parallel processing is not implemented for </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="si">}</span><span class="s2">.&quot;</span>
+                <span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="BaseCharacterizeConfig">
+<a class="viewcode-back" href="../../../_autosummary/reVeal.config.characterize.BaseCharacterizeConfig.html#reVeal.config.characterize.BaseCharacterizeConfig">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">BaseCharacterizeConfig</span><span class="p">(</span><span class="n">BaseGridConfig</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Base model for CharacterizeConfig with only required inputs and datatypes.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># pylint: disable=too-few-public-methods</span>
+
+    <span class="c1"># Input at instantiation</span>
+    <span class="n">data_dir</span><span class="p">:</span> <span class="n">DirectoryPath</span>
+    <span class="n">characterizations</span><span class="p">:</span> <span class="nb">dict</span>
+    <span class="n">expressions</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="CharacterizeConfig">
+<a class="viewcode-back" href="../../../_autosummary/reVeal.config.characterize.CharacterizeConfig.html#reVeal.config.characterize.CharacterizeConfig">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">CharacterizeConfig</span><span class="p">(</span><span class="n">BaseCharacterizeConfig</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Configuration for characterize command.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># pylint: disable=too-few-public-methods</span>
+
+<div class="viewcode-block" id="CharacterizeConfig.propagate_datadir">
+<a class="viewcode-back" href="../../../_autosummary/reVeal.config.characterize.CharacterizeConfig.html#reVeal.config.characterize.CharacterizeConfig.propagate_datadir">[docs]</a>
+    <span class="nd">@model_validator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;before&quot;</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">propagate_datadir</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Propagate the top level data_dir parameter down to elements of</span>
+<span class="sd">        characterizations before validation.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self</span>
+<span class="sd">            Returns self.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;characterizations&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">if</span> <span class="s2">&quot;data_dir&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">v</span><span class="p">:</span>
+                <span class="n">v</span><span class="p">[</span><span class="s2">&quot;data_dir&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;data_dir&quot;</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="CharacterizeConfig.base_validator">
+<a class="viewcode-back" href="../../../_autosummary/reVeal.config.characterize.CharacterizeConfig.html#reVeal.config.characterize.CharacterizeConfig.base_validator">[docs]</a>
+    <span class="nd">@model_validator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;before&quot;</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">base_validator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Ensures that the base validation is run on input data types before</span>
+<span class="sd">        other &quot;before&quot;-mode model validators.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self</span>
+<span class="sd">            Returns self.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">BaseCharacterizeConfig</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="CharacterizeConfig.validate_characterizations">
+<a class="viewcode-back" href="../../../_autosummary/reVeal.config.characterize.CharacterizeConfig.html#reVeal.config.characterize.CharacterizeConfig.validate_characterizations">[docs]</a>
+    <span class="nd">@field_validator</span><span class="p">(</span><span class="s2">&quot;characterizations&quot;</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">validate_characterizations</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Validate each entry in the input charactrizations dictionary.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        value : dict</span>
+<span class="sd">            Input characterizations.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict</span>
+<span class="sd">            Validated characterizations, which each value converted</span>
+<span class="sd">            into an instance of Characterization.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># pylint: disable=no-self-argument</span>
+
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">value</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">value</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">Characterization</span><span class="p">(</span><span class="o">**</span><span class="n">v</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">value</span></div>
+
+
+<div class="viewcode-block" id="CharacterizeConfig.validate_expressions">
+<a class="viewcode-back" href="../../../_autosummary/reVeal.config.characterize.CharacterizeConfig.html#reVeal.config.characterize.CharacterizeConfig.validate_expressions">[docs]</a>
+    <span class="nd">@field_validator</span><span class="p">(</span><span class="s2">&quot;expressions&quot;</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">validate_expressions</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Check that each entry in the expressions dictionary is a string and does not</span>
+<span class="sd">        contain any questionable code.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        value : dict</span>
+<span class="sd">            Input expressions.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict</span>
+<span class="sd">            Validated expressions.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># pylint: disable=no-self-argument</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">value</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Invalid input for expressions entry </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">. Must be a string.&quot;</span>
+                <span class="p">)</span>
+            <span class="n">check_eval_str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">value</span></div>
+
+
+<div class="viewcode-block" id="CharacterizeConfig.validate_crs">
+<a class="viewcode-back" href="../../../_autosummary/reVeal.config.characterize.CharacterizeConfig.html#reVeal.config.characterize.CharacterizeConfig.validate_crs">[docs]</a>
+    <span class="nd">@model_validator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;after&quot;</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">validate_crs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Check that CRSs of individual characterizations match CRS of the grid.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">for</span> <span class="n">characterization</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">characterizations</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">characterization</span><span class="o">.</span><span class="n">crs</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid_crs</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;CRS of input dataset </span><span class="si">{</span><span class="n">characterization</span><span class="o">.</span><span class="n">dset_src</span><span class="si">}</span><span class="s2"> &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="n">characterization</span><span class="o">.</span><span class="n">crs</span><span class="si">}</span><span class="s2">) does not match grid CRS &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">grid_crs</span><span class="si">}</span><span class="s2">).&quot;</span>
+                <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+</div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, Alliance for Energy Innovation, LLC and Root Geospatial LLC.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

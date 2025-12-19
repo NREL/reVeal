@@ -1,0 +1,70 @@
+reVeal.config.downscale.RegionalDownscaleConfig
+===============================================
+
+.. currentmodule:: reVeal.config.downscale
+
+.. autoclass:: RegionalDownscaleConfig
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~RegionalDownscaleConfig.check_load_regions_or_region_weights
+      ~RegionalDownscaleConfig.set_grid_crs
+      ~RegionalDownscaleConfig.set_grid_ext
+      ~RegionalDownscaleConfig.set_grid_flavor
+      ~RegionalDownscaleConfig.set_regions_ext
+      ~RegionalDownscaleConfig.set_regions_flavor
+      ~RegionalDownscaleConfig.validate_grid
+      ~RegionalDownscaleConfig.validate_load_projections
+      ~RegionalDownscaleConfig.validate_load_projections_duplicate_years
+      ~RegionalDownscaleConfig.validate_load_regions
+      ~RegionalDownscaleConfig.validate_region_consistency
+      ~RegionalDownscaleConfig.validate_regions
+      ~RegionalDownscaleConfig.validate_sum_region_weights
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~RegionalDownscaleConfig.model_computed_fields
+      ~RegionalDownscaleConfig.model_config
+      ~RegionalDownscaleConfig.model_extra
+      ~RegionalDownscaleConfig.model_fields
+      ~RegionalDownscaleConfig.model_fields_set
+      ~RegionalDownscaleConfig.projection_resolution
+      ~RegionalDownscaleConfig.load_regions
+      ~RegionalDownscaleConfig.region_weights
+      ~RegionalDownscaleConfig.regions
+      ~RegionalDownscaleConfig.region_names
+      ~RegionalDownscaleConfig.regions_ext
+      ~RegionalDownscaleConfig.regions_flavor
+      ~RegionalDownscaleConfig.grid_priority
+      ~RegionalDownscaleConfig.grid_baseline_load
+      ~RegionalDownscaleConfig.baseline_year
+      ~RegionalDownscaleConfig.grid_capacity
+      ~RegionalDownscaleConfig.load_projections
+      ~RegionalDownscaleConfig.load_value
+      ~RegionalDownscaleConfig.load_year
+      ~RegionalDownscaleConfig.max_site_addition_per_year
+      ~RegionalDownscaleConfig.site_saturation_limit
+      ~RegionalDownscaleConfig.priority_power
+      ~RegionalDownscaleConfig.n_bootstraps
+      ~RegionalDownscaleConfig.random_seed
+      ~RegionalDownscaleConfig.max_workers
+      ~RegionalDownscaleConfig.grid
+      ~RegionalDownscaleConfig.grid_ext
+      ~RegionalDownscaleConfig.grid_flavor
+      ~RegionalDownscaleConfig.grid_crs
+   
+   

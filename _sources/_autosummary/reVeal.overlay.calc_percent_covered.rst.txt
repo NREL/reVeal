@@ -1,0 +1,6 @@
+reVeal.overlay.calc\_percent\_covered
+=====================================
+
+.. currentmodule:: reVeal.overlay
+
+.. autofunction:: calc_percent_covered

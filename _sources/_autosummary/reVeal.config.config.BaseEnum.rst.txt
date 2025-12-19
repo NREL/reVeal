@@ -1,0 +1,70 @@
+reVeal.config.config.BaseEnum
+=============================
+
+.. currentmodule:: reVeal.config.config
+
+.. autoclass:: BaseEnum
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~BaseEnum.encode
+      ~BaseEnum.replace
+      ~BaseEnum.split
+      ~BaseEnum.rsplit
+      ~BaseEnum.join
+      ~BaseEnum.capitalize
+      ~BaseEnum.casefold
+      ~BaseEnum.title
+      ~BaseEnum.center
+      ~BaseEnum.count
+      ~BaseEnum.expandtabs
+      ~BaseEnum.find
+      ~BaseEnum.partition
+      ~BaseEnum.index
+      ~BaseEnum.ljust
+      ~BaseEnum.lower
+      ~BaseEnum.lstrip
+      ~BaseEnum.rfind
+      ~BaseEnum.rindex
+      ~BaseEnum.rjust
+      ~BaseEnum.rstrip
+      ~BaseEnum.rpartition
+      ~BaseEnum.splitlines
+      ~BaseEnum.strip
+      ~BaseEnum.swapcase
+      ~BaseEnum.translate
+      ~BaseEnum.upper
+      ~BaseEnum.startswith
+      ~BaseEnum.endswith
+      ~BaseEnum.removeprefix
+      ~BaseEnum.removesuffix
+      ~BaseEnum.isascii
+      ~BaseEnum.islower
+      ~BaseEnum.isupper
+      ~BaseEnum.istitle
+      ~BaseEnum.isspace
+      ~BaseEnum.isdecimal
+      ~BaseEnum.isdigit
+      ~BaseEnum.isnumeric
+      ~BaseEnum.isalpha
+      ~BaseEnum.isalnum
+      ~BaseEnum.isidentifier
+      ~BaseEnum.isprintable
+      ~BaseEnum.zfill
+      ~BaseEnum.format
+      ~BaseEnum.format_map
+      ~BaseEnum.maketrans
+   
+   
+
+   
+   
+   

@@ -1,0 +1,6 @@
+reVeal.fileio.read\_vectors
+===========================
+
+.. currentmodule:: reVeal.fileio
+
+.. autofunction:: read_vectors

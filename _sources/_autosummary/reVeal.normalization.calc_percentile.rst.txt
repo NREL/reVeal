@@ -1,0 +1,6 @@
+reVeal.normalization.calc\_percentile
+=====================================
+
+.. currentmodule:: reVeal.normalization
+
+.. autofunction:: calc_percentile

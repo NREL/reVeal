@@ -1,0 +1,651 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>reVeal batch &#8212; reVeal 0.2.2 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=000c92bf"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/tabs.js?v=3030b3cb"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_cli/reVeal batch';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="reVeal script" href="reVeal%20script.html" />
+    <link rel="prev" title="reVeal pipeline" href="reVeal%20pipeline.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.2" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">reVeal 0.2.2 documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../index.html">
+    Home page
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../misc/installation_usage.html">
+    Installation and Usage
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../misc/examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="cli.html">
+    CLI reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../_autosummary/reVeal.html">
+    API reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../index.html">
+    Home page
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../misc/installation_usage.html">
+    Installation and Usage
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../misc/examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="cli.html">
+    CLI reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../_autosummary/reVeal.html">
+    API reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="reVeal.html">reVeal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reVeal%20template-configs.html">reVeal template-configs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reVeal%20characterize.html">reVeal characterize</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reVeal%20normalize.html">reVeal normalize</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reVeal%20score-weighted.html">reVeal score-weighted</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reVeal%20pipeline.html">reVeal pipeline</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">reVeal batch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reVeal%20script.html">reVeal script</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reVeal%20status.html">reVeal status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reVeal%20reset-status.html">reVeal reset-status</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="cli.html" class="nav-link">Command Line Interfaces (CLIs)</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">reVeal batch</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="reveal-batch">
+<h1>reVeal batch<a class="headerlink" href="#reveal-batch" title="Link to this heading">#</a></h1>
+<p>Execute an analysis pipeline over a parametric set of inputs.</p>
+<p>The general structure for calling this CLI command is given below (add <code class="docutils literal notranslate"><span class="pre">--help</span></code> to print help info to the terminal).</p>
+<p class="rubric">Usage</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>reVeal<span class="w"> </span>batch<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-reVeal-batch-c">
+<span id="cmdoption-reVeal-batch-config_file"></span><span class="sig-name descname"><span class="pre">-c</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--config_file</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;config_file&gt;</span></span><a class="headerlink" href="#cmdoption-reVeal-batch-c" title="Link to this definition">#</a></dt>
+<dd><p><strong>Required</strong> Path to the <code class="docutils literal notranslate"><span class="pre">batch</span></code> configuration file. Below is a sample template config</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-SlNPTi9KU09ONQ==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-SlNPTi9KU09ONQ==" name="SlNPTi9KU09ONQ==" role="tab" tabindex="0">JSON/JSON5</button><button aria-controls="panel-0-WUFNTA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-WUFNTA==" name="WUFNTA==" role="tab" tabindex="-1">YAML</button><button aria-controls="panel-0-VE9NTA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-VE9NTA==" name="VE9NTA==" role="tab" tabindex="-1">TOML</button></div><div aria-labelledby="tab-0-SlNPTi9KU09ONQ==" class="sphinx-tabs-panel group-tab" id="panel-0-SlNPTi9KU09ONQ==" name="SlNPTi9KU09ONQ==" role="tabpanel" tabindex="0"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;logging&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;log_file&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+        <span class="s2">&quot;log_level&quot;</span><span class="p">:</span> <span class="s2">&quot;INFO&quot;</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;pipeline_config&quot;</span><span class="p">:</span> <span class="s2">&quot;[REQUIRED]&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;sets&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;args&quot;</span><span class="p">:</span> <span class="s2">&quot;[REQUIRED]&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;files&quot;</span><span class="p">:</span> <span class="s2">&quot;[REQUIRED]&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;set_tag&quot;</span><span class="p">:</span> <span class="s2">&quot;set1&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;args&quot;</span><span class="p">:</span> <span class="s2">&quot;[REQUIRED]&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;files&quot;</span><span class="p">:</span> <span class="s2">&quot;[REQUIRED]&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;set_tag&quot;</span><span class="p">:</span> <span class="s2">&quot;set2&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-WUFNTA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-WUFNTA==" name="WUFNTA==" role="tabpanel" tabindex="0"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">logging</span><span class="p">:</span>
+  <span class="n">log_file</span><span class="p">:</span> <span class="n">null</span>
+  <span class="n">log_level</span><span class="p">:</span> <span class="n">INFO</span>
+<span class="n">pipeline_config</span><span class="p">:</span> <span class="s1">&#39;[REQUIRED]&#39;</span>
+<span class="n">sets</span><span class="p">:</span>
+<span class="o">-</span> <span class="n">args</span><span class="p">:</span> <span class="s1">&#39;[REQUIRED]&#39;</span>
+  <span class="n">files</span><span class="p">:</span> <span class="s1">&#39;[REQUIRED]&#39;</span>
+  <span class="n">set_tag</span><span class="p">:</span> <span class="n">set1</span>
+<span class="o">-</span> <span class="n">args</span><span class="p">:</span> <span class="s1">&#39;[REQUIRED]&#39;</span>
+  <span class="n">files</span><span class="p">:</span> <span class="s1">&#39;[REQUIRED]&#39;</span>
+  <span class="n">set_tag</span><span class="p">:</span> <span class="n">set2</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-VE9NTA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-VE9NTA==" name="VE9NTA==" role="tabpanel" tabindex="0"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pipeline_config</span> <span class="o">=</span> <span class="s2">&quot;[REQUIRED]&quot;</span>
+<span class="p">[[</span><span class="n">sets</span><span class="p">]]</span>
+<span class="n">args</span> <span class="o">=</span> <span class="s2">&quot;[REQUIRED]&quot;</span>
+<span class="n">files</span> <span class="o">=</span> <span class="s2">&quot;[REQUIRED]&quot;</span>
+<span class="n">set_tag</span> <span class="o">=</span> <span class="s2">&quot;set1&quot;</span>
+
+<span class="p">[[</span><span class="n">sets</span><span class="p">]]</span>
+<span class="n">args</span> <span class="o">=</span> <span class="s2">&quot;[REQUIRED]&quot;</span>
+<span class="n">files</span> <span class="o">=</span> <span class="s2">&quot;[REQUIRED]&quot;</span>
+<span class="n">set_tag</span> <span class="o">=</span> <span class="s2">&quot;set2&quot;</span>
+
+<span class="p">[</span><span class="n">logging</span><span class="p">]</span>
+<span class="n">log_level</span> <span class="o">=</span> <span class="s2">&quot;INFO&quot;</span>
+</pre></div>
+</div>
+</div></div>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h2>
+<dl>
+<dt>logging<span class="classifier">dict, optional</span></dt><dd><p>Dictionary containing keyword-argument pairs to pass to
+<a class="reference external" href="https://tinyurl.com/47hakp7f/">init_logger</a>. This
+initializes logging for the batch command. Note that
+each pipeline job submitted via batch has it’s own
+<code class="docutils literal notranslate"><span class="pre">logging</span></code> key that will initialize pipeline step
+logging. Therefore, it’s only ever necessary to use
+this input if you want logging information about the
+batching portion of the execution.</p>
+</dd>
+<dt>pipeline_config<span class="classifier">str</span></dt><dd><p>Path to the pipeline configuration defining the commands to
+run for every parametric set.</p>
+</dd>
+<dt>sets<span class="classifier">list of dicts</span></dt><dd><p>A list of dictionaries, where each dictionary defines a
+“set” of parametric runs. Each dictionary should have
+the following keys:</p>
+<blockquote>
+<div><dl>
+<dt>args<span class="classifier">dict</span></dt><dd><p>A dictionary defining the arguments across all input
+configuration files to parameterize. Each argument
+to be parametrized should be a key in this
+dictionary, and the value should be a <strong>list</strong> of the
+parameter values to run for this argument (single-item lists
+are allowed and can be used to vary a parameter value across
+sets).</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-SlNPTi9KU09ONQ==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-1-SlNPTi9KU09ONQ==" name="SlNPTi9KU09ONQ==" role="tab" tabindex="0">JSON/JSON5</button><button aria-controls="panel-1-WUFNTA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-WUFNTA==" name="WUFNTA==" role="tab" tabindex="-1">YAML</button><button aria-controls="panel-1-VE9NTA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-VE9NTA==" name="VE9NTA==" role="tab" tabindex="-1">TOML</button></div><div aria-labelledby="tab-1-SlNPTi9KU09ONQ==" class="sphinx-tabs-panel group-tab" id="panel-1-SlNPTi9KU09ONQ==" name="SlNPTi9KU09ONQ==" role="tabpanel" tabindex="0"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;args&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;input_constant_1&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="mf">18.02</span><span class="p">,</span>
+        <span class="mf">19.04</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;path_to_a_file&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;/first/path.h5&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;/second/path.h5&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;/third/path.h5&quot;</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-WUFNTA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-WUFNTA==" name="WUFNTA==" role="tabpanel" tabindex="0"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">args</span><span class="p">:</span>
+  <span class="n">input_constant_1</span><span class="p">:</span>
+  <span class="o">-</span> <span class="mf">18.02</span>
+  <span class="o">-</span> <span class="mf">19.04</span>
+  <span class="n">path_to_a_file</span><span class="p">:</span>
+  <span class="o">-</span> <span class="o">/</span><span class="n">first</span><span class="o">/</span><span class="n">path</span><span class="o">.</span><span class="n">h5</span>
+  <span class="o">-</span> <span class="o">/</span><span class="n">second</span><span class="o">/</span><span class="n">path</span><span class="o">.</span><span class="n">h5</span>
+  <span class="o">-</span> <span class="o">/</span><span class="n">third</span><span class="o">/</span><span class="n">path</span><span class="o">.</span><span class="n">h5</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-VE9NTA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-VE9NTA==" name="VE9NTA==" role="tabpanel" tabindex="0"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">args</span><span class="p">]</span>
+<span class="n">input_constant_1</span> <span class="o">=</span> <span class="p">[</span> <span class="mf">18.02</span><span class="p">,</span> <span class="mf">19.04</span><span class="p">,]</span>
+<span class="n">path_to_a_file</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">&quot;/first/path.h5&quot;</span><span class="p">,</span> <span class="s2">&quot;/second/path.h5&quot;</span><span class="p">,</span> <span class="s2">&quot;/third/path.h5&quot;</span><span class="p">,]</span>
+</pre></div>
+</div>
+</div></div>
+<p>This example would run a total of six pipelines, one
+with each of the following arg combinations:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">input_constant_1</span><span class="o">=</span><span class="mf">18.20</span><span class="p">,</span> <span class="n">path_to_a_file</span><span class="o">=</span><span class="s2">&quot;/first/path.h5&quot;</span>
+<span class="n">input_constant_1</span><span class="o">=</span><span class="mf">18.20</span><span class="p">,</span> <span class="n">path_to_a_file</span><span class="o">=</span><span class="s2">&quot;/second/path.h5&quot;</span>
+<span class="n">input_constant_1</span><span class="o">=</span><span class="mf">18.20</span><span class="p">,</span> <span class="n">path_to_a_file</span><span class="o">=</span><span class="s2">&quot;/third/path.h5&quot;</span>
+<span class="n">input_constant_1</span><span class="o">=</span><span class="mf">19.04</span><span class="p">,</span> <span class="n">path_to_a_file</span><span class="o">=</span><span class="s2">&quot;/first/path.h5&quot;</span>
+<span class="n">input_constant_1</span><span class="o">=</span><span class="mf">19.04</span><span class="p">,</span> <span class="n">path_to_a_file</span><span class="o">=</span><span class="s2">&quot;/second/path.h5&quot;</span>
+<span class="n">input_constant_1</span><span class="o">=</span><span class="mf">19.04</span><span class="p">,</span> <span class="n">path_to_a_file</span><span class="o">=</span><span class="s2">&quot;/third/path.h5&quot;</span>
+</pre></div>
+</div>
+<p>Remember that the keys in the <code class="docutils literal notranslate"><span class="pre">args</span></code> dictionary
+should be part of (at least) one of your other
+configuration files.</p>
+</dd>
+<dt>files<span class="classifier">list</span></dt><dd><p>A list of paths to the configuration files that
+contain the arguments to be updated for every
+parametric run. Arguments can be spread out over
+multiple files. For example:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-SlNPTi9KU09ONQ==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-2-SlNPTi9KU09ONQ==" name="SlNPTi9KU09ONQ==" role="tab" tabindex="0">JSON/JSON5</button><button aria-controls="panel-2-WUFNTA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-2-WUFNTA==" name="WUFNTA==" role="tab" tabindex="-1">YAML</button><button aria-controls="panel-2-VE9NTA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-2-VE9NTA==" name="VE9NTA==" role="tab" tabindex="-1">TOML</button></div><div aria-labelledby="tab-2-SlNPTi9KU09ONQ==" class="sphinx-tabs-panel group-tab" id="panel-2-SlNPTi9KU09ONQ==" name="SlNPTi9KU09ONQ==" role="tabpanel" tabindex="0"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;files&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;./config_run.yaml&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;./config_analyze.json&quot;</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-2-WUFNTA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-2-WUFNTA==" name="WUFNTA==" role="tabpanel" tabindex="0"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">files</span><span class="p">:</span>
+<span class="o">-</span> <span class="o">./</span><span class="n">config_run</span><span class="o">.</span><span class="n">yaml</span>
+<span class="o">-</span> <span class="o">./</span><span class="n">config_analyze</span><span class="o">.</span><span class="n">json</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-2-VE9NTA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-2-VE9NTA==" name="VE9NTA==" role="tabpanel" tabindex="0"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">files</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">&quot;./config_run.yaml&quot;</span><span class="p">,</span> <span class="s2">&quot;./config_analyze.json&quot;</span><span class="p">,]</span>
+</pre></div>
+</div>
+</div></div>
+</dd>
+<dt>set_tag<span class="classifier">str, optional</span></dt><dd><p>Optional string defining a set tag that will prefix
+each job tag for this set. This tag does not need to
+include an underscore, as that is provided during
+concatenation.</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-reVeal-batch-dry">
+<span class="sig-name descname"><span class="pre">--dry</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-reVeal-batch-dry" title="Link to this definition">#</a></dt>
+<dd><p>Flag to do a dry run (make batch dirs and update files without running the pipeline).</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-reVeal-batch-cancel">
+<span class="sig-name descname"><span class="pre">--cancel</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-reVeal-batch-cancel" title="Link to this definition">#</a></dt>
+<dd><p>Flag to cancel all jobs associated associated with the <code class="docutils literal notranslate"><span class="pre">batch_jobs.csv</span></code> file in the current batch config directory.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-reVeal-batch-delete">
+<span class="sig-name descname"><span class="pre">--delete</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-reVeal-batch-delete" title="Link to this definition">#</a></dt>
+<dd><p>Flag to delete all batch job sub directories associated with the <code class="docutils literal notranslate"><span class="pre">batch_jobs.csv</span></code> file in the current batch config directory.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-reVeal-batch-monitor-background">
+<span class="sig-name descname"><span class="pre">--monitor-background</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-reVeal-batch-monitor-background" title="Link to this definition">#</a></dt>
+<dd><p>Flag to monitor all batch pipelines continuously in the background. Note that the <code class="docutils literal notranslate"><span class="pre">stdout/stderr</span></code> will not be captured, but you can set a pipeline <code class="docutils literal notranslate"><span class="pre">&quot;log_file&quot;</span></code> to capture logs.</p>
+</dd></dl>
+
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="reVeal%20pipeline.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">reVeal pipeline</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="reVeal%20script.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">reVeal script</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, Alliance for Energy Innovation, LLC and Root Geospatial LLC.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

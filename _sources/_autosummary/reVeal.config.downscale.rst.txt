@@ -1,0 +1,37 @@
+reVeal.config.downscale
+=======================
+
+.. automodule:: reVeal.config.downscale
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+   
+      BaseDownscaleConfig
+      DownscaleConfig
+      ProjectionResolutionEnum
+      RegionalDownscaleConfig
+      RegionalResolutionEnum
+      TotalDownscaleConfig
+      TotalResolutionEnum
+   
+   
+
+   
+   
+   
+
+
+

@@ -1,0 +1,1086 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>reVeal.grid &#8212; reVeal 0.2.2 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=000c92bf"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/tabs.js?v=3030b3cb"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/reVeal/grid';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.2" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">reVeal 0.2.2 documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../index.html">
+    Home page
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../misc/installation_usage.html">
+    Installation and Usage
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../misc/examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../_cli/cli.html">
+    CLI reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../_autosummary/reVeal.html">
+    API reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../index.html">
+    Home page
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../misc/installation_usage.html">
+    Installation and Usage
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../misc/examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../_cli/cli.html">
+    CLI reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../_autosummary/reVeal.html">
+    API reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">reVeal.grid</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for reVeal.grid</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">grid module</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">inspect</span><span class="w"> </span><span class="kn">import</span> <span class="n">getmembers</span><span class="p">,</span> <span class="n">isfunction</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">isclose</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">libpysal</span><span class="w"> </span><span class="kn">import</span> <span class="n">graph</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">shapely.geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">box</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">reVeal.config.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_config</span><span class="p">,</span> <span class="n">BaseGridConfig</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">reVeal.config.characterize</span><span class="w"> </span><span class="kn">import</span> <span class="n">CharacterizeConfig</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">reVeal.config.normalize</span><span class="w"> </span><span class="kn">import</span> <span class="n">NormalizeConfig</span><span class="p">,</span> <span class="n">GRID_IDX</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">reVeal.config.score_weighted</span><span class="w"> </span><span class="kn">import</span> <span class="n">ScoreWeightedConfig</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">reVeal.config.downscale</span><span class="w"> </span><span class="kn">import</span> <span class="n">TotalDownscaleConfig</span><span class="p">,</span> <span class="n">RegionalDownscaleConfig</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">reVeal</span><span class="w"> </span><span class="kn">import</span> <span class="n">overlay</span><span class="p">,</span> <span class="n">normalization</span><span class="p">,</span> <span class="n">load</span>
+
+<span class="n">OVERLAY_METHODS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">k</span><span class="p">[</span><span class="mi">5</span><span class="p">:]:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">getmembers</span><span class="p">(</span><span class="n">overlay</span><span class="p">,</span> <span class="n">isfunction</span><span class="p">)</span> <span class="k">if</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;calc_&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="n">NORMALIZE_METHODS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">k</span><span class="p">[</span><span class="mi">5</span><span class="p">:]:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">getmembers</span><span class="p">(</span><span class="n">normalization</span><span class="p">,</span> <span class="n">isfunction</span><span class="p">)</span> <span class="k">if</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;calc_&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="create_grid">
+<a class="viewcode-back" href="../../_autosummary/reVeal.grid.create_grid.html#reVeal.grid.create_grid">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_grid</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymax</span><span class="p">,</span> <span class="n">crs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create a regularly spaced grid at the specified resolution covering the</span>
+<span class="sd">    specified bounds.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    res : float</span>
+<span class="sd">        Resolution of the grid (i.e., size of each grid cell along one dimension)</span>
+<span class="sd">        measured in units of the specified CRS.</span>
+<span class="sd">    xmin : float</span>
+<span class="sd">        Minimum x coordinate of bounding box.</span>
+<span class="sd">    ymin : float</span>
+<span class="sd">        Minimum y coordinate of bounding box.</span>
+<span class="sd">    xmax : float</span>
+<span class="sd">        Maximum x coordinate of bounding box.</span>
+<span class="sd">    ymax : float</span>
+<span class="sd">        Maximum y coordinate of bounding box.</span>
+<span class="sd">    crs : str</span>
+<span class="sd">        Coordinate reference system (CRS) of grid_resolution and bounds. Will also</span>
+<span class="sd">        be assigned to the returned GeoDataFrame.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    geopandas.GeoDataFrame</span>
+<span class="sd">        GeoDataFrame containing the resulting grid.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">grid_df</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
+        <span class="n">geometry</span><span class="o">=</span><span class="p">[</span>
+            <span class="n">box</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="n">res</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">res</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
+        <span class="p">],</span>
+        <span class="n">crs</span><span class="o">=</span><span class="n">crs</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">grid_df</span><span class="p">[</span><span class="s2">&quot;grid_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">grid_df</span><span class="o">.</span><span class="n">index</span>
+
+    <span class="k">return</span> <span class="n">grid_df</span></div>
+
+
+
+<div class="viewcode-block" id="get_neighbors">
+<a class="viewcode-back" href="../../_autosummary/reVeal.grid.get_neighbors.html#reVeal.grid.get_neighbors">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_neighbors</span><span class="p">(</span><span class="n">grid_df</span><span class="p">,</span> <span class="n">order</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create new geometry for each cell in the input grid, consisting of a union with</span>
+<span class="sd">    neighboring cells of the specified contiguity order.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    grid_df : geopandas.GeoDataFrame</span>
+<span class="sd">        Input grid geodataframe. This should be a polygon geodataframe where all</span>
+<span class="sd">        geometries form a coverage (i.e., a non-overlapping mesh) and neighboring</span>
+<span class="sd">        geometries share only points or segments of the exterior boundaries. This</span>
+<span class="sd">        function also assumes that the index of zones_df is unique for each feature. If</span>
+<span class="sd">        either of these are not the case, unexpected results may occur.</span>
+<span class="sd">    order : int</span>
+<span class="sd">        Neighbor order to apply. For example, order=1 will group all first-order</span>
+<span class="sd">        queen&#39;s contiguity neighbors into a new grid cell, labeled based on the</span>
+<span class="sd">        center grid cell.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    gpd.GeoDataFrame</span>
+<span class="sd">        A GeoDataFrame with the grid transformed into larger cells based on</span>
+<span class="sd">        neighbors.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">order</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">grid_df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="n">grid</span> <span class="o">=</span> <span class="n">grid_df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="c1"># build contiguity matrix</span>
+    <span class="n">cont</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">Graph</span><span class="o">.</span><span class="n">build_contiguity</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">rook</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">order</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">cont</span> <span class="o">=</span> <span class="n">cont</span><span class="o">.</span><span class="n">higher_order</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="n">order</span><span class="p">,</span> <span class="n">lower_order</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># create a &quot;complete&quot; adjacency lookup, that includes center cells</span>
+    <span class="n">adjacent_df</span> <span class="o">=</span> <span class="n">cont</span><span class="o">.</span><span class="n">adjacency</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+    <span class="n">centers_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;focal&quot;</span><span class="p">:</span> <span class="n">grid</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="s2">&quot;neighbor&quot;</span><span class="p">:</span> <span class="n">grid</span><span class="o">.</span><span class="n">index</span><span class="p">})</span>
+    <span class="n">combined_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
+        <span class="p">[</span><span class="n">centers_df</span><span class="p">,</span> <span class="n">adjacent_df</span><span class="p">[[</span><span class="s2">&quot;focal&quot;</span><span class="p">,</span> <span class="s2">&quot;neighbor&quot;</span><span class="p">]]],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+
+    <span class="c1"># join in geometries and dissolve into groups</span>
+    <span class="n">combined_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;neighbor&quot;</span><span class="p">:</span> <span class="s2">&quot;join_id&quot;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">grid</span><span class="p">[</span><span class="s2">&quot;join_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">index</span>
+    <span class="n">combined_gdf</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">combined_df</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;join_id&quot;</span><span class="p">)</span>
+    <span class="n">dissolved_df</span> <span class="o">=</span> <span class="n">combined_gdf</span><span class="p">[[</span><span class="s2">&quot;focal&quot;</span><span class="p">,</span> <span class="s2">&quot;geometry&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">dissolve</span><span class="p">(</span>
+        <span class="n">by</span><span class="o">=</span><span class="s2">&quot;focal&quot;</span><span class="p">,</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+
+    <span class="c1"># overwrite geometries in original grid with dissolved geometries</span>
+    <span class="n">grid</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dissolved_df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">dissolved_df</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span>
+    <span class="n">grid</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;join_id&quot;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">grid</span></div>
+
+
+
+<div class="viewcode-block" id="get_method_from_members">
+<a class="viewcode-back" href="../../_autosummary/reVeal.grid.get_method_from_members.html#reVeal.grid.get_method_from_members">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_method_from_members</span><span class="p">(</span><span class="n">method_name</span><span class="p">,</span> <span class="n">members</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Helper function to look up a callable from a group of options.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    method_name : str</span>
+<span class="sd">        Name of method to retrieve. Should use spaces where the desired callable uses</span>
+<span class="sd">        underscores.</span>
+<span class="sd">    member : dict</span>
+<span class="sd">        Dictionary where keys indicate method names and values are the corresponding</span>
+<span class="sd">        callable function. Names used as keys should use underscores where the</span>
+<span class="sd">        method_name uses spaces.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Callable</span>
+<span class="sd">        Method as a function.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    NotImplementedError</span>
+<span class="sd">        A NotImplementedError will be raised if a function cannot be found</span>
+<span class="sd">        corresponding to the input method_name.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;[\W\s]+&quot;</span>
+    <span class="c1"># Replace all matches of the pattern with a single underscore</span>
+    <span class="n">sanitized_method</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">,</span> <span class="n">method_name</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+    <span class="n">method</span> <span class="o">=</span> <span class="n">members</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">sanitized_method</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">method</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unrecognized or unsupported method: </span><span class="si">{</span><span class="n">method_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">method</span></div>
+
+
+
+<div class="viewcode-block" id="run_characterization">
+<a class="viewcode-back" href="../../_autosummary/reVeal.grid.run_characterization.html#reVeal.grid.run_characterization">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">run_characterization</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">characterization</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Execute a single characterization on an input grid.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    df : geopandas.GeoDataFrame</span>
+<span class="sd">        Input grid geodataframe. This should be a polygon geodataframe where all</span>
+<span class="sd">        geometries form a coverage (i.e., a non-overlapping mesh) and neighboring</span>
+<span class="sd">        geometries share only points or segments of the exterior boundaries. This</span>
+<span class="sd">        function also assumes that the index of df is unique for each feature. If</span>
+<span class="sd">        either of these are not the case, unexpected results may occur.</span>
+<span class="sd">    characterization : :class:`reVeal.config.characterize.Characterization`</span>
+<span class="sd">        Input information describing characterization to be run, in the form of</span>
+<span class="sd">        a Characterization instance.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pandas.DataFrame</span>
+<span class="sd">        Returns a pandas DataFrame with a &quot;value&quot; column, representing the output</span>
+<span class="sd">        values from the characterization for each zone. The index from the input df</span>
+<span class="sd">        is also included.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">grid_df</span> <span class="o">=</span> <span class="n">get_neighbors</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">characterization</span><span class="o">.</span><span class="n">neighbor_order</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">characterization</span><span class="o">.</span><span class="n">buffer_distance</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">grid_df</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">grid_df</span><span class="p">[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span>
+            <span class="n">characterization</span><span class="o">.</span><span class="n">buffer_distance</span>
+        <span class="p">)</span>
+
+    <span class="n">method</span> <span class="o">=</span> <span class="n">get_method_from_members</span><span class="p">(</span><span class="n">characterization</span><span class="o">.</span><span class="n">method</span><span class="p">,</span> <span class="n">OVERLAY_METHODS</span><span class="p">)</span>
+    <span class="n">result_df</span> <span class="o">=</span> <span class="n">method</span><span class="p">(</span><span class="n">grid_df</span><span class="p">,</span> <span class="o">**</span><span class="n">characterization</span><span class="o">.</span><span class="n">model_dump</span><span class="p">())</span>
+
+    <span class="k">return</span> <span class="n">result_df</span></div>
+
+
+
+<div class="viewcode-block" id="run_normalization">
+<a class="viewcode-back" href="../../_autosummary/reVeal.grid.run_normalization.html#reVeal.grid.run_normalization">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">run_normalization</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">normalize_method</span><span class="p">,</span> <span class="n">invert</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Execute a single characterization on an input grid.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    df : geopandas.GeoDataFrame</span>
+<span class="sd">        Input grid geodataframe</span>
+<span class="sd">    attribute : str</span>
+<span class="sd">        Name of column in input GeoDataFrame to normalize</span>
+<span class="sd">    normalize_method : str</span>
+<span class="sd">        Method to use for normalizing attribute.</span>
+<span class="sd">    invert : bool,optional</span>
+<span class="sd">        If True, normalize with values inverted (i.e., low values will be closer to 1,</span>
+<span class="sd">        and higher values closer to 0). Default is False, under which values are</span>
+<span class="sd">        normalized with low values closer to 0 and high values closer to 1.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pandas.DataFrame</span>
+<span class="sd">        Returns a pandas DataFrame with a &quot;value&quot; column, representing the output</span>
+<span class="sd">        normalized values for the specified attribute. The index from the input df</span>
+<span class="sd">        is also included.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">method</span> <span class="o">=</span> <span class="n">get_method_from_members</span><span class="p">(</span><span class="n">normalize_method</span><span class="p">,</span> <span class="n">NORMALIZE_METHODS</span><span class="p">)</span>
+    <span class="n">normalized</span> <span class="o">=</span> <span class="n">method</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">invert</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">normalized</span></div>
+
+
+
+<div class="viewcode-block" id="run_weighted_scoring">
+<a class="viewcode-back" href="../../_autosummary/reVeal.grid.run_weighted_scoring.html#reVeal.grid.run_weighted_scoring">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">run_weighted_scoring</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">attributes</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculated weighted score for the input dataframe based on the specified attributes</span>
+<span class="sd">    and corresponding weights.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    df : geopandas.GeoDataFrame</span>
+<span class="sd">        Input grid geodataframe</span>
+<span class="sd">    attributes : List[reVeal.config.score_weighted.Attribute]</span>
+<span class="sd">        List of Attribute models specifying the attribute columns and</span>
+<span class="sd">        corresponding weights to use.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pandas.DataFrame</span>
+<span class="sd">        Returns a pandas DataFrame with a &quot;value&quot; column, representing the output</span>
+<span class="sd">        weighted score derived from the specified inputs. The index from the input df</span>
+<span class="sd">        is also included.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        A ValueError will be raised if the input attribute weights do not</span>
+<span class="sd">        sum to 1.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span><span class="o">.</span><span class="n">attribute</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">attributes</span><span class="p">]</span>
+    <span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">a</span><span class="o">.</span><span class="n">weight</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">attributes</span><span class="p">])</span>
+
+    <span class="n">sum_weights</span> <span class="o">=</span> <span class="n">weights</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">isclose</span><span class="p">(</span><span class="n">sum_weights</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">abs_tol</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">rel_tol</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;Weights of input attributes must sum to 1. &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;Sum of input weights is: </span><span class="si">{</span><span class="n">sum_weights</span><span class="si">}</span><span class="s2">.&quot;</span>
+        <span class="p">)</span>
+
+    <span class="n">scores</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span> <span class="o">*</span> <span class="n">weights</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">scores</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;value&quot;</span>
+
+    <span class="n">scores_df</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">scores_df</span></div>
+
+
+
+<div class="viewcode-block" id="BaseGrid">
+<a class="viewcode-back" href="../../_autosummary/reVeal.grid.BaseGrid.html#reVeal.grid.BaseGrid">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">BaseGrid</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Grid base class</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">res</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize a Grid instance from a template or input parameters.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        res : float</span>
+<span class="sd">            Resolution of the grid (i.e., size of each grid cell along one dimension)</span>
+<span class="sd">            measured in units of the specified CRS. Required if template=None.</span>
+<span class="sd">            Ignored if template is provided. Default is None.</span>
+<span class="sd">        crs : str</span>
+<span class="sd">            Coordinate reference system (CRS) for the grid. Required if template=None.</span>
+<span class="sd">            If template is provided, the grid will be reprojected to this CRS. Default</span>
+<span class="sd">            is None.</span>
+<span class="sd">        bounds : tuple, optional</span>
+<span class="sd">            The spatial bounds for the grid in the format [xmin, ymin, xmax, ymax],</span>
+<span class="sd">            in units of crs (or the template CRS). Required if template=None.</span>
+<span class="sd">            If template is provided, the grid will be subset to the cells intersecting</span>
+<span class="sd">            the specified bounds. Default is None.</span>
+<span class="sd">        template : str, optional</span>
+<span class="sd">            Path to a template file for the grid. Input template should be a vector</span>
+<span class="sd">            polygon dataset. Default is None.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">template</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">res</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">crs</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">bounds</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;If template is not provided, grid_size, crs, and bounds must be &quot;</span>
+                    <span class="s2">&quot;specified.&quot;</span>
+                <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="n">create_grid</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="o">*</span><span class="n">bounds</span><span class="p">,</span> <span class="n">crs</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">res</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                    <span class="s2">&quot;res specified but template provided. res will be ignored.&quot;</span>
+                <span class="p">)</span>
+
+            <span class="n">grid</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">template</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">crs</span><span class="p">:</span>
+                <span class="n">grid</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">crs</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">bounds</span><span class="p">:</span>
+                <span class="n">bounds_box</span> <span class="o">=</span> <span class="n">box</span><span class="p">(</span><span class="o">*</span><span class="n">bounds</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="n">grid</span><span class="p">[</span><span class="n">grid</span><span class="o">.</span><span class="n">intersects</span><span class="p">(</span><span class="n">bounds_box</span><span class="p">)]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="n">grid</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">crs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">crs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_add_index</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_add_index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adds gid column to self.df and sets as index.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">GRID_IDX</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">GRID_IDX</span><span class="si">}</span><span class="s2"> column already exists in self.dataframe. Values will be &quot;</span>
+                <span class="s2">&quot;overwritten.&quot;</span>
+            <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="n">GRID_IDX</span><span class="p">]</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">GRID_IDX</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="RunnableGrid">
+<a class="viewcode-back" href="../../_autosummary/reVeal.grid.RunnableGrid.html#reVeal.grid.RunnableGrid">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">RunnableGrid</span><span class="p">(</span><span class="n">BaseGrid</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Subclass of BaseGrid for running operations.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">CONFIG_CLASS</span> <span class="o">=</span> <span class="n">BaseGridConfig</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize grid from configuration.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        config : [dict, CharacterizeConfig]</span>
+<span class="sd">            Input configuration as either a dictionary or a CharacterizationConfig</span>
+<span class="sd">            instance. If a dictionary, validation will be performed to ensure</span>
+<span class="sd">            inputs are valid.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">load_config</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">config_class</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">CONFIG_CLASS</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">template</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">grid</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
+
+<div class="viewcode-block" id="RunnableGrid.run">
+<a class="viewcode-back" href="../../_autosummary/reVeal.grid.RunnableGrid.html#reVeal.grid.RunnableGrid.run">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Place holder for run method, to be implemented by subclasses.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        NotImplementedError</span>
+<span class="sd">            A NotImplementedError is always raised since this is just a template</span>
+<span class="sd">            for subclasses.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+            <span class="s2">&quot;run method not implemented for RunnableGrid base class&quot;</span>
+        <span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="CharacterizeGrid">
+<a class="viewcode-back" href="../../_autosummary/reVeal.grid.CharacterizeGrid.html#reVeal.grid.CharacterizeGrid">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">CharacterizeGrid</span><span class="p">(</span><span class="n">RunnableGrid</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Subclass of RunnableGrid for running characterizations.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">CONFIG_CLASS</span> <span class="o">=</span> <span class="n">CharacterizeConfig</span>
+
+<div class="viewcode-block" id="CharacterizeGrid.run">
+<a class="viewcode-back" href="../../_autosummary/reVeal.grid.CharacterizeGrid.html#reVeal.grid.CharacterizeGrid.run">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Run grid characterization based on the input configuration.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        gpd.GeoDataFrame</span>
+<span class="sd">            A GeoDataFrame with the characterized grid.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">attr_name</span><span class="p">,</span> <span class="n">char_info</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">characterizations</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Running characterization for output column &#39;</span><span class="si">{</span><span class="n">attr_name</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">char_df</span> <span class="o">=</span> <span class="n">run_characterization</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">,</span> <span class="n">char_info</span><span class="p">)</span>
+                <span class="n">char_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">attr_name</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">char_df</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">NotImplementedError</span><span class="p">:</span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Method </span><span class="si">{</span><span class="n">char_info</span><span class="o">.</span><span class="n">method</span><span class="si">}</span><span class="s2"> not supported&quot;</span><span class="p">)</span>
+
+        <span class="n">results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">]</span> <span class="o">+</span> <span class="n">results</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">attr_name</span><span class="p">,</span> <span class="n">expression</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">expressions</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Running expression for output column &#39;</span><span class="si">{</span><span class="n">attr_name</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">results_df</span><span class="p">[</span><span class="n">attr_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">results_df</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span>
+                    <span class="n">expression</span><span class="p">,</span> <span class="n">local_dict</span><span class="o">=</span><span class="p">{},</span> <span class="n">global_dict</span><span class="o">=</span><span class="p">{}</span>
+                <span class="p">)</span>
+            <span class="k">except</span> <span class="n">pd</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">UndefinedVariableError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unable to derive output values for </span><span class="si">{</span><span class="n">attr_name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Checking for NA values in results dataframe.&quot;</span><span class="p">)</span>
+        <span class="n">na_check</span> <span class="o">=</span> <span class="n">results_df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">na_check</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+            <span class="n">cols_with_nas</span> <span class="o">=</span> <span class="n">na_check</span><span class="o">.</span><span class="n">keys</span><span class="p">()[</span><span class="n">na_check</span><span class="o">.</span><span class="n">values</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="s2">&quot;NAs encountered in results dataframe in the following columns: &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">cols_with_nas</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">results_df</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="NormalizeGrid">
+<a class="viewcode-back" href="../../_autosummary/reVeal.grid.NormalizeGrid.html#reVeal.grid.NormalizeGrid">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">NormalizeGrid</span><span class="p">(</span><span class="n">RunnableGrid</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Subclass of RunnableGrid for normalizing attribute values.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">CONFIG_CLASS</span> <span class="o">=</span> <span class="n">NormalizeConfig</span>
+
+<div class="viewcode-block" id="NormalizeGrid.run">
+<a class="viewcode-back" href="../../_autosummary/reVeal.grid.NormalizeGrid.html#reVeal.grid.NormalizeGrid.run">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Run attribute normalization based on the input configuration.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        gpd.GeoDataFrame</span>
+<span class="sd">            A GeoDataFrame with normalized attributes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">attr_name</span><span class="p">,</span> <span class="n">attr_info</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Running normalization for output column &#39;</span><span class="si">{</span><span class="n">attr_name</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">norm_df</span> <span class="o">=</span> <span class="n">run_normalization</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">,</span>
+                    <span class="n">attr_info</span><span class="o">.</span><span class="n">attribute</span><span class="p">,</span>
+                    <span class="n">attr_info</span><span class="o">.</span><span class="n">normalize_method</span><span class="p">,</span>
+                    <span class="n">attr_info</span><span class="o">.</span><span class="n">invert</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="n">norm_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">attr_name</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">norm_df</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">NotImplementedError</span><span class="p">:</span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Method </span><span class="si">{</span><span class="n">attr_info</span><span class="o">.</span><span class="n">normalize_method</span><span class="si">}</span><span class="s2"> not supported&quot;</span><span class="p">)</span>
+
+        <span class="n">keep_cols</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+        <span class="p">]</span>
+        <span class="n">results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="n">keep_cols</span><span class="p">]]</span> <span class="o">+</span> <span class="n">results</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Checking for NA values in results dataframe.&quot;</span><span class="p">)</span>
+        <span class="n">na_check</span> <span class="o">=</span> <span class="n">results_df</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">na_check</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+            <span class="n">cols_with_nas</span> <span class="o">=</span> <span class="n">na_check</span><span class="o">.</span><span class="n">keys</span><span class="p">()[</span><span class="n">na_check</span><span class="o">.</span><span class="n">values</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="s2">&quot;NAs encountered in results dataframe in the following columns: &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">cols_with_nas</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">results_df</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="ScoreWeightedGrid">
+<a class="viewcode-back" href="../../_autosummary/reVeal.grid.ScoreWeightedGrid.html#reVeal.grid.ScoreWeightedGrid">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">ScoreWeightedGrid</span><span class="p">(</span><span class="n">RunnableGrid</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Subclass of RunnableGrid for calculating weighted composite score.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">CONFIG_CLASS</span> <span class="o">=</span> <span class="n">ScoreWeightedConfig</span>
+
+<div class="viewcode-block" id="ScoreWeightedGrid.run">
+<a class="viewcode-back" href="../../_autosummary/reVeal.grid.ScoreWeightedGrid.html#reVeal.grid.ScoreWeightedGrid.run">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Run weighted composite scoring based on the input configuration.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        gpd.GeoDataFrame</span>
+<span class="sd">            A GeoDataFrame with scored attributes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">score_col</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">score_name</span>
+        <span class="n">scores_df</span> <span class="o">=</span> <span class="n">run_weighted_scoring</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
+
+        <span class="n">results_df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">results_df</span><span class="p">[</span><span class="n">score_col</span><span class="p">]</span> <span class="o">=</span> <span class="n">scores_df</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span>
+
+        <span class="n">na_check</span> <span class="o">=</span> <span class="n">results_df</span><span class="p">[</span><span class="n">score_col</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">na_check</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;NAs encountered in output weighted score column </span><span class="si">{</span><span class="n">score_col</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">results_df</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="TotalDownscaleGrid">
+<a class="viewcode-back" href="../../_autosummary/reVeal.grid.TotalDownscaleGrid.html#reVeal.grid.TotalDownscaleGrid">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">TotalDownscaleGrid</span><span class="p">(</span><span class="n">RunnableGrid</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Subclass of RunnableGrid for downscaling aggregate load projections to sites in</span>
+<span class="sd">    grid.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">CONFIG_CLASS</span> <span class="o">=</span> <span class="n">TotalDownscaleConfig</span>
+
+<div class="viewcode-block" id="TotalDownscaleGrid.run">
+<a class="viewcode-back" href="../../_autosummary/reVeal.grid.TotalDownscaleGrid.html#reVeal.grid.TotalDownscaleGrid.run">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Run load downscaling based on the input configuration.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        gpd.GeoDataFrame</span>
+<span class="sd">            A GeoDataFrame with downscaled load values attributes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Loading load projections&quot;</span><span class="p">)</span>
+        <span class="n">load_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">load_projections</span><span class="p">)</span>
+
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Downscaling regional load projections to grid&quot;</span><span class="p">)</span>
+        <span class="n">downscaled_df</span> <span class="o">=</span> <span class="n">load</span><span class="o">.</span><span class="n">downscale_total</span><span class="p">(</span>
+            <span class="n">grid_df</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">,</span>
+            <span class="n">grid_priority_col</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">grid_priority</span><span class="p">,</span>
+            <span class="n">grid_baseline_load_col</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">grid_baseline_load</span><span class="p">,</span>
+            <span class="n">baseline_year</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">baseline_year</span><span class="p">,</span>
+            <span class="n">grid_capacity_col</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">grid_capacity</span><span class="p">,</span>
+            <span class="n">load_df</span><span class="o">=</span><span class="n">load_df</span><span class="p">,</span>
+            <span class="n">load_value_col</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">load_value</span><span class="p">,</span>
+            <span class="n">load_year_col</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">load_year</span><span class="p">,</span>
+            <span class="n">max_site_addition_per_year</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">max_site_addition_per_year</span><span class="p">,</span>
+            <span class="n">site_saturation_limit</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">site_saturation_limit</span><span class="p">,</span>
+            <span class="n">priority_power</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">priority_power</span><span class="p">,</span>
+            <span class="n">n_bootstraps</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">n_bootstraps</span><span class="p">,</span>
+            <span class="n">random_seed</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">random_seed</span><span class="p">,</span>
+            <span class="n">hide_pbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">downscaled_df</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="RegionalDownscaleGrid">
+<a class="viewcode-back" href="../../_autosummary/reVeal.grid.RegionalDownscaleGrid.html#reVeal.grid.RegionalDownscaleGrid">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">RegionalDownscaleGrid</span><span class="p">(</span><span class="n">RunnableGrid</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Subclass of RunnableGrid for downscaling regional load projections to sites in</span>
+<span class="sd">    grid.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">CONFIG_CLASS</span> <span class="o">=</span> <span class="n">RegionalDownscaleConfig</span>
+
+<div class="viewcode-block" id="RegionalDownscaleGrid.run">
+<a class="viewcode-back" href="../../_autosummary/reVeal.grid.RegionalDownscaleGrid.html#reVeal.grid.RegionalDownscaleGrid.run">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Run load downscaling based on the input configuration.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        gpd.GeoDataFrame</span>
+<span class="sd">            A GeoDataFrame with downscaled load values attributes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Loading load projections.&quot;</span><span class="p">)</span>
+        <span class="n">load_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">load_projections</span><span class="p">)</span>
+
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Assigning grid cells to regions&quot;</span><span class="p">)</span>
+        <span class="n">regions_lkup_df</span> <span class="o">=</span> <span class="n">overlay</span><span class="o">.</span><span class="n">calc_area_weighted_majority</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">regions</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">region_names</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">,</span> <span class="n">regions_lkup_df</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">region_weights</span><span class="p">:</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Apportioning load to regions based on weights&quot;</span><span class="p">)</span>
+            <span class="n">regional_load_df</span> <span class="o">=</span> <span class="n">load</span><span class="o">.</span><span class="n">apportion_load_to_regions</span><span class="p">(</span>
+                <span class="n">load_df</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">load_value</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">load_year</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">region_weights</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">load_regions</span> <span class="o">=</span> <span class="s2">&quot;region&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">regional_load_df</span> <span class="o">=</span> <span class="n">load_df</span>
+
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Downscaling aggregate load to grid&quot;</span><span class="p">)</span>
+        <span class="n">downscaled_df</span> <span class="o">=</span> <span class="n">load</span><span class="o">.</span><span class="n">downscale_regional</span><span class="p">(</span>
+            <span class="n">grid_df</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">,</span>
+            <span class="n">grid_priority_col</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">grid_priority</span><span class="p">,</span>
+            <span class="n">grid_baseline_load_col</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">grid_baseline_load</span><span class="p">,</span>
+            <span class="n">baseline_year</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">baseline_year</span><span class="p">,</span>
+            <span class="n">grid_capacity_col</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">grid_capacity</span><span class="p">,</span>
+            <span class="n">grid_region_col</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">region_names</span><span class="p">,</span>
+            <span class="n">load_df</span><span class="o">=</span><span class="n">regional_load_df</span><span class="p">,</span>
+            <span class="n">load_value_col</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">load_value</span><span class="p">,</span>
+            <span class="n">load_year_col</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">load_year</span><span class="p">,</span>
+            <span class="n">load_region_col</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">load_regions</span><span class="p">,</span>
+            <span class="n">max_site_addition_per_year</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">max_site_addition_per_year</span><span class="p">,</span>
+            <span class="n">site_saturation_limit</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">site_saturation_limit</span><span class="p">,</span>
+            <span class="n">priority_power</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">priority_power</span><span class="p">,</span>
+            <span class="n">n_bootstraps</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">n_bootstraps</span><span class="p">,</span>
+            <span class="n">random_seed</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">random_seed</span><span class="p">,</span>
+            <span class="n">hide_pbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">downscaled_df</span></div>
+</div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, Alliance for Energy Innovation, LLC and Root Geospatial LLC.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

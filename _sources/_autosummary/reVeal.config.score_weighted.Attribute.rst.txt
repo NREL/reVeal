@@ -1,0 +1,37 @@
+reVeal.config.score\_weighted.Attribute
+=======================================
+
+.. currentmodule:: reVeal.config.score_weighted
+
+.. autoclass:: Attribute
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Attribute.attribute_check
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Attribute.model_computed_fields
+      ~Attribute.model_config
+      ~Attribute.model_extra
+      ~Attribute.model_fields
+      ~Attribute.model_fields_set
+      ~Attribute.attribute
+      ~Attribute.weight
+      ~Attribute.dset_src
+   
+   

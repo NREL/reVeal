@@ -1,0 +1,6 @@
+reVeal.log.get\_logger
+======================
+
+.. currentmodule:: reVeal.log
+
+.. autofunction:: get_logger

@@ -1,0 +1,6 @@
+reVeal.grid.get\_neighbors
+==========================
+
+.. currentmodule:: reVeal.grid
+
+.. autofunction:: get_neighbors

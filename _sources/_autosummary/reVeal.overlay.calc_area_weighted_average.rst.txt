@@ -1,0 +1,6 @@
+reVeal.overlay.calc\_area\_weighted\_average
+============================================
+
+.. currentmodule:: reVeal.overlay
+
+.. autofunction:: calc_area_weighted_average

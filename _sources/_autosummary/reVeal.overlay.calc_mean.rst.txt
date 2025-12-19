@@ -1,0 +1,6 @@
+reVeal.overlay.calc\_mean
+=========================
+
+.. currentmodule:: reVeal.overlay
+
+.. autofunction:: calc_mean

@@ -1,0 +1,6 @@
+reVeal.overlay.calc\_sum\_attribute\_length
+===========================================
+
+.. currentmodule:: reVeal.overlay
+
+.. autofunction:: calc_sum_attribute_length

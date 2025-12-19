@@ -1,0 +1,56 @@
+reVeal.config.downscale.DownscaleConfig
+=======================================
+
+.. currentmodule:: reVeal.config.downscale
+
+.. autoclass:: DownscaleConfig
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~DownscaleConfig.set_grid_crs
+      ~DownscaleConfig.set_grid_ext
+      ~DownscaleConfig.set_grid_flavor
+      ~DownscaleConfig.validate_grid
+      ~DownscaleConfig.validate_load_projections
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~DownscaleConfig.model_computed_fields
+      ~DownscaleConfig.model_config
+      ~DownscaleConfig.model_extra
+      ~DownscaleConfig.model_fields
+      ~DownscaleConfig.model_fields_set
+      ~DownscaleConfig.grid_priority
+      ~DownscaleConfig.grid_baseline_load
+      ~DownscaleConfig.baseline_year
+      ~DownscaleConfig.grid_capacity
+      ~DownscaleConfig.projection_resolution
+      ~DownscaleConfig.load_projections
+      ~DownscaleConfig.load_value
+      ~DownscaleConfig.load_year
+      ~DownscaleConfig.max_site_addition_per_year
+      ~DownscaleConfig.site_saturation_limit
+      ~DownscaleConfig.priority_power
+      ~DownscaleConfig.n_bootstraps
+      ~DownscaleConfig.random_seed
+      ~DownscaleConfig.max_workers
+      ~DownscaleConfig.grid
+      ~DownscaleConfig.grid_ext
+      ~DownscaleConfig.grid_flavor
+      ~DownscaleConfig.grid_crs
+   
+   

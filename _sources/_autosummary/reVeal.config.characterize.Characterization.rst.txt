@@ -1,0 +1,59 @@
+reVeal.config.characterize.Characterization
+===========================================
+
+.. currentmodule:: reVeal.config.characterize
+
+.. autoclass:: Characterization
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Characterization.attribute_check
+      ~Characterization.check_method_applicability
+      ~Characterization.is_valid_method
+      ~Characterization.parallel_check
+      ~Characterization.set_crs
+      ~Characterization.set_dset_ext
+      ~Characterization.set_dset_format
+      ~Characterization.set_dset_src
+      ~Characterization.set_weights_dset_src
+      ~Characterization.weights_dset_check
+      ~Characterization.where_check
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Characterization.model_computed_fields
+      ~Characterization.model_config
+      ~Characterization.model_extra
+      ~Characterization.model_fields
+      ~Characterization.model_fields_set
+      ~Characterization.dset
+      ~Characterization.data_dir
+      ~Characterization.method
+      ~Characterization.attribute
+      ~Characterization.weights_dset
+      ~Characterization.parallel
+      ~Characterization.max_workers
+      ~Characterization.neighbor_order
+      ~Characterization.buffer_distance
+      ~Characterization.where
+      ~Characterization.dset_src
+      ~Characterization.dset_format
+      ~Characterization.dset_ext
+      ~Characterization.crs
+      ~Characterization.weights_dset_src
+   
+   

@@ -1,0 +1,6 @@
+reVeal.normalization.calc\_minmax
+=================================
+
+.. currentmodule:: reVeal.normalization
+
+.. autofunction:: calc_minmax

@@ -1,0 +1,6 @@
+reVeal.overlay.zonal\_statistic\_parallel
+=========================================
+
+.. currentmodule:: reVeal.overlay
+
+.. autofunction:: zonal_statistic_parallel

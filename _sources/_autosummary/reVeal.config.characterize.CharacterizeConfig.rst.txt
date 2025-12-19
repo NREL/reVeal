@@ -1,0 +1,48 @@
+reVeal.config.characterize.CharacterizeConfig
+=============================================
+
+.. currentmodule:: reVeal.config.characterize
+
+.. autoclass:: CharacterizeConfig
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~CharacterizeConfig.base_validator
+      ~CharacterizeConfig.propagate_datadir
+      ~CharacterizeConfig.set_grid_crs
+      ~CharacterizeConfig.set_grid_ext
+      ~CharacterizeConfig.set_grid_flavor
+      ~CharacterizeConfig.validate_characterizations
+      ~CharacterizeConfig.validate_crs
+      ~CharacterizeConfig.validate_expressions
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~CharacterizeConfig.model_computed_fields
+      ~CharacterizeConfig.model_config
+      ~CharacterizeConfig.model_extra
+      ~CharacterizeConfig.model_fields
+      ~CharacterizeConfig.model_fields_set
+      ~CharacterizeConfig.data_dir
+      ~CharacterizeConfig.characterizations
+      ~CharacterizeConfig.expressions
+      ~CharacterizeConfig.grid
+      ~CharacterizeConfig.grid_ext
+      ~CharacterizeConfig.grid_flavor
+      ~CharacterizeConfig.grid_crs
+   
+   

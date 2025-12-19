@@ -1,0 +1,6 @@
+reVeal.load.downscale\_regional
+===============================
+
+.. currentmodule:: reVeal.load
+
+.. autofunction:: downscale_regional

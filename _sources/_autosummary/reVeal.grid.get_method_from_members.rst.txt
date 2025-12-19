@@ -1,0 +1,6 @@
+reVeal.grid.get\_method\_from\_members
+======================================
+
+.. currentmodule:: reVeal.grid
+
+.. autofunction:: get_method_from_members

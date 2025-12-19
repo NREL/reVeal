@@ -1,0 +1,30 @@
+reVeal.cli.downscale
+====================
+
+.. automodule:: reVeal.cli.downscale
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+      :toctree:
+   
+      run
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

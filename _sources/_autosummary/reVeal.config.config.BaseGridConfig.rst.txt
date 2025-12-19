@@ -1,0 +1,40 @@
+reVeal.config.config.BaseGridConfig
+===================================
+
+.. currentmodule:: reVeal.config.config
+
+.. autoclass:: BaseGridConfig
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~BaseGridConfig.set_grid_crs
+      ~BaseGridConfig.set_grid_ext
+      ~BaseGridConfig.set_grid_flavor
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~BaseGridConfig.model_computed_fields
+      ~BaseGridConfig.model_config
+      ~BaseGridConfig.model_extra
+      ~BaseGridConfig.model_fields
+      ~BaseGridConfig.model_fields_set
+      ~BaseGridConfig.grid
+      ~BaseGridConfig.grid_ext
+      ~BaseGridConfig.grid_flavor
+      ~BaseGridConfig.grid_crs
+   
+   

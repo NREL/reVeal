@@ -1,0 +1,6 @@
+reVeal.overlay.calc\_sum
+========================
+
+.. currentmodule:: reVeal.overlay
+
+.. autofunction:: calc_sum

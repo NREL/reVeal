@@ -1,0 +1,6 @@
+reVeal.errors.FileFormatError
+=============================
+
+.. currentmodule:: reVeal.errors
+
+.. autoexception:: FileFormatError

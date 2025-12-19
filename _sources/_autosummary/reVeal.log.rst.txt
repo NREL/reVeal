@@ -1,0 +1,32 @@
+reVeal.log
+==========
+
+.. automodule:: reVeal.log
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+      :toctree:
+   
+      get_logger
+      init_logger
+      remove_streamhandlers
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

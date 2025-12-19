@@ -1,0 +1,1373 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>reVeal.overlay &#8212; reVeal 0.2.2 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=000c92bf"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/tabs.js?v=3030b3cb"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/reVeal/overlay';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.2" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">reVeal 0.2.2 documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../index.html">
+    Home page
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../misc/installation_usage.html">
+    Installation and Usage
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../misc/examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../_cli/cli.html">
+    CLI reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../_autosummary/reVeal.html">
+    API reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../index.html">
+    Home page
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../misc/installation_usage.html">
+    Installation and Usage
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../misc/examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../_cli/cli.html">
+    CLI reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../_autosummary/reVeal.html">
+    API reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">reVeal.overlay</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for reVeal.overlay</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">overlay module</span>
+
+<span class="sd">Note that to expose methods here for by :func:`reVeal.grid.CharacterizeGrid.run()`</span>
+<span class="sd">and functions dependent on it, the function must be prefixed with ``calc_``.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="c1"># pylint: disable=unused-argument</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">multiprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">cpu_count</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessPoolExecutor</span><span class="p">,</span> <span class="n">as_completed</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">exactextract.exact_extract</span><span class="w"> </span><span class="kn">import</span> <span class="n">exact_extract</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">osgeo.gdal</span><span class="w"> </span><span class="kn">import</span> <span class="n">UseExceptions</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">rasterio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">reVeal.fileio</span><span class="w"> </span><span class="kn">import</span> <span class="n">read_vectors</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">reVeal.dataframe</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataframe_split</span>
+
+<span class="n">UseExceptions</span><span class="p">()</span>
+
+<span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="exact_extract_wrap">
+<a class="viewcode-back" href="../../_autosummary/reVeal.overlay.exact_extract_wrap.html#reVeal.overlay.exact_extract_wrap">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">exact_extract_wrap</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Helper function for calling exact_extract in a subprocess without receiving</span>
+<span class="sd">    FutureWarning messages from gdal. This works because UseExceptions() is imported</span>
+<span class="sd">    already in the main process.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">exact_extract</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="calc_feature_count">
+<a class="viewcode-back" href="../../_autosummary/reVeal.overlay.calc_feature_count.html#reVeal.overlay.calc_feature_count">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">calc_feature_count</span><span class="p">(</span><span class="n">zones_df</span><span class="p">,</span> <span class="n">dset_src</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the count of features intersecting each zone in input zones dataframe.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    zones_df : geopandas.GeoDataFrame</span>
+<span class="sd">        Input zones dataframe, to which results will be aggregated. This</span>
+<span class="sd">        function assumes that the index of zones_df is unique for each feature. If</span>
+<span class="sd">        this is not the case, unexpected results may occur.</span>
+<span class="sd">    dset_src : str</span>
+<span class="sd">        Path to input vector dataset to be counted. Must be in the same CRS as</span>
+<span class="sd">        the zones_df.</span>
+<span class="sd">    where : str, optional</span>
+<span class="sd">        Optional query string to apply to the input dset_src to subset the features</span>
+<span class="sd">        included in the results. Should follow the format `expr` defined in</span>
+<span class="sd">        pandas.DataFrame.query.</span>
+<span class="sd">    **kwargs</span>
+<span class="sd">        Arbitrary keyword arguments. Note that none of these are used, but this</span>
+<span class="sd">        allows passing an arbitrary dictionary that includes both used and unused</span>
+<span class="sd">        parameters as input to the function.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pandas.DataFrame</span>
+<span class="sd">        Returns a pandas DataFrame with a &quot;value&quot; column, representing the count</span>
+<span class="sd">        of features in each zone. The index from the input zones_df is also included.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">features_df</span> <span class="o">=</span> <span class="n">read_vectors</span><span class="p">(</span><span class="n">dset_src</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="n">where</span><span class="p">)</span>
+    <span class="n">features_df</span><span class="p">[</span><span class="s2">&quot;feature_count&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">join_df</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">sjoin</span><span class="p">(</span>
+        <span class="n">zones_df</span><span class="p">[[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]],</span>
+        <span class="n">features_df</span><span class="p">[[</span><span class="s2">&quot;geometry&quot;</span><span class="p">,</span> <span class="s2">&quot;feature_count&quot;</span><span class="p">]],</span>
+        <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span>
+        <span class="n">predicate</span><span class="o">=</span><span class="s2">&quot;intersects&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">counts_df</span> <span class="o">=</span> <span class="n">join_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="n">join_df</span><span class="o">.</span><span class="n">index</span><span class="p">)[[</span><span class="s2">&quot;feature_count&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">counts_df</span><span class="p">[</span><span class="s2">&quot;feature_count&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">counts_df</span><span class="p">[</span><span class="s2">&quot;feature_count&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">counts_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;feature_count&quot;</span><span class="p">:</span> <span class="s2">&quot;value&quot;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">counts_df</span></div>
+
+
+
+<div class="viewcode-block" id="calc_sum_attribute">
+<a class="viewcode-back" href="../../_autosummary/reVeal.overlay.calc_sum_attribute.html#reVeal.overlay.calc_sum_attribute">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">calc_sum_attribute</span><span class="p">(</span><span class="n">zones_df</span><span class="p">,</span> <span class="n">dset_src</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the sum of the specified attribute for all features intersecting each</span>
+<span class="sd">    zone in input zones dataframe. If no features intersect a given zone, a value of</span>
+<span class="sd">    zero will be returned for that zone.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    zones_df : geopandas.GeoDataFrame</span>
+<span class="sd">        Input zones dataframe, to which results will be aggregated. This</span>
+<span class="sd">        function assumes that the index of zones_df is unique for each feature. If</span>
+<span class="sd">        this is not the case, unexpected results may occur.</span>
+<span class="sd">    dset_src : str</span>
+<span class="sd">        Path to input vector dataset with attribute to be summed. Must be in the same</span>
+<span class="sd">        CRS as the zones_df.</span>
+<span class="sd">    attribute : str</span>
+<span class="sd">        Name of attribute in dset_src to sum.</span>
+<span class="sd">    where : str, optional</span>
+<span class="sd">        Optional query string to apply to the input dset_src to subset the features</span>
+<span class="sd">        included in the results. Should follow the format `expr` defined in</span>
+<span class="sd">        pandas.DataFrame.query.</span>
+<span class="sd">    **kwargs :</span>
+<span class="sd">        Arbitrary keyword arguments. Note that none of these are used, but this</span>
+<span class="sd">        allows passing an arbitrary dictionary that includes both used and unused</span>
+<span class="sd">        parameters as input to the function.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pandas.DataFrame</span>
+<span class="sd">        Returns a pandas DataFrame with a &quot;value&quot; column, representing the sum</span>
+<span class="sd">        of the attribute of features in each zone. The index from the input zones_df is</span>
+<span class="sd">        also included.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">features_df</span> <span class="o">=</span> <span class="n">read_vectors</span><span class="p">(</span><span class="n">dset_src</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="n">where</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">attribute</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">features_df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;attribute </span><span class="si">{</span><span class="n">attribute</span><span class="si">}</span><span class="s2"> not a column in </span><span class="si">{</span><span class="n">dset_src</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">pd</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">is_numeric_dtype</span><span class="p">(</span><span class="n">features_df</span><span class="p">[</span><span class="n">attribute</span><span class="p">]):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;attribute </span><span class="si">{</span><span class="n">attribute</span><span class="si">}</span><span class="s2"> in </span><span class="si">{</span><span class="n">dset_src</span><span class="si">}</span><span class="s2"> must be numeric&quot;</span><span class="p">)</span>
+
+    <span class="n">join_df</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">sjoin</span><span class="p">(</span>
+        <span class="n">zones_df</span><span class="p">[[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]],</span>
+        <span class="n">features_df</span><span class="p">[[</span><span class="s2">&quot;geometry&quot;</span><span class="p">,</span> <span class="n">attribute</span><span class="p">]],</span>
+        <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span>
+        <span class="n">predicate</span><span class="o">=</span><span class="s2">&quot;intersects&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">sums_df</span> <span class="o">=</span> <span class="n">join_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="n">join_df</span><span class="o">.</span><span class="n">index</span><span class="p">)[[</span><span class="n">attribute</span><span class="p">]]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">sums_df</span><span class="p">[</span><span class="n">attribute</span><span class="p">]</span> <span class="o">=</span> <span class="n">sums_df</span><span class="p">[</span><span class="n">attribute</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">sums_df</span><span class="p">[</span><span class="n">attribute</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+    <span class="n">sums_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="n">attribute</span><span class="p">:</span> <span class="s2">&quot;value&quot;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">sums_df</span></div>
+
+
+
+<div class="viewcode-block" id="calc_sum_length">
+<a class="viewcode-back" href="../../_autosummary/reVeal.overlay.calc_sum_length.html#reVeal.overlay.calc_sum_length">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">calc_sum_length</span><span class="p">(</span><span class="n">zones_df</span><span class="p">,</span> <span class="n">dset_src</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the sum of lengths of input features intersecting each zone in input</span>
+<span class="sd">    zones dataframe.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    zones_df : geopandas.GeoDataFrame</span>
+<span class="sd">        Input zones dataframe, to which results will be aggregated. This</span>
+<span class="sd">        function assumes that the index of zones_df is unique for each feature. If</span>
+<span class="sd">        this is not the case, unexpected results may occur.</span>
+<span class="sd">    dset_src : str</span>
+<span class="sd">        Path to input vector dataset with geometries whose lengths will be summed.</span>
+<span class="sd">        Expected to a be a LineString or MultiLineString input, though this is not</span>
+<span class="sd">        checked. Results for Points/MultiPoints will be returned as all zeros, and</span>
+<span class="sd">        results for Polygons/MultiPolygons will represent perimeters. Must be in the</span>
+<span class="sd">        same CRS as the zones_df.</span>
+<span class="sd">    where : str, optional</span>
+<span class="sd">        Optional query string to apply to the input dset_src to subset the features</span>
+<span class="sd">        included in the results. Should follow the format `expr` defined in</span>
+<span class="sd">        pandas.DataFrame.query.</span>
+<span class="sd">    **kwargs :</span>
+<span class="sd">        Arbitrary keyword arguments. Not used, but allows passing extra parameters.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pandas.DataFrame</span>
+<span class="sd">        Returns a pandas DataFrame with a &quot;value&quot; column, representing the sum of</span>
+<span class="sd">        lengths of features in each zone. The index from the input zones_df is also</span>
+<span class="sd">        included.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">features_df</span> <span class="o">=</span> <span class="n">read_vectors</span><span class="p">(</span><span class="n">dset_src</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="n">where</span><span class="p">)</span>
+
+    <span class="n">zone_idx</span> <span class="o">=</span> <span class="n">zones_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span>
+
+    <span class="n">intersection_df</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">overlay</span><span class="p">(</span>
+        <span class="n">features_df</span><span class="p">[[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]],</span>
+        <span class="n">zones_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()[[</span><span class="n">zone_idx</span><span class="p">,</span> <span class="s2">&quot;geometry&quot;</span><span class="p">]],</span>
+        <span class="n">how</span><span class="o">=</span><span class="s2">&quot;intersection&quot;</span><span class="p">,</span>
+        <span class="n">keep_geom_type</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">make_valid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">intersection_df</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">intersection_df</span><span class="o">.</span><span class="n">length</span>
+    <span class="n">sums_df</span> <span class="o">=</span> <span class="n">intersection_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="n">zone_idx</span><span class="p">)[[</span><span class="s2">&quot;value&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+    <span class="n">complete_sums_df</span> <span class="o">=</span> <span class="n">sums_df</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">zones_df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">complete_sums_df</span></div>
+
+
+
+<div class="viewcode-block" id="calc_sum_attribute_length">
+<a class="viewcode-back" href="../../_autosummary/reVeal.overlay.calc_sum_attribute_length.html#reVeal.overlay.calc_sum_attribute_length">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">calc_sum_attribute_length</span><span class="p">(</span><span class="n">zones_df</span><span class="p">,</span> <span class="n">dset_src</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the sum of attribute-length of input features intersecting each zone in</span>
+<span class="sd">    input zones dataframe. Attribute-length is defined as the product of the length</span>
+<span class="sd">    of each feature in each zone and the specified attribute value</span>
+<span class="sd">    (i.e., length * attribute).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    zones_df : geopandas.GeoDataFrame</span>
+<span class="sd">        Input zones dataframe, to which results will be aggregated. This</span>
+<span class="sd">        function assumes that the index of zones_df is unique for each feature. If</span>
+<span class="sd">        this is not the case, unexpected results may occur.</span>
+<span class="sd">    dset_src : str</span>
+<span class="sd">        Path to input vector dataset with geometries whose attribute-lengths will be</span>
+<span class="sd">        summed. Expected to a be a LineString or MultiLineString input, though this is</span>
+<span class="sd">        not checked. Results for Points/MultiPoints will be returned as all zeros, and</span>
+<span class="sd">        results for Polygons/MultiPolygons will use perimeters instead of lengths. Must</span>
+<span class="sd">        be in the same CRS as the zones_df.</span>
+<span class="sd">    attribute : str</span>
+<span class="sd">        Name of attribute in dset_src to use for calculating attribute-lengths.</span>
+<span class="sd">    where : str, optional</span>
+<span class="sd">        Optional query string to apply to the input dset_src to subset the features</span>
+<span class="sd">        included in the results. Should follow the format `expr` defined in</span>
+<span class="sd">        pandas.DataFrame.query.</span>
+<span class="sd">    **kwargs :</span>
+<span class="sd">        Arbitrary keyword arguments. Not used, but allows passing extra parameters.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pandas.DataFrame</span>
+<span class="sd">        Returns a pandas DataFrame with a &quot;value&quot; column, representing the sum of</span>
+<span class="sd">        attribute-lengths of features in each zone. The index from the input zones_df</span>
+<span class="sd">        is also included.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">features_df</span> <span class="o">=</span> <span class="n">read_vectors</span><span class="p">(</span><span class="n">dset_src</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="n">where</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">attribute</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">features_df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;attribute </span><span class="si">{</span><span class="n">attribute</span><span class="si">}</span><span class="s2"> not a column in </span><span class="si">{</span><span class="n">dset_src</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">pd</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">is_numeric_dtype</span><span class="p">(</span><span class="n">features_df</span><span class="p">[</span><span class="n">attribute</span><span class="p">]):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;attribute </span><span class="si">{</span><span class="n">attribute</span><span class="si">}</span><span class="s2"> in </span><span class="si">{</span><span class="n">dset_src</span><span class="si">}</span><span class="s2"> must be numeric&quot;</span><span class="p">)</span>
+
+    <span class="n">zone_idx</span> <span class="o">=</span> <span class="n">zones_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span>
+
+    <span class="n">intersection_df</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">overlay</span><span class="p">(</span>
+        <span class="n">features_df</span><span class="p">[[</span><span class="s2">&quot;geometry&quot;</span><span class="p">,</span> <span class="n">attribute</span><span class="p">]],</span>
+        <span class="n">zones_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()[[</span><span class="n">zone_idx</span><span class="p">,</span> <span class="s2">&quot;geometry&quot;</span><span class="p">]],</span>
+        <span class="n">how</span><span class="o">=</span><span class="s2">&quot;intersection&quot;</span><span class="p">,</span>
+        <span class="n">keep_geom_type</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">make_valid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">intersection_df</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">intersection_df</span><span class="o">.</span><span class="n">length</span> <span class="o">*</span> <span class="n">intersection_df</span><span class="p">[</span><span class="n">attribute</span><span class="p">]</span>
+    <span class="n">sums_df</span> <span class="o">=</span> <span class="n">intersection_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="n">zone_idx</span><span class="p">)[[</span><span class="s2">&quot;value&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+    <span class="n">complete_sums_df</span> <span class="o">=</span> <span class="n">sums_df</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">zones_df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">complete_sums_df</span></div>
+
+
+
+<div class="viewcode-block" id="calc_sum_area">
+<a class="viewcode-back" href="../../_autosummary/reVeal.overlay.calc_sum_area.html#reVeal.overlay.calc_sum_area">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">calc_sum_area</span><span class="p">(</span><span class="n">zones_df</span><span class="p">,</span> <span class="n">dset_src</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the sum of combined areas of input features intersecting each zone in</span>
+<span class="sd">    input zones dataframe. Intersecting features are unioned before calculating areas,</span>
+<span class="sd">    such that the total area cannot exceed the size of the zone.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    zones_df : geopandas.GeoDataFrame</span>
+<span class="sd">        Input zones dataframe, to which results will be aggregated. This function</span>
+<span class="sd">        assumes that the index of zones_df is unique for each feature. If this is not</span>
+<span class="sd">        the case, unexpected results may occur.</span>
+<span class="sd">    dset_src : str</span>
+<span class="sd">        Path to input vector dataset with geometries whose areas will be summed.</span>
+<span class="sd">        Expected to a be a Polygon or MultiPolygon input, though this is not</span>
+<span class="sd">        checked. Results for Points/MultiPoints and LineStrings/MultiLineStrings will</span>
+<span class="sd">        be returned as all zeros. Must be in the same CRS as the zones_df.</span>
+<span class="sd">    where : str, optional</span>
+<span class="sd">        Optional query string to apply to the input dset_src to subset the features</span>
+<span class="sd">        included in the results. Should follow the format `expr` defined in</span>
+<span class="sd">        pandas.DataFrame.query.</span>
+<span class="sd">    **kwargs :</span>
+<span class="sd">        Arbitrary keyword arguments. Not used, but allows passing extra parameters.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pandas.DataFrame</span>
+<span class="sd">        Returns a pandas DataFrame with a &quot;value&quot; column, representing the sum of</span>
+<span class="sd">        combined area of features in each zone. The index from the input zones_df is</span>
+<span class="sd">        also included.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">features_df</span> <span class="o">=</span> <span class="n">read_vectors</span><span class="p">(</span><span class="n">dset_src</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="n">where</span><span class="p">)</span>
+
+    <span class="n">zone_idx</span> <span class="o">=</span> <span class="n">zones_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span>
+
+    <span class="n">intersection_df</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">overlay</span><span class="p">(</span>
+        <span class="n">features_df</span><span class="p">[[</span><span class="s2">&quot;geometry&quot;</span><span class="p">]],</span>
+        <span class="n">zones_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()[[</span><span class="n">zone_idx</span><span class="p">,</span> <span class="s2">&quot;geometry&quot;</span><span class="p">]],</span>
+        <span class="n">how</span><span class="o">=</span><span class="s2">&quot;intersection&quot;</span><span class="p">,</span>
+        <span class="n">keep_geom_type</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">make_valid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">dissolved_df</span> <span class="o">=</span> <span class="n">intersection_df</span><span class="o">.</span><span class="n">dissolve</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="n">zone_idx</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;unary&quot;</span><span class="p">,</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">dissolved_df</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dissolved_df</span><span class="o">.</span><span class="n">area</span>
+    <span class="n">dissolved_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s2">&quot;geometry&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">areas_df</span> <span class="o">=</span> <span class="n">dissolved_df</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">zones_df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">areas_df</span></div>
+
+
+
+<div class="viewcode-block" id="calc_percent_covered">
+<a class="viewcode-back" href="../../_autosummary/reVeal.overlay.calc_percent_covered.html#reVeal.overlay.calc_percent_covered">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">calc_percent_covered</span><span class="p">(</span><span class="n">zones_df</span><span class="p">,</span> <span class="n">dset_src</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the percent of each zone covered by the union of the intersecting.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    zones_df : geopandas.GeoDataFrame</span>
+<span class="sd">        Input zones dataframe, to which results will be aggregated. This</span>
+<span class="sd">        function assumes that the index of zones_df is unique for each feature. If</span>
+<span class="sd">        this is not the case, unexpected results may occur.</span>
+<span class="sd">    dset_src : str</span>
+<span class="sd">        Path to input vector dataset with geometries to be included in calculating</span>
+<span class="sd">        coverage percents. Expected to a be a Polygon or MultiPolygon input, though</span>
+<span class="sd">        this is not checked. Results for Points/MultiPoints and</span>
+<span class="sd">        LineStrings/MultiLineStrings will be returned as all zeros. Must be in the same</span>
+<span class="sd">        CRS as the zones_df.</span>
+<span class="sd">    where : str, optional</span>
+<span class="sd">        Optional query string to apply to the input dset_src to subset the features</span>
+<span class="sd">        included in the results. Should follow the format `expr` defined in</span>
+<span class="sd">        pandas.DataFrame.query.</span>
+<span class="sd">    **kwargs :</span>
+<span class="sd">        Arbitrary keyword arguments. Not used, but allows passing extra parameters.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pandas.DataFrame</span>
+<span class="sd">        Returns a pandas DataFrame with a &quot;value&quot; column, representing the percent</span>
+<span class="sd">        of each zone coverd by input features. The index from the input zones_df is</span>
+<span class="sd">        also included.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">feature_areas_df</span> <span class="o">=</span> <span class="n">calc_sum_area</span><span class="p">(</span><span class="n">zones_df</span><span class="p">,</span> <span class="n">dset_src</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="n">where</span><span class="p">)</span>
+    <span class="n">feature_areas_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;feature_area&quot;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">zone_areas_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">zones_df</span><span class="o">.</span><span class="n">area</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;zone_area&quot;</span><span class="p">])</span>
+    <span class="n">all_areas_df</span> <span class="o">=</span> <span class="n">zone_areas_df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+        <span class="n">feature_areas_df</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+    <span class="n">all_areas_df</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">all_areas_df</span><span class="p">[</span><span class="s2">&quot;feature_area&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">all_areas_df</span><span class="p">[</span><span class="s2">&quot;zone_area&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">all_areas_df</span><span class="p">[[</span><span class="s2">&quot;value&quot;</span><span class="p">]]</span></div>
+
+
+
+<div class="viewcode-block" id="calc_area_weighted_average">
+<a class="viewcode-back" href="../../_autosummary/reVeal.overlay.calc_area_weighted_average.html#reVeal.overlay.calc_area_weighted_average">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">calc_area_weighted_average</span><span class="p">(</span><span class="n">zones_df</span><span class="p">,</span> <span class="n">dset_src</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the area-weighted average of the specified attribute for input features</span>
+<span class="sd">    intersecting each zone in input zones dataframe. Area-weighted average is defined</span>
+<span class="sd">    as the sum of all intersecting features&#39; area x attribute value divided by the sum</span>
+<span class="sd">    of all areas.</span>
+
+<span class="sd">    Does not attribute any value to areas where features are not present -- i.e.,</span>
+<span class="sd">    if only a small portion of a zone is covered by features, but those features have</span>
+<span class="sd">    high attribute values, the result will have a high attribute value. In cases</span>
+<span class="sd">    where this matters, use this function in conjunction with calc_percent_covered()</span>
+<span class="sd">    or calc_sum_area().</span>
+
+<span class="sd">    If no features intersect a given zone, a value of NA will be returned for that</span>
+<span class="sd">    zone.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    zones_df : geopandas.GeoDataFrame</span>
+<span class="sd">        Input zones dataframe, to which results will be aggregated. This</span>
+<span class="sd">        function assumes that the index of zones_df is unique for each feature. If</span>
+<span class="sd">        this is not the case, unexpected results may occur.</span>
+<span class="sd">    dset_src : str</span>
+<span class="sd">        Path to input vector dataset with geometries to be included in calculating</span>
+<span class="sd">        coverage percents. Expected to a be a Polygon or MultiPolygon input, though</span>
+<span class="sd">        this is not checked. Results for Points/MultiPoints and</span>
+<span class="sd">        LineStrings/MultiLineStrings will be returned as all NAs since those features</span>
+<span class="sd">        have zero area. Must be in the same CRS as the zones_df.</span>
+<span class="sd">    attribute : str</span>
+<span class="sd">        Name of attribute in dset_src to use for calculating area-weighted average.</span>
+<span class="sd">    where : str, optional</span>
+<span class="sd">        Optional query string to apply to the input dset_src to subset the features</span>
+<span class="sd">        included in the results. Should follow the format `expr` defined in</span>
+<span class="sd">        pandas.DataFrame.query.</span>
+<span class="sd">    **kwargs :</span>
+<span class="sd">        Arbitrary keyword arguments. Not used, but allows passing extra parameters.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pandas.DataFrame</span>
+<span class="sd">        Returns a pandas DataFrame with a &quot;value&quot; column, representing the</span>
+<span class="sd">        area-weighted average of attribute values of features in each zone. The index</span>
+<span class="sd">        from the input zones_df is also included.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">features_df</span> <span class="o">=</span> <span class="n">read_vectors</span><span class="p">(</span><span class="n">dset_src</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="n">where</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">attribute</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">features_df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;attribute </span><span class="si">{</span><span class="n">attribute</span><span class="si">}</span><span class="s2"> not a column in </span><span class="si">{</span><span class="n">dset_src</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">pd</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">is_numeric_dtype</span><span class="p">(</span><span class="n">features_df</span><span class="p">[</span><span class="n">attribute</span><span class="p">]):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;attribute </span><span class="si">{</span><span class="n">attribute</span><span class="si">}</span><span class="s2"> in </span><span class="si">{</span><span class="n">dset_src</span><span class="si">}</span><span class="s2"> must be numeric&quot;</span><span class="p">)</span>
+
+    <span class="n">zone_idx</span> <span class="o">=</span> <span class="n">zones_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span>
+
+    <span class="n">intersection_df</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">overlay</span><span class="p">(</span>
+        <span class="n">features_df</span><span class="p">[[</span><span class="s2">&quot;geometry&quot;</span><span class="p">,</span> <span class="n">attribute</span><span class="p">]],</span>
+        <span class="n">zones_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()[[</span><span class="n">zone_idx</span><span class="p">,</span> <span class="s2">&quot;geometry&quot;</span><span class="p">]],</span>
+        <span class="n">how</span><span class="o">=</span><span class="s2">&quot;intersection&quot;</span><span class="p">,</span>
+        <span class="n">keep_geom_type</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">make_valid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">intersection_df</span><span class="p">[</span><span class="s2">&quot;area&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">intersection_df</span><span class="o">.</span><span class="n">area</span>
+    <span class="n">intersection_df</span><span class="p">[</span><span class="s2">&quot;product&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">intersection_df</span><span class="o">.</span><span class="n">area</span> <span class="o">*</span> <span class="n">intersection_df</span><span class="p">[</span><span class="n">attribute</span><span class="p">]</span>
+    <span class="n">avg_df</span> <span class="o">=</span> <span class="n">intersection_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="n">zone_idx</span><span class="p">)[[</span><span class="s2">&quot;product&quot;</span><span class="p">,</span> <span class="s2">&quot;area&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">avg_df</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">avg_df</span><span class="p">[</span><span class="s2">&quot;product&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">avg_df</span><span class="p">[</span><span class="s2">&quot;area&quot;</span><span class="p">]</span>
+
+    <span class="n">complete_avg_df</span> <span class="o">=</span> <span class="n">avg_df</span><span class="p">[[</span><span class="s2">&quot;value&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">zones_df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">complete_avg_df</span></div>
+
+
+
+<div class="viewcode-block" id="calc_area_apportioned_sum">
+<a class="viewcode-back" href="../../_autosummary/reVeal.overlay.calc_area_apportioned_sum.html#reVeal.overlay.calc_area_apportioned_sum">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">calc_area_apportioned_sum</span><span class="p">(</span><span class="n">zones_df</span><span class="p">,</span> <span class="n">dset_src</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the area-apportioned sum of the specified attribute for input features</span>
+<span class="sd">    intersecting each zone in input zones dataframe. Area-apportioning for each feature</span>
+<span class="sd">    works by determining the proportion of each feature intersecting a given zone,</span>
+<span class="sd">    as a function of its intersecting area divided by the its total area. The attribute</span>
+<span class="sd">    value of the feature is then multiplied by this proportion to &quot;apportion&quot; the value</span>
+<span class="sd">    to the zone. The apportioned values for all features intersecting each zone are</span>
+<span class="sd">    then summed.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    zones_df : geopandas.GeoDataFrame</span>
+<span class="sd">        Input zones dataframe, to which results will be aggregated. This</span>
+<span class="sd">        function assumes that the index of zones_df is unique for each feature. If</span>
+<span class="sd">        this is not the case, unexpected results may occur.</span>
+<span class="sd">    dset_src : str</span>
+<span class="sd">        Path to input vector dataset with geometries to be included in calculating</span>
+<span class="sd">        coverage percents. Expected to a be a Polygon or MultiPolygon input, though</span>
+<span class="sd">        this is not checked. Results for Points/MultiPoints and</span>
+<span class="sd">        LineStrings/MultiLineStrings will be returned as all zeros since those features</span>
+<span class="sd">        have zero area. Must be in the same CRS as the zones_df.</span>
+<span class="sd">    attribute : str</span>
+<span class="sd">        Name of attribute in dset_src to use for calculating area-weighted average.</span>
+<span class="sd">    where : str, optional</span>
+<span class="sd">        Optional query string to apply to the input dset_src to subset the features</span>
+<span class="sd">        included in the results. Should follow the format `expr` defined in</span>
+<span class="sd">        pandas.DataFrame.query.</span>
+<span class="sd">    **kwargs :</span>
+<span class="sd">        Arbitrary keyword arguments. Not used, but allows passing extra parameters.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pandas.DataFrame</span>
+<span class="sd">        Returns a pandas DataFrame with a &quot;value&quot; column, representing the</span>
+<span class="sd">        area-apportioned sum of attribute values of features in each zone. The index</span>
+<span class="sd">        from the input zones_df is also included.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">features_df</span> <span class="o">=</span> <span class="n">read_vectors</span><span class="p">(</span><span class="n">dset_src</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="n">where</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">attribute</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">features_df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;attribute </span><span class="si">{</span><span class="n">attribute</span><span class="si">}</span><span class="s2"> not a column in </span><span class="si">{</span><span class="n">dset_src</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">pd</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">is_numeric_dtype</span><span class="p">(</span><span class="n">features_df</span><span class="p">[</span><span class="n">attribute</span><span class="p">]):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;attribute </span><span class="si">{</span><span class="n">attribute</span><span class="si">}</span><span class="s2"> in </span><span class="si">{</span><span class="n">dset_src</span><span class="si">}</span><span class="s2"> must be numeric&quot;</span><span class="p">)</span>
+
+    <span class="n">zone_idx</span> <span class="o">=</span> <span class="n">zones_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span>
+
+    <span class="n">features_df</span><span class="p">[</span><span class="s2">&quot;total_area&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">features_df</span><span class="o">.</span><span class="n">area</span>
+
+    <span class="n">intersection_df</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">overlay</span><span class="p">(</span>
+        <span class="n">features_df</span><span class="p">[[</span><span class="s2">&quot;geometry&quot;</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="s2">&quot;total_area&quot;</span><span class="p">]],</span>
+        <span class="n">zones_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()[[</span><span class="n">zone_idx</span><span class="p">,</span> <span class="s2">&quot;geometry&quot;</span><span class="p">]],</span>
+        <span class="n">how</span><span class="o">=</span><span class="s2">&quot;intersection&quot;</span><span class="p">,</span>
+        <span class="n">keep_geom_type</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">make_valid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">intersection_df</span><span class="p">[</span><span class="s2">&quot;area&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">intersection_df</span><span class="o">.</span><span class="n">area</span>
+    <span class="n">intersection_df</span><span class="p">[</span><span class="s2">&quot;proportion&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">intersection_df</span><span class="p">[</span><span class="s2">&quot;area&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">intersection_df</span><span class="p">[</span><span class="s2">&quot;total_area&quot;</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">intersection_df</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">intersection_df</span><span class="p">[</span><span class="n">attribute</span><span class="p">]</span> <span class="o">*</span> <span class="n">intersection_df</span><span class="p">[</span><span class="s2">&quot;proportion&quot;</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">sums_df</span> <span class="o">=</span> <span class="n">intersection_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="n">zone_idx</span><span class="p">)[[</span><span class="s2">&quot;value&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+    <span class="n">complete_sums_df</span> <span class="o">=</span> <span class="n">sums_df</span><span class="p">[[</span><span class="s2">&quot;value&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">zones_df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">complete_sums_df</span></div>
+
+
+
+<div class="viewcode-block" id="calc_area_weighted_majority">
+<a class="viewcode-back" href="../../_autosummary/reVeal.overlay.calc_area_weighted_majority.html#reVeal.overlay.calc_area_weighted_majority">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">calc_area_weighted_majority</span><span class="p">(</span><span class="n">zones_df</span><span class="p">,</span> <span class="n">dset_src</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the area-weighted majority of the specified attribute for input features</span>
+<span class="sd">    intersecting each zone in input zones dataframe. Area-weighted majority is defined</span>
+<span class="sd">    as the label or identifier that makes up the largest portion of each zone based on</span>
+<span class="sd">    area of intersection.</span>
+
+<span class="sd">    If no features intersect a given zone, a value of NA will be returned for that</span>
+<span class="sd">    zone.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    zones_df : geopandas.GeoDataFrame</span>
+<span class="sd">        Input zones dataframe, to which results will be aggregated. This</span>
+<span class="sd">        function assumes that the index of zones_df is unique for each feature. If</span>
+<span class="sd">        this is not the case, unexpected results may occur.</span>
+<span class="sd">    dset_src : str</span>
+<span class="sd">        Path to input vector dataset with geometries to be included in calculating</span>
+<span class="sd">        coverage percents. Expected to a be a Polygon or MultiPolygon input, though</span>
+<span class="sd">        this is not checked. Results for Points/MultiPoints and</span>
+<span class="sd">        LineStrings/MultiLineStrings will be returned as all NAs since those features</span>
+<span class="sd">        have zero area. Must be in the same CRS as the zones_df.</span>
+<span class="sd">    attribute : str</span>
+<span class="sd">        Name of attribute in dset_src to use for determing majority label/identifier.</span>
+<span class="sd">    where : str, optional</span>
+<span class="sd">        Optional query string to apply to the input dset_src to subset the features</span>
+<span class="sd">        included in the results. Should follow the format `expr` defined in</span>
+<span class="sd">        pandas.DataFrame.query.</span>
+<span class="sd">    **kwargs :</span>
+<span class="sd">        Arbitrary keyword arguments. Not used, but allows passing extra parameters.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pandas.DataFrame</span>
+<span class="sd">        Returns a pandas DataFrame with a &quot;value&quot; column, representing the</span>
+<span class="sd">        area-weighted majority of attribute values of features in each zone. The index</span>
+<span class="sd">        from the input zones_df is also included.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">features_df</span> <span class="o">=</span> <span class="n">read_vectors</span><span class="p">(</span><span class="n">dset_src</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="n">where</span><span class="p">)</span>
+
+    <span class="n">features_geom_types</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">features_df</span><span class="o">.</span><span class="n">geom_type</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+    <span class="n">supported_geom_types</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="s2">&quot;Polygon&quot;</span><span class="p">,</span> <span class="s2">&quot;MultiPolygon&quot;</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">features_geom_types</span><span class="o">.</span><span class="n">isdisjoint</span><span class="p">(</span><span class="n">supported_geom_types</span><span class="p">):</span>
+        <span class="n">results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="n">attribute</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="n">zones_df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">results_df</span>
+
+    <span class="k">if</span> <span class="n">attribute</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">features_df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;attribute </span><span class="si">{</span><span class="n">attribute</span><span class="si">}</span><span class="s2"> not a column in </span><span class="si">{</span><span class="n">dset_src</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">zone_idx</span> <span class="o">=</span> <span class="n">zones_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span>
+
+    <span class="n">intersection_df</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">overlay</span><span class="p">(</span>
+        <span class="n">features_df</span><span class="p">[[</span><span class="s2">&quot;geometry&quot;</span><span class="p">,</span> <span class="n">attribute</span><span class="p">]],</span>
+        <span class="n">zones_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()[[</span><span class="n">zone_idx</span><span class="p">,</span> <span class="s2">&quot;geometry&quot;</span><span class="p">]],</span>
+        <span class="n">how</span><span class="o">=</span><span class="s2">&quot;intersection&quot;</span><span class="p">,</span>
+        <span class="n">keep_geom_type</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">make_valid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">intersection_df</span><span class="p">[</span><span class="s2">&quot;area&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">intersection_df</span><span class="o">.</span><span class="n">area</span>
+    <span class="n">sum_df</span> <span class="o">=</span> <span class="n">intersection_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="n">zone_idx</span><span class="p">,</span> <span class="n">attribute</span><span class="p">],</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span>
+        <span class="p">[</span><span class="s2">&quot;area&quot;</span><span class="p">]</span>
+    <span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">sum_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;gid&quot;</span><span class="p">,</span> <span class="s2">&quot;area&quot;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">majority_df</span> <span class="o">=</span> <span class="n">sum_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="n">zone_idx</span><span class="p">])</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+
+    <span class="n">complete_majority_df</span> <span class="o">=</span> <span class="n">majority_df</span><span class="p">[[</span><span class="n">attribute</span><span class="p">]]</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">zones_df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">complete_majority_df</span></div>
+
+
+
+<div class="viewcode-block" id="zonal_statistic_serial">
+<a class="viewcode-back" href="../../_autosummary/reVeal.overlay.zonal_statistic_serial.html#reVeal.overlay.zonal_statistic_serial">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">zonal_statistic_serial</span><span class="p">(</span><span class="n">zones_df</span><span class="p">,</span> <span class="n">dset_src</span><span class="p">,</span> <span class="n">stat</span><span class="p">,</span> <span class="n">weights_dset_src</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate zonal statistic for the specified statistic using serial processing.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    zones_df : geopandas.GeoDataFrame</span>
+<span class="sd">        Input zones dataframe, to which results will be aggregated. This</span>
+<span class="sd">        function assumes that the index of zones_df is unique for each feature. If</span>
+<span class="sd">        this is not the case, unexpected results may occur.</span>
+<span class="sd">    dset_src : str</span>
+<span class="sd">        Path to input raster dataset to be summarized.</span>
+<span class="sd">    stat : str</span>
+<span class="sd">        Zonal statistic to calculate. For valid options and compatability with</span>
+<span class="sd">        use of weights, see:</span>
+<span class="sd">        https://isciences.github.io/exactextract/operations.html#built-in-operations.</span>
+<span class="sd">    weights_dset_src : str, optional</span>
+<span class="sd">        Optional path to datset to use for weights. Note that only some options for</span>
+<span class="sd">        stat support use of weights. See stat for more information.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pandas.DataFrame</span>
+<span class="sd">        Returns a pandas DataFrame with a &quot;value&quot; column, representing the</span>
+<span class="sd">        aggregate statistic of raster values within each zone. The index from the</span>
+<span class="sd">        input zones_df is also included.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">zone_idx</span> <span class="o">=</span> <span class="n">zones_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span>
+    <span class="k">if</span> <span class="n">weights_dset_src</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">stat</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;weighted_</span><span class="si">{</span><span class="n">stat</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="n">stats_df</span> <span class="o">=</span> <span class="n">exact_extract</span><span class="p">(</span>
+        <span class="n">rast</span><span class="o">=</span><span class="n">dset_src</span><span class="p">,</span>
+        <span class="n">vec</span><span class="o">=</span><span class="n">zones_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(),</span>
+        <span class="n">ops</span><span class="o">=</span><span class="p">[</span><span class="n">stat</span><span class="p">],</span>
+        <span class="n">weights</span><span class="o">=</span><span class="n">weights_dset_src</span><span class="p">,</span>
+        <span class="n">include_cols</span><span class="o">=</span><span class="p">[</span><span class="n">zone_idx</span><span class="p">],</span>
+        <span class="n">output</span><span class="o">=</span><span class="s2">&quot;pandas&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">stats_df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">zone_idx</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">stats_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="n">stat</span><span class="p">:</span> <span class="s2">&quot;value&quot;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">stats_df</span></div>
+
+
+
+<div class="viewcode-block" id="zonal_statistic_parallel">
+<a class="viewcode-back" href="../../_autosummary/reVeal.overlay.zonal_statistic_parallel.html#reVeal.overlay.zonal_statistic_parallel">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">zonal_statistic_parallel</span><span class="p">(</span>
+    <span class="n">zones_df</span><span class="p">,</span> <span class="n">dset_src</span><span class="p">,</span> <span class="n">stat</span><span class="p">,</span> <span class="n">weights_dset_src</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_workers</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate zonal statistic for the specified statistic using parallel processing.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    zones_df : geopandas.GeoDataFrame</span>
+<span class="sd">        Input zones dataframe, to which results will be aggregated. This</span>
+<span class="sd">        function assumes that the index of zones_df is unique for each feature. If</span>
+<span class="sd">        this is not the case, unexpected results may occur.</span>
+<span class="sd">    dset_src : str</span>
+<span class="sd">        Path to input raster dataset to be summarized.</span>
+<span class="sd">    stat : str</span>
+<span class="sd">        Zonal statistic to calculate. For valid options and compatability with</span>
+<span class="sd">        use of weights, see:</span>
+<span class="sd">        https://isciences.github.io/exactextract/operations.html#built-in-operations.</span>
+<span class="sd">    weights_dset_src : str, optional</span>
+<span class="sd">        Optional path to datset to use for weights. Note that only some options for</span>
+<span class="sd">        stat support use of weights. See stat for more information.</span>
+<span class="sd">    max_workers: int, optional</span>
+<span class="sd">        If specified, sets the maximum number of workers used in parallel processing.</span>
+<span class="sd">        By default, None, which will use all available workers.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pandas.DataFrame</span>
+<span class="sd">        Returns a pandas DataFrame with a &quot;value&quot; column, representing the</span>
+<span class="sd">        aggregate statistic of raster values within each zone. The index from the</span>
+<span class="sd">        input zones_df is also included.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">zone_idx</span> <span class="o">=</span> <span class="n">zones_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span>
+    <span class="k">if</span> <span class="n">weights_dset_src</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">stat</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;weighted_</span><span class="si">{</span><span class="n">stat</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="n">n_splits</span> <span class="o">=</span> <span class="n">cpu_count</span><span class="p">()</span> <span class="o">*</span> <span class="mi">10</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">futures</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="n">max_workers</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">split_df</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dataframe_split</span><span class="p">(</span><span class="n">zones_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(),</span> <span class="n">n_splits</span><span class="p">)):</span>
+            <span class="n">future</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span>
+                <span class="n">exact_extract_wrap</span><span class="p">,</span>
+                <span class="n">rast</span><span class="o">=</span><span class="n">dset_src</span><span class="p">,</span>
+                <span class="n">vec</span><span class="o">=</span><span class="n">split_df</span><span class="p">,</span>
+                <span class="n">ops</span><span class="o">=</span><span class="p">[</span><span class="n">stat</span><span class="p">],</span>
+                <span class="n">weights</span><span class="o">=</span><span class="n">weights_dset_src</span><span class="p">,</span>
+                <span class="n">include_cols</span><span class="o">=</span><span class="p">[</span><span class="n">zone_idx</span><span class="p">],</span>
+                <span class="n">output</span><span class="o">=</span><span class="s2">&quot;pandas&quot;</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">futures</span><span class="p">[</span><span class="n">future</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
+        <span class="k">for</span> <span class="n">future</span> <span class="ow">in</span> <span class="n">as_completed</span><span class="p">(</span><span class="n">futures</span><span class="p">):</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="n">futures</span><span class="p">[</span><span class="n">future</span><span class="p">]</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">result_df</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+                <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result_df</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error processing chunk </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="n">e</span>
+
+    <span class="n">stats_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="c1"># cast results to float to make sure actual NaN is used (i.e., instead of None)</span>
+    <span class="n">stats_df</span><span class="p">[</span><span class="n">stat</span><span class="p">]</span> <span class="o">=</span> <span class="n">stats_df</span><span class="p">[</span><span class="n">stat</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+
+    <span class="n">stats_df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">zone_idx</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">stats_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="n">stat</span><span class="p">:</span> <span class="s2">&quot;value&quot;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">stats_df</span></div>
+
+
+
+<div class="viewcode-block" id="zonal_statistic">
+<a class="viewcode-back" href="../../_autosummary/reVeal.overlay.zonal_statistic.html#reVeal.overlay.zonal_statistic">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">zonal_statistic</span><span class="p">(</span>
+    <span class="n">zones_df</span><span class="p">,</span> <span class="n">dset_src</span><span class="p">,</span> <span class="n">stat</span><span class="p">,</span> <span class="n">weights_dset_src</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">parallel</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">max_workers</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate zonal statistic for the specified statistic. Convenience function that</span>
+<span class="sd">    wraps zonal_statistic_serial() and zonal_statistic_parallel() functions,</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    zones_df : geopandas.GeoDataFrame</span>
+<span class="sd">        Input zones dataframe, to which results will be aggregated. This</span>
+<span class="sd">        function assumes that the index of zones_df is unique for each feature. If</span>
+<span class="sd">        this is not the case, unexpected results may occur.</span>
+<span class="sd">    dset_src : str</span>
+<span class="sd">        Path to input raster dataset to be summarized.</span>
+<span class="sd">    stat : str</span>
+<span class="sd">        Zonal statistic to calculate. For valid options and compatability with</span>
+<span class="sd">        use of weights, see:</span>
+<span class="sd">        https://isciences.github.io/exactextract/operations.html#built-in-operations.</span>
+<span class="sd">    weights_dset_src : str, optional</span>
+<span class="sd">        Optional path to datset to use for weights. Note that only some options for</span>
+<span class="sd">        stat support use of weights. See stat for more information.</span>
+<span class="sd">    parallel : bool, optional</span>
+<span class="sd">        If True, run the zonal statistic operation with parallel processing. If False</span>
+<span class="sd">        (default), run with serial processing.</span>
+<span class="sd">    max_workers: int, optional</span>
+<span class="sd">        If specified, sets the maximum number of workers used in parallel processing.</span>
+<span class="sd">        By default, None, which will use all available workers.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pandas.DataFrame</span>
+<span class="sd">        Returns a pandas DataFrame with a &quot;value&quot; column, representing the</span>
+<span class="sd">        aggregate statistic of raster values within each zone. The index from the</span>
+<span class="sd">        input zones_df is also included.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">parallel</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">zonal_statistic_parallel</span><span class="p">(</span>
+            <span class="n">zones_df</span><span class="p">,</span>
+            <span class="n">dset_src</span><span class="p">,</span>
+            <span class="n">stat</span><span class="p">,</span>
+            <span class="n">weights_dset_src</span><span class="o">=</span><span class="n">weights_dset_src</span><span class="p">,</span>
+            <span class="n">max_workers</span><span class="o">=</span><span class="n">max_workers</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">zonal_statistic_serial</span><span class="p">(</span>
+        <span class="n">zones_df</span><span class="p">,</span> <span class="n">dset_src</span><span class="p">,</span> <span class="n">stat</span><span class="p">,</span> <span class="n">weights_dset_src</span><span class="o">=</span><span class="n">weights_dset_src</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="calc_median">
+<a class="viewcode-back" href="../../_autosummary/reVeal.overlay.calc_median.html#reVeal.overlay.calc_median">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">calc_median</span><span class="p">(</span><span class="n">zones_df</span><span class="p">,</span> <span class="n">dset_src</span><span class="p">,</span> <span class="n">parallel</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">max_workers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate zonal median of raster values over the input zones.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    zones_df : geopandas.GeoDataFrame</span>
+<span class="sd">        Input zones dataframe, to which results will be aggregated. This</span>
+<span class="sd">        function assumes that the index of zones_df is unique for each feature. If</span>
+<span class="sd">        this is not the case, unexpected results may occur.</span>
+<span class="sd">    dset_src : str</span>
+<span class="sd">        Path to input raster dataset to be summarized.</span>
+<span class="sd">    parallel : bool, optional</span>
+<span class="sd">        If True, run the zonal statistic operation with parallel processing. If False</span>
+<span class="sd">        (default), run with serial processing.</span>
+<span class="sd">    max_workers: int, optional</span>
+<span class="sd">        If specified, sets the maximum number of workers used in parallel processing.</span>
+<span class="sd">        By default, None, which will use all available workers.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pandas.DataFrame</span>
+<span class="sd">        Returns a pandas DataFrame with a &quot;value&quot; column, representing the</span>
+<span class="sd">        median raster value within each zone. The index from the input zones_df is also</span>
+<span class="sd">        included.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">zonal_statistic</span><span class="p">(</span>
+        <span class="n">zones_df</span><span class="p">,</span> <span class="n">dset_src</span><span class="p">,</span> <span class="n">stat</span><span class="o">=</span><span class="s2">&quot;median&quot;</span><span class="p">,</span> <span class="n">parallel</span><span class="o">=</span><span class="n">parallel</span><span class="p">,</span> <span class="n">max_workers</span><span class="o">=</span><span class="n">max_workers</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="calc_mean">
+<a class="viewcode-back" href="../../_autosummary/reVeal.overlay.calc_mean.html#reVeal.overlay.calc_mean">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">calc_mean</span><span class="p">(</span>
+    <span class="n">zones_df</span><span class="p">,</span> <span class="n">dset_src</span><span class="p">,</span> <span class="n">weights_dset_src</span><span class="p">,</span> <span class="n">parallel</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">max_workers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate zonal mean or weighted mean of raster values over the input zones.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    zones_df : geopandas.GeoDataFrame</span>
+<span class="sd">        Input zones dataframe, to which results will be aggregated. This</span>
+<span class="sd">        function assumes that the index of zones_df is unique for each feature. If</span>
+<span class="sd">        this is not the case, unexpected results may occur.</span>
+<span class="sd">    dset_src : str</span>
+<span class="sd">        Path to input raster dataset to be summarized.</span>
+<span class="sd">    weights_dset_src : str, optional</span>
+<span class="sd">        Optional path to datset to use for weights. If specified, the mean for each</span>
+<span class="sd">        zone will be weighted based on the values in this dataset.</span>
+<span class="sd">    parallel : bool, optional</span>
+<span class="sd">        If True, run the zonal statistic operation with parallel processing. If False</span>
+<span class="sd">        (default), run with serial processing.</span>
+<span class="sd">    max_workers: int, optional</span>
+<span class="sd">        If specified, sets the maximum number of workers used in parallel processing.</span>
+<span class="sd">        By default, None, which will use all available workers.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pandas.DataFrame</span>
+<span class="sd">        Returns a pandas DataFrame with a &quot;value&quot; column, representing the</span>
+<span class="sd">        mean or weighted mean raster value within each zone. The index from the input</span>
+<span class="sd">        zones_df is also included.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">zonal_statistic</span><span class="p">(</span>
+        <span class="n">zones_df</span><span class="p">,</span>
+        <span class="n">dset_src</span><span class="p">,</span>
+        <span class="n">stat</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span>
+        <span class="n">weights_dset_src</span><span class="o">=</span><span class="n">weights_dset_src</span><span class="p">,</span>
+        <span class="n">parallel</span><span class="o">=</span><span class="n">parallel</span><span class="p">,</span>
+        <span class="n">max_workers</span><span class="o">=</span><span class="n">max_workers</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="calc_sum">
+<a class="viewcode-back" href="../../_autosummary/reVeal.overlay.calc_sum.html#reVeal.overlay.calc_sum">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">calc_sum</span><span class="p">(</span>
+    <span class="n">zones_df</span><span class="p">,</span> <span class="n">dset_src</span><span class="p">,</span> <span class="n">weights_dset_src</span><span class="p">,</span> <span class="n">parallel</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">max_workers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate zonal sum or weighted sum of raster values over the input zones.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    zones_df : geopandas.GeoDataFrame</span>
+<span class="sd">        Input zones dataframe, to which results will be aggregated. This</span>
+<span class="sd">        function assumes that the index of zones_df is unique for each feature. If</span>
+<span class="sd">        this is not the case, unexpected results may occur.</span>
+<span class="sd">    dset_src : str</span>
+<span class="sd">        Path to input raster dataset to be summarized.</span>
+<span class="sd">    weights_dset_src : str, optional</span>
+<span class="sd">        Optional path to datset to use for weights. If specified, the sum for each</span>
+<span class="sd">        zone will be weighted based on the values in this dataset.</span>
+<span class="sd">    parallel : bool, optional</span>
+<span class="sd">        If True, run the zonal statistic operation with parallel processing. If False</span>
+<span class="sd">        (default), run with serial processing.</span>
+<span class="sd">    max_workers: int, optional</span>
+<span class="sd">        If specified, sets the maximum number of workers used in parallel processing.</span>
+<span class="sd">        By default, None, which will use all available workers.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pandas.DataFrame</span>
+<span class="sd">        Returns a pandas DataFrame with a &quot;value&quot; column, representing the</span>
+<span class="sd">        sum or weighted sum of raster values within each zone. The index from the input</span>
+<span class="sd">        zones_df is also included.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">zonal_statistic</span><span class="p">(</span>
+        <span class="n">zones_df</span><span class="p">,</span>
+        <span class="n">dset_src</span><span class="p">,</span>
+        <span class="n">stat</span><span class="o">=</span><span class="s2">&quot;sum&quot;</span><span class="p">,</span>
+        <span class="n">weights_dset_src</span><span class="o">=</span><span class="n">weights_dset_src</span><span class="p">,</span>
+        <span class="n">parallel</span><span class="o">=</span><span class="n">parallel</span><span class="p">,</span>
+        <span class="n">max_workers</span><span class="o">=</span><span class="n">max_workers</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="calc_area">
+<a class="viewcode-back" href="../../_autosummary/reVeal.overlay.calc_area.html#reVeal.overlay.calc_area">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">calc_area</span><span class="p">(</span>
+    <span class="n">zones_df</span><span class="p">,</span> <span class="n">dset_src</span><span class="p">,</span> <span class="n">weights_dset_src</span><span class="p">,</span> <span class="n">parallel</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">max_workers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the area of a raster within each zone. This function works by summing</span>
+<span class="sd">    the raster values in each zone and then multiplying by the pixel size. See</span>
+<span class="sd">    assumptions under dset_src.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    zones_df : geopandas.GeoDataFrame</span>
+<span class="sd">        Input zones dataframe, to which results will be aggregated. This</span>
+<span class="sd">        function assumes that the index of zones_df is unique for each feature. If</span>
+<span class="sd">        this is not the case, unexpected results may occur.</span>
+<span class="sd">    dset_src : str</span>
+<span class="sd">        Path to input raster dataset to be summarized. This function assumes that</span>
+<span class="sd">        the values in this dataset range from 0 to 1, indicating the fraction of the</span>
+<span class="sd">        pixel to count when summing the total area in the zone. If the input raster&#39;s</span>
+<span class="sd">        values do no range from 0 (no inclusion) to 1 (full inclusion), the output</span>
+<span class="sd">        results may be nonsensical.</span>
+<span class="sd">    weights_dset_src : str, optional</span>
+<span class="sd">        Optional path to datset to use for weights. If specified, the area for each</span>
+<span class="sd">        zone will be weighted based on the values in this dataset.</span>
+<span class="sd">    parallel : bool, optional</span>
+<span class="sd">        If True, run the zonal statistic operation with parallel processing. If False</span>
+<span class="sd">        (default), run with serial processing.</span>
+<span class="sd">    max_workers: int, optional</span>
+<span class="sd">        If specified, sets the maximum number of workers used in parallel processing.</span>
+<span class="sd">        By default, None, which will use all available workers.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pandas.DataFrame</span>
+<span class="sd">        Returns a pandas DataFrame with a &quot;value&quot; column, representing the total area</span>
+<span class="sd">        (or weighted area) of the raster within each zone. The index from the</span>
+<span class="sd">        input zones_df is also included.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">sums_df</span> <span class="o">=</span> <span class="n">zonal_statistic</span><span class="p">(</span>
+        <span class="n">zones_df</span><span class="p">,</span>
+        <span class="n">dset_src</span><span class="p">,</span>
+        <span class="n">stat</span><span class="o">=</span><span class="s2">&quot;sum&quot;</span><span class="p">,</span>
+        <span class="n">weights_dset_src</span><span class="o">=</span><span class="n">weights_dset_src</span><span class="p">,</span>
+        <span class="n">parallel</span><span class="o">=</span><span class="n">parallel</span><span class="p">,</span>
+        <span class="n">max_workers</span><span class="o">=</span><span class="n">max_workers</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">dset_src</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
+        <span class="n">height</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">res</span>
+
+    <span class="n">pixel_area</span> <span class="o">=</span> <span class="n">height</span> <span class="o">*</span> <span class="n">width</span>
+
+    <span class="n">areas_df</span> <span class="o">=</span> <span class="n">sums_df</span> <span class="o">*</span> <span class="n">pixel_area</span>
+
+    <span class="k">return</span> <span class="n">areas_df</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, Alliance for Energy Innovation, LLC and Root Geospatial LLC.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

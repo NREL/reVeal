@@ -1,0 +1,57 @@
+reVeal.config.downscale.TotalDownscaleConfig
+============================================
+
+.. currentmodule:: reVeal.config.downscale
+
+.. autoclass:: TotalDownscaleConfig
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~TotalDownscaleConfig.set_grid_crs
+      ~TotalDownscaleConfig.set_grid_ext
+      ~TotalDownscaleConfig.set_grid_flavor
+      ~TotalDownscaleConfig.validate_grid
+      ~TotalDownscaleConfig.validate_load_projections
+      ~TotalDownscaleConfig.validate_load_projections_duplicates
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~TotalDownscaleConfig.model_computed_fields
+      ~TotalDownscaleConfig.model_config
+      ~TotalDownscaleConfig.model_extra
+      ~TotalDownscaleConfig.model_fields
+      ~TotalDownscaleConfig.model_fields_set
+      ~TotalDownscaleConfig.projection_resolution
+      ~TotalDownscaleConfig.grid_priority
+      ~TotalDownscaleConfig.grid_baseline_load
+      ~TotalDownscaleConfig.baseline_year
+      ~TotalDownscaleConfig.grid_capacity
+      ~TotalDownscaleConfig.load_projections
+      ~TotalDownscaleConfig.load_value
+      ~TotalDownscaleConfig.load_year
+      ~TotalDownscaleConfig.max_site_addition_per_year
+      ~TotalDownscaleConfig.site_saturation_limit
+      ~TotalDownscaleConfig.priority_power
+      ~TotalDownscaleConfig.n_bootstraps
+      ~TotalDownscaleConfig.random_seed
+      ~TotalDownscaleConfig.max_workers
+      ~TotalDownscaleConfig.grid
+      ~TotalDownscaleConfig.grid_ext
+      ~TotalDownscaleConfig.grid_flavor
+      ~TotalDownscaleConfig.grid_crs
+   
+   

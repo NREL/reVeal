@@ -1,0 +1,6 @@
+reVeal.cli.normalize.run
+========================
+
+.. currentmodule:: reVeal.cli.normalize
+
+.. autofunction:: run

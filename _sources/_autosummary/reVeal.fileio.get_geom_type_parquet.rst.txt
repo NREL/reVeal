@@ -1,0 +1,6 @@
+reVeal.fileio.get\_geom\_type\_parquet
+======================================
+
+.. currentmodule:: reVeal.fileio
+
+.. autofunction:: get_geom_type_parquet

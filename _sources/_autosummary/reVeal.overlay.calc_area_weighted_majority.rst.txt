@@ -1,0 +1,6 @@
+reVeal.overlay.calc\_area\_weighted\_majority
+=============================================
+
+.. currentmodule:: reVeal.overlay
+
+.. autofunction:: calc_area_weighted_majority

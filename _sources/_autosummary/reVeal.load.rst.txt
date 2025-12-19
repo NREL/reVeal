@@ -1,0 +1,32 @@
+reVeal.load
+===========
+
+.. automodule:: reVeal.load
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+      :toctree:
+   
+      apportion_load_to_regions
+      downscale_regional
+      downscale_total
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

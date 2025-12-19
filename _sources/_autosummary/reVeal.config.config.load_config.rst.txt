@@ -1,0 +1,6 @@
+reVeal.config.config.load\_config
+=================================
+
+.. currentmodule:: reVeal.config.config
+
+.. autofunction:: load_config

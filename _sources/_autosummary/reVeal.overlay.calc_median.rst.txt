@@ -1,0 +1,6 @@
+reVeal.overlay.calc\_median
+===========================
+
+.. currentmodule:: reVeal.overlay
+
+.. autofunction:: calc_median

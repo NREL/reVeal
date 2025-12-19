@@ -1,0 +1,32 @@
+reVeal.normalization
+====================
+
+.. automodule:: reVeal.normalization
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+      :toctree:
+   
+      calc_minmax
+      calc_percentile
+      get_values
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

@@ -1,0 +1,46 @@
+reVeal.overlay
+==============
+
+.. automodule:: reVeal.overlay
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+      :toctree:
+   
+      calc_area
+      calc_area_apportioned_sum
+      calc_area_weighted_average
+      calc_area_weighted_majority
+      calc_feature_count
+      calc_mean
+      calc_median
+      calc_percent_covered
+      calc_sum
+      calc_sum_area
+      calc_sum_attribute
+      calc_sum_attribute_length
+      calc_sum_length
+      exact_extract_wrap
+      zonal_statistic
+      zonal_statistic_parallel
+      zonal_statistic_serial
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

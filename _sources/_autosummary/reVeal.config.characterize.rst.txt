@@ -1,0 +1,34 @@
+reVeal.config.characterize
+==========================
+
+.. automodule:: reVeal.config.characterize
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+   
+      BaseCharacterizeConfig
+      Characterization
+      CharacterizeConfig
+      DatasetFormatEnum
+   
+   
+
+   
+   
+   
+
+
+

@@ -1,0 +1,720 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>reVeal.cli.downscale &#8212; reVeal 0.2.2 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/documentation_options.js?v=000c92bf"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/tabs.js?v=3030b3cb"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/reVeal/cli/downscale';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.2" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">reVeal 0.2.2 documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../index.html">
+    Home page
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../misc/installation_usage.html">
+    Installation and Usage
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../misc/examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../_cli/cli.html">
+    CLI reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../_autosummary/reVeal.html">
+    API reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../index.html">
+    Home page
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../misc/installation_usage.html">
+    Installation and Usage
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../misc/examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../_cli/cli.html">
+    CLI reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../_autosummary/reVeal.html">
+    API reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">reVeal.cli.downscale</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for reVeal.cli.downscale</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">cli.downscale module - Sets up downscale command for use with nrel-gaps CLI</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">ValidationError</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gaps.cli</span><span class="w"> </span><span class="kn">import</span> <span class="n">as_click_command</span><span class="p">,</span> <span class="n">CLICommandFromFunction</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">reVeal.config.downscale</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">DownscaleConfig</span><span class="p">,</span>
+    <span class="n">TotalDownscaleConfig</span><span class="p">,</span>
+    <span class="n">RegionalDownscaleConfig</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">reVeal.log</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_logger</span><span class="p">,</span> <span class="n">remove_streamhandlers</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">reVeal.grid</span><span class="w"> </span><span class="kn">import</span> <span class="n">TotalDownscaleGrid</span><span class="p">,</span> <span class="n">RegionalDownscaleGrid</span>
+
+<span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_log_inputs</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Emit log messages summarizing user inputs.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    config : dict</span>
+<span class="sd">        Configuration dictionary</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Inputs config: </span><span class="si">{</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_preprocessor</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">job_name</span><span class="p">,</span> <span class="n">log_directory</span><span class="p">,</span> <span class="n">verbose</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Preprocess user-input configuration.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    config : dict</span>
+<span class="sd">        User configuration file input as (nested) dict.</span>
+<span class="sd">    job_name : str</span>
+<span class="sd">        Name of `job being run. Derived from the name of the folder containing the</span>
+<span class="sd">        user configuration file.</span>
+<span class="sd">    verbose : bool</span>
+<span class="sd">        Flag to signal ``DEBUG`` verbosity (``verbose=True``).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dict</span>
+<span class="sd">        Configuration dictionary modified to include additional or augmented</span>
+<span class="sd">        parameters.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="n">log_level</span> <span class="o">=</span> <span class="s2">&quot;DEBUG&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">log_level</span> <span class="o">=</span> <span class="s2">&quot;INFO&quot;</span>
+    <span class="n">get_logger</span><span class="p">(</span>
+        <span class="vm">__name__</span><span class="p">,</span> <span class="n">log_level</span><span class="o">=</span><span class="n">log_level</span><span class="p">,</span> <span class="n">out_path</span><span class="o">=</span><span class="n">log_directory</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">job_name</span><span class="si">}</span><span class="s2">.log&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Validating input configuration file&quot;</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">candidate_keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">TotalDownscaleConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span>
+            <span class="n">RegionalDownscaleConfig</span><span class="o">.</span><span class="n">model_fields</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+        <span class="p">)</span>
+        <span class="n">downscale_config</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">candidate_keys</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">config</span><span class="p">}</span>
+        <span class="n">DownscaleConfig</span><span class="p">(</span><span class="o">**</span><span class="n">downscale_config</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">ValidationError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+            <span class="s2">&quot;Configuration did not pass validation. &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;The following issues were identified:</span><span class="se">\n</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+        <span class="k">raise</span> <span class="n">e</span>
+    <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Input configuration file is valid.&quot;</span><span class="p">)</span>
+
+    <span class="n">config</span><span class="p">[</span><span class="s2">&quot;_local&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;execution_control&quot;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;option&quot;</span><span class="p">,</span> <span class="s2">&quot;local&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;local&quot;</span>
+    <span class="p">)</span>
+    <span class="n">_log_inputs</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">config</span>
+
+
+<div class="viewcode-block" id="run">
+<a class="viewcode-back" href="../../../_autosummary/reVeal.cli.downscale.run.html#reVeal.cli.downscale.run">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span>
+    <span class="n">grid</span><span class="p">,</span>
+    <span class="n">grid_priority</span><span class="p">,</span>
+    <span class="n">grid_baseline_load</span><span class="p">,</span>
+    <span class="n">baseline_year</span><span class="p">,</span>
+    <span class="n">grid_capacity</span><span class="p">,</span>
+    <span class="n">projection_resolution</span><span class="p">,</span>
+    <span class="n">load_projections</span><span class="p">,</span>
+    <span class="n">load_value</span><span class="p">,</span>
+    <span class="n">load_year</span><span class="p">,</span>
+    <span class="n">out_dir</span><span class="p">,</span>
+    <span class="n">regions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">region_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">load_regions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">region_weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">max_site_addition_per_year</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">site_saturation_limit</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">priority_power</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">n_bootstraps</span><span class="o">=</span><span class="mi">10_000</span><span class="p">,</span>
+    <span class="n">random_seed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">max_workers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">_local</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Downscale load projections to grid based on priority values.</span>
+
+<span class="sd">    Outputs a new GeoPackage containing the input grid with added</span>
+<span class="sd">    attributes for downscaled load by year.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    grid : str</span>
+<span class="sd">        Path to vector dataset for which attribute scoring will be performed.</span>
+<span class="sd">        Must be an existing vector dataset in a format that can be opened by</span>
+<span class="sd">        ``pyogrio``. Does not strictly need to be a grid, or even a polygon dataset,</span>
+<span class="sd">        but must be a vector dataset.</span>
+<span class="sd">    grid_priority : str</span>
+<span class="sd">        Name of attribute column in ``grid`` dataset to use for prioritizing load</span>
+<span class="sd">        downscaling.</span>
+<span class="sd">    grid_baseline_load : str</span>
+<span class="sd">        Name of attribute column in ``grid`` dataset containing values for baseline</span>
+<span class="sd">        (i.e., starting) load in each grid cell in the corresponding ``baseline_year``.</span>
+<span class="sd">    baseline_year : int</span>
+<span class="sd">        Year corresponding to the baseline load values in the ``grid_baseline_load``</span>
+<span class="sd">        column.</span>
+<span class="sd">    grid_capacity : str</span>
+<span class="sd">        Name of attribute column in ``grid`` dataset indicating the developable</span>
+<span class="sd">        capacity of load within each site.</span>
+<span class="sd">    projection_resolution : str</span>
+<span class="sd">        Resolution of ``load_projections`` dataset. Refer to</span>
+<span class="sd">        :obj:`reVeal.config.downscale.ProjectionResolutionEnum`.</span>
+<span class="sd">    load_projections : str</span>
+<span class="sd">        Path to ``load_projections`` dataset. Expected to be a CSV file.</span>
+<span class="sd">    load_value : str</span>
+<span class="sd">        Name of column containing load values in ``load_projections`` dataset to</span>
+<span class="sd">        disaggregate.</span>
+
+<span class="sd">        .. important::</span>
+<span class="sd">            The projected values of load found in this column are expected to be and</span>
+<span class="sd">            will be treated as incremental additions of load in each year, NOT</span>
+<span class="sd">            cumulative values.</span>
+
+<span class="sd">        .. note::</span>
+<span class="sd">            This value will be used as the name the columns containing downscaled load</span>
+<span class="sd">            values in the output grid GeoPackage.</span>
+<span class="sd">    load_year : str</span>
+<span class="sd">        Name of column in ``load_projections`` dataset containing year values.</span>
+<span class="sd">    out_dir : str</span>
+<span class="sd">        Output parent directory. Results will be saved to a file named</span>
+<span class="sd">        &quot;grid_load_projections.gpkg&quot;.</span>
+<span class="sd">    regions : str, optional</span>
+<span class="sd">        Path to vector dataset containing regions to use in disaggregation. Required</span>
+<span class="sd">        if ``projections_resolution == &quot;regional&quot;``.</span>
+<span class="sd">    region_names : str, optional</span>
+<span class="sd">        Name of attribute column containing the name or identifier of regions in the</span>
+<span class="sd">        ``regions`` dataset.</span>
+<span class="sd">    load_regions : str, optional</span>
+<span class="sd">        Name of column in ``load_projections`` dataset containing region names, if</span>
+<span class="sd">        applicable. Specify this option when the input ``load_projections`` are</span>
+<span class="sd">        resolved to the regional level. Values in this column should match values in</span>
+<span class="sd">        the ``region_names`` column of the ``regions`` dataset.</span>
+
+<span class="sd">        .. note::</span>
+<span class="sd">            If ``projection_resolution == &quot;regional&quot;``, either this option or</span>
+<span class="sd">            ``region_weights``, but not both, must be specified.</span>
+<span class="sd">    region_weights : dict, optional</span>
+<span class="sd">        Dictionary indicating weights to use for apportioning load to regions before</span>
+<span class="sd">        disaggregating. Keys should match values in the ``region_names`` column of</span>
+<span class="sd">        the ``regions`` dataset. Values should indicate the proportion of aggregate</span>
+<span class="sd">        load to apportion to the corresponding region. Values must sum to 1.</span>
+
+<span class="sd">        .. note::</span>
+<span class="sd">            If ``projection_resolution == &quot;regional&quot;``, either this option or</span>
+<span class="sd">            ``load_regions``, but not both, must be specified.</span>
+<span class="sd">    max_site_addition_per_year : float, optional</span>
+<span class="sd">        Value indicating the maximum allowable increment of load that can be added in</span>
+<span class="sd">        a given year to an individual site. The default value is None, which will not</span>
+<span class="sd">        apply a cap. This value can be used to ensure that the rate of expansion of</span>
+<span class="sd">        large load capacity in localized areas is not unrealistically rapid. Using</span>
+<span class="sd">        this parameter can also have the effect of achieving greater geographic</span>
+<span class="sd">        dispersion of load: since there is a limit to the pace at which individual</span>
+<span class="sd">        sites can build out load, more sites are typically required for the same amount</span>
+<span class="sd">        of project load.</span>
+<span class="sd">    site_saturation_limit : float, optional</span>
+<span class="sd">        Adjustment factor limit the developable capacity of load within each site.</span>
+<span class="sd">        This value is used to scale the values in the ``grid_capacity``. For</span>
+<span class="sd">        example, to limit the maximum deployed load in each site to half of the</span>
+<span class="sd">        actual developable load, use ``site_saturation_limit=0.5``. The lower this</span>
+<span class="sd">        value is set, the greater the degree of dispersion of load across sites will</span>
+<span class="sd">        be. The dfault is 1, which leaves the values in the ``grid_capacity``</span>
+<span class="sd">        unmodified.</span>
+<span class="sd">    priority_power : int, optional</span>
+<span class="sd">        This factor can be used to exaggerate the influence of the values in</span>
+<span class="sd">        ``grid_priority``, such that higher values have an increased likelihood of</span>
+<span class="sd">        load deployment and lower values have a decreased likelihood. This effect is</span>
+<span class="sd">        implemented by raising the values in ``grid_priority`` to the specified</span>
+<span class="sd">        ``priority_power``. As a result, if the input  values in ``grid_priority``</span>
+<span class="sd">        are &lt; 1, setting ``priority_power`` to high values can result in completely</span>
+<span class="sd">        eliminating lower priority sites from consideration. The default value is 1,</span>
+<span class="sd">        which leaves the values in ``grid_priority`` unmodified. To achieve</span>
+<span class="sd">        less dispersion and greater clustering of downscaled load in higher priority</span>
+<span class="sd">        sites, increase this value.</span>
+<span class="sd">    n_bootstraps : int, optional</span>
+<span class="sd">        Number of bootstraps to simulate in each projection year. Default is 10,000.</span>
+<span class="sd">        In general, larger values will produce more stable results, with less chance</span>
+<span class="sd">        for lower priority sites to receive large amounts of deployed load. However,</span>
+<span class="sd">        larger values will also cause longer run times.</span>
+<span class="sd">    random_seed : int, optional</span>
+<span class="sd">        Random seed to use for reproducible bootstrapping. Default is 0. In general,</span>
+<span class="sd">        this value does not need to be modified. The exception is if you are interested</span>
+<span class="sd">        in testing sensitivities and/or producing multiple realizations or scenarios of</span>
+<span class="sd">        deployment for a given set of values in ``load_priority``.</span>
+<span class="sd">    max_workers : [int, NoneType], optional</span>
+<span class="sd">        Maximum number of workers to use for multiprocessing when running downscaling.</span>
+<span class="sd">        By default None, will use all available workers.</span>
+<span class="sd">    _local : bool</span>
+<span class="sd">        Flag indicating whether the code is being run locally or via HPC job</span>
+<span class="sd">        submissions. NOTE: This is not a user provided parameter - it is determined</span>
+<span class="sd">        dynamically by based on whether config[&quot;execution_control&quot;][&quot;option&quot;] == &quot;local&quot;</span>
+<span class="sd">        (defaults to True if not specified).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># pylint: disable=unused-argument</span>
+
+    <span class="c1"># streamhandler is added in by gaps before kicking off the subprocess and</span>
+    <span class="c1"># will produce duplicate log messages if running locally, so remove it</span>
+    <span class="k">if</span> <span class="n">_local</span><span class="p">:</span>
+        <span class="n">remove_streamhandlers</span><span class="p">(</span><span class="n">LOGGER</span><span class="o">.</span><span class="n">parent</span><span class="p">)</span>
+
+    <span class="n">config</span> <span class="o">=</span> <span class="n">DownscaleConfig</span><span class="p">(</span>
+        <span class="n">grid</span><span class="o">=</span><span class="n">grid</span><span class="p">,</span>
+        <span class="n">grid_priority</span><span class="o">=</span><span class="n">grid_priority</span><span class="p">,</span>
+        <span class="n">grid_baseline_load</span><span class="o">=</span><span class="n">grid_baseline_load</span><span class="p">,</span>
+        <span class="n">baseline_year</span><span class="o">=</span><span class="n">baseline_year</span><span class="p">,</span>
+        <span class="n">grid_capacity</span><span class="o">=</span><span class="n">grid_capacity</span><span class="p">,</span>
+        <span class="n">projection_resolution</span><span class="o">=</span><span class="n">projection_resolution</span><span class="p">,</span>
+        <span class="n">load_projections</span><span class="o">=</span><span class="n">load_projections</span><span class="p">,</span>
+        <span class="n">load_value</span><span class="o">=</span><span class="n">load_value</span><span class="p">,</span>
+        <span class="n">load_year</span><span class="o">=</span><span class="n">load_year</span><span class="p">,</span>
+        <span class="n">regions</span><span class="o">=</span><span class="n">regions</span><span class="p">,</span>
+        <span class="n">region_names</span><span class="o">=</span><span class="n">region_names</span><span class="p">,</span>
+        <span class="n">out_dir</span><span class="o">=</span><span class="n">out_dir</span><span class="p">,</span>
+        <span class="n">load_regions</span><span class="o">=</span><span class="n">load_regions</span><span class="p">,</span>
+        <span class="n">region_weights</span><span class="o">=</span><span class="n">region_weights</span><span class="p">,</span>
+        <span class="n">max_site_addition_per_year</span><span class="o">=</span><span class="n">max_site_addition_per_year</span><span class="p">,</span>
+        <span class="n">site_saturation_limit</span><span class="o">=</span><span class="n">site_saturation_limit</span><span class="p">,</span>
+        <span class="n">priority_power</span><span class="o">=</span><span class="n">priority_power</span><span class="p">,</span>
+        <span class="n">n_bootstraps</span><span class="o">=</span><span class="n">n_bootstraps</span><span class="p">,</span>
+        <span class="n">random_seed</span><span class="o">=</span><span class="n">random_seed</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">max_workers</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">max_workers</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">config</span><span class="o">.</span><span class="n">max_workers</span> <span class="o">=</span> <span class="n">max_workers</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">TotalDownscaleConfig</span><span class="p">):</span>
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Initializing TotalDownscaleConfig from input config...&quot;</span><span class="p">)</span>
+        <span class="n">downscale_grid</span> <span class="o">=</span> <span class="n">TotalDownscaleGrid</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">RegionalDownscaleConfig</span><span class="p">):</span>
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Initializing RegionalDownscaleGrid from input config...&quot;</span><span class="p">)</span>
+        <span class="n">downscale_grid</span> <span class="o">=</span> <span class="n">RegionalDownscaleGrid</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Unexpected type of config: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="si">}</span><span class="s2">. Must be one of the following: &quot;</span>
+            <span class="s2">&quot;[TotalDownscaleConfig, RegionalDownscaleConfig]&quot;</span>
+        <span class="p">)</span>
+    <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Initialization complete.&quot;</span><span class="p">)</span>
+
+    <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Running downscaling...&quot;</span><span class="p">)</span>
+    <span class="n">out_grid_df</span> <span class="o">=</span> <span class="n">downscale_grid</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+    <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Downscaling complete.&quot;</span><span class="p">)</span>
+
+    <span class="n">out_gpkg</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">out_dir</span><span class="p">)</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="s2">&quot;grid_load_projections.gpkg&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">expanduser</span><span class="p">()</span>
+    <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Saving results to </span><span class="si">{</span><span class="n">out_gpkg</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+    <span class="n">out_grid_df</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">out_gpkg</span><span class="p">)</span>
+    <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Saving complete.&quot;</span><span class="p">)</span></div>
+
+
+
+<span class="n">downscale_cmd</span> <span class="o">=</span> <span class="n">CLICommandFromFunction</span><span class="p">(</span>
+    <span class="n">function</span><span class="o">=</span><span class="n">run</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;downscale&quot;</span><span class="p">,</span>
+    <span class="n">add_collect</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">config_preprocessor</span><span class="o">=</span><span class="n">_preprocessor</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">main</span> <span class="o">=</span> <span class="n">as_click_command</span><span class="p">(</span><span class="n">downscale_cmd</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">main</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="p">{})</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Error running reVeal downscale command.&quot;</span><span class="p">)</span>
+        <span class="k">raise</span>
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, Alliance for Energy Innovation, LLC and Root Geospatial LLC.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

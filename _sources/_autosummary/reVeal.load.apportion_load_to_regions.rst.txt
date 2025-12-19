@@ -1,0 +1,6 @@
+reVeal.load.apportion\_load\_to\_regions
+========================================
+
+.. currentmodule:: reVeal.load
+
+.. autofunction:: apportion_load_to_regions

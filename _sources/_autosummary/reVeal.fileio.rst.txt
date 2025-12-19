@@ -1,0 +1,39 @@
+reVeal.fileio
+=============
+
+.. automodule:: reVeal.fileio
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+      :toctree:
+   
+      attribute_is_numeric
+      get_attributes_parquet
+      get_attributes_pyogrio
+      get_crs_parquet
+      get_crs_pyogrio
+      get_crs_raster
+      get_geom_info_parquet
+      get_geom_type_parquet
+      get_geom_type_pyogrio
+      read_vectors
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

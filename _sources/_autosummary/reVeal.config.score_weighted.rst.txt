@@ -1,0 +1,33 @@
+reVeal.config.score\_weighted
+=============================
+
+.. automodule:: reVeal.config.score_weighted
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+   
+      Attribute
+      BaseScoreWeightedConfig
+      ScoreWeightedConfig
+   
+   
+
+   
+   
+   
+
+
+

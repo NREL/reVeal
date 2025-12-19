@@ -1,0 +1,30 @@
+reVeal.cli.normalize
+====================
+
+.. automodule:: reVeal.cli.normalize
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+      :toctree:
+   
+      run
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

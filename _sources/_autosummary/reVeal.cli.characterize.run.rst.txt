@@ -1,0 +1,6 @@
+reVeal.cli.characterize.run
+===========================
+
+.. currentmodule:: reVeal.cli.characterize
+
+.. autofunction:: run

@@ -1,0 +1,6 @@
+reVeal.overlay.calc\_area
+=========================
+
+.. currentmodule:: reVeal.overlay
+
+.. autofunction:: calc_area

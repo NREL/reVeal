@@ -1,0 +1,34 @@
+reVeal.cli
+==========
+
+.. automodule:: reVeal.cli
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. autosummary::
+   :toctree:
+   :template: custom-module-template.rst
+   :recursive:
+
+   characterize
+   cli
+   downscale
+   normalize
+   score_weighted
+

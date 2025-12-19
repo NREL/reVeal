@@ -1,0 +1,6 @@
+reVeal.cli.downscale.run
+========================
+
+.. currentmodule:: reVeal.cli.downscale
+
+.. autofunction:: run

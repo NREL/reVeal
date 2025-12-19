@@ -1,0 +1,6 @@
+reVeal.fileio.attribute\_is\_numeric
+====================================
+
+.. currentmodule:: reVeal.fileio
+
+.. autofunction:: attribute_is_numeric

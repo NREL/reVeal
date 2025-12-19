@@ -1,0 +1,77 @@
+reVeal.config.normalize.NormalizeMethodEnum
+===========================================
+
+.. currentmodule:: reVeal.config.normalize
+
+.. autoclass:: NormalizeMethodEnum
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~NormalizeMethodEnum.encode
+      ~NormalizeMethodEnum.replace
+      ~NormalizeMethodEnum.split
+      ~NormalizeMethodEnum.rsplit
+      ~NormalizeMethodEnum.join
+      ~NormalizeMethodEnum.capitalize
+      ~NormalizeMethodEnum.casefold
+      ~NormalizeMethodEnum.title
+      ~NormalizeMethodEnum.center
+      ~NormalizeMethodEnum.count
+      ~NormalizeMethodEnum.expandtabs
+      ~NormalizeMethodEnum.find
+      ~NormalizeMethodEnum.partition
+      ~NormalizeMethodEnum.index
+      ~NormalizeMethodEnum.ljust
+      ~NormalizeMethodEnum.lower
+      ~NormalizeMethodEnum.lstrip
+      ~NormalizeMethodEnum.rfind
+      ~NormalizeMethodEnum.rindex
+      ~NormalizeMethodEnum.rjust
+      ~NormalizeMethodEnum.rstrip
+      ~NormalizeMethodEnum.rpartition
+      ~NormalizeMethodEnum.splitlines
+      ~NormalizeMethodEnum.strip
+      ~NormalizeMethodEnum.swapcase
+      ~NormalizeMethodEnum.translate
+      ~NormalizeMethodEnum.upper
+      ~NormalizeMethodEnum.startswith
+      ~NormalizeMethodEnum.endswith
+      ~NormalizeMethodEnum.removeprefix
+      ~NormalizeMethodEnum.removesuffix
+      ~NormalizeMethodEnum.isascii
+      ~NormalizeMethodEnum.islower
+      ~NormalizeMethodEnum.isupper
+      ~NormalizeMethodEnum.istitle
+      ~NormalizeMethodEnum.isspace
+      ~NormalizeMethodEnum.isdecimal
+      ~NormalizeMethodEnum.isdigit
+      ~NormalizeMethodEnum.isnumeric
+      ~NormalizeMethodEnum.isalpha
+      ~NormalizeMethodEnum.isalnum
+      ~NormalizeMethodEnum.isidentifier
+      ~NormalizeMethodEnum.isprintable
+      ~NormalizeMethodEnum.zfill
+      ~NormalizeMethodEnum.format
+      ~NormalizeMethodEnum.format_map
+      ~NormalizeMethodEnum.maketrans
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~NormalizeMethodEnum.PERCENTILE
+      ~NormalizeMethodEnum.MINMAX
+   
+   

@@ -1,0 +1,56 @@
+reVeal.config.downscale.BaseDownscaleConfig
+===========================================
+
+.. currentmodule:: reVeal.config.downscale
+
+.. autoclass:: BaseDownscaleConfig
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~BaseDownscaleConfig.set_grid_crs
+      ~BaseDownscaleConfig.set_grid_ext
+      ~BaseDownscaleConfig.set_grid_flavor
+      ~BaseDownscaleConfig.validate_grid
+      ~BaseDownscaleConfig.validate_load_projections
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~BaseDownscaleConfig.model_computed_fields
+      ~BaseDownscaleConfig.model_config
+      ~BaseDownscaleConfig.model_extra
+      ~BaseDownscaleConfig.model_fields
+      ~BaseDownscaleConfig.model_fields_set
+      ~BaseDownscaleConfig.grid_priority
+      ~BaseDownscaleConfig.grid_baseline_load
+      ~BaseDownscaleConfig.baseline_year
+      ~BaseDownscaleConfig.grid_capacity
+      ~BaseDownscaleConfig.projection_resolution
+      ~BaseDownscaleConfig.load_projections
+      ~BaseDownscaleConfig.load_value
+      ~BaseDownscaleConfig.load_year
+      ~BaseDownscaleConfig.max_site_addition_per_year
+      ~BaseDownscaleConfig.site_saturation_limit
+      ~BaseDownscaleConfig.priority_power
+      ~BaseDownscaleConfig.n_bootstraps
+      ~BaseDownscaleConfig.random_seed
+      ~BaseDownscaleConfig.max_workers
+      ~BaseDownscaleConfig.grid
+      ~BaseDownscaleConfig.grid_ext
+      ~BaseDownscaleConfig.grid_flavor
+      ~BaseDownscaleConfig.grid_crs
+   
+   

@@ -1,0 +1,6 @@
+reVeal.fileio.get\_crs\_parquet
+===============================
+
+.. currentmodule:: reVeal.fileio
+
+.. autofunction:: get_crs_parquet

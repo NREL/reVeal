@@ -1,0 +1,656 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>reVeal score-weighted &#8212; reVeal 0.2.2 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=000c92bf"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/tabs.js?v=3030b3cb"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_cli/reVeal score-weighted';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="reVeal pipeline" href="reVeal%20pipeline.html" />
+    <link rel="prev" title="reVeal normalize" href="reVeal%20normalize.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.2.2" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">reVeal 0.2.2 documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../index.html">
+    Home page
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../misc/installation_usage.html">
+    Installation and Usage
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../misc/examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="cli.html">
+    CLI reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../_autosummary/reVeal.html">
+    API reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../index.html">
+    Home page
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../misc/installation_usage.html">
+    Installation and Usage
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../misc/examples.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="cli.html">
+    CLI reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../_autosummary/reVeal.html">
+    API reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="reVeal.html">reVeal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reVeal%20template-configs.html">reVeal template-configs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reVeal%20characterize.html">reVeal characterize</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reVeal%20normalize.html">reVeal normalize</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">reVeal score-weighted</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reVeal%20pipeline.html">reVeal pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reVeal%20batch.html">reVeal batch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reVeal%20script.html">reVeal script</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reVeal%20status.html">reVeal status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reVeal%20reset-status.html">reVeal reset-status</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="cli.html" class="nav-link">Command Line Interfaces (CLIs)</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">reVeal score-weighted</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="reveal-score-weighted">
+<h1>reVeal score-weighted<a class="headerlink" href="#reveal-score-weighted" title="Link to this heading">#</a></h1>
+<p>Execute the <code class="docutils literal notranslate"><span class="pre">score-weighted</span></code> step from a config file.</p>
+<p>Convert specified attribute values of input grid to a scale of 0 to 1 using the
+specified method(s). Outputs a new GeoPackage containing the input grid with added
+attributes for scored attributes.</p>
+<p>The general structure for calling this CLI command is given below
+(add <code class="docutils literal notranslate"><span class="pre">--help</span></code> to print help info to the terminal).</p>
+<p class="rubric">Usage</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>reVeal<span class="w"> </span>score-weighted<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-reVeal-score-weighted-c">
+<span id="cmdoption-reVeal-score-weighted-config_file"></span><span class="sig-name descname"><span class="pre">-c</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--config_file</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;config_file&gt;</span></span><a class="headerlink" href="#cmdoption-reVeal-score-weighted-c" title="Link to this definition">#</a></dt>
+<dd><p><strong>Required</strong> Path to the <code class="docutils literal notranslate"><span class="pre">score-weighted</span></code> configuration file. Below is a sample template config</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-SlNPTi9KU09ONQ==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-SlNPTi9KU09ONQ==" name="SlNPTi9KU09ONQ==" role="tab" tabindex="0">JSON/JSON5</button><button aria-controls="panel-0-WUFNTA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-WUFNTA==" name="WUFNTA==" role="tab" tabindex="-1">YAML</button><button aria-controls="panel-0-VE9NTA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-VE9NTA==" name="VE9NTA==" role="tab" tabindex="-1">TOML</button></div><div aria-labelledby="tab-0-SlNPTi9KU09ONQ==" class="sphinx-tabs-panel group-tab" id="panel-0-SlNPTi9KU09ONQ==" name="SlNPTi9KU09ONQ==" role="tabpanel" tabindex="0"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;execution_control&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;option&quot;</span><span class="p">:</span> <span class="s2">&quot;local&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;allocation&quot;</span><span class="p">:</span> <span class="s2">&quot;[REQUIRED IF ON HPC]&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;walltime&quot;</span><span class="p">:</span> <span class="s2">&quot;[REQUIRED IF ON HPC]&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;qos&quot;</span><span class="p">:</span> <span class="s2">&quot;normal&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;memory&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+        <span class="s2">&quot;queue&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+        <span class="s2">&quot;feature&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+        <span class="s2">&quot;conda_env&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+        <span class="s2">&quot;module&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+        <span class="s2">&quot;sh_script&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+        <span class="s2">&quot;keep_sh&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+        <span class="s2">&quot;num_test_nodes&quot;</span><span class="p">:</span> <span class="n">null</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;log_directory&quot;</span><span class="p">:</span> <span class="s2">&quot;./logs&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;log_level&quot;</span><span class="p">:</span> <span class="s2">&quot;INFO&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;grid&quot;</span><span class="p">:</span> <span class="s2">&quot;[REQUIRED]&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;attributes&quot;</span><span class="p">:</span> <span class="s2">&quot;[REQUIRED]&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;score_name&quot;</span><span class="p">:</span> <span class="s2">&quot;[REQUIRED]&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-WUFNTA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-WUFNTA==" name="WUFNTA==" role="tabpanel" tabindex="0"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">execution_control</span><span class="p">:</span>
+  <span class="n">option</span><span class="p">:</span> <span class="n">local</span>
+  <span class="n">allocation</span><span class="p">:</span> <span class="s1">&#39;[REQUIRED IF ON HPC]&#39;</span>
+  <span class="n">walltime</span><span class="p">:</span> <span class="s1">&#39;[REQUIRED IF ON HPC]&#39;</span>
+  <span class="n">qos</span><span class="p">:</span> <span class="n">normal</span>
+  <span class="n">memory</span><span class="p">:</span> <span class="n">null</span>
+  <span class="n">queue</span><span class="p">:</span> <span class="n">null</span>
+  <span class="n">feature</span><span class="p">:</span> <span class="n">null</span>
+  <span class="n">conda_env</span><span class="p">:</span> <span class="n">null</span>
+  <span class="n">module</span><span class="p">:</span> <span class="n">null</span>
+  <span class="n">sh_script</span><span class="p">:</span> <span class="n">null</span>
+  <span class="n">keep_sh</span><span class="p">:</span> <span class="n">false</span>
+  <span class="n">num_test_nodes</span><span class="p">:</span> <span class="n">null</span>
+<span class="n">log_directory</span><span class="p">:</span> <span class="o">./</span><span class="n">logs</span>
+<span class="n">log_level</span><span class="p">:</span> <span class="n">INFO</span>
+<span class="n">grid</span><span class="p">:</span> <span class="s1">&#39;[REQUIRED]&#39;</span>
+<span class="n">attributes</span><span class="p">:</span> <span class="s1">&#39;[REQUIRED]&#39;</span>
+<span class="n">score_name</span><span class="p">:</span> <span class="s1">&#39;[REQUIRED]&#39;</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-VE9NTA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-VE9NTA==" name="VE9NTA==" role="tabpanel" tabindex="0"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">log_directory</span> <span class="o">=</span> <span class="s2">&quot;./logs&quot;</span>
+<span class="n">log_level</span> <span class="o">=</span> <span class="s2">&quot;INFO&quot;</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="s2">&quot;[REQUIRED]&quot;</span>
+<span class="n">attributes</span> <span class="o">=</span> <span class="s2">&quot;[REQUIRED]&quot;</span>
+<span class="n">score_name</span> <span class="o">=</span> <span class="s2">&quot;[REQUIRED]&quot;</span>
+
+<span class="p">[</span><span class="n">execution_control</span><span class="p">]</span>
+<span class="n">option</span> <span class="o">=</span> <span class="s2">&quot;local&quot;</span>
+<span class="n">allocation</span> <span class="o">=</span> <span class="s2">&quot;[REQUIRED IF ON HPC]&quot;</span>
+<span class="n">walltime</span> <span class="o">=</span> <span class="s2">&quot;[REQUIRED IF ON HPC]&quot;</span>
+<span class="n">qos</span> <span class="o">=</span> <span class="s2">&quot;normal&quot;</span>
+<span class="n">keep_sh</span> <span class="o">=</span> <span class="n">false</span>
+</pre></div>
+</div>
+</div></div>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h2>
+<dl>
+<dt>execution_control<span class="classifier">dict</span></dt><dd><p>Dictionary containing execution control arguments. Allowed arguments are:</p>
+<dl class="field-list simple">
+<dt class="field-odd">option<span class="colon">:</span></dt>
+<dd class="field-odd"><p>({‘local’, ‘kestrel’, ‘eagle’, ‘awspc’, ‘slurm’, ‘peregrine’})
+Hardware run option. Determines the type of job
+scheduler to use as well as the base AU cost. The
+“slurm” option is a catchall for HPC systems
+that use the SLURM scheduler and <strong>should only be
+used if desired hardware is not listed above</strong>. If
+“local”, no other HPC-specific keys in are
+required in <cite>execution_control</cite> (they are ignored
+if provided).</p>
+</dd>
+<dt class="field-even">allocation<span class="colon">:</span></dt>
+<dd class="field-even"><p>(str)
+HPC project (allocation) handle.</p>
+</dd>
+<dt class="field-odd">walltime<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(int)
+Node walltime request in hours.</p>
+</dd>
+<dt class="field-even">qos<span class="colon">:</span></dt>
+<dd class="field-even"><p>(str, optional)
+Quality-of-service specifier. For Kestrel users:
+This should be one of {‘standby’, ‘normal’,
+‘high’}. Note that ‘high’ priority doubles the AU
+cost. By default, <code class="docutils literal notranslate"><span class="pre">&quot;normal&quot;</span></code>.</p>
+</dd>
+<dt class="field-odd">memory<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(int, optional)
+Node memory max limit (in GB). By default, <code class="docutils literal notranslate"><span class="pre">None</span></code>,
+which uses the scheduler’s default memory limit.
+For Kestrel users: If you would like to use the
+full node memory, leave this argument unspecified
+(or set to <code class="docutils literal notranslate"><span class="pre">None</span></code>) if you are running on standard
+nodes. However, if you would like to use the bigmem
+nodes, you must specify the full upper limit of
+memory you would like for your job, otherwise you
+will be limited to the standard node memory size
+(250GB).</p>
+</dd>
+<dt class="field-even">queue<span class="colon">:</span></dt>
+<dd class="field-even"><p>(str, optional; PBS ONLY)
+HPC queue to submit job to. Examples include: ‘debug’,
+‘short’, ‘batch’, ‘batch-h’, ‘long’, etc.
+By default, <code class="docutils literal notranslate"><span class="pre">None</span></code>, which uses “test_queue”.</p>
+</dd>
+<dt class="field-odd">feature<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(str, optional)
+Additional flags for SLURM job (e.g. “-p debug”).
+By default, <code class="docutils literal notranslate"><span class="pre">None</span></code>, which does not specify any
+additional flags.</p>
+</dd>
+<dt class="field-even">conda_env<span class="colon">:</span></dt>
+<dd class="field-even"><p>(str, optional)
+Name of conda environment to activate. By default,
+<code class="docutils literal notranslate"><span class="pre">None</span></code>, which does not load any environments.</p>
+</dd>
+<dt class="field-odd">module<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(str, optional)
+Module to load. By default, <code class="docutils literal notranslate"><span class="pre">None</span></code>, which does not
+load any modules.</p>
+</dd>
+<dt class="field-even">sh_script<span class="colon">:</span></dt>
+<dd class="field-even"><p>(str, optional)
+Extra shell script to run before command call.
+By default, <code class="docutils literal notranslate"><span class="pre">None</span></code>, which does not run any
+scripts.</p>
+</dd>
+<dt class="field-odd">keep_sh<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(bool, optional)
+Option to keep the HPC submission script on disk.
+Only has effect if executing on HPC. By default,
+<code class="docutils literal notranslate"><span class="pre">False</span></code>, which purges the submission scripts
+after each job is submitted.</p>
+</dd>
+<dt class="field-even">num_test_nodes<span class="colon">:</span></dt>
+<dd class="field-even"><p>(str, optional)
+Number of nodes to submit before terminating the
+submission process. This can be used to test a
+new submission configuration without submitting
+all nodes (i.e. only running a handful to ensure
+the inputs are specified correctly and the
+outputs look reasonable). By default, <code class="docutils literal notranslate"><span class="pre">None</span></code>,
+which submits all node jobs.</p>
+</dd>
+</dl>
+<p>Only the <cite>option</cite> key is required for local execution. For execution on the HPC, the <cite>allocation</cite> and <cite>walltime</cite> keys are also required. All other options are populated with default values, as seen above.</p>
+</dd>
+<dt>log_directory<span class="classifier">str</span></dt><dd><p>Path to directory where logs should be written. Path can be relative and does not have to exist on disk (it will be created if missing). By default, <code class="docutils literal notranslate"><span class="pre">&quot;./logs&quot;</span></code>.</p>
+</dd>
+<dt>log_level<span class="classifier">{“DEBUG”, “INFO”, “WARNING”, “ERROR”}</span></dt><dd><p>String representation of desired logger verbosity. Suitable options are <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code> (most verbose), <code class="docutils literal notranslate"><span class="pre">INFO</span></code> (moderately verbose), <code class="docutils literal notranslate"><span class="pre">WARNING</span></code> (only log warnings and errors), and <code class="docutils literal notranslate"><span class="pre">ERROR</span></code> (only log errors). By default, <code class="docutils literal notranslate"><span class="pre">&quot;INFO&quot;</span></code>.</p>
+</dd>
+<dt>grid<span class="classifier">str</span></dt><dd><p>Path to vector dataset for which attribute scoring will be performed. Must be an existing vector dataset in a format that can be opened by <code class="docutils literal notranslate"><span class="pre">pyogrio</span></code>. Does not strictly need to be a grid, or even a polygon dataset, but must be a vector dataset.</p>
+</dd>
+<dt>attributes<span class="classifier">list</span></dt><dd><p>List of dictionaries, each specifying the name of an attribute to be included in the composite weighted score, and a corresponding weight. Each dictionary should have the following keys:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">attribute</span></code>: String indicating the name of the attribute to include in
+the composite weight.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">weight</span></code>: Float in the range of <code class="docutils literal notranslate"><span class="pre">&gt;0,</span> <span class="pre">&lt;=1</span></code> indicating the weight to
+apply to the attribute in the composite weighted score.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that weights across all attributes must sum to 1.</p>
+</div>
+</dd>
+<dt>score_name<span class="classifier">str</span></dt><dd><p>Name of the output column in which the resulting weighted scores will be stored.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If this column exists in the input grid, it will be overwritten.</p>
+</div>
+</dd>
+</dl>
+<p>Note that you may remove any keys with a <code class="docutils literal notranslate"><span class="pre">null</span></code> value if you do not intend to update them yourself.</p>
+</section>
+</dd></dl>
+
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="reVeal%20normalize.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">reVeal normalize</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="reVeal%20pipeline.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">reVeal pipeline</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, Alliance for Energy Innovation, LLC and Root Geospatial LLC.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

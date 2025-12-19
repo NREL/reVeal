@@ -1,0 +1,79 @@
+reVeal.config.characterize.DatasetFormatEnum
+============================================
+
+.. currentmodule:: reVeal.config.characterize
+
+.. autoclass:: DatasetFormatEnum
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~DatasetFormatEnum.encode
+      ~DatasetFormatEnum.replace
+      ~DatasetFormatEnum.split
+      ~DatasetFormatEnum.rsplit
+      ~DatasetFormatEnum.join
+      ~DatasetFormatEnum.capitalize
+      ~DatasetFormatEnum.casefold
+      ~DatasetFormatEnum.title
+      ~DatasetFormatEnum.center
+      ~DatasetFormatEnum.count
+      ~DatasetFormatEnum.expandtabs
+      ~DatasetFormatEnum.find
+      ~DatasetFormatEnum.partition
+      ~DatasetFormatEnum.index
+      ~DatasetFormatEnum.ljust
+      ~DatasetFormatEnum.lower
+      ~DatasetFormatEnum.lstrip
+      ~DatasetFormatEnum.rfind
+      ~DatasetFormatEnum.rindex
+      ~DatasetFormatEnum.rjust
+      ~DatasetFormatEnum.rstrip
+      ~DatasetFormatEnum.rpartition
+      ~DatasetFormatEnum.splitlines
+      ~DatasetFormatEnum.strip
+      ~DatasetFormatEnum.swapcase
+      ~DatasetFormatEnum.translate
+      ~DatasetFormatEnum.upper
+      ~DatasetFormatEnum.startswith
+      ~DatasetFormatEnum.endswith
+      ~DatasetFormatEnum.removeprefix
+      ~DatasetFormatEnum.removesuffix
+      ~DatasetFormatEnum.isascii
+      ~DatasetFormatEnum.islower
+      ~DatasetFormatEnum.isupper
+      ~DatasetFormatEnum.istitle
+      ~DatasetFormatEnum.isspace
+      ~DatasetFormatEnum.isdecimal
+      ~DatasetFormatEnum.isdigit
+      ~DatasetFormatEnum.isnumeric
+      ~DatasetFormatEnum.isalpha
+      ~DatasetFormatEnum.isalnum
+      ~DatasetFormatEnum.isidentifier
+      ~DatasetFormatEnum.isprintable
+      ~DatasetFormatEnum.zfill
+      ~DatasetFormatEnum.format
+      ~DatasetFormatEnum.format_map
+      ~DatasetFormatEnum.maketrans
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~DatasetFormatEnum.RASTER
+      ~DatasetFormatEnum.POINT
+      ~DatasetFormatEnum.LINE
+      ~DatasetFormatEnum.POLYGON
+   
+   

@@ -1,0 +1,6 @@
+reVeal.grid.run\_normalization
+==============================
+
+.. currentmodule:: reVeal.grid
+
+.. autofunction:: run_normalization

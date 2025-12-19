@@ -1,0 +1,77 @@
+reVeal.config.downscale.ProjectionResolutionEnum
+================================================
+
+.. currentmodule:: reVeal.config.downscale
+
+.. autoclass:: ProjectionResolutionEnum
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~ProjectionResolutionEnum.encode
+      ~ProjectionResolutionEnum.replace
+      ~ProjectionResolutionEnum.split
+      ~ProjectionResolutionEnum.rsplit
+      ~ProjectionResolutionEnum.join
+      ~ProjectionResolutionEnum.capitalize
+      ~ProjectionResolutionEnum.casefold
+      ~ProjectionResolutionEnum.title
+      ~ProjectionResolutionEnum.center
+      ~ProjectionResolutionEnum.count
+      ~ProjectionResolutionEnum.expandtabs
+      ~ProjectionResolutionEnum.find
+      ~ProjectionResolutionEnum.partition
+      ~ProjectionResolutionEnum.index
+      ~ProjectionResolutionEnum.ljust
+      ~ProjectionResolutionEnum.lower
+      ~ProjectionResolutionEnum.lstrip
+      ~ProjectionResolutionEnum.rfind
+      ~ProjectionResolutionEnum.rindex
+      ~ProjectionResolutionEnum.rjust
+      ~ProjectionResolutionEnum.rstrip
+      ~ProjectionResolutionEnum.rpartition
+      ~ProjectionResolutionEnum.splitlines
+      ~ProjectionResolutionEnum.strip
+      ~ProjectionResolutionEnum.swapcase
+      ~ProjectionResolutionEnum.translate
+      ~ProjectionResolutionEnum.upper
+      ~ProjectionResolutionEnum.startswith
+      ~ProjectionResolutionEnum.endswith
+      ~ProjectionResolutionEnum.removeprefix
+      ~ProjectionResolutionEnum.removesuffix
+      ~ProjectionResolutionEnum.isascii
+      ~ProjectionResolutionEnum.islower
+      ~ProjectionResolutionEnum.isupper
+      ~ProjectionResolutionEnum.istitle
+      ~ProjectionResolutionEnum.isspace
+      ~ProjectionResolutionEnum.isdecimal
+      ~ProjectionResolutionEnum.isdigit
+      ~ProjectionResolutionEnum.isnumeric
+      ~ProjectionResolutionEnum.isalpha
+      ~ProjectionResolutionEnum.isalnum
+      ~ProjectionResolutionEnum.isidentifier
+      ~ProjectionResolutionEnum.isprintable
+      ~ProjectionResolutionEnum.zfill
+      ~ProjectionResolutionEnum.format
+      ~ProjectionResolutionEnum.format_map
+      ~ProjectionResolutionEnum.maketrans
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ProjectionResolutionEnum.TOTAL
+      ~ProjectionResolutionEnum.REGIONAL
+   
+   

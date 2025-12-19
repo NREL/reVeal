@@ -1,0 +1,6 @@
+reVeal.normalization.get\_values
+================================
+
+.. currentmodule:: reVeal.normalization
+
+.. autofunction:: get_values

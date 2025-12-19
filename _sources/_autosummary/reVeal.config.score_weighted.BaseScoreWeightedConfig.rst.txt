@@ -1,0 +1,42 @@
+reVeal.config.score\_weighted.BaseScoreWeightedConfig
+=====================================================
+
+.. currentmodule:: reVeal.config.score_weighted
+
+.. autoclass:: BaseScoreWeightedConfig
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~BaseScoreWeightedConfig.set_grid_crs
+      ~BaseScoreWeightedConfig.set_grid_ext
+      ~BaseScoreWeightedConfig.set_grid_flavor
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~BaseScoreWeightedConfig.model_computed_fields
+      ~BaseScoreWeightedConfig.model_config
+      ~BaseScoreWeightedConfig.model_extra
+      ~BaseScoreWeightedConfig.model_fields
+      ~BaseScoreWeightedConfig.model_fields_set
+      ~BaseScoreWeightedConfig.attributes
+      ~BaseScoreWeightedConfig.score_name
+      ~BaseScoreWeightedConfig.grid
+      ~BaseScoreWeightedConfig.grid_ext
+      ~BaseScoreWeightedConfig.grid_flavor
+      ~BaseScoreWeightedConfig.grid_crs
+   
+   

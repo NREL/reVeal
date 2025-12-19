@@ -1,0 +1,6 @@
+reVeal.errors.CSVReadError
+==========================
+
+.. currentmodule:: reVeal.errors
+
+.. autoexception:: CSVReadError

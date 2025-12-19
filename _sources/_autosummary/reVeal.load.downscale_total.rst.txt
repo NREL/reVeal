@@ -1,0 +1,6 @@
+reVeal.load.downscale\_total
+============================
+
+.. currentmodule:: reVeal.load
+
+.. autofunction:: downscale_total

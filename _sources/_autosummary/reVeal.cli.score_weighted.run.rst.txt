@@ -1,0 +1,6 @@
+reVeal.cli.score\_weighted.run
+==============================
+
+.. currentmodule:: reVeal.cli.score_weighted
+
+.. autofunction:: run
