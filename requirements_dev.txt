@@ -1,7 +1,0 @@
-pre-commit
-pylint
-pytest
-pytest-cov
-sphinx
-sphinx-click
-sphinx_rtd_theme
