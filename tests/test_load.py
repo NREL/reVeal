@@ -61,8 +61,9 @@ def test_apportion_load_to_regions_bad_weights(data_dir):
 
 
 @pytest.mark.parametrize("max_site_addition_per_year", [1000, None])
+@pytest.mark.parametrize("min_site_addition_per_year", [1, None])
 @pytest.mark.parametrize("reduce_output", [False, True])
-def test_downscale_total(data_dir, max_site_addition_per_year, reduce_output):
+def test_downscale_total(data_dir, max_site_addition_per_year, min_site_addition_per_year, reduce_output):
     """
     Unit test for downscale_total() - checks that it produced the expected results for
     known inputs.
@@ -89,6 +90,7 @@ def test_downscale_total(data_dir, max_site_addition_per_year, reduce_output):
         load_value_col="dc_load_mw",
         load_year_col="year",
         max_site_addition_per_year=max_site_addition_per_year,
+        min_site_addition_per_year=min_site_addition_per_year,
         site_saturation_limit=0.5,
         priority_power=100,
         n_bootstraps=500,
@@ -109,14 +111,27 @@ def test_downscale_total(data_dir, max_site_addition_per_year, reduce_output):
         expected_src = (
             data_dir / "downscale" / "outputs" / f"grid_downscaled_total{suffix}.gpkg"
         )
-    expected_df = gpd.read_file(expected_src)
 
-    assert_geodataframe_equal(results_df, expected_df, check_like=True)
+    if min_site_addition_per_year:
+        # With a minimum floor, verify that no site has new load between
+        # 0 (exclusive) and the minimum threshold
+        for year in results_df["year"].unique():
+            year_df = results_df[results_df["year"] == year]
+            new_load = year_df["new_dc_load_mw"]
+            violators = new_load[(new_load > 0) & (new_load < min_site_addition_per_year)]
+            assert len(violators) == 0, (
+                f"Year {year}: {len(violators)} sites have new load below "
+                f"min_site_addition_per_year ({min_site_addition_per_year})"
+            )
+    else:
+        expected_df = gpd.read_file(expected_src)
+        assert_geodataframe_equal(results_df, expected_df, check_like=True)
 
 
 @pytest.mark.parametrize("max_site_addition_per_year", [1000, None])
+@pytest.mark.parametrize("min_site_addition_per_year", [1, None])
 @pytest.mark.parametrize("reduce_output", [False, True])
-def test_downscale_regional(data_dir, max_site_addition_per_year, reduce_output):
+def test_downscale_regional(data_dir, max_site_addition_per_year, min_site_addition_per_year, reduce_output):
     """
     Unit test for downscale_regional() - checks that it produced the expected results
     for known inputs.
@@ -150,6 +165,7 @@ def test_downscale_regional(data_dir, max_site_addition_per_year, reduce_output)
         load_year_col="year",
         load_region_col="zone_group",
         max_site_addition_per_year=max_site_addition_per_year,
+        min_site_addition_per_year=min_site_addition_per_year,
         site_saturation_limit=0.5,
         priority_power=100,
         n_bootstraps=100,
@@ -178,9 +194,19 @@ def test_downscale_regional(data_dir, max_site_addition_per_year, reduce_output)
             / "outputs"
             / f"grid_downscaled_regional{suffix}.gpkg"
         )
-    expected_df = gpd.read_file(expected_src)
 
-    assert_geodataframe_equal(results_df, expected_df, check_like=True)
+    if min_site_addition_per_year:
+        for year in results_df["year"].unique():
+            year_df = results_df[results_df["year"] == year]
+            new_load = year_df["new_dc_load_mw"]
+            violators = new_load[(new_load > 0) & (new_load < min_site_addition_per_year)]
+            assert len(violators) == 0, (
+                f"Year {year}: {len(violators)} sites have new load below "
+                f"min_site_addition_per_year ({min_site_addition_per_year})"
+            )
+    else:
+        expected_df = gpd.read_file(expected_src)
+        assert_geodataframe_equal(results_df, expected_df, check_like=True)
 
 
 if __name__ == "__main__":
