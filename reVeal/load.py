@@ -464,7 +464,7 @@ def downscale_total(
                     )
                 else:
                     raise ValueError(
-                        f"Downscaled load for {overbuilt.sum} sites exceeds the "
+                        f"Downscaled load for {int(overbuilt.sum())} sites exceeds the "
                         f"maximum developable capacity in year {year}."
                     )
 
