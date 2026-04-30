@@ -455,19 +455,68 @@ def downscale_total(
             )
             if overbuilt.any():
                 if min_site_addition_per_year:
+                    excess_to_redistribute = (
+                        means_df.loc[overbuilt, "_new_calibrated_capacity"]
+                        - means_df.loc[overbuilt, "_developable_capacity_inc"]
+                    ).sum()
+                    means_df.loc[overbuilt, "_new_calibrated_capacity"] = means_df.loc[
+                        overbuilt, "_developable_capacity_inc"
+                    ]
+
+                    redistribution_tolerance = 1e-9
+                    if excess_to_redistribute > redistribution_tolerance:
+                        headroom = (
+                            means_df["_developable_capacity_inc"]
+                            - means_df["_new_calibrated_capacity"]
+                        ).clip(lower=0)
+                        eligible = headroom > redistribution_tolerance
+                        total_headroom = headroom.loc[eligible].sum()
+
+                        if total_headroom + redistribution_tolerance < excess_to_redistribute:
+                            raise ValueError(
+                                "Downscaled load exceeds the incremental "
+                                f"developable capacity in year {year} after "
+                                "applying min_site_addition_per_year redistribution."
+                            )
+
+                        redistribution = (
+                            headroom.loc[eligible] / total_headroom
+                        ) * excess_to_redistribute
+                        means_df.loc[eligible, "_new_calibrated_capacity"] += redistribution
+
                     LOGGER.warning(
-                        "Downscaled load for %d sites exceeds the incremental "
+                        "Downscaled load for %d sites exceeded the incremental "
                         "developable capacity in year %d due to "
-                        "min_site_addition_per_year redistribution.",
+                        "min_site_addition_per_year redistribution; allocations "
+                        "were capped and redistributed to enforce the limit.",
                         overbuilt.sum(),
                         year,
                     )
                 else:
                     raise ValueError(
-                        f"Downscaled load for {int(overbuilt.sum())} sites exceeds the "
+                        f"Downscaled load for {overbuilt.sum()} sites exceeds the "
                         f"maximum developable capacity in year {year}."
                     )
 
+            if (
+                means_df["_new_calibrated_capacity"]
+                > means_df["_developable_capacity_inc"] + 1e-9
+            ).any():
+                raise ValueError(
+                    "Downscaled load exceeds the incremental developable "
+                    f"capacity in year {year}."
+                )
+
+            total_calibrated_deployed = means_df["_new_calibrated_capacity"].sum()
+            if not isclose(
+                total_calibrated_deployed,
+                load_projected_in_year,
+                abs_tol=1e-9,
+                rel_tol=1e-9,
+            ):
+                raise ValueError(
+                    "Deployed total is not equal to projected total"
+                )
             grid_year_df.set_index(grid_idx, inplace=True)
             grid_year_df.loc[means_df.index, f"new_{load_value_col}"] = means_df[
                 "_new_calibrated_capacity"
