@@ -100,6 +100,7 @@ def run(
     load_regions=None,
     region_weights=None,
     max_site_addition_per_year=None,
+    min_site_addition_per_year=None,
     site_saturation_limit=1,
     priority_power=1,
     n_bootstraps=10_000,
@@ -188,6 +189,13 @@ def run(
         dispersion of load: since there is a limit to the pace at which individual
         sites can build out load, more sites are typically required for the same amount
         of project load.
+    min_site_addition_per_year : float, optional
+        Value indicating the minimum increment of load that must be added to a site
+        in order for that site to receive any new load in a given year. After
+        bootstrapping and calibration, any site whose new load falls below this
+        threshold (scaled by the time step) will have its load redistributed
+        proportionally to larger sites. The default value is None, which does not
+        apply a minimum threshold.
     site_saturation_limit : float, optional
         Adjustment factor limit the developable capacity of load within each site.
         This value is used to scale the values in the ``grid_capacity``. For
@@ -252,6 +260,7 @@ def run(
         load_regions=load_regions,
         region_weights=region_weights,
         max_site_addition_per_year=max_site_addition_per_year,
+        min_site_addition_per_year=min_site_addition_per_year,
         site_saturation_limit=site_saturation_limit,
         priority_power=priority_power,
         n_bootstraps=n_bootstraps,

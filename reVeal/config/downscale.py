@@ -70,6 +70,10 @@ class BaseDownscaleConfig(BaseGridConfig):
         Optional[float],
         Field(strict=False, gt=0.0, default=None, validate_default=False),
     ]
+    min_site_addition_per_year: Annotated[
+        Optional[float],
+        Field(strict=False, gt=0.0, default=None, validate_default=False),
+    ]
     site_saturation_limit: Annotated[
         Optional[float], Field(strict=False, gt=0.0, le=1.0, default=1.0)
     ]

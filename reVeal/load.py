@@ -149,6 +149,7 @@ def downscale_total(
     load_value_col,
     load_year_col,
     max_site_addition_per_year=None,
+    min_site_addition_per_year=None,
     site_saturation_limit=1,
     priority_power=1,
     n_bootstraps=10_000,
@@ -197,6 +198,14 @@ def downscale_total(
         dispersion of load: since there is a limit to the pace at which individual
         sites can build out load, more sites are typically required for the same amount
         of project load.
+    min_site_addition_per_year : float, optional
+        Value indicating the minimum increment of load that must be added to a site
+        in order for that site to receive any new load in a given year. After
+        bootstrapping and calibration, any site whose new load falls below
+        ``min_site_addition_per_year * years_since_prior`` will have its load
+        redistributed proportionally to larger sites. This ensures no site is
+        developed with an unrealistically small amount of load. The default value
+        is None, which does not apply a minimum threshold.
     site_saturation_limit : float, optional
         Adjustment factor limit the developable capacity of load within each site.
         This value is used to scale the values in the ``grid_capacity_col``. For
@@ -280,8 +289,8 @@ def downscale_total(
             year = group_id[0]
             grid_year_df["year"] = year
             grid_year_df[f"new_{load_value_col}"] = float(0.0)
+            years_since_prior = year - prior_year
             if max_site_addition_per_year:
-                years_since_prior = year - prior_year
                 grid_year_df["_developable_capacity_inc"] = np.minimum(
                     max_site_addition_per_year * years_since_prior,
                     grid_year_df["_developable_capacity"],
@@ -290,10 +299,48 @@ def downscale_total(
                 grid_year_df["_developable_capacity_inc"] = grid_year_df[
                     "_developable_capacity"
                 ]
+            # Ensure non-negative incremental capacity
+            grid_year_df["_developable_capacity_inc"] = grid_year_df[
+                "_developable_capacity_inc"
+            ].clip(lower=0)
 
             if len(year_df) > 1:
                 raise ValueError(f"Multiple records for load projections year {year}")
             load_projected_in_year = year_df[load_value_col].iloc[0]
+
+            # Handle non-positive projected load without bootstrapping
+            if load_projected_in_year <= 0:
+                if load_projected_in_year < 0:
+                    # Distribute load decrease proportionally to current load
+                    current_total_col = f"total_{load_value_col}"
+                    current_sum = grid_year_df[current_total_col].sum()
+                    if current_sum > 0:
+                        grid_year_df[f"new_{load_value_col}"] = (
+                            load_projected_in_year
+                            * grid_year_df[current_total_col]
+                            / current_sum
+                        )
+                        # Ensure no site's total drops below zero
+                        grid_year_df[f"new_{load_value_col}"] = grid_year_df[
+                            f"new_{load_value_col}"
+                        ].clip(lower=-grid_year_df[current_total_col])
+                    else:
+                        LOGGER.warning(
+                            "Projected load for year %d is negative (%.2f) "
+                            "but there is no existing load to decrease.",
+                            year,
+                            load_projected_in_year,
+                        )
+                    grid_year_df[current_total_col] += grid_year_df[
+                        f"new_{load_value_col}"
+                    ]
+                    # Recover developable capacity from decreased load
+                    grid_year_df["_developable_capacity"] -= grid_year_df[
+                        f"new_{load_value_col}"
+                    ]
+                grid_years.append(grid_year_df.copy())
+                prior_year = year
+                continue
 
             simulations = []
             futures = {}
@@ -334,21 +381,142 @@ def downscale_total(
             means_df["_new_calibrated_capacity"] = (
                 means_df["_proportion"] * load_projected_in_year
             )
+
+            # Enforce minimum site addition: iteratively redistribute load
+            # from undersized sites to remaining sites
+            if min_site_addition_per_year:
+                min_inc = min_site_addition_per_year * years_since_prior
+                max_iterations = len(means_df)
+                for _ in range(max_iterations):
+                    undersized = (
+                        (means_df["_new_calibrated_capacity"] > 0)
+                        & (means_df["_new_calibrated_capacity"] < min_inc)
+                    )
+                    if not undersized.any():
+                        break
+
+                    load_to_redistribute = means_df.loc[
+                        undersized, "_new_calibrated_capacity"
+                    ].sum()
+                    means_df.loc[undersized, "_new_calibrated_capacity"] = 0.0
+
+                    remaining = means_df["_new_calibrated_capacity"] > 0
+                    if not remaining.any():
+                        # All sites are below threshold. Concentrate load
+                        # onto the highest-proportion sites so each one
+                        # meets the minimum.
+                        total_load = load_projected_in_year
+                        n_sites = max(int(total_load // min_inc), 1)
+                        top_sites = (
+                            means_df["_proportion"]
+                            .nlargest(n_sites)
+                            .index
+                        )
+                        means_df.loc[
+                            top_sites, "_new_calibrated_capacity"
+                        ] = total_load / n_sites
+                        LOGGER.warning(
+                            "All sites in year %d fall below "
+                            "min_site_addition_per_year (%.2f per year, "
+                            "%.2f for this time step). Concentrating load "
+                            "onto %d sites.",
+                            year,
+                            min_site_addition_per_year,
+                            min_inc,
+                            n_sites,
+                        )
+                        break
+
+                    remaining_total = means_df.loc[
+                        remaining, "_new_calibrated_capacity"
+                    ].sum()
+                    means_df.loc[remaining, "_new_calibrated_capacity"] += (
+                        means_df.loc[remaining, "_new_calibrated_capacity"]
+                        / remaining_total
+                        * load_to_redistribute
+                    )
+
+            # Clamp to non-negative as a safety net against floating point
+            # artifacts or edge cases
+            means_df["_new_calibrated_capacity"] = means_df[
+                "_new_calibrated_capacity"
+            ].clip(lower=0)
+
             total_calibrated_deployed = means_df["_new_calibrated_capacity"].sum()
 
             if not isclose(total_calibrated_deployed, load_projected_in_year):
-                raise ValueError("Deployed total is not equal to projected total")
+                raise ValueError(
+                    "Deployed total is not equal to projected total"
+                )
 
             overbuilt = (
                 means_df["_new_calibrated_capacity"]
                 > means_df["_developable_capacity_inc"]
             )
             if overbuilt.any():
+                if min_site_addition_per_year:
+                    excess_to_redistribute = (
+                        means_df.loc[overbuilt, "_new_calibrated_capacity"]
+                        - means_df.loc[overbuilt, "_developable_capacity_inc"]
+                    ).sum()
+                    means_df.loc[overbuilt, "_new_calibrated_capacity"] = means_df.loc[
+                        overbuilt, "_developable_capacity_inc"
+                    ]
+
+                    redistribution_tolerance = 1e-9
+                    if excess_to_redistribute > redistribution_tolerance:
+                        headroom = (
+                            means_df["_developable_capacity_inc"]
+                            - means_df["_new_calibrated_capacity"]
+                        ).clip(lower=0)
+                        eligible = headroom > redistribution_tolerance
+                        total_headroom = headroom.loc[eligible].sum()
+
+                        if total_headroom + redistribution_tolerance < excess_to_redistribute:
+                            raise ValueError(
+                                "Downscaled load exceeds the incremental "
+                                f"developable capacity in year {year} after "
+                                "applying min_site_addition_per_year redistribution."
+                            )
+
+                        redistribution = (
+                            headroom.loc[eligible] / total_headroom
+                        ) * excess_to_redistribute
+                        means_df.loc[eligible, "_new_calibrated_capacity"] += redistribution
+
+                    LOGGER.warning(
+                        "Downscaled load for %d sites exceeded the incremental "
+                        "developable capacity in year %d due to "
+                        "min_site_addition_per_year redistribution; allocations "
+                        "were capped and redistributed to enforce the limit.",
+                        overbuilt.sum(),
+                        year,
+                    )
+                else:
+                    raise ValueError(
+                        f"Downscaled load for {overbuilt.sum()} sites exceeds the "
+                        f"maximum developable capacity in year {year}."
+                    )
+
+            if (
+                means_df["_new_calibrated_capacity"]
+                > means_df["_developable_capacity_inc"] + 1e-9
+            ).any():
                 raise ValueError(
-                    f"Downscaled load for {overbuilt.sum} sites exceeds the maximum "
-                    f"developable capacity in year {year}."
+                    "Downscaled load exceeds the incremental developable "
+                    f"capacity in year {year}."
                 )
 
+            total_calibrated_deployed = means_df["_new_calibrated_capacity"].sum()
+            if not isclose(
+                total_calibrated_deployed,
+                load_projected_in_year,
+                abs_tol=1e-9,
+                rel_tol=1e-9,
+            ):
+                raise ValueError(
+                    "Deployed total is not equal to projected total"
+                )
             grid_year_df.set_index(grid_idx, inplace=True)
             grid_year_df.loc[means_df.index, f"new_{load_value_col}"] = means_df[
                 "_new_calibrated_capacity"
@@ -359,6 +527,10 @@ def downscale_total(
             grid_year_df["_developable_capacity"] -= grid_year_df[
                 f"new_{load_value_col}"
             ]
+            # Clamp to zero so negative capacity doesn't propagate
+            grid_year_df["_developable_capacity"] = grid_year_df[
+                "_developable_capacity"
+            ].clip(lower=0)
             grid_year_df.reset_index(inplace=True)
 
             grid_years.append(grid_year_df.copy())
@@ -389,6 +561,7 @@ def downscale_regional(
     load_year_col,
     load_region_col,
     max_site_addition_per_year=None,
+    min_site_addition_per_year=None,
     site_saturation_limit=1,
     priority_power=1,
     n_bootstraps=10_000,
@@ -443,6 +616,13 @@ def downscale_regional(
         dispersion of load: since there is a limit to the pace at which individual
         sites can build out load, more sites are typically required for the same amount
         of project load.
+    min_site_addition_per_year : float, optional
+        Value indicating the minimum increment of load that must be added to a site
+        in order for that site to receive any new load in a given year. After
+        bootstrapping and calibration, any site whose new load falls below
+        ``min_site_addition_per_year * years_since_prior`` will have its load
+        redistributed proportionally to larger sites. The default value is None,
+        which does not apply a minimum threshold.
     site_saturation_limit : float, optional
         Adjustment factor limit the developable capacity of load within each site.
         This value is used to scale the values in the ``grid_capacity_col``. For
@@ -532,6 +712,7 @@ def downscale_regional(
             load_value_col=load_value_col,
             load_year_col=load_year_col,
             max_site_addition_per_year=max_site_addition_per_year,
+            min_site_addition_per_year=min_site_addition_per_year,
             site_saturation_limit=site_saturation_limit,
             priority_power=priority_power,
             n_bootstraps=n_bootstraps,
