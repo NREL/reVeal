@@ -43,6 +43,7 @@ dependencies = [
   "pydantic>=2.12.5,<3",
   "pyogrio>=0.12.1,<0.13",
   "rasterio>=1.4.4,<2",
+  "scikit-learn>=1.4.0,<2",
   "scipy>=1.14.0,<2",
   "tqdm>=4.67.1,<5",
 ]
@@ -210,6 +211,8 @@ omit = [
   "_version.py",
   # omit log file copied over from other repo
   "reVeal/log.py",
+  # omit adapted third-party PU learning code
+  "reVeal/pu/*",
   # omit pixi files
   ".pixi/*",
 ]

@@ -2,7 +2,6 @@
 """
 Tests for learn_weights module.
 """
-import json
 import numpy as np
 import geopandas as gpd
 import pytest
@@ -54,11 +53,9 @@ class TestPrepareData:
 
     def test_basic_splits(self, synthetic_grid, synthetic_labels):
         """Test that data splits are created with correct sizes."""
-        attributes = ["feature_a_score", "feature_b_score", "feature_c_score"]
         splits = prepare_pu_data(
             grid_df=synthetic_grid,
             labels_gdf=synthetic_labels,
-            attributes=attributes,
             background_samples=50,
             test_size=0.2,
             validation_size=0.1,
@@ -77,11 +74,9 @@ class TestPrepareData:
 
     def test_background_size_capped(self, synthetic_grid, synthetic_labels):
         """Test that background sampling respects available cells."""
-        attributes = ["feature_a_score", "feature_b_score", "feature_c_score"]
         splits = prepare_pu_data(
             grid_df=synthetic_grid,
             labels_gdf=synthetic_labels,
-            attributes=attributes,
             background_samples=1000,  # More than available
             random_state=42,
         )
@@ -98,7 +93,6 @@ class TestTrainModel:
         splits = prepare_pu_data(
             grid_df=synthetic_grid,
             labels_gdf=synthetic_labels,
-            attributes=attributes,
             background_samples=50,
             random_state=42,
         )
@@ -114,6 +108,65 @@ class TestTrainModel:
         assert "feature_importances" in results
         assert len(results["feature_importances"]) == 3
         assert results["model"] is not None
+
+    def test_empty_positives_raises(self, synthetic_grid):
+        """Test that empty positive training set raises ValueError."""
+        attributes = ["feature_a_score", "feature_b_score", "feature_c_score"]
+        splits = {
+            "train_gids": np.array([]),
+            "validation_gids": np.array([]),
+            "test_gids": np.array([]),
+            "background_gids": np.array([0, 1, 2, 3, 4]),
+            "background_test_gids": np.array([]),
+            "background_val_gids": np.array([]),
+        }
+        with pytest.raises(ValueError, match="No positive training samples"):
+            train_pu_model(
+                grid_df=synthetic_grid,
+                data_splits=splits,
+                attributes=attributes,
+                n_estimators=10,
+                random_state=42,
+            )
+
+    def test_empty_background_raises(self, synthetic_grid):
+        """Test that empty background training set raises ValueError."""
+        attributes = ["feature_a_score", "feature_b_score", "feature_c_score"]
+        splits = {
+            "train_gids": np.array([0, 1, 2, 3, 4]),
+            "validation_gids": np.array([]),
+            "test_gids": np.array([]),
+            "background_gids": np.array([]),
+            "background_test_gids": np.array([]),
+            "background_val_gids": np.array([]),
+        }
+        with pytest.raises(ValueError, match="No background"):
+            train_pu_model(
+                grid_df=synthetic_grid,
+                data_splits=splits,
+                attributes=attributes,
+                n_estimators=10,
+                random_state=42,
+            )
+
+    def test_invalid_class_prior_raises(self, synthetic_grid, synthetic_labels):
+        """Test that class_prior outside (0,1) raises ValueError."""
+        attributes = ["feature_a_score", "feature_b_score", "feature_c_score"]
+        splits = prepare_pu_data(
+            grid_df=synthetic_grid,
+            labels_gdf=synthetic_labels,
+            background_samples=50,
+            random_state=42,
+        )
+        with pytest.raises(ValueError, match="class_prior must be between"):
+            train_pu_model(
+                grid_df=synthetic_grid,
+                data_splits=splits,
+                attributes=attributes,
+                n_estimators=10,
+                class_prior=1.0,
+                random_state=42,
+            )
 
 
 class TestImportancesToWeights:
@@ -195,7 +248,6 @@ class TestEndToEnd:
         splits = prepare_pu_data(
             grid_df=synthetic_grid,
             labels_gdf=synthetic_labels,
-            attributes=attributes,
             background_samples=50,
             random_state=42,
         )
@@ -235,7 +287,6 @@ class TestTuneClassPrior:
         splits = prepare_pu_data(
             grid_df=synthetic_grid,
             labels_gdf=synthetic_labels,
-            attributes=attributes,
             background_samples=50,
             random_state=42,
         )
@@ -262,7 +313,6 @@ class TestTuneClassPrior:
         splits = prepare_pu_data(
             grid_df=synthetic_grid,
             labels_gdf=synthetic_labels,
-            attributes=attributes,
             background_samples=50,
             random_state=42,
         )
@@ -286,7 +336,6 @@ class TestTuneClassPrior:
         splits = prepare_pu_data(
             grid_df=synthetic_grid,
             labels_gdf=synthetic_labels,
-            attributes=attributes,
             background_samples=50,
             random_state=42,
         )

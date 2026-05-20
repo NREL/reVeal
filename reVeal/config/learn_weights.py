@@ -3,10 +3,10 @@ config.learn_weights module - Configuration for learn-weights command.
 """
 from typing import List, Literal, Optional
 
-from pydantic import model_validator, FilePath, Field
+from pydantic import FilePath, Field
 from typing_extensions import Annotated
 
-from reVeal.config.config import BaseModelStrict, BaseGridConfig
+from reVeal.config.config import BaseGridConfig
 
 
 class LearnWeightsConfig(BaseGridConfig):

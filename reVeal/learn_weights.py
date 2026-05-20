@@ -5,9 +5,7 @@ Trains a PUExtraTrees model on a normalized grid using point labels as positive
 samples and auto-sampled background cells as unlabeled samples. Produces a
 score-weighted configuration with feature importances normalized as weights.
 """
-import json
 import logging
-from pathlib import Path
 
 import geopandas as gpd
 import numpy as np
@@ -24,7 +22,6 @@ optuna.logging.set_verbosity(optuna.logging.WARNING)
 def prepare_pu_data(
     grid_df,
     labels_gdf,
-    attributes,
     background_samples=10000,
     test_size=0.2,
     validation_size=0.1,
@@ -42,8 +39,6 @@ def prepare_pu_data(
         Normalized grid with score attributes and a 'gid' column.
     labels_gdf : gpd.GeoDataFrame
         Point geometries representing positive label locations.
-    attributes : list of str
-        Column names to use as features.
     background_samples : int
         Number of background (unlabeled) cells to sample.
     test_size : float
@@ -153,9 +148,27 @@ def train_pu_model(grid_df, data_splits, attributes, n_estimators=500,
     p_tr = g[g["gid"].isin(data_splits["train_gids"])][attributes].to_numpy()
     u_tr = g[g["gid"].isin(data_splits["background_gids"])][attributes].to_numpy()
 
+    if len(p_tr) == 0:
+        raise ValueError(
+            "No positive training samples found. Ensure that the labels "
+            "spatially intersect the grid."
+        )
+    if len(u_tr) == 0:
+        raise ValueError(
+            "No background (unlabeled) training samples found. Ensure that "
+            "the grid has cells that do not intersect the labels."
+        )
+
     if class_prior is None:
         class_prior = len(p_tr) / (len(p_tr) + len(u_tr))
         logger.info(f"Auto-computed class_prior: {class_prior:.4f}")
+
+    if not (0 < class_prior < 1):
+        raise ValueError(
+            f"class_prior must be between 0 and 1 (exclusive), got {class_prior}. "
+            "This can happen when all grid cells are labeled as positive or "
+            "no positive samples are found."
+        )
 
     # Train model
     model = PUExtraTrees(
@@ -185,7 +198,8 @@ def train_pu_model(grid_df, data_splits, attributes, n_estimators=500,
             np.zeros(len(u_test), dtype=int),
         ))
         y_pred = (model.predict(x_test) == 1).astype(int)
-        metrics["auc"] = float(roc_auc_score(y_test, y_pred))
+        y_score = model.predict_proba(x_test)
+        metrics["auc"] = float(roc_auc_score(y_test, y_score))
         tpr = y_pred[y_test == 1].sum() / y_test.sum()
         metrics["tpr"] = float(tpr)
         logger.info(f"Test metrics: AUC={metrics['auc']:.4f}, TPR={metrics['tpr']:.4f}")
@@ -254,7 +268,8 @@ def _compute_metric(grid_df, data_splits, attributes, class_prior, n_estimators,
     y_pred = (model.predict(x_val) == 1).astype(int)
 
     if metric == "auc":
-        return float(roc_auc_score(y_val, y_pred))
+        y_score = model.predict_proba(x_val)
+        return float(roc_auc_score(y_val, y_score))
     elif metric == "tpr":
         return float(y_pred[y_val == 1].sum() / y_val.sum())
     else:
@@ -442,7 +457,6 @@ def run_learn_weights(config):
     data_splits = prepare_pu_data(
         grid_df=grid_df,
         labels_gdf=labels_gdf,
-        attributes=attributes,
         background_samples=config.background_samples,
         test_size=config.test_size,
         validation_size=config.validation_size,

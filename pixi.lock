@@ -17034,8 +17034,8 @@ packages:
   requires_python: '>=3.9'
 - pypi: ./
   name: nlr-reveal
-  version: 0.2.4.dev14+g66ba519e5
-  sha256: 345042a0d807cdc6f70488b3e62e5ed0ae5af4b62fdc1044f4f2acc8167ff7c6
+  version: 0.2.4.dev15+ga602ddc77
+  sha256: 5bff02f6a695cd91e0a3e10d6bb66a975ebd79a5dd7bb275d5d593b2e7949312
   requires_dist:
   - exactextract>=0.3.0,<0.4
   - geopandas>=1.1.1,<2
@@ -17050,6 +17050,7 @@ packages:
   - pydantic>=2.12.5,<3
   - pyogrio>=0.12.1,<0.13
   - rasterio>=1.4.4,<2
+  - scikit-learn>=1.4.0,<2
   - scipy>=1.14.0,<2
   - tqdm>=4.67.1,<5
   - jupyter>=1.0.0,<1.1 ; extra == 'dev'
