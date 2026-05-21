@@ -9,10 +9,12 @@ from reVeal.cli.characterize import characterize_cmd
 from reVeal.cli.normalize import normalize_cmd
 from reVeal.cli.score_weighted import score_weighted_cmd
 from reVeal.cli.downscale import downscale_cmd
+from reVeal.cli.learn_weights import learn_weights_cmd
 
 logger = logging.getLogger(__name__)
 
-commands = [characterize_cmd, normalize_cmd, score_weighted_cmd, downscale_cmd]
+commands = [characterize_cmd, normalize_cmd, score_weighted_cmd, downscale_cmd,
+            learn_weights_cmd]
 main = make_cli(commands, info={"name": "reVeal", "version": __version__})
 
 # export GAPs commands to namespace for documentation
