@@ -400,7 +400,7 @@ def generate_score_weighted_config(weights, grid_path, score_name="suitability_s
     }
 
 
-def run_learn_weights(config):
+def run_learn_weights(config, progress_callback=None):
     """
     Full pipeline: read data, train PU model, output weight config.
 
@@ -408,20 +408,33 @@ def run_learn_weights(config):
     ----------
     config : LearnWeightsConfig
         Validated configuration object.
+    progress_callback : callable, optional
+        Function that accepts a string message for progress reporting to stdout.
 
     Returns
     -------
     dict
-        Dictionary with keys: 'config' (score_weighted config dict),
-        'metrics' (model evaluation metrics), 'model' (trained PUExtraTrees).
+        Dictionary containing:
+
+        - 'config': score_weighted config dict.
+        - 'metrics': model evaluation metrics dict.
+        - 'model': trained ``PUExtraTrees`` instance.
+        - 'tuning': dict with tuning results (``best_class_prior``,
+          ``best_value``), or ``None`` if tuning was not performed.
     """
+    def _progress(msg):
+        logger.info(msg)
+        if progress_callback:
+            progress_callback(msg)
+
     # Read grid
-    logger.info(f"Reading grid from {config.grid}...")
+    _progress(f"Reading grid from {config.grid}...")
     grid_df = gpd.read_file(config.grid, engine="pyogrio", use_arrow=True)
     grid_df.fillna(0, inplace=True)
+    _progress(f"Grid loaded: {len(grid_df):,} cells, {len(grid_df.columns)} columns.")
 
     # Read labels
-    logger.info(f"Reading labels from {config.labels}...")
+    _progress(f"Reading labels from {config.labels}...")
     labels_gdf = gpd.read_file(config.labels, engine="pyogrio", use_arrow=True)
 
     # Ensure matching CRS
@@ -431,8 +444,17 @@ def run_learn_weights(config):
         labels_gdf = labels_gdf.to_crs(grid_crs)
 
     # Resolve attributes
-    attributes = config.attributes
-    if attributes is None:
+    if config.attributes is not None:
+        attributes = config.attributes
+    elif config.exclude_attributes is not None:
+        all_score_cols = [c for c in grid_df.columns if c.endswith("_score")]
+        exclude_set = set(config.exclude_attributes)
+        attributes = [c for c in all_score_cols if c not in exclude_set]
+        logger.info(
+            f"Excluded {len(exclude_set)} attributes, "
+            f"using {len(attributes)} of {len(all_score_cols)} score columns."
+        )
+    else:
         attributes = [c for c in grid_df.columns if c.endswith("_score")]
         logger.info(f"Auto-detected {len(attributes)} score attributes.")
 
@@ -454,6 +476,7 @@ def run_learn_weights(config):
         )
 
     # Prepare data
+    _progress("Preparing PU data splits...")
     data_splits = prepare_pu_data(
         grid_df=grid_df,
         labels_gdf=labels_gdf,
@@ -467,6 +490,7 @@ def run_learn_weights(config):
     class_prior = config.class_prior
     tuning_results = None
     if config.tune and class_prior is None:
+        _progress(f"Tuning class_prior with Optuna ({config.n_trials} trials)...")
         tuning_results = tune_class_prior(
             grid_df=grid_df,
             data_splits=data_splits,
@@ -478,8 +502,10 @@ def run_learn_weights(config):
             metric=config.tuning_metric,
         )
         class_prior = tuning_results["best_class_prior"]
+        _progress(f"Tuning complete. Best class_prior={class_prior:.4f}")
 
     # Train model
+    _progress(f"Training PUExtraTrees ({config.n_estimators} trees, n_jobs={config.n_jobs})...")
     results = train_pu_model(
         grid_df=grid_df,
         data_splits=data_splits,
@@ -489,6 +515,7 @@ def run_learn_weights(config):
         n_jobs=config.n_jobs,
         random_state=config.random_state,
     )
+    _progress("Training complete.")
 
     # Convert to weights
     weights = importances_to_weights(results["feature_importances"], attributes)

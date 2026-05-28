@@ -7,12 +7,16 @@ import geopandas as gpd
 import pytest
 from shapely.geometry import Point, box
 
+from pydantic import ValidationError
+
+from reVeal.config.learn_weights import LearnWeightsConfig
 from reVeal.learn_weights import (
     prepare_pu_data,
     train_pu_model,
     tune_class_prior,
     importances_to_weights,
     generate_score_weighted_config,
+    run_learn_weights,
 )
 
 
@@ -363,3 +367,61 @@ class TestTuneClassPrior:
 
         assert results["model"] is not None
         assert len(results["feature_importances"]) == 3
+
+
+class TestAttributeSelection:
+    """Tests for attributes / exclude_attributes config."""
+
+    def test_explicit_attributes(self, synthetic_grid, synthetic_labels):
+        """Test that explicit attributes limits features to those specified."""
+        splits = prepare_pu_data(
+            grid_df=synthetic_grid,
+            labels_gdf=synthetic_labels,
+            background_samples=50,
+            random_state=42,
+        )
+        # Only use 2 of 3 features
+        results = train_pu_model(
+            grid_df=synthetic_grid,
+            data_splits=splits,
+            attributes=["feature_a_score", "feature_b_score"],
+            n_estimators=10,
+            random_state=42,
+        )
+        assert len(results["feature_importances"]) == 2
+
+    def test_exclude_attributes_removes(self, synthetic_grid, synthetic_labels):
+        """Test that exclude removes specified features from auto-detected set."""
+        all_score_cols = [c for c in synthetic_grid.columns if c.endswith("_score")]
+        exclude = ["feature_c_score"]
+        expected = [c for c in all_score_cols if c not in exclude]
+
+        splits = prepare_pu_data(
+            grid_df=synthetic_grid,
+            labels_gdf=synthetic_labels,
+            background_samples=50,
+            random_state=42,
+        )
+        results = train_pu_model(
+            grid_df=synthetic_grid,
+            data_splits=splits,
+            attributes=expected,
+            n_estimators=10,
+            random_state=42,
+        )
+        assert len(results["feature_importances"]) == len(expected)
+
+    def test_mutual_exclusion_attributes_and_exclude(self, synthetic_grid, synthetic_labels, tmp_path):
+        """Test that setting both attributes and exclude_attributes raises."""
+        grid_path = tmp_path / "grid.gpkg"
+        synthetic_grid.to_file(grid_path, driver="GPKG")
+        labels_path = tmp_path / "labels.gpkg"
+        synthetic_labels.to_file(labels_path, driver="GPKG")
+
+        with pytest.raises(ValidationError, match="Only one of"):
+            LearnWeightsConfig(
+                grid=grid_path,
+                labels=labels_path,
+                attributes=["a_score"],
+                exclude_attributes=["b_score"],
+            )

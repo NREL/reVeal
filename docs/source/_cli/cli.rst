@@ -10,6 +10,7 @@ Command Line Interfaces (CLIs)
    reVeal characterize
    reVeal normalize
    reVeal score-weighted
+   reVeal analyze-features
    reVeal pipeline
    reVeal batch
    reVeal script

@@ -83,6 +83,7 @@ def run(
     labels,
     out_dir,
     attributes=None,
+    exclude_attributes=None,
     n_estimators=500,
     class_prior=None,
     background_samples=10000,
@@ -120,6 +121,10 @@ def run(
     attributes : list of str, optional
         List of column names from the grid to use as features. If not specified,
         all columns ending with ``_score`` are used automatically.
+    exclude_attributes : list of str, optional
+        Score columns to exclude from auto-detected features. All ``*_score``
+        columns except those listed will be used. Mutually exclusive with
+        ``attributes``.
     n_estimators : int, optional
         Number of trees in the PUExtraTrees forest. Default is 500.
     class_prior : float, optional
@@ -157,10 +162,16 @@ def run(
     if _local:
         remove_streamhandlers(LOGGER.parent)
 
+    def _progress(msg):
+        """Print progress to stdout and log."""
+        print(msg, flush=True)
+        LOGGER.info(msg)
+
     config = LearnWeightsConfig(
         grid=grid,
         labels=labels,
         attributes=attributes,
+        exclude_attributes=exclude_attributes,
         n_estimators=n_estimators,
         class_prior=class_prior,
         background_samples=background_samples,
@@ -175,15 +186,15 @@ def run(
         tuning_metric=tuning_metric,
     )
 
-    LOGGER.info("Running learn-weights pipeline...")
-    results = run_learn_weights(config)
+    _progress("Running learn-weights pipeline...")
+    results = run_learn_weights(config, progress_callback=_progress)
 
     out_path = Path(out_dir)
     out_path.mkdir(parents=True, exist_ok=True)
 
     # Save score-weighted config
     config_out = out_path / "config_score_weighted.json"
-    LOGGER.info(f"Saving score-weighted config to {config_out}...")
+    _progress(f"Saving score-weighted config to {config_out}")
     with open(config_out, "w") as f:
         json.dump(results["config"], f, indent=2)
 

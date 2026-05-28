@@ -16,6 +16,7 @@ dependencies:
     - scipy>=1.14.0,<2
     - tqdm>=4.67.1,<5
     - exactextract>=0.2.2,<1
+    - matplotlib>=3.8.0,<4
     - optuna>=4.0.0,<5
     - pydantic>=2.12.5,<3
     - libpysal>=4.13.0,<5
