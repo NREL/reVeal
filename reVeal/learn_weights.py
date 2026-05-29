@@ -14,7 +14,7 @@ from sklearn.metrics import roc_auc_score
 
 from reVeal.pu import PUExtraTrees
 
-logger = logging.getLogger(__name__)
+LOGGER = logging.getLogger(__name__)
 
 optuna.logging.set_verbosity(optuna.logging.WARNING)
 
@@ -65,7 +65,7 @@ def prepare_pu_data(
         ~grid_df["gid"].isin(all_positive_gids)
     ].values
 
-    logger.info(
+    LOGGER.info(
         f"Found {len(all_positive_gids)} positive cells, "
         f"{len(non_intersecting_gids)} non-intersecting cells."
     )
@@ -99,7 +99,7 @@ def prepare_pu_data(
     bg_val_count = min(len(validation_gids), len(remaining_bg))
     background_val_gids = remaining_bg[:bg_val_count]
 
-    logger.info(
+    LOGGER.info(
         f"Splits: train={len(train_gids)}, val={len(validation_gids)}, "
         f"test={len(test_gids)}, bg={len(background_gids)}, "
         f"bg_test={len(background_test_gids)}, bg_val={len(background_val_gids)}"
@@ -161,7 +161,7 @@ def train_pu_model(grid_df, data_splits, attributes, n_estimators=500,
 
     if class_prior is None:
         class_prior = len(p_tr) / (len(p_tr) + len(u_tr))
-        logger.info(f"Auto-computed class_prior: {class_prior:.4f}")
+        LOGGER.info(f"Auto-computed class_prior: {class_prior:.4f}")
 
     if not (0 < class_prior < 1):
         raise ValueError(
@@ -177,9 +177,9 @@ def train_pu_model(grid_df, data_splits, attributes, n_estimators=500,
         n_jobs=n_jobs,
         random_state=random_state,
     )
-    logger.info(f"Training PUExtraTrees with {n_estimators} trees...")
+    LOGGER.info(f"Training PUExtraTrees with {n_estimators} trees...")
     model.fit(P=p_tr, U=u_tr, pi=class_prior)
-    logger.info("Training complete.")
+    LOGGER.info("Training complete.")
 
     # Feature importances
     importances = model.feature_importances()
@@ -202,7 +202,7 @@ def train_pu_model(grid_df, data_splits, attributes, n_estimators=500,
         metrics["auc"] = float(roc_auc_score(y_test, y_score))
         tpr = y_pred[y_test == 1].sum() / y_test.sum()
         metrics["tpr"] = float(tpr)
-        logger.info(f"Test metrics: AUC={metrics['auc']:.4f}, TPR={metrics['tpr']:.4f}")
+        LOGGER.info(f"Test metrics: AUC={metrics['auc']:.4f}, TPR={metrics['tpr']:.4f}")
 
     return {
         "model": model,
@@ -305,7 +305,7 @@ def tune_class_prior(grid_df, data_splits, attributes, n_estimators=500,
     dict
         Dictionary with 'best_class_prior' and 'best_value'.
     """
-    logger.info(
+    LOGGER.info(
         f"Tuning class_prior with {n_trials} trials, optimizing '{metric}'..."
     )
 
@@ -327,7 +327,7 @@ def tune_class_prior(grid_df, data_splits, attributes, n_estimators=500,
 
     best_prior = study.best_params["class_prior"]
     best_value = study.best_value
-    logger.info(
+    LOGGER.info(
         f"Tuning complete. Best class_prior={best_prior:.4f}, "
         f"best {metric}={best_value:.4f}"
     )
@@ -400,7 +400,7 @@ def generate_score_weighted_config(weights, grid_path, score_name="suitability_s
     }
 
 
-def run_learn_weights(config, progress_callback=None):
+def run_learn_weights(config):
     """
     Full pipeline: read data, train PU model, output weight config.
 
@@ -408,8 +408,6 @@ def run_learn_weights(config, progress_callback=None):
     ----------
     config : LearnWeightsConfig
         Validated configuration object.
-    progress_callback : callable, optional
-        Function that accepts a string message for progress reporting to stdout.
 
     Returns
     -------
@@ -422,25 +420,20 @@ def run_learn_weights(config, progress_callback=None):
         - 'tuning': dict with tuning results (``best_class_prior``,
           ``best_value``), or ``None`` if tuning was not performed.
     """
-    def _progress(msg):
-        logger.info(msg)
-        if progress_callback:
-            progress_callback(msg)
-
     # Read grid
-    _progress(f"Reading grid from {config.grid}...")
+    LOGGER.info(f"Reading grid from {config.grid}...")
     grid_df = gpd.read_file(config.grid, engine="pyogrio", use_arrow=True)
     grid_df.fillna(0, inplace=True)
-    _progress(f"Grid loaded: {len(grid_df):,} cells, {len(grid_df.columns)} columns.")
+    LOGGER.info(f"Grid loaded: {len(grid_df):,} cells, {len(grid_df.columns)} columns.")
 
     # Read labels
-    _progress(f"Reading labels from {config.labels}...")
+    LOGGER.info(f"Reading labels from {config.labels}...")
     labels_gdf = gpd.read_file(config.labels, engine="pyogrio", use_arrow=True)
 
     # Ensure matching CRS
     grid_crs = grid_df.crs
     if labels_gdf.crs != grid_crs:
-        logger.info(f"Reprojecting labels to grid CRS ({grid_crs})...")
+        LOGGER.info(f"Reprojecting labels to grid CRS ({grid_crs})...")
         labels_gdf = labels_gdf.to_crs(grid_crs)
 
     # Resolve attributes
@@ -450,13 +443,13 @@ def run_learn_weights(config, progress_callback=None):
         all_score_cols = [c for c in grid_df.columns if c.endswith("_score")]
         exclude_set = set(config.exclude_attributes)
         attributes = [c for c in all_score_cols if c not in exclude_set]
-        logger.info(
+        LOGGER.info(
             f"Excluded {len(exclude_set)} attributes, "
             f"using {len(attributes)} of {len(all_score_cols)} score columns."
         )
     else:
         attributes = [c for c in grid_df.columns if c.endswith("_score")]
-        logger.info(f"Auto-detected {len(attributes)} score attributes.")
+        LOGGER.info(f"Auto-detected {len(attributes)} score attributes.")
 
     if not attributes:
         raise ValueError(
@@ -471,12 +464,12 @@ def run_learn_weights(config, progress_callback=None):
     # Filter to cells with valid developable area if column exists
     if "developable_area_m2_score" in grid_df.columns:
         grid_df = grid_df[grid_df["developable_area_m2_score"] > 0]
-        logger.info(
+        LOGGER.info(
             f"Filtered to {len(grid_df)} cells with developable_area_m2_score > 0."
         )
 
     # Prepare data
-    _progress("Preparing PU data splits...")
+    LOGGER.info("Preparing PU data splits...")
     data_splits = prepare_pu_data(
         grid_df=grid_df,
         labels_gdf=labels_gdf,
@@ -490,7 +483,7 @@ def run_learn_weights(config, progress_callback=None):
     class_prior = config.class_prior
     tuning_results = None
     if config.tune and class_prior is None:
-        _progress(f"Tuning class_prior with Optuna ({config.n_trials} trials)...")
+        LOGGER.info(f"Tuning class_prior with Optuna ({config.n_trials} trials)...")
         tuning_results = tune_class_prior(
             grid_df=grid_df,
             data_splits=data_splits,
@@ -502,10 +495,10 @@ def run_learn_weights(config, progress_callback=None):
             metric=config.tuning_metric,
         )
         class_prior = tuning_results["best_class_prior"]
-        _progress(f"Tuning complete. Best class_prior={class_prior:.4f}")
+        LOGGER.info(f"Tuning complete. Best class_prior={class_prior:.4f}")
 
     # Train model
-    _progress(f"Training PUExtraTrees ({config.n_estimators} trees, n_jobs={config.n_jobs})...")
+    LOGGER.info(f"Training PUExtraTrees ({config.n_estimators} trees, n_jobs={config.n_jobs})...")
     results = train_pu_model(
         grid_df=grid_df,
         data_splits=data_splits,
@@ -515,11 +508,11 @@ def run_learn_weights(config, progress_callback=None):
         n_jobs=config.n_jobs,
         random_state=config.random_state,
     )
-    _progress("Training complete.")
+    LOGGER.info("Training complete.")
 
     # Convert to weights
     weights = importances_to_weights(results["feature_importances"], attributes)
-    logger.info(f"Derived {len(weights)} non-zero weights from {len(attributes)} features.")
+    LOGGER.info(f"Derived {len(weights)} non-zero weights from {len(attributes)} features.")
 
     # Generate output config
     score_config = generate_score_weighted_config(

@@ -15,7 +15,7 @@ from scipy.cluster import hierarchy
 from scipy.spatial.distance import squareform
 from scipy.stats import spearmanr
 
-logger = logging.getLogger(__name__)
+LOGGER = logging.getLogger(__name__)
 
 
 def compute_correlation_matrix(X, columns, method="spearman"):
@@ -51,12 +51,12 @@ def compute_correlation_matrix(X, columns, method="spearman"):
             "Cannot compute a correlation matrix."
         )
     if n_features == 1:
-        logger.info("Only 1 non-constant feature; returning trivial 1x1 correlation matrix.")
+        LOGGER.info("Only 1 non-constant feature; returning trivial 1x1 correlation matrix.")
         return pd.DataFrame(
             [[1.0]], index=df.columns.tolist(), columns=df.columns.tolist()
         )
 
-    logger.info(
+    LOGGER.info(
         f"Computing {method} correlation matrix for {n_features} features "
         f"across {n_samples:,} samples... (this may take a few minutes for large grids)"
     )
@@ -71,7 +71,7 @@ def compute_correlation_matrix(X, columns, method="spearman"):
     else:
         raise ValueError(f"Unknown correlation method: {method}. Use 'spearman' or 'pearson'.")
 
-    logger.info("Correlation matrix computed. Post-processing...")
+    LOGGER.info("Correlation matrix computed. Post-processing...")
 
     # Handle NaN and ensure symmetry
     corr = np.nan_to_num(corr, nan=0.0)
@@ -104,7 +104,7 @@ def compute_feature_clusters(corr_matrix, threshold=0.7):
     corr = corr_matrix.values
     features = corr_matrix.columns.tolist()
 
-    logger.info(f"Computing hierarchical clustering for {len(features)} features...")
+    LOGGER.info(f"Computing hierarchical clustering for {len(features)} features...")
 
     # Convert correlation to distance
     distance_matrix = 1 - np.abs(corr)
@@ -124,7 +124,7 @@ def compute_feature_clusters(corr_matrix, threshold=0.7):
             feature_clusters[cluster_key] = []
         feature_clusters[cluster_key].append(features[idx])
 
-    logger.info(f"Identified {len(feature_clusters)} feature clusters at threshold={threshold}")
+    LOGGER.info(f"Identified {len(feature_clusters)} feature clusters at threshold={threshold}")
 
     # Generate dendrogram data (without plotting)
     dendro = hierarchy.dendrogram(dist_linkage, labels=features, no_plot=True)
@@ -170,7 +170,7 @@ def plot_dendrogram(corr_matrix, linkage, save_path):
     fig.tight_layout()
     plt.savefig(save_path, dpi=300, bbox_inches="tight")
     plt.close(fig)
-    logger.info(f"Dendrogram saved to {save_path}")
+    LOGGER.info(f"Dendrogram saved to {save_path}")
 
 
 def plot_correlation_heatmap(corr_matrix, dendro_result, save_path):
@@ -213,7 +213,7 @@ def plot_correlation_heatmap(corr_matrix, dendro_result, save_path):
     fig.tight_layout()
     plt.savefig(save_path, dpi=300, bbox_inches="tight")
     plt.close(fig)
-    logger.info(f"Correlation heatmap saved to {save_path}")
+    LOGGER.info(f"Correlation heatmap saved to {save_path}")
 
 
 def suggest_exclusions(clusters, corr_matrix):
@@ -263,7 +263,7 @@ def suggest_exclusions(clusters, corr_matrix):
             ],
         }
 
-    logger.info(
+    LOGGER.info(
         f"Generated exclusion suggestions for {len(suggestions)} multi-feature clusters"
     )
     return suggestions
@@ -292,30 +292,30 @@ def save_analysis_outputs(corr_matrix, cluster_result, out_dir):
 
     paths = {}
     n_features = len(corr_matrix.columns)
-    logger.info(f"Saving analysis outputs ({n_features} features) to {out_dir}...")
+    LOGGER.info(f"Saving analysis outputs ({n_features} features) to {out_dir}...")
 
     # Save correlation matrix CSV
     csv_path = out_dir / "correlation_matrix.csv"
     corr_matrix.to_csv(csv_path)
     paths["correlation_matrix"] = str(csv_path)
-    logger.info(f"  [1/4] Correlation matrix CSV saved to {csv_path}")
+    LOGGER.info(f"  [1/4] Correlation matrix CSV saved to {csv_path}")
 
     # Save feature clusters JSON
     clusters_path = out_dir / "feature_clusters.json"
     with open(clusters_path, "w") as f:
         json.dump(cluster_result["clusters"], f, indent=2)
     paths["feature_clusters"] = str(clusters_path)
-    logger.info(f"  [2/4] Feature clusters JSON saved to {clusters_path}")
+    LOGGER.info(f"  [2/4] Feature clusters JSON saved to {clusters_path}")
 
     # Save dendrogram PNG
     dendro_path = out_dir / "dendrogram.png"
-    logger.info("  [3/4] Rendering dendrogram...")
+    LOGGER.info("  [3/4] Rendering dendrogram...")
     plot_dendrogram(corr_matrix, cluster_result["linkage"], dendro_path)
     paths["dendrogram"] = str(dendro_path)
 
     # Save heatmap PNG
     heatmap_path = out_dir / "correlation_heatmap.png"
-    logger.info("  [4/4] Rendering correlation heatmap...")
+    LOGGER.info("  [4/4] Rendering correlation heatmap...")
     plot_correlation_heatmap(corr_matrix, cluster_result["dendrogram"], heatmap_path)
     paths["correlation_heatmap"] = str(heatmap_path)
 

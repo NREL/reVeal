@@ -6,6 +6,7 @@ NLR-GAPs CLI.
 import json
 import logging
 from pathlib import Path
+from pathlib import Path
 
 import geopandas as gpd
 from pydantic import ValidationError
@@ -131,11 +132,6 @@ def run(
     if _local:
         remove_streamhandlers(LOGGER.parent)
 
-    def _progress(msg):
-        """Print progress to stdout and log."""
-        print(msg, flush=True)
-        LOGGER.info(msg)
-
     config = AnalyzeFeaturesConfig(
         grid=grid,
         attributes=attributes,
@@ -145,10 +141,10 @@ def run(
     )
 
     # Read grid
-    _progress(f"Reading grid from {config.grid}...")
+    LOGGER.info(f"Reading grid from {config.grid}...")
     grid_df = gpd.read_file(config.grid, engine="pyogrio", use_arrow=True)
     grid_df.fillna(0, inplace=True)
-    _progress(f"Grid loaded: {len(grid_df):,} cells, {len(grid_df.columns)} columns.")
+    LOGGER.info(f"Grid loaded: {len(grid_df):,} cells, {len(grid_df.columns)} columns.")
 
     # Resolve attributes
     if config.attributes is not None:
@@ -171,14 +167,14 @@ def run(
             "the grid has columns ending with '_score'."
         )
 
-    _progress(
+    LOGGER.info(
         f"Starting feature analysis ({config.correlation_method} correlation, "
         f"{len(features)} features, {len(grid_df):,} grid cells)..."
     )
 
     # Compute correlation matrix
     X = grid_df[features].to_numpy()
-    _progress(
+    LOGGER.info(
         f"Computing {config.correlation_method} correlation matrix "
         f"({len(grid_df):,} samples x {len(features)} features)... "
         f"this may take a few minutes for large grids."
@@ -186,14 +182,14 @@ def run(
     corr_matrix = compute_correlation_matrix(
         X, features, method=config.correlation_method
     )
-    _progress("Correlation matrix computed. Computing feature clusters...")
+    LOGGER.info("Correlation matrix computed. Computing feature clusters...")
 
     # Compute clusters
     cluster_result = compute_feature_clusters(
         corr_matrix, threshold=config.cluster_threshold
     )
     n_clusters = len(cluster_result["clusters"])
-    _progress(f"Feature analysis complete. Found {n_clusters} clusters.")
+    LOGGER.info(f"Feature analysis complete. Found {n_clusters} clusters.")
 
     # Suggest exclusions
     suggested = suggest_exclusions(
@@ -204,7 +200,7 @@ def run(
     # Save outputs
     out_path = Path(out_dir)
     analysis_dir = out_path / "analysis"
-    _progress(f"Saving analysis outputs to {analysis_dir}...")
+    LOGGER.info(f"Saving analysis outputs to {analysis_dir}...")
 
     save_analysis_outputs(
         corr_matrix=corr_matrix,
@@ -216,7 +212,7 @@ def run(
     with open(exclusions_out, "w") as f:
         json.dump(suggested, f, indent=2)
 
-    _progress(f"Analysis complete. Outputs saved to {analysis_dir}")
+    LOGGER.info(f"Analysis complete. Outputs saved to {analysis_dir}")
 
 
 analyze_features_cmd = CLICommandFromFunction(

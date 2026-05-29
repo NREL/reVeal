@@ -162,11 +162,6 @@ def run(
     if _local:
         remove_streamhandlers(LOGGER.parent)
 
-    def _progress(msg):
-        """Print progress to stdout and log."""
-        print(msg, flush=True)
-        LOGGER.info(msg)
-
     config = LearnWeightsConfig(
         grid=grid,
         labels=labels,
@@ -186,15 +181,15 @@ def run(
         tuning_metric=tuning_metric,
     )
 
-    _progress("Running learn-weights pipeline...")
-    results = run_learn_weights(config, progress_callback=_progress)
+    LOGGER.info("Running learn-weights pipeline...")
+    results = run_learn_weights(config)
 
     out_path = Path(out_dir)
     out_path.mkdir(parents=True, exist_ok=True)
 
     # Save score-weighted config
     config_out = out_path / "config_score_weighted.json"
-    _progress(f"Saving score-weighted config to {config_out}")
+    LOGGER.info(f"Saving score-weighted config to {config_out}")
     with open(config_out, "w") as f:
         json.dump(results["config"], f, indent=2)
 
