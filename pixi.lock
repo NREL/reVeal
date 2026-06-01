@@ -17034,14 +17034,15 @@ packages:
   requires_python: '>=3.9'
 - pypi: ./
   name: nlr-reveal
-  version: 0.2.4.dev15+ga602ddc77
-  sha256: 5bff02f6a695cd91e0a3e10d6bb66a975ebd79a5dd7bb275d5d593b2e7949312
+  version: 0.2.4.dev17+g4c5ace714.d20260528
+  sha256: 67f2f8780ec785d0dc69719d558eeef872ef428a89c5ba138be2e79d02bab7c6
   requires_dist:
   - exactextract>=0.3.0,<0.4
   - geopandas>=1.1.1,<2
   - gdal>=3.10.3,<4
   - joblib>=1.4.0,<2
   - libpysal>=4.13.0,<5
+  - matplotlib>=3.8.0,<4
   - nlr-gaps>=0.9.1,<1
   - nlr-rex>=0.5.0,<1
   - optuna>=4.0.0,<5
