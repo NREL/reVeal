@@ -103,7 +103,7 @@ def run(
 
     Trains a PUExtraTrees model on a normalized grid using point labels as positive
     samples and auto-sampled background cells as unlabeled samples. Outputs a
-    score-weighted configuration JSON with feature importances normalized as weights
+    learned attributes JSON with feature importances normalized as weights
     (summing to 1.0).
 
     Parameters
@@ -116,7 +116,7 @@ def run(
         positive sample locations. These represent known sites (e.g., data center
         locations).
     out_dir : str
-        Output directory. Results will be saved as ``config_score_weighted.json``
+        Output directory. Results will be saved as ``learned_attributes.json``
         and ``learn_weights_metrics.json``.
     attributes : list of str, optional
         List of column names from the grid to use as features. If not specified,
@@ -187,11 +187,11 @@ def run(
     out_path = Path(out_dir)
     out_path.mkdir(parents=True, exist_ok=True)
 
-    # Save score-weighted config
-    config_out = out_path / "config_score_weighted.json"
-    LOGGER.info(f"Saving score-weighted config to {config_out}")
-    with open(config_out, "w") as f:
-        json.dump(results["config"], f, indent=2)
+    # Save learned attributes
+    attrs_out = out_path / "learned_attributes.json"
+    LOGGER.info(f"Saving learned attributes to {attrs_out}")
+    with open(attrs_out, "w") as f:
+        json.dump(results["attributes"], f, indent=2)
 
     # Save metrics
     if results["metrics"]:

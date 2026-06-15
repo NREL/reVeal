@@ -59,7 +59,6 @@ dev = [
 test = [
   "flaky>=3.8.1,<4",
   "pytest>=9.0.1,<10",
-  "pytest-cases>=3.9.1,<4",
   "pytest-cov>=7.0.0,<8",
   "pytest-mock>=3.15.1,<4",
   "pytest-profiling>=1.8.1,<2",
@@ -143,7 +142,7 @@ ruff = ">=0.14.5,<0.15"
 [tool.pixi.feature.test.dependencies]
 flaky = ">=3.8.1,<4"
 pytest = ">=9.0.1,<10"
-pytest-cases = ">=3.9.1,<4"
+pytest-cases = ">=3.10.1,<4"
 pytest-cov = ">=7.0.0,<8"
 pytest-mock = ">=3.15.1,<4"
 pytest-profiling = ">=1.8.1,<2"

@@ -414,7 +414,7 @@ def run_learn_weights(config):
     dict
         Dictionary containing:
 
-        - 'config': score_weighted config dict.
+        - 'attributes': list of dicts with 'attribute' and 'weight' keys.
         - 'metrics': model evaluation metrics dict.
         - 'model': trained ``PUExtraTrees`` instance.
         - 'tuning': dict with tuning results (``best_class_prior``,
@@ -514,15 +514,8 @@ def run_learn_weights(config):
     weights = importances_to_weights(results["feature_importances"], attributes)
     LOGGER.info(f"Derived {len(weights)} non-zero weights from {len(attributes)} features.")
 
-    # Generate output config
-    score_config = generate_score_weighted_config(
-        weights=weights,
-        grid_path=str(config.grid),
-        score_name=config.score_name,
-    )
-
     return {
-        "config": score_config,
+        "attributes": weights,
         "metrics": results["metrics"],
         "model": results["model"],
         "tuning": tuning_results,

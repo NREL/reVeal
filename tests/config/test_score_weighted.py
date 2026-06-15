@@ -2,6 +2,8 @@
 """
 config.score_weighted module tests
 """
+import json
+
 import pytest
 
 import geopandas as gpd
@@ -112,6 +114,77 @@ def test_scoreattributesconfig_valid_inputs(data_dir):
     # check dynamic attributes are set
     assert config.grid_ext is not None, "grid_ext not set"
     assert config.grid_flavor is not None, "grid_flavor not set"
+
+
+def test_scoreattributesconfig_from_file(data_dir, tmp_path):
+    """
+    Test that ScoreWeightedConfig accepts a filepath string for attributes.
+    """
+    grid = data_dir / "normalize" / "outputs" / "grid_normalized.gpkg"
+    attributes = [
+        {"attribute": "generator_mwh_score", "weight": 0.25},
+        {"attribute": "tline_length_score", "weight": 0.25},
+        {"attribute": "fttp_average_speed_score", "weight": 0.25},
+        {"attribute": "developable_area_score", "weight": 0.25},
+    ]
+    attrs_file = tmp_path / "learned_attributes.json"
+    with open(attrs_file, "w") as f:
+        json.dump(attributes, f)
+
+    config_data = {
+        "grid": grid,
+        "attributes": str(attrs_file),
+        "score_name": "composite_score",
+    }
+    config = ScoreWeightedConfig(**config_data)
+    assert len(config.attributes) == 4
+    assert config.attributes[0].attribute == "generator_mwh_score"
+
+
+def test_scoreattributesconfig_from_file_nonexistent(data_dir):
+    """
+    Test that ScoreWeightedConfig raises ValidationError for non-existent filepath.
+    """
+    grid = data_dir / "normalize" / "outputs" / "grid_normalized.gpkg"
+    config_data = {
+        "grid": grid,
+        "attributes": "/nonexistent/path/to/attributes.json",
+        "score_name": "composite_score",
+    }
+    with pytest.raises(ValidationError):
+        ScoreWeightedConfig(**config_data)
+
+
+def test_scoreattributesconfig_from_file_invalid_json(data_dir, tmp_path):
+    """
+    Test that ScoreWeightedConfig raises ValidationError for invalid JSON file.
+    """
+    grid = data_dir / "normalize" / "outputs" / "grid_normalized.gpkg"
+    attrs_file = tmp_path / "bad.json"
+    attrs_file.write_text("not valid json {{{")
+    config_data = {
+        "grid": grid,
+        "attributes": str(attrs_file),
+        "score_name": "composite_score",
+    }
+    with pytest.raises(ValidationError, match="not valid JSON"):
+        ScoreWeightedConfig(**config_data)
+
+
+def test_scoreattributesconfig_from_file_not_a_list(data_dir, tmp_path):
+    """
+    Test that ScoreWeightedConfig raises ValidationError when file contains a dict.
+    """
+    grid = data_dir / "normalize" / "outputs" / "grid_normalized.gpkg"
+    attrs_file = tmp_path / "dict.json"
+    attrs_file.write_text('{"key": "value"}')
+    config_data = {
+        "grid": grid,
+        "attributes": str(attrs_file),
+        "score_name": "composite_score",
+    }
+    with pytest.raises(ValidationError, match="must contain a JSON list"):
+        ScoreWeightedConfig(**config_data)
 
 
 def test_scoreweightedconfig_nonexistent_grid():

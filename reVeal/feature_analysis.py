@@ -231,9 +231,9 @@ def suggest_exclusions(clusters, corr_matrix):
     Returns
     -------
     dict
-        Dictionary mapping cluster IDs to suggestion dicts:
-        {"drop": feature_name, "keep": [other_features],
-         "drop_avg_correlation": float, "keep_avg_correlations": [floats]}
+        Dictionary mapping cluster IDs to suggestion dicts with keys:
+        ``drop`` (feature_name), ``keep`` (list of other features),
+        ``drop_avg_correlation`` (float), ``keep_avg_correlations`` (list of floats).
     """
     suggestions = {}
 
