@@ -1,9 +1,11 @@
 """
 config.score_composite module
 """
-from typing import List
+import json
+from typing import List, Union
 import warnings
 from math import isclose
+from pathlib import Path
 
 from typing_extensions import Annotated
 from pydantic import model_validator, FilePath, Field
@@ -54,7 +56,7 @@ class BaseScoreWeightedConfig(BaseGridConfig):
     # pylint: disable=too-few-public-methods
 
     # Input at instantiation
-    attributes: List
+    attributes: Union[FilePath, List]
     score_name: str
 
 
@@ -69,7 +71,8 @@ class ScoreWeightedConfig(BaseScoreWeightedConfig):
     @model_validator(mode="before")
     def propagate_grid(self):
         """
-        Propagate the top level grid parameter down to elements of
+        Validate base types, load attributes from file if a filepath is given,
+        then propagate the top level grid parameter down to elements of
         attributes before validation.
 
         Returns
@@ -77,26 +80,25 @@ class ScoreWeightedConfig(BaseScoreWeightedConfig):
         self
             Returns self.
         """
+        validated = BaseScoreWeightedConfig(**self)
+        self["grid"] = str(validated.grid)
+        attrs = validated.attributes
+        if isinstance(attrs, Path):
+            try:
+                with open(attrs, "r", encoding="utf-8") as f:
+                    self["attributes"] = json.load(f)
+            except json.JSONDecodeError as exc:
+                raise ValueError(
+                    f"Attributes file is not valid JSON: {attrs}"
+                ) from exc
+            if not isinstance(self["attributes"], list):
+                raise ValueError(
+                    f"Attributes file must contain a JSON list: {attrs}"
+                )
 
         for attribute in self["attributes"]:
             if "dset_src" not in attribute:
                 attribute["dset_src"] = self["grid"]
-
-        return self
-
-    @model_validator(mode="before")
-    def base_validator(self):
-        """
-        Ensures that the base validation is run on input data types before
-        other "before"-mode model validators.
-
-        Returns
-        -------
-        self
-            Returns self.
-        """
-
-        BaseScoreWeightedConfig(**self)
 
         return self
 
