@@ -98,7 +98,7 @@ jobs:
         persist-credentials: false
 
     - name: Install Environment
-      uses: mamba-org/setup-micromamba@d7c9bd84e824b79d2af72a2d4196c7f4300d3476
+      uses: mamba-org/setup-micromamba@f457c30a868e4760d3a6fcea5f25dc655b8edf39
       with:
         environment-file: environment.yml
         cache-environment: true
